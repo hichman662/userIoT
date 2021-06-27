@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-/*   {
-    path: '',
+  {
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  }, */
+  },
   {
     path: 'patient',
     loadChildren: () => import('./patient/patient.module').then( m => m.PatientPageModule)
@@ -15,9 +15,14 @@ const routes: Routes = [
     loadChildren: () => import('./scenarios/scenarios.module').then( m => m.ScenariosPageModule)
   },
   {
-    path: '',
-    loadChildren: () => import('./tab0/tab0.module').then( m => m.Tab0PageModule)
-  }
+    path: '**',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
 ];
 @NgModule({
   imports: [

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { Patient } from './../models/patient.model';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -15,6 +16,10 @@ export class PatientService {
 
 constructor(private http: HttpClient) {
 
+}
+
+public getAllPatient(): Observable<object>{
+  return this.http.get(`${environment.base_url}/Patient/ReadAll`);
 }
 
 }

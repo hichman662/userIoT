@@ -1,9 +1,89 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>tab0</ion-title>
-  </ion-toolbar>
+
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-back-button text="Scenarios" defaultHref="/scenarios" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-row>
+        <ion-col size="4" class="ion-align-self-start">
+
+        </ion-col>
+        <ion-col size="4" class="ion-align-self-end">
+            <ion-card color="transparent" class="deviceTemplate-card">
+                <ion-img src='assets/icon/scenario.svg'></ion-img>
+
+            </ion-card>
+        </ion-col>
+        <ion-col size="4" class="ion-align-self-center">
+        </ion-col>
+
+    </ion-row>
+    <ion-row>
+        <ion-col size="1" class="ion-align-self-start">
+
+        </ion-col>
+        <ion-col size="10" class="ion-align-self-center">
+
+            <ion-list-header>
+                <ion-label class="text-top">Scenarios</ion-label>
+            </ion-list-header>
+
+        </ion-col>
+        <ion-col size="1" class="ion-align-self-end">
+
+        </ion-col>
+
+    </ion-row>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
 
+    <section id="dashboardSection">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="4" class="ion-align-self-start" [routerLink]="['caregivers']">
+                    <ion-card color="transparent" class="nurse-card">
+                        <ion-img src='assets/icon/caregiverW.svg'></ion-img>
+                        <ion-label>Caregivers</ion-label>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="4" class="ion-align-self-center" [routerLink]="['disability-profile']">
+                    <ion-card color="transparent" class="disability-card">
+                        <ion-img src='assets/icon/disabilityW.svg'></ion-img>
+                        <ion-label>Disability profile</ion-label>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="4" class="ion-align-self-end" [routerLink]="['device-template']">
+                    <ion-card color="transparent" class="deviceTemplate-card">
+                        <ion-img src='assets/icon/deviceTemplateW.svg'></ion-img>
+                        <ion-label>Device template</ion-label>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="4" class="ion-align-self-start" [routerLink]="['telemetry-data']">
+                    <ion-card text-center color="transparent" class="nurse-card">
+                        <ion-img src='assets/icon/telemetryDataW.svg'></ion-img>
+                        <ion-label>Telemetry Data</ion-label>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="4" class="ion-align-self-end" [routerLink]="['/tabs/tab2']">
+                    <ion-card color="transparent" class="deviceTemplate-card" [routerLink]="['/tabs/tab2']">
+                        <ion-img src='assets/icon/disabilityBehavW.svg'></ion-img>
+                        <ion-label>Disability behavior</ion-label>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="4" class="ion-align-self-center" [routerLink]="['/tabs/tab2']">
+                    <ion-card text-center color="transparent" class="vital-card">
+                        <ion-img src='assets/icon/vital.svg'></ion-img>
+                        <ion-label>Vital signal</ion-label>
+                    </ion-card>
+                </ion-col>
+
+            </ion-row>
+
+        </ion-grid>
+    </section>
 </ion-content>

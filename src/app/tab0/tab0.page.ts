@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab0Page implements OnInit {
 
-  constructor() { }
+  constructor(private storage: Storage) { }
 
   ngOnInit() {
+ /*    this.storage.get('idScenario').then((val) => {
+      console.log('I´m carrying Scenario Id', val);
+    }); */
   }
 
 }
