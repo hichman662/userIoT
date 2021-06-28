@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Scenario } from '../models/scenario.model';
 import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-scenarios',
@@ -45,8 +46,9 @@ export class ScenariosPage implements OnInit {
     });
   }
 
-  async start(id) {
+  async start(id: any) {
     console.log(id);
+     this.storage.set('idScenario', id);
     this.router.navigateByUrl('/tabs', { replaceUrl:true });
   }
 }
