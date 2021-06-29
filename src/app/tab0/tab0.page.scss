@@ -13,19 +13,19 @@ ion-menu-button {
 ion-title {
     text-align: left;
     font-size: 18px;
-    color: rgb(53, 163, 197);
+    color: rgb(116, 190, 212);
 }
 
 #dashboardSection {
     max-width: 100%;
     max-height: auto;
     text-align: center;
-    background-color: rgba(221, 224, 221, 0.822);
-    margin-top: 4px;
-    margin-left: 6px;
-    margin-bottom: 10px;
-    margin-right: 6px;
-    border-radius: 12px;
+    background-color: rgba(165, 236, 193, 0.911);
+    margin-top: 6px;
+    margin-left: 3px;
+    margin-bottom: 6px;
+    margin-right: 3px;
+    border-radius: 20px;
     box-shadow: 10px;
 }
 
@@ -36,8 +36,8 @@ ion-header {
 }
 
 ion-icon {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
 
 ion-card {
@@ -45,13 +45,16 @@ ion-card {
     --ion-background-color: transparent !important;
     --ion-border-color: transparent !important;
     box-shadow: none;
+    width: 60%;
+    height: 60%;
+    margin-left: 30px;
 }
 
 ion-label {
     justify-content: center;
     align-content: center;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     color: black;
 }
 
@@ -79,13 +82,13 @@ ion-header {
 
 .text-top {
     text-align: center;
-    margin-top: -18px;
+    margin-top: -11px;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .ion-align-self-end {
-    margin-top: -18px;
+    margin-top: 11px;
 }
 
 :root {
@@ -122,13 +125,13 @@ app-component-telemetry {
 }
 
 ion-segment-button {
-    width: 40px;
+    width: 10px;
     margin-top: 2px;
     margin-left: 4px;
     margin-right: 4px;
     font-size: 10px;
     border: none;
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(27, 25, 25);
     border-radius: 50%;
 }
 

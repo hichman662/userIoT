@@ -3,7 +3,7 @@
 export class Scenario {
   constructor(
     Id: number,
-    Name?: string,
+    Name: string,
     Description?:string
     )
   {}
