@@ -1,4 +1,3 @@
-import { PatientPageModule } from './../patient/patient.module';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -16,7 +15,8 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    PatientPageModule
+    RouterModule.forChild([{ path: '', component: Tab2Page }]),
+    Tab2PageRoutingModule,
   ],
   declarations: [Tab2Page]
 })

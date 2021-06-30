@@ -5,7 +5,11 @@ import { Tab2Page } from './tab2.page';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('../patient/patient-routing.module').then(m => m.PatientPageRoutingModule)
+    component: Tab2Page
+  },
+  {
+    path: 'patient',
+    loadChildren: () => import('../patient/patient.module').then( m => m.PatientPageModule)
   }
 ];
 

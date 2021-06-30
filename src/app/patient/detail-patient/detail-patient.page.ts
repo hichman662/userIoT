@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailPatientPage implements OnInit {
 
   segmentModel = 'details';
-  public patient: Patient;
+  public patientName: string;
   private idPassedByURL: number = null;
 
   constructor(
@@ -25,7 +25,7 @@ export class DetailPatientPage implements OnInit {
     this.patientService.getPatientById(this.idPassedByURL)
     .subscribe((res: any ) => {
       console.log(res);
-      this.patient = res;
+      this.patientName = res.Name;
     }, (err) => {
       console.log(err);
     });
