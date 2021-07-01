@@ -2,10 +2,6 @@ ion-content {
     --background: url('/') 0 0/100% 100% no-repeat;
 }
 
-ion-header {
-    --background-color: rgba(75, 112, 190, 0.801);
-}
-
 ion-menu-button {
     color: rgb(0, 47, 255);
 }
@@ -13,7 +9,7 @@ ion-menu-button {
 ion-title {
     text-align: left;
     font-size: 18px;
-    color: rgb(116, 190, 212);
+    color: rgb(56, 116, 134);
 }
 
 #dashboardSection {
@@ -32,7 +28,7 @@ ion-title {
 ion-header {
     text-align: center;
     align-content: center;
-    background-color: rgba(83, 112, 209, 0.774);
+    background-color: rgba(133, 152, 212, 0.719);
 }
 
 ion-icon {
@@ -73,11 +69,7 @@ ion-card {
 }
 
 ion-toolbar {
-    --background: rgb(248, 248, 248);
-}
-
-ion-header {
-    background-color: rgb(248, 248, 248);
+    --background: rgba(133, 152, 212, 0.719);
 }
 
 .text-top {

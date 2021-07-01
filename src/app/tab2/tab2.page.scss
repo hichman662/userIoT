@@ -3,11 +3,6 @@ ion-content {
     border-radius: 20px;
 }
 
-ion-header {
-    --background-color: rgba(211, 193, 193, 0.801);
-    border-radius: 20px;
-}
-
 ion-menu-button {
     color: rgb(0, 47, 255);
 }
@@ -34,7 +29,7 @@ ion-title {
 ion-header {
     text-align: center;
     align-content: center;
-    background-color: rgba(151, 201, 26, 0.658) !important;
+    background-color: rgba(180, 199, 136, 0.658) !important;
 }
 
 ion-icon {
@@ -66,21 +61,12 @@ ion-label {
 
 /* Works - pass "my-custom-class" in cssClass to increase specificity */
 
-.my-custom-class {
-    color: green;
-}
-
 ion-card {
     box-shadow: none !important
 }
 
 ion-toolbar {
-    --background: rgb(151, 201, 26, 0.658);
-}
-
-ion-header {
-    background-color: rgba(153, 42, 42, 0.39);
-    border-radius: 20px;
+    --background: rgba(180, 199, 136, 0.658) !important;
 }
 
 .text-top {
