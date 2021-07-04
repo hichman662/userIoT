@@ -9,7 +9,7 @@ export class Patient {
       Name?: string,
       Description?: string,
       PatientProfile?: PatientProfile,
-      Userdata?: UserData[]
+      Userdata?: UserData
         )
   {}
 }

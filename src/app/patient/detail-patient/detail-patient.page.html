@@ -32,7 +32,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">{{patientName}}</ion-label>
+                <ion-label class="text-top">{{ patientName}}</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -44,17 +44,11 @@
     <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
         <ion-segment-button value="details">
             <ion-icon name="receipt-outline"></ion-icon>
+            <ion-label>Details</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="profile">
+            <ion-icon name="receipt-outline"></ion-icon>
             <ion-label>Patient Profile</ion-label>
-        </ion-segment-button>
-
-        <ion-segment-button value="disability">
-            <ion-icon name="accessibility-outline"></ion-icon>
-            <ion-label>Disability</ion-label>
-        </ion-segment-button>
-
-        <ion-segment-button value="accessMode">
-            <ion-icon name="keypad-outline"></ion-icon>
-            <ion-label>Access Mode</ion-label>
         </ion-segment-button>
     </ion-segment>
 </ion-header>
@@ -104,5 +98,8 @@
 
             </ion-item>
         </ion-list>
+    </div>
+    <div class="segment" *ngIf="segmentModel === 'profile'">
+        <app-detail-profile></app-detail-profile>
     </div>
 </ion-content>

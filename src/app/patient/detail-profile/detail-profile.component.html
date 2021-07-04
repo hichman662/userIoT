@@ -1,0 +1,12 @@
+<ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
+    <ion-segment-button value="diseases">
+        <ion-icon name="receipt-outline"></ion-icon>
+        <ion-label>Diseases</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Disabilities">
+        <ion-icon name="receipt-outline"></ion-icon>
+        <ion-label>Disabilities</ion-label>
+    </ion-segment-button>
+</ion-segment>
+<div *ngIf="segmentModel === 'diseases'">
+</div>

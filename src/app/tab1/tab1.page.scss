@@ -1,5 +1,6 @@
 ion-content {
     --background: url('/') 0 0/100% 100% no-repeat;
+    border-radius: 20px;
 }
 
 ion-menu-button {
@@ -9,14 +10,14 @@ ion-menu-button {
 ion-title {
     text-align: left;
     font-size: 18px;
-    color: rgb(116, 190, 212);
+    color: rgb(151, 201, 26) !important;
 }
 
 #dashboardSection {
     max-width: 100%;
     max-height: auto;
     text-align: center;
-    background-color: rgba(236, 227, 227, 0.205);
+    background-color: rgba(221, 230, 225, 0.24);
     margin-top: 6px;
     margin-left: 3px;
     margin-bottom: 6px;
@@ -28,7 +29,7 @@ ion-title {
 ion-header {
     text-align: center;
     align-content: center;
-    background-color: rgba(185, 189, 129, 0.719);
+    background-color: rgba(180, 199, 136, 0.658) !important;
 }
 
 ion-icon {
@@ -60,16 +61,12 @@ ion-label {
 
 /* Works - pass "my-custom-class" in cssClass to increase specificity */
 
-.my-custom-class {
-    color: green;
-}
-
 ion-card {
     box-shadow: none !important
 }
 
 ion-toolbar {
-    --background: rgba(185, 189, 129, 0.719);
+    --background: rgba(180, 199, 136, 0.658) !important;
 }
 
 .text-top {
