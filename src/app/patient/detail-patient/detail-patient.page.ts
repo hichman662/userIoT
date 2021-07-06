@@ -1,8 +1,10 @@
+import { PatientProfile } from './../../models/patientProfile.model';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { PatientService } from './../../services/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/models/patient.model';
 import { ActivatedRoute } from '@angular/router';
+import { UserData } from 'src/app/models/userData.model';
 
 @Component({
   selector: 'app-detail-patient',
@@ -12,6 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailPatientPage implements OnInit {
 
   public patientName: '';
+  public patientDescrip: '';
+  public patientData: UserData;
   segmentModel = 'details';
   private idPassedByURL: number = null;
   constructor(
@@ -28,6 +32,9 @@ export class DetailPatientPage implements OnInit {
       console.log(res);
     if(res != null){
        this.patientName = res.Name;
+       this.patientDescrip = res.Description;
+       this.patientData = res.UserData;
+
     }
     }, (err) => {
       console.log(err);

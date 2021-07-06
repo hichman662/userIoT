@@ -12,22 +12,22 @@ ion-card {
 }
 
 ion-toolbar {
-    --background: rgb(248, 248, 248);
+    --background: rgba(207, 218, 182, 0.658) !important;
 }
 
 ion-header {
-    background-color: rgb(248, 248, 248);
+    background-color: rgba(180, 199, 136, 0.658);
 }
 
 .text-top {
     text-align: center;
-    margin-top: -18px;
+    margin-top: -16px;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.ion-align-self-end {
-    margin-top: -18px;
+.ion-align-self-center {
+    margin-top: -15px;
 }
 
 :root {
@@ -74,11 +74,11 @@ app-component-telemetry {
 
 ion-segment-button {
     width: 40px;
-    margin-top: 2px;
-    margin-left: 4px;
-    margin-right: 4px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
     font-size: 10px;
     border: none;
     background-color: rgb(248, 248, 248);
-    border-radius: 50%;
+    border-radius: 0%;
 }

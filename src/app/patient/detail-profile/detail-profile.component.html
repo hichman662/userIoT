@@ -1,12 +1,172 @@
 <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
-    <ion-segment-button value="diseases">
+    <ion-segment-button value="details">
         <ion-icon name="receipt-outline"></ion-icon>
+        <ion-label>Details</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="diseases">
+        <ion-icon name="heart-half-outline"></ion-icon>
         <ion-label>Diseases</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="Disabilities">
-        <ion-icon name="receipt-outline"></ion-icon>
+    <ion-segment-button value="disabilities">
+        <ion-icon name="body-outline"></ion-icon>
         <ion-label>Disabilities</ion-label>
     </ion-segment-button>
 </ion-segment>
+<div *ngIf="segmentModel === 'details'">
+    <ion-list>
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="clipboard-outline"></ion-icon>Profile Name</ion-list-header>
+        <ion-item>
+
+            <ion-label text-wrap> {{$any(patientProfile)?.Name}}</ion-label>
+        </ion-item>
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="clipboard-outline"></ion-icon>Profile Description</ion-list-header>
+        <ion-item>
+
+            <ion-label text-wrap> {{$any(patientProfile)?.Description}}</ion-label>
+
+        </ion-item>
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="warning-outline"></ion-icon>Hazard value</ion-list-header>
+        <ion-item>
+            <ion-label *ngIf="$any(patientProfile)?.HazardAvoidance === 0"> Undefined</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.HazardAvoidance === 1"> Flashing</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.HazardAvoidance === 2"> Motion Simulation</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.HazardAvoidance === 3"> Olfatory Hazard</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.HazardAvoidance === 4"> Sound</ion-label>
+        </ion-item>
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="globe-outline"></ion-icon>Region</ion-list-header>
+        <ion-item>
+
+            <ion-label> {{$any(patientProfile)?.Region}}</ion-label>
+
+        </ion-item>
+
+
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="language-outline"></ion-icon>Preferred language</ion-list-header>
+        <ion-item>
+
+            <ion-label *ngIf="$any(patientProfile)?.PreferredLanguage === 1"> ES</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.PreferredLanguage === 2"> EN</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.PreferredLanguage === 3"> FR</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.PreferredLanguage === 4"> IT</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.PreferredLanguage === 5"> PR</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.PreferredLanguage === 6"> DE</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.PreferredLanguage === 7"> JA</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.PreferredLanguage === 8"> KO</ion-label>
+            <ion-label *ngIf="$any(patientProfile)?.PreferredLanguage === 9"> ZH</ion-label>
+
+
+        </ion-item>
+    </ion-list>
+</div>
 <div *ngIf="segmentModel === 'diseases'">
+
+    <div class="container" *ngFor="let disease of diseases|keyvalue">
+        <mat-expansion-panel details>
+            <mat-expansion-panel-header slot="start">
+                <mat-panel-title>
+                    <ion-item>
+                        <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
+                        <ion-label>{{disease.value['Name']}}</ion-label>
+                    </ion-item>
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <ion-item-sliding>
+                <ion-item-options side="start">
+                    <ion-item-option color="danger" (click)="null" expandable>
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+
+            <ion-card>
+                <ion-item>
+
+                    <ion-label>Disease</ion-label>
+
+                    <ion-badge *ngIf="$any(disease).value.Disease === 1"> Alzheimer</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 2"> Parkinson</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 3"> Cancer</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 4"> Heart Disease</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 5"> Obesity</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 6"> Diabetes</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 7"> Epilepsy</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 8"> Apnea Sleep</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 9"> Narcolepsy</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 10"> Eating disorders</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 11"> Osteoporosis</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 12"> Asthma</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 13"> Fibrosis</ion-badge>
+                    <ion-badge *ngIf="$any(disease).value.Disease === 14"> Oral_Health</ion-badge>
+                </ion-item>
+
+            </ion-card>
+
+        </mat-expansion-panel>
+
+
+
+    </div>
+
+</div>
+
+<div *ngIf="segmentModel === 'disabilities'">
+
+    <div class="container" *ngFor="let disability of disabilities|keyvalue">
+        <mat-expansion-panel details>
+            <mat-expansion-panel-header slot="start">
+                <mat-panel-title>
+                    <ion-item>
+                        <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
+                        <ion-label>{{disability.value['Name']}}</ion-label>
+                    </ion-item>
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <ion-item-sliding>
+                <ion-item-options side="start">
+                    <ion-item-option color="danger" (click)="null" expandable>
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+
+            <ion-card>
+                <ion-item>
+
+                    <ion-label>Disability type</ion-label>
+
+                    <ion-badge *ngIf="$any(disability).value.Type === 1"> Auditory</ion-badge>
+                    <ion-badge *ngIf="$any(disability).value.Type === 2"> Cognitive</ion-badge>
+                    <ion-badge *ngIf="$any(disability).value.Type === 3"> Physical</ion-badge>
+                    <ion-badge *ngIf="$any(disability).value.Type === 4"> Speech</ion-badge>
+                    <ion-badge *ngIf="$any(disability).value.Type === 5"> Visual</ion-badge>
+
+                </ion-item>
+                <ion-item>
+
+                    <ion-label>Severity</ion-label>
+
+                    <ion-badge *ngIf="$any(disability).value.Severity === 1"> Severe</ion-badge>
+                    <ion-badge *ngIf="$any(disability).value.Severity === 2"> Moderate</ion-badge>
+                    <ion-badge *ngIf="$any(disability).value.Severity === 3"> Mild</ion-badge>
+
+
+                </ion-item>
+
+            </ion-card>
+
+        </mat-expansion-panel>
+
+
+
+    </div>
+
 </div>

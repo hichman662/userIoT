@@ -12,11 +12,11 @@ ion-card {
 }
 
 ion-toolbar {
-    --background: rgb(248, 248, 248);
+    --background: rgba(207, 218, 182, 0.658) !important;
 }
 
 ion-header {
-    background-color: rgb(248, 248, 248);
+    background-color: rgba(180, 199, 136, 0.658);
 }
 
 .text-top {
@@ -26,8 +26,8 @@ ion-header {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.ion-align-self-end {
-    margin-top: -18px;
+.ion-align-self-center {
+    margin-top: -15px;
 }
 
 :root {

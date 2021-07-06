@@ -12,11 +12,16 @@ ion-card {
 }
 
 ion-toolbar {
-    --background: rgb(248, 248, 248);
+    --background: rgba(207, 218, 182, 0.658) !important;
 }
 
 ion-header {
     background-color: rgb(248, 248, 248);
+}
+
+ion-badge {
+    background-color: rgb(248, 248, 248);
+    color: black;
 }
 
 .text-top {
