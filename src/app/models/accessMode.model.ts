@@ -7,15 +7,12 @@ import { AdaptationTypeRequired } from './adaptationTypeRequired.model';
 export class AccessMode {
   constructor(
     Id: number,
-    Patient_oid?: number,
     Name?: string,
-    Disability_oid?: number,
     Description?: string,
-    DeviceTemplate_oid?: number[],
     TypeAccessMode?: number,
-    AdaptationTypeRequired?: AdaptationTypeRequired [],
+    AdaptationType?: AdaptationTypeRequired [],
     AdaptationRequest?: AdaptationRequest[],
-    AdaptationDetailRequired?: AdaptationDetailRequired[]
+    AdaptationDetail?: AdaptationDetailRequired[]
         )
   {}
 }

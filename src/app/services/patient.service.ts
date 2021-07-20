@@ -34,4 +34,8 @@ public getAllPractitioner(): Observable<object>{
 public getAllRelatedPerson(): Observable<object>{
   return this.http.get(`${environment.base_url}/RelatedPerson/ReadAll`);
 }
+
+public getAllPatientAccess(): Observable<object>{
+  return this.http.get(`${environment.base_url}/PatientAccess/ReadAll`);
+}
 }

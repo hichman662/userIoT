@@ -4,7 +4,6 @@ export class AdaptationDetailRequired {
   constructor(
         Id: number,
         AdaptationRequest?: number,
-        AccessMode_oid?: number,
         Description?: string
         )
   {}

@@ -1,10 +1,9 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export class AdaptationTypeRequired {
     constructor(
         Id: number,
         AdaptionRequest: number,
-        Description: string,
-        // tslint:disable-next-line: variable-name
-        AccessMode_oid: number
+        Description: string
           )
     {}
   }
