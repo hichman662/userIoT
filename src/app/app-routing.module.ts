@@ -23,6 +23,14 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'practitioner',
+    loadChildren: () => import('./practitioner/practitioner.module').then( m => m.PractitionerPageModule)
+  },
+  {
+    path: 'rel-person',
+    loadChildren: () => import('./rel-person/rel-person.module').then( m => m.RelPersonPageModule)
+  }
 ];
 @NgModule({
   imports: [

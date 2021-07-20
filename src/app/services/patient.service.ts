@@ -26,4 +26,12 @@ public getPatientById( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <Patient>(`${environment.base_url}/Patient/${uid}` );
 }
+
+public getAllPractitioner(): Observable<object>{
+  return this.http.get(`${environment.base_url}/Practitioner/ReadAll`);
+}
+
+public getAllRelatedPerson(): Observable<object>{
+  return this.http.get(`${environment.base_url}/RelatedPerson/ReadAll`);
+}
 }
