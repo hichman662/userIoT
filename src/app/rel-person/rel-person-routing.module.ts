@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: RelPersonPage
+  },
+  {
+    path: 'detail-rel-person/:Id',
+    loadChildren: () => import('./detail-rel-person/detail-rel-person.module').then( m => m.DetailRelPersonPageModule)
   }
 ];
 
