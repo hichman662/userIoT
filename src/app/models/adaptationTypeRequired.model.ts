@@ -2,8 +2,8 @@
 export class AdaptationTypeRequired {
     constructor(
         Id: number,
-        AdaptionRequest: number,
-        Description: string
+        AdaptionRequest?: number,
+        Description?: string
           )
     {}
   }

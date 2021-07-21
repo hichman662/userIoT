@@ -1,6 +1,7 @@
+import { DetailAccessModeComponent } from './../detail-access-mode/detail-access-mode.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { DetailAccessModeComponent } from './../detail-access-mode/detail-access-mode.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +22,6 @@ import { DetailPatientAccessPage } from './detail-patient-access.page';
     ReactiveFormsModule,
     MatExpansionModule
   ],
-  declarations: [DetailPatientAccessPage,DetailAccessModeComponent]
+  declarations: [DetailPatientAccessPage, DetailAccessModeComponent]
 })
 export class DetailPatientAccessPageModule {}

@@ -1,5 +1,6 @@
 ion-content {
     --background: url('/') 0 0/100% 100% no-repeat;
+    border-radius: 20px;
 }
 
 ion-menu-button {
@@ -9,7 +10,6 @@ ion-menu-button {
 ion-title {
     text-align: left;
     font-size: 18px;
-    color: rgb(56, 116, 134);
 }
 
 #dashboardSection {
@@ -17,7 +17,7 @@ ion-title {
     max-height: auto;
     text-align: center;
     background-color: rgba(221, 230, 225, 0.24);
-    margin-top: 6px;
+    margin-top: 2px;
     margin-left: 3px;
     margin-bottom: 6px;
     margin-right: 3px;
@@ -28,7 +28,7 @@ ion-title {
 ion-header {
     text-align: center;
     align-content: center;
-    background-color: rgba(133, 152, 212, 0.719);
+    background-color: rgba(241, 99, 99, 0.856) !important;
 }
 
 ion-icon {
@@ -54,22 +54,24 @@ ion-label {
     color: black;
 }
 
+.pati-card {
+    margin-left: 10px;
+    width: 90%;
+    height: 90%;
+}
+
 
 /* DOES NOT WORK - not specific enough */
 
 
 /* Works - pass "my-custom-class" in cssClass to increase specificity */
 
-.my-custom-class {
-    color: green;
-}
-
 ion-card {
     box-shadow: none !important
 }
 
 ion-toolbar {
-    --background: rgba(133, 152, 212, 0.719);
+    --background: rgba(247, 118, 118, 0.5) !important;
 }
 
 .text-top {
@@ -80,7 +82,7 @@ ion-toolbar {
 }
 
 .ion-align-self-end {
-    margin-top: 11px;
+    margin-top: 2px;
 }
 
 :root {
