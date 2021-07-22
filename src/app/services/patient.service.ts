@@ -31,6 +31,11 @@ public getPatientById( uid: number): Observable<object>{
   return this.http.get <Patient>(`${environment.base_url}/Patient/${uid}` );
 }
 
+public getPatientByIdScenario( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <Patient>(`${environment.base_url}/Patient/PatientScenario?idIoTScenario=${uid}` );
+}
+
 // Practitioner
 public getAllPractitioner(): Observable<object>{
   return this.http.get(`${environment.base_url}/Practitioner/ReadAll`);
@@ -38,6 +43,10 @@ public getAllPractitioner(): Observable<object>{
 public getPractitionerById( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <Practitioner>(`${environment.base_url}/Practitioner/${uid}` );
+}
+public getPractitionerByIdScenario( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <Practitioner>(`${environment.base_url}/Practitioner/Practitioners?idIoTScenario=${uid}` );
 }
 
 // Related Person
@@ -48,6 +57,10 @@ public getRelatedPersonById( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <RelatedPerson>(`${environment.base_url}/RelatedPerson/${uid}` );
 }
+public getRelatedPersonByIdScenario( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <RelatedPerson>(`${environment.base_url}/RelatedPerson/RelatedPeople?idIoTScenario=${uid}` );
+}
 
 // Patient Access
 public getAllPatientAccess(): Observable<object>{
@@ -56,6 +69,10 @@ public getAllPatientAccess(): Observable<object>{
 public getPatientAccessById( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <PatientAccess>(`${environment.base_url}/PatientAccess/${uid}` );
+}
+public getPatientAccessByIdScenario( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <PatientAccess>(`${environment.base_url}/PatientAccess/PatientAccessScenario?idIoTScenario=${uid}` );
 }
 
 }

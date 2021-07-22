@@ -2,6 +2,7 @@ import { RelatedPerson } from './../models/relatedPerson.model';
 import { Router } from '@angular/router';
 import { PatientService } from './../services/patient.service';
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-rel-person',
@@ -11,17 +12,28 @@ import { Component, OnInit } from '@angular/core';
 export class RelPersonPage implements OnInit {
 
   public relatedPersons: RelatedPerson[] = [];
+  public idScenario: number;
+
   constructor(
     private patientService: PatientService,
-    public router: Router
+    public router: Router,
+    private storage: Storage
   ) { }
-
   ngOnInit() {
-    this.patientService.getAllRelatedPerson()
-    .subscribe( (res: any) => {
-        this.relatedPersons = res;
-    }, ( err) => {
-        console.log(err);
-    });
-  }
+  this.storage.get('idScenario').then((val) => {
+    this.idScenario = val;
+    console.log('inja id escenario: ' ,this.idScenario);
+    if(this.idScenario != null){
+      this.callRelatedPerson();
+    }
+  });
+}
+callRelatedPerson(){
+  this.patientService.getRelatedPersonByIdScenario(this.idScenario)
+  .subscribe( (res: any) => {
+      this.relatedPersons = res;
+  }, ( err) => {
+      console.log(err);
+  });
+}
 }
