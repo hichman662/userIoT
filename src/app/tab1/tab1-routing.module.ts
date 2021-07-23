@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'patient',
-    loadChildren: () => import('../patient/patient.module').then( m => m.PatientPageModule)
+    loadChildren: () => import('../patient/detail-patient/detail-patient.module').then( m => m.DetailPatientPageModule)
   },
   {
     path: 'practitioner',
