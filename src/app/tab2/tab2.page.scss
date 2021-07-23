@@ -28,7 +28,7 @@ ion-title {
 ion-header {
     text-align: center;
     align-content: center;
-    background-color: rgba(64, 117, 196, 0.61) !important;
+    background-color: rgb(139, 179, 238) !important;
 }
 
 ion-icon {
@@ -66,12 +66,8 @@ ion-label {
 
 /* Works - pass "my-custom-class" in cssClass to increase specificity */
 
-ion-card {
-    box-shadow: none !important
-}
-
 ion-toolbar {
-    --background: rgba(133, 171, 228, 0.39) !important;
+    --background: rgb(139, 179, 238) !important;
 }
 
 .text-top {
@@ -79,10 +75,6 @@ ion-toolbar {
     margin-top: -11px;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-.ion-align-self-end {
-    margin-top: 2px;
 }
 
 :root {
