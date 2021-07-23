@@ -23,7 +23,6 @@ export class PatientPage implements OnInit {
   ngOnInit() {
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
-      console.log('inja id escenario: ' ,this.idScenario);
       if(this.idScenario != null){
         this.callPatient();
       }
