@@ -38,6 +38,18 @@ const routes: Routes = [
   {
     path: 'care-plan',
     loadChildren: () => import('./care-plan/care-plan.module').then( m => m.CarePlanPageModule)
+  },
+  {
+    path: 'care-activity',
+    loadChildren: () => import('./care-activity/care-activity.module').then( m => m.CareActivityPageModule)
+  },
+  {
+    path: 'appointment',
+    loadChildren: () => import('./appointment/appointment.module').then( m => m.AppointmentPageModule)
+  },
+  {
+    path: 'communication',
+    loadChildren: () => import('./communication/communication.module').then( m => m.CommunicationPageModule)
   }
 ];
 @NgModule({
