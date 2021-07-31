@@ -45,17 +45,21 @@
 <ion-content>
 
     <ion-list>
-        <div class="carePlan" *ngFor="let carePlan of carePlans">
+        <div class="carePlan" *ngFor="let vitalSign of vitalSigns">
 
             <ion-item-sliding #slidingItem>
 
-                <ion-item class="item" detail [routerLink]="['detail-vital-signs',carePlan['Id']]">
+                <ion-item class="item" detail [routerLink]="['detail-vital-signs',vitalSign['Id']]">
                     <ion-avatar slot="start">
                         <img src="assets/icon/vitalSigns.png">
 
                     </ion-avatar>
 
-                    <ion-label> {{carePlan['Name']}}</ion-label>
+                    <ion-label text-wrap>
+                        <h3>{{vitalSign['Name']}}</h3>
+                        <h4>{{vitalSign['Description']}}</h4>
+                    </ion-label>
+
 
 
                 </ion-item>

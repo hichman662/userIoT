@@ -1,3 +1,4 @@
+import { VitalSign } from './../models/vitalSign.model';
 
 /* eslint-disable @typescript-eslint/ban-types */
 
@@ -15,8 +16,6 @@ import { CareActivity } from '../models/careActivity.model';
   providedIn: 'root'
 })
 export class CarePlanService {
-
-    carePlan: CarePlan;
 
 constructor(private http: HttpClient) {
 
@@ -45,12 +44,12 @@ public getAllVitalSign(): Observable<object>{
 
 public getVitalSignById( uid: number): Observable<object>{
   if (!uid) { uid = null; }
-  return this.http.get <CarePlan>(`${environment.base_url}/VitalSign/${uid}` );
+  return this.http.get <VitalSign>(`${environment.base_url}/VitalSign/${uid}` );
 }
 
 public getVitalSignByIdScenario( uid: number): Observable<object>{
   if (!uid) { uid = null; }
-  return this.http.get <CarePlan>(`${environment.base_url}/VitalSign/VitalSignsScenario?idIoTScenario=${uid}` );
+  return this.http.get <VitalSign>(`${environment.base_url}/VitalSign/VitalSignsScenario?idIoTScenario=${uid}` );
 }
 
 // Care Activities

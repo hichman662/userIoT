@@ -1,3 +1,4 @@
+import { VitalSign } from './../models/vitalSign.model';
 import { Router } from '@angular/router';
 import { CarePlanService } from './../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,7 @@ import { Storage } from '@ionic/storage';
 })
 export class VitalSignPage implements OnInit {
 
-  public carePlans: CarePlan[] = [];
+  public vitalSigns: VitalSign[] = [];
   public idScenario: number;
   constructor(
     private carePlanService: CarePlanService,
@@ -28,9 +29,9 @@ export class VitalSignPage implements OnInit {
     });
   }
   callCarePlans(){
-    this.carePlanService.getCarePlanByIdScenario(this.idScenario)
+    this.carePlanService.getVitalSignByIdScenario(this.idScenario)
     .subscribe( (res: any) => {
-        this.carePlans = res;
+        this.vitalSigns = res;
     }, ( err) => {
         console.log(err);
     });
