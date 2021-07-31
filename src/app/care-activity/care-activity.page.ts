@@ -1,5 +1,8 @@
+import { CarePlanService } from './../services/careplan.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-
+import { Storage } from '@ionic/storage';
+import { CareActivity } from '../models/careActivity.model';
 @Component({
   selector: 'app-care-activity',
   templateUrl: './care-activity.page.html',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CareActivityPage implements OnInit {
 
-  constructor() { }
+  public careActivities: any[] = [];
+  public idScenario: number;
+  public valueCareActivity: number;
+  constructor(
+    private carePlanService: CarePlanService,
+    public router: Router,
+    private storage: Storage
+
+  ) { }
 
   ngOnInit() {
+    this.storage.get('idScenario').then((val) => {
+      this.idScenario = val;
+      if(this.idScenario != null){
+        this.callCareActivity();
+      }
+    });
   }
-
+  callCareActivity(){
+    this.carePlanService.getCareActivityByIdScenario(this.idScenario)
+    .subscribe( (res: any) => {
+      console.log(res);
+        this.careActivities = res;
+    }, ( err) => {
+        console.log(err);
+    });
+  }
 }

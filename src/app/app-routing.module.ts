@@ -50,6 +50,18 @@ const routes: Routes = [
   {
     path: 'communication',
     loadChildren: () => import('./communication/communication.module').then( m => m.CommunicationPageModule)
+  },
+  {
+    path: 'vital-sign',
+    loadChildren: () => import('./vital-sign/vital-sign.module').then( m => m.VitalSignPageModule)
+  },
+  {
+    path: 'nutrition',
+    loadChildren: () => import('./nutrition/nutrition.module').then( m => m.NutritionPageModule)
+  },
+  {
+    path: 'medication',
+    loadChildren: () => import('./medication/medication.module').then( m => m.MedicationPageModule)
   }
 ];
 @NgModule({
