@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Medication } from './medication.model';
-import { Comunication } from './comunication.model';
+import { Communication } from './communication.model';
 import { Appointment } from './appointment.model';
 export class CareActivity {
   constructor(
@@ -13,7 +13,7 @@ export class CareActivity {
     OutcomeCode?: string,
     TypeActivity?: number,
     ActivityCode?: string,
-    Comunications?: Comunication[],
+    Communications?: Communication[],
     Appointments?: Appointment[],
     Medications?: Medication | null,
     NutritionOrders?: any
