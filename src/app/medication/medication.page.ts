@@ -13,6 +13,7 @@ export class MedicationPage implements OnInit {
   public medicationName: '';
   public medicationDescrip: '';
   public valueCareActivity: any;
+  public medicationDetail: any;
   segmentModel = 'details';
   private idPassedByURL: number = null;
   constructor(
@@ -24,13 +25,14 @@ export class MedicationPage implements OnInit {
 
   ngOnInit() {
     this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getCareActivitynById(this.idPassedByURL)
+    this.carePlanService.getCareActivityById(this.idPassedByURL)
     .subscribe((res: any ) => {
       console.log(res);
     if(res != null){
-       this.medicationName = res.Name;
-       this.medicationDescrip = res.Description;
+       this.medicationName = res.ValueCareActivity.Name;
+       this.medicationDescrip = res.ValueCareActivity.Description;
        this.valueCareActivity = res.ValueCareActivity;
+       this.medicationDetail = res.ValueCareActivity.Medications;
 
     }
     }, (err) => {

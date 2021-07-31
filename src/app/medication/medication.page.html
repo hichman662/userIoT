@@ -64,6 +64,10 @@
     <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
         <ion-segment-button value="details">
             <ion-icon name="receipt-outline"></ion-icon>
+            <ion-label>Activity Detail</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="medication">
+            <ion-icon name="flask-outline"></ion-icon>
             <ion-label>Medication Detail</ion-label>
         </ion-segment-button>
 
@@ -74,52 +78,97 @@
     <div class="segment" *ngIf="segmentModel === 'details'">
         <ion-list>
             <ion-list-header>
-                <ion-icon class="segmentIcon" name="person-outline"></ion-icon>Surname</ion-list-header>
+                <ion-icon class="segmentIcon" name="timer-outline"></ion-icon>Periodicity</ion-list-header>
             <ion-item>
 
-                <!-- <ion-label text-wrap> {{$any(relPersonData)?.Surnames}}</ion-label> -->
+                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 1"> Daily</ion-label>
+                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 2"> Monthly</ion-label>
+                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 3"> Per Hour</ion-label>
+                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 4"> Weekly</ion-label>
             </ion-item>
             <ion-list-header>
-                <ion-icon class="segmentIcon" name="at-outline"></ion-icon>Email</ion-list-header>
+                <ion-icon class="segmentIcon" name="alarm-outline"></ion-icon>Duration</ion-list-header>
             <ion-item>
 
-                <!-- <ion-label> {{$any(relPersonData)?.Email}}</ion-label> -->
-
-            </ion-item>
-            <ion-list-header>
-
-                <ion-icon class="segmentIcon" name="power-outline"></ion-icon>Active Status</ion-list-header>
-            <ion-item>
-                <!--  <ion-item [hidden]="$any(relPersonData)?.IsActive === true">
-                <ion-label>Disactive</ion-label>
-            </ion-item>
-            <ion-item [hidden]="$any(relPersonData)?.IsActive === false">
-                <ion-label>Active</ion-label>
-            </ion-item> -->
-
-                <!-- <ion-label> {{$any(patientData)?.IsActive}}</ion-label> -->
+                <ion-label> {{$any(valueCareActivity)?.Duration}}</ion-label>
 
             </ion-item>
             <ion-list-header>
-                <ion-icon class="segmentIcon" name="heart-half-outline"></ion-icon>Is Diseased</ion-list-header>
+                <ion-icon class="segmentIcon" name="pin-outline"></ion-icon>Location</ion-list-header>
             <ion-item>
 
-                <!-- <ion-item [hidden]="$any(relPersonData)?.IsDiseased === false">
-                <ion-label>Yes</ion-label>
-            </ion-item>
-            <ion-item [hidden]="$any(relPersonData)?.IsDiseased === true">
-                <ion-label>No</ion-label>
-            </ion-item> -->
+                <ion-label> {{$any(valueCareActivity)?.Location}}</ion-label>
 
             </ion-item>
-
             <ion-list-header>
-                <ion-icon class="segmentIcon" name="male-female-outline"></ion-icon>Gender</ion-list-header>
+                <ion-icon class="segmentIcon" name="code-outline"></ion-icon>Outcome Code</ion-list-header>
             <ion-item>
-                <!-- <ion-label *ngIf="$any(relPersonData)?.Type === 1"> Male</ion-label>
-            <ion-label *ngIf="$any(relPersonData)?.Type === 2"> Female</ion-label>
-            <ion-label *ngIf="$any(relPersonData)?.Type === 3"> Other</ion-label>
-            <ion-label *ngIf="$any(relPersonData)?.Type === 4"> Unknown</ion-label> -->
+
+                <ion-label> {{$any(valueCareActivity)?.OutcomeCode}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="code-working-outline"></ion-icon>Activity Code</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(valueCareActivity)?.ActivityCode}}</ion-label>
+
+            </ion-item>
+        </ion-list>
+    </div>
+
+    <div class="segment" *ngIf="segmentModel === 'medication'">
+        <ion-list>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="document-outline"></ion-icon>Name</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(medicationDetail)?.Name}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="create-outline"></ion-icon>Description</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(medicationDetail)?.Description}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="flask-outline"></ion-icon>Form</ion-list-header>
+            <ion-item>
+
+                <ion-label *ngIf="$any(medicationDetail)?.Form === 1"> Tablet</ion-label>
+                <ion-label *ngIf="$any(medicationDetail)?.Form === 2"> Powder</ion-label>
+                <ion-label *ngIf="$any(medicationDetail)?.Form === 3"> Capsule</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="water-outline"></ion-icon>Dosage</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(medicationDetail)?.Dosage}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="resize-outline"></ion-icon>Product Reference</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(medicationDetail)?.ProductReference}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="information-circle-outline"></ion-icon>Manufacturer</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(medicationDetail)?.Manufacturer}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="barcode-outline"></ion-icon>Medication Code</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(medicationDetail)?.MedicationCode}}</ion-label>
+
             </ion-item>
 
 

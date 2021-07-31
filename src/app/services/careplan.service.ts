@@ -58,7 +58,7 @@ public getAllCareActivities(): Observable<object>{
   return this.http.get(`${environment.base_url}/IMCareActivity/ReadAll`);
 }
 
-public getCareActivitynById( uid: number): Observable<object>{
+public getCareActivityById( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <CareActivity>(`${environment.base_url}/IMCareActivity/${uid}` );
 }

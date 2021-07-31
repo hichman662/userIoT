@@ -25,12 +25,12 @@ export class CommunicationPage implements OnInit {
 
   ngOnInit() {
     this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getCareActivitynById(this.idPassedByURL)
+    this.carePlanService.getCareActivityById(this.idPassedByURL)
     .subscribe((res: any ) => {
       console.log(res);
     if(res != null){
-       this.communicationName = res.Name;
-       this.communicationDescrip = res.Description;
+       this.communicationName = res.ValueCareActivity.Name;
+       this.communicationDescrip = res.ValueCareActivity.Description;
        this.valueCareActivity = res.ValueCareActivity;
 
     }

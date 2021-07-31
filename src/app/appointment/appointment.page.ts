@@ -12,6 +12,7 @@ export class AppointmentPage implements OnInit {
   public appointmentName: '';
   public appointmentDescrip: '';
   public valueCareActivity: any;
+  public appointmentDetail: any;
   segmentModel = 'details';
   private idPassedByURL: number = null;
   constructor(
@@ -23,13 +24,14 @@ export class AppointmentPage implements OnInit {
 
   ngOnInit() {
     this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getCareActivitynById(this.idPassedByURL)
+    this.carePlanService.getCareActivityById(this.idPassedByURL)
     .subscribe((res: any ) => {
       console.log(res);
     if(res != null){
-       this.appointmentName = res.Name;
-       this.appointmentDescrip = res.Description;
+       this.appointmentName = res.ValueCareActivity.Name;
+       this.appointmentDescrip = res.ValueCareActivity.Description;
        this.valueCareActivity = res.ValueCareActivity;
+       this.appointmentDetail = res.ValueCareActivity.Appointments;
 
     }
     }, (err) => {
