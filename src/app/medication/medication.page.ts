@@ -14,7 +14,9 @@ export class MedicationPage implements OnInit {
   public medicationDescrip: '';
   public valueCareActivity: any;
   public medicationDetail: any;
-  segmentModel = 'details';
+  public careActivityName: '';
+  careActivityDescrip: '';
+  segmentModel = 'medication';
   private idPassedByURL: number = null;
   constructor(
     private carePlanService: CarePlanService,
@@ -29,14 +31,28 @@ export class MedicationPage implements OnInit {
     .subscribe((res: any ) => {
       console.log(res);
     if(res != null){
-       this.medicationName = res.ValueCareActivity.Name;
-       this.medicationDescrip = res.ValueCareActivity.Description;
+       this.careActivityName = res.ValueCareActivity.Name;
+       this.careActivityDescrip = res.ValueCareActivity.Description;
        this.valueCareActivity = res.ValueCareActivity;
-       this.medicationDetail = res.ValueCareActivity.Medications;
+      this.callMedicationDetail();
+    }
+    }, (err) => {
+      console.log(err);
+    });
+  }
+  callMedicationDetail(){
+    this.carePlanService.getMedicationByIdCareActivity(this.idPassedByURL)
+    .subscribe((res: any ) => {
+      console.log(res);
+    if(res != null){
+       this.medicationName = res[0].Name;
+       this.medicationDescrip = res[0].Description;
+       this.medicationDetail = res[0].ValueMedication;
 
     }
     }, (err) => {
       console.log(err);
     });
+
   }
 }

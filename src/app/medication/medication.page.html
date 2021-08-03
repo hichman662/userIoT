@@ -32,7 +32,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">{{ medicationName}}</ion-label>
+                <ion-label class="text-top">{{ careActivityName}}</ion-label>
 
             </ion-list-header>
 
@@ -51,7 +51,7 @@
             <ion-list-header>
 
                 <ion-label class="text-top">
-                    <h4>{{ medicationDescrip}}</h4>
+                    <h4>{{ careActivityDescrip}}</h4>
                 </ion-label>
             </ion-list-header>
 
@@ -62,60 +62,20 @@
 
     </ion-row>
     <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
-        <ion-segment-button value="details">
-            <ion-icon name="receipt-outline"></ion-icon>
-            <ion-label>Activity Detail</ion-label>
-        </ion-segment-button>
+
         <ion-segment-button value="medication">
             <ion-icon name="flask-outline"></ion-icon>
             <ion-label>Medication Detail</ion-label>
         </ion-segment-button>
+        <ion-segment-button value="details">
+            <ion-icon name="receipt-outline"></ion-icon>
+            <ion-label>Activity Detail</ion-label>
+        </ion-segment-button>
+
 
     </ion-segment>
 </ion-header>
 <ion-content>
-
-    <div class="segment" *ngIf="segmentModel === 'details'">
-        <ion-list>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="timer-outline"></ion-icon>Periodicity</ion-list-header>
-            <ion-item>
-
-                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 1"> Daily</ion-label>
-                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 2"> Monthly</ion-label>
-                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 3"> Per Hour</ion-label>
-                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 4"> Weekly</ion-label>
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="alarm-outline"></ion-icon>Duration</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(valueCareActivity)?.Duration}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="pin-outline"></ion-icon>Location</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(valueCareActivity)?.Location}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="code-outline"></ion-icon>Outcome Code</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(valueCareActivity)?.OutcomeCode}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="code-working-outline"></ion-icon>Activity Code</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(valueCareActivity)?.ActivityCode}}</ion-label>
-
-            </ion-item>
-        </ion-list>
-    </div>
 
     <div class="segment" *ngIf="segmentModel === 'medication'">
         <ion-list>
@@ -174,5 +134,48 @@
 
         </ion-list>
     </div>
+    <div class="segment" *ngIf="segmentModel === 'details'">
+        <ion-list>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="timer-outline"></ion-icon>Periodicity</ion-list-header>
+            <ion-item>
+
+                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 1"> Daily</ion-label>
+                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 2"> Monthly</ion-label>
+                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 3"> Per Hour</ion-label>
+                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 4"> Weekly</ion-label>
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="alarm-outline"></ion-icon>Duration</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(valueCareActivity)?.Duration}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="pin-outline"></ion-icon>Location</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(valueCareActivity)?.Location}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="code-outline"></ion-icon>Outcome Code</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(valueCareActivity)?.OutcomeCode}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="code-working-outline"></ion-icon>Activity Code</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(valueCareActivity)?.ActivityCode}}</ion-label>
+
+            </ion-item>
+        </ion-list>
+    </div>
+
+
 
 </ion-content>

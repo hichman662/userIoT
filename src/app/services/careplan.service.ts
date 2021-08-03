@@ -68,5 +68,29 @@ public getCareActivityByIdScenario( uid: number): Observable<object>{
   return this.http.get <CareActivity>(`${environment.base_url}/IMCareActivity/CareActivitiesScenario?idIoTScenario=${uid}` );
 }
 
+// Appointment
+public getAppointmentByIdCareActivity( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <any>(`${environment.base_url}/IMAppointment/AppointmentCareActitivy?idIMCareActivity=${uid}` );
+}
+
+// Medication
+public getMedicationByIdCareActivity( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <any>(`${environment.base_url}/IMMedication/MedicationCareActivity?idIMCareActivity=${uid}` );
+}
+
+//Nutrition Order
+public getNutritionyByIdCareActivity( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <any>(`${environment.base_url}/IMNutritionOrder/NutritionOrderCareActivity?idIMCareActivity=${uid}` );
+}
+
+
+//Communication
+public getCommunicationByIdCareActivity( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <any>(`${environment.base_url}/IMCommunication/CommunicationCareActivity?idIMCareActivity=${uid}` );
+}
 
 }

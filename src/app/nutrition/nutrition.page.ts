@@ -13,7 +13,9 @@ export class NutritionPage implements OnInit {
   public nutritionDescrip: '';
   public valueCareActivity: any;
   public nutritionDetail: any;
-  segmentModel = 'details';
+  public careActivityName: '';
+  public careActivityDescrip: '';
+  segmentModel = 'nutrition';
   private idPassedByURL: number = null;
   constructor(
     private carePlanService: CarePlanService,
@@ -28,16 +30,30 @@ export class NutritionPage implements OnInit {
     .subscribe((res: any ) => {
       console.log(res);
     if(res != null){
-       this.nutritionName = res.ValueCareActivity.Name;
-       this.nutritionDescrip = res.ValueCareActivity.Description;
+       this.careActivityName = res.ValueCareActivity.Name;
+       this.careActivityDescrip = res.ValueCareActivity.Description;
        this.valueCareActivity = res.ValueCareActivity;
-       this.nutritionDetail = res.ValueCareActivity.NutritionOrders;
-
+      this.callNutritionDetail();
 
     }
     }, (err) => {
       console.log(err);
     });
+  }
+  callNutritionDetail(){
+    this.carePlanService.getNutritionyByIdCareActivity(this.idPassedByURL)
+    .subscribe((res: any ) => {
+      console.log(res);
+    if(res != null){
+       this.nutritionName = res[0].Name;
+       this.nutritionDescrip = res[0].Description;
+       this.nutritionDetail = res[0];
+
+    }
+    }, (err) => {
+      console.log(err);
+    });
+
   }
 
 }

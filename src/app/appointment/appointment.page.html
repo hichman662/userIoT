@@ -32,7 +32,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">{{ appointmentName}}</ion-label>
+                <ion-label class="text-top">{{ activityName}}</ion-label>
 
             </ion-list-header>
 
@@ -51,7 +51,7 @@
             <ion-list-header>
 
                 <ion-label class="text-top">
-                    <h4>{{ appointmentDescrip}}</h4>
+                    <h4>{{ activityDescrip}}</h4>
                 </ion-label>
             </ion-list-header>
 
@@ -62,19 +62,68 @@
 
     </ion-row>
     <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
-        <ion-segment-button value="details">
-            <ion-icon name="medkit-outline"></ion-icon>
-            <ion-label>Activity Detail</ion-label>
-        </ion-segment-button>
         <ion-segment-button value="appointment">
             <ion-icon name="calendar"></ion-icon>
             <ion-label>Appointment Detail</ion-label>
         </ion-segment-button>
+        <ion-segment-button value="details">
+            <ion-icon name="medkit-outline"></ion-icon>
+            <ion-label>Activity Detail</ion-label>
+        </ion-segment-button>
+
 
     </ion-segment>
 </ion-header>
 <ion-content>
+    <div class="segment" *ngIf="segmentModel === 'appointment'">
+        <ion-list>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="clipboard-outline"></ion-icon>Name</ion-list-header>
+            <ion-item> {{ appointmentName}}</ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="receipt-outline"></ion-icon>Description</ion-list-header>
+            <ion-item> {{ appointmentDescrip}}</ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="calendar-outline"></ion-icon>Date</ion-list-header>
+            <ion-item> {{ appointmentDate |date}}</ion-item>
 
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="laptop-outline"></ion-icon>Is Virtual</ion-list-header>
+            <ion-item>
+
+                <ion-item [hidden]="$any(appointmentDetail)?.IsVirtual === false">
+                    <ion-label>Yes</ion-label>
+                </ion-item>
+                <ion-item [hidden]="$any(appointmentDetail)?.IsVirtual === true">
+                    <ion-label>No</ion-label>
+                </ion-item>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="create-outline"></ion-icon>Detail</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(appointmentDetail)?.Description}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="at-outline"></ion-icon>Direction</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(appointmentDetail)?.Direction}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="information-circle-outline"></ion-icon>Reason Code</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(appointmentDetail)?.ReasonCode}}</ion-label>
+
+            </ion-item>
+
+
+        </ion-list>
+    </div>
     <div class="segment" *ngIf="segmentModel === 'details'">
         <ion-list>
             <ion-list-header>
@@ -117,44 +166,6 @@
         </ion-list>
     </div>
 
-    <div class="segment" *ngIf="segmentModel === 'appointment'">
-        <ion-list>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="laptop-outline"></ion-icon>Is Virtual</ion-list-header>
-            <ion-item>
 
-                <ion-item [hidden]="$any(appointmentDetail)?.IsVirtual === false">
-                    <ion-label>Yes</ion-label>
-                </ion-item>
-                <ion-item [hidden]="$any(appointmentDetail)?.IsVirtual === true">
-                    <ion-label>No</ion-label>
-                </ion-item>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="create-outline"></ion-icon>Description</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(appointmentDetail)?.Description}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="at-outline"></ion-icon>Direction</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(appointmentDetail)?.Direction}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="information-circle-outline"></ion-icon>Reason Code</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(appointmentDetail)?.ReasonCode}}</ion-label>
-
-            </ion-item>
-
-
-        </ion-list>
-    </div>
 
 </ion-content>

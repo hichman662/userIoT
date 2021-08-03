@@ -13,8 +13,10 @@ export class CommunicationPage implements OnInit {
   public communicationName: '';
   public communicationDescrip: '';
   public valueCareActivity: any;
-  public communication: Communication;
-  segmentModel = 'details';
+  public communicationDetail: any;
+  public careActivityName: '';
+  public careActivityDescrip: '';
+  segmentModel = 'communication';
   private idPassedByURL: number = null;
   constructor(
     private carePlanService: CarePlanService,
@@ -29,13 +31,28 @@ export class CommunicationPage implements OnInit {
     .subscribe((res: any ) => {
       console.log(res);
     if(res != null){
-       this.communicationName = res.ValueCareActivity.Name;
-       this.communicationDescrip = res.ValueCareActivity.Description;
+       this.careActivityName = res.ValueCareActivity.Name;
+       this.careActivityDescrip = res.ValueCareActivity.Description;
        this.valueCareActivity = res.ValueCareActivity;
+      this.callCommunicationDetail();
+    }
+    }, (err) => {
+      console.log(err);
+    });
+  }
+  callCommunicationDetail(){
+    this.carePlanService.getCommunicationByIdCareActivity(this.idPassedByURL)
+    .subscribe((res: any ) => {
+      console.log(res);
+    if(res != null){
+       this.communicationName = res[0].Name;
+       this.communicationDescrip = res[0].Description;
+       this.communicationDetail = res[0].ValueCommunication;
 
     }
     }, (err) => {
       console.log(err);
     });
+
   }
 }

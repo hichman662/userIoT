@@ -62,19 +62,50 @@
 
     </ion-row>
     <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
-        <ion-segment-button value="details">
-            <ion-icon name="receipt-outline"></ion-icon>
-            <ion-label>Activity Detail</ion-label>
-        </ion-segment-button>
         <ion-segment-button value="nutrition">
             <ion-icon name="restaurant-outline"></ion-icon>
             <ion-label>Nutrition Detail</ion-label>
         </ion-segment-button>
+        <ion-segment-button value="details">
+            <ion-icon name="receipt-outline"></ion-icon>
+            <ion-label>Activity Detail</ion-label>
+        </ion-segment-button>
+
 
     </ion-segment>
 </ion-header>
 <ion-content>
 
+
+
+    <div class="segment" *ngIf="segmentModel === 'nutrition'">
+        <ion-list>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="document-outline"></ion-icon>Name</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(nutritionDetail)?.Name}}</ion-label>
+
+            </ion-item>
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="create-outline"></ion-icon>Description</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(nutritionDetail)?.Description}}</ion-label>
+
+            </ion-item>
+
+            <ion-list-header>
+                <ion-icon class="segmentIcon" name="barcode-outline"></ion-icon>Diet Code</ion-list-header>
+            <ion-item>
+
+                <ion-label> {{$any(nutritionDetail)?.DietCode}}</ion-label>
+
+            </ion-item>
+
+
+        </ion-list>
+    </div>
     <div class="segment" *ngIf="segmentModel === 'details'">
         <ion-list>
             <ion-list-header>
@@ -114,35 +145,6 @@
                 <ion-label> {{$any(valueCareActivity)?.ActivityCode}}</ion-label>
 
             </ion-item>
-        </ion-list>
-    </div>
-
-    <div class="segment" *ngIf="segmentModel === 'nutrition'">
-        <ion-list>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="document-outline"></ion-icon>Name</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(nutritionDetail)?.Name}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="create-outline"></ion-icon>Description</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(nutritionDetail)?.Description}}</ion-label>
-
-            </ion-item>
-
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="barcode-outline"></ion-icon>Diet Code</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(nutritionDetail)?.DietCode}}</ion-label>
-
-            </ion-item>
-
-
         </ion-list>
     </div>
 

@@ -8,12 +8,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./appointment.page.scss'],
 })
 export class AppointmentPage implements OnInit {
-
+  public activityName: '';
+  public activityDescrip: '';
   public appointmentName: '';
   public appointmentDescrip: '';
   public valueCareActivity: any;
   public appointmentDetail: any;
-  segmentModel = 'details';
+  public appointmentDate: any;
+  segmentModel = 'appointment';
   private idPassedByURL: number = null;
   constructor(
     private carePlanService: CarePlanService,
@@ -28,14 +30,32 @@ export class AppointmentPage implements OnInit {
     .subscribe((res: any ) => {
       console.log(res);
     if(res != null){
-       this.appointmentName = res.ValueCareActivity.Name;
-       this.appointmentDescrip = res.ValueCareActivity.Description;
+       this.activityName = res.ValueCareActivity.Name;
+       this.activityDescrip = res.ValueCareActivity.Description;
        this.valueCareActivity = res.ValueCareActivity;
        this.appointmentDetail = res.ValueCareActivity.Appointments;
-
+      this.callAppointmentDetail();
     }
     }, (err) => {
       console.log(err);
     });
   }
+
+  callAppointmentDetail(){
+    this.carePlanService.getAppointmentByIdCareActivity(this.idPassedByURL)
+    .subscribe((res: any ) => {
+      console.log(res);
+    if(res != null){
+       this.appointmentName = res[0].Name;
+       this.appointmentDate = res[0].Date;
+       this.appointmentDescrip = res[0].Description;
+       this.appointmentDetail = res[0].ValueAppointment;
+
+    }
+    }, (err) => {
+      console.log(err);
+    });
+
+  }
+
 }
