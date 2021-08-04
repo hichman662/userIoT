@@ -1,3 +1,5 @@
+import { Target } from './../../models/target.model';
+import { Goal } from './../../models/goal.model';
 import { CarePlanTemplate } from './../../models/carePlanTemplate.model';
 import { CarePlanService } from './../../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,12 +13,13 @@ import { CarePlan } from 'src/app/models/carePlan.model';
 })
 export class DetailCarePlanPage implements OnInit {
 
-  public carePlantemplate: CarePlanTemplate;
+  public carePlanTemplate: CarePlanTemplate;
   public carePlan: CarePlan;
   public carePlanName: '';
   public carePlanDescription: '';
-  public patientData: string []=[];
-    segmentModel = 'CarePlanTemplate';
+  public goals: Goal[];
+  public targets: Target[];
+    segmentModel = 'details';
   private idPassedByURL: number = null;
   constructor(
     private carePlanService: CarePlanService,
@@ -30,10 +33,12 @@ export class DetailCarePlanPage implements OnInit {
     this.carePlanService.getCarePlanById(this.idPassedByURL)
     .subscribe((res: any ) => {
     if(res != null){
-      console.log(res);
       this.carePlanName = res.Name;
       this.carePlanDescription = res.Description;
-       this.carePlantemplate = res.CarePlanTemplate;
+       this.carePlanTemplate = res.CarePlanTemplate;
+       this.goals = res.CarePlanTemplate.Goals;
+       this.targets =  res.CarePlanTemplate.Goals[0].Targets;
+       console.log(this.targets);
     }
     }, (err) => {
       console.log(err);
