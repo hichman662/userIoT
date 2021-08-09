@@ -6,7 +6,7 @@
             <ion-back-button text="Patient Dashboard" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-rel-person']"></ion-icon>
+            <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-device']"></ion-icon>
             <ion-button>
             </ion-button>
         </ion-buttons>
@@ -18,7 +18,7 @@
         </ion-col>
         <ion-col size="4" class="ion-align-self-center">
             <ion-card color="transparent" class="deviceTemplate-card">
-                <ion-img src='assets/icon/family.png'></ion-img>
+                <ion-img src='assets/icon/devices.png'></ion-img>
 
             </ion-card>
         </ion-col>
@@ -33,7 +33,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Related Persons</ion-label>
+                <ion-label class="text-top">Devices</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -44,41 +44,41 @@
     </ion-row>
 </ion-header>
 <ion-content>
-    <ion-card-header [hidden]="!relPersonNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">No Related Person has been added to this scenario. To add a Related Person, press the Add button.</ion-card-header>
+    <ion-card-header [hidden]="!devicesNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">No Device has been added to this scenario. To add a device, press the Add button.</ion-card-header>
     <ion-list>
-        <div class="patient" *ngFor="let relatedPerson of relatedPersons">
+        <div class="patient" *ngFor="let device of devices">
 
             <ion-item-sliding #slidingItem>
 
-                <ion-item class="item" detail [routerLink]="['detail-rel-person',relatedPerson['Id']]">
+                <ion-item class="item" detail [routerLink]="['detail-device',device['Id']]">
                     <ion-avatar slot="start">
-                        <img src="assets/icon/family.png">
+                        <img src="assets/icon/devices.png">
 
                     </ion-avatar>
 
-                    <ion-label> {{relatedPerson['Name']}}</ion-label>
+                    <ion-label> {{device['Name']}}</ion-label>
 
 
                 </ion-item>
 
 
                 <!--  <ion-item-options side="end" (ionSwipe)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
-              <ion-item-option color="danger" expandable (click)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
+            <ion-item-option color="danger" expandable (click)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
 
-                  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 
-              </ion-item-option>
+            </ion-item-option>
 
-          </ion-item-options>
+        </ion-item-options>
 
-          <ion-item-options side="start">
+        <ion-item-options side="start">
 
-              <ion-item-option color="success" expandable (click)="closeSliding(slidingItem)" [routerLink]="['edit-patient-profile',patientProfile['Id']]">
+            <ion-item-option color="success" expandable (click)="closeSliding(slidingItem)" [routerLink]="['edit-patient-profile',patientProfile['Id']]">
 
-                  <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+                <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
 
-              </ion-item-option>
-          </ion-item-options> -->
+            </ion-item-option>
+        </ion-item-options> -->
             </ion-item-sliding>
         </div>
     </ion-list>

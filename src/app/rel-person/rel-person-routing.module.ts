@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: 'detail-rel-person/:Id',
     loadChildren: () => import('./detail-rel-person/detail-rel-person.module').then( m => m.DetailRelPersonPageModule)
+  },  {
+    path: 'add-rel-person',
+    loadChildren: () => import('./add-rel-person/add-rel-person.module').then( m => m.AddRelPersonPageModule)
   }
+
 ];
 
 @NgModule({

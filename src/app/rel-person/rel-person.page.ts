@@ -13,7 +13,7 @@ export class RelPersonPage implements OnInit {
 
   public relatedPersons: RelatedPerson[] = [];
   public idScenario: number;
-
+  relPersonNull= false;
   constructor(
     private patientService: PatientService,
     public router: Router,
@@ -31,7 +31,14 @@ export class RelPersonPage implements OnInit {
 callRelatedPerson(){
   this.patientService.getRelatedPersonByIdScenario(this.idScenario)
   .subscribe( (res: any) => {
-      this.relatedPersons = res;
+    if(res != null){
+    this.relatedPersons = res;
+    }else
+    {
+      this.relPersonNull= true;
+    }
+
+    console.log(res);
   }, ( err) => {
       console.log(err);
   });
