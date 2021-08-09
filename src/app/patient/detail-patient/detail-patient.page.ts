@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { PatientProfile } from './../../models/patientProfile.model';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { PatientService } from './../../services/patient.service';
@@ -6,7 +7,6 @@ import { Patient } from 'src/app/models/patient.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserData } from 'src/app/models/userData.model';
 import { Storage } from '@ionic/storage';
-
 @Component({
   selector: 'app-detail-patient',
   templateUrl: './detail-patient.page.html',
@@ -18,6 +18,7 @@ export class DetailPatientPage implements OnInit {
   public patientDescrip: '';
   public patientData: UserData;
   public idScenario: number;
+  public patientNull = false;
   segmentModel = 'details';
 
   constructor(
@@ -45,6 +46,8 @@ export class DetailPatientPage implements OnInit {
        this.patientDescrip = res[0].Description;
        this.patientData = res[0].UserData;
 
+    }else{
+      this.patientNull = true;
     }
     }, (err) => {
       console.log(err);

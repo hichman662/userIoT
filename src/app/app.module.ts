@@ -1,3 +1,4 @@
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgModule } from '@angular/core';
@@ -12,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage-angular';
-
+import { Platform } from '@ionic/angular';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
       HttpClientModule,
       IonicStorageModule.forRoot()
     ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [Platform,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

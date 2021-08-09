@@ -1,3 +1,4 @@
+
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DetailProfileComponent } from './../detail-profile/detail-profile.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { DetailPatientPage } from './detail-patient.page';
 import { HttpClientModule } from '@angular/common/http';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     DetailPatientPageRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+
   ],
   declarations: [DetailPatientPage,
     DetailProfileComponent]

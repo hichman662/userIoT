@@ -25,4 +25,7 @@ public getScenarioById( uid: number): Observable<object>{
   return this.http.get <Scenario>(`${environment.base_url}/IoTScenario/${uid}` );
 }
 
+public createScenario( data: Scenario ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IoTScenario/New_`, data);
+}
 }

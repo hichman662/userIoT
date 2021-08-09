@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Scenario } from '../models/scenario.model';
 import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
-import { MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -19,25 +18,13 @@ export class ScenariosPage implements OnInit {
     public alertController: AlertController,
     public loadingController: LoadingController,
     public router: Router,
-    private menu: MenuController,
     private storage: Storage
   ) { }
 
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
-  }
 
-  openEnd() {
-    this.menu.open('end');
-  }
+  ngOnInit(): void {}
 
-  openCustom() {
-    this.menu.enable(true, 'custom');
-    this.menu.open('custom');
-  }
-
-  ngOnInit() {
+  ionViewWillEnter() {
     this.scenarioService.getAllScenario()
     .subscribe( (res: any) => {
         this.listScenario = res;

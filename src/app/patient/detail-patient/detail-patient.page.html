@@ -6,6 +6,7 @@
             <ion-back-button text="Patient Dashboard" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
+            <ion-icon [hidden]="!patientNull" size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-patient']"></ion-icon>
             <ion-button>
             </ion-button>
         </ion-buttons>
@@ -61,7 +62,7 @@
         </ion-col>
 
     </ion-row>
-    <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
+    <ion-segment [hidden]="patientNull" value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
         <ion-segment-button value="details">
             <ion-icon name="receipt-outline"></ion-icon>
             <ion-label>User Data</ion-label>
@@ -73,8 +74,8 @@
     </ion-segment>
 </ion-header>
 <ion-content>
-
-    <div class="segment" *ngIf="segmentModel === 'details'">
+    <ion-card-header [hidden]="!patientNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">No patient has been added to this scenario yet. To add a patient, press the Add button.</ion-card-header>
+    <div [hidden]="patientNull" class="segment" *ngIf="segmentModel === 'details'">
         <ion-list>
             <ion-list-header>
                 <ion-icon class="segmentIcon" name="person-outline"></ion-icon>Surname</ion-list-header>
@@ -129,7 +130,7 @@
 
         </ion-list>
     </div>
-    <div class="segment" *ngIf="segmentModel === 'profile'">
+    <div [hidden]="patientNull" class="segment" *ngIf="segmentModel === 'profile'">
         <app-detail-profile></app-detail-profile>
     </div>
 </ion-content>

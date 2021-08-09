@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ScenariosPage
+  },  {
+    path: 'add-scenario',
+    loadChildren: () => import('./add-scenario/add-scenario.module').then( m => m.AddScenarioPageModule)
   }
+
 ];
 
 @NgModule({
