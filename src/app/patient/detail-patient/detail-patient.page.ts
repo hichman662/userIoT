@@ -7,6 +7,7 @@ import { Patient } from 'src/app/models/patient.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserData } from 'src/app/models/userData.model';
 import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-detail-patient',
   templateUrl: './detail-patient.page.html',

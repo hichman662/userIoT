@@ -1,5 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+import { Patient } from './../../models/patient.model';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { PatientService } from './../../services/patient.service';
 import { Component, OnInit } from '@angular/core';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-add-patient',
   templateUrl: './add-patient.page.html',
@@ -7,9 +13,72 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPatientPage implements OnInit {
 
-  constructor() { }
+  patientForm: FormGroup;
+  name = '';
+  patient: Patient;
+  public idScenario: number;
+  allPatientProfiles: any [] = [];
+  constructor(
+    private patientService: PatientService,
+    public alertController: AlertController,
+    private router: Router,
+    private storage: Storage
+  ) {
+
+    this.patientForm = new FormGroup({
+    Name: new FormControl('', [
+      Validators.required
+    ]),
+    Description: new FormControl('', [
+      Validators.required
+    ]),
+    Scenario_oid: new FormControl(Number, [
+      Validators.required
+    ]),
+    UserPatient_oid: new FormControl(Number, [
+      Validators.required
+    ])
+  });
+}
 
   ngOnInit() {
+    this.storage.get('idScenario').then((val) => {
+      this.patientForm.get('Scenario_oid').setValue(val);
+    });
+    this.patientService.getAllPatientProfile()
+    .subscribe( (res: any) => {
+      this.allPatientProfiles = res;
+        }, ( err ) => {
+    });
+  }
+
+  onSubmit(){
+    this.patient = this.patientForm.value;
+    this.patientService.createPatient(this.patient)
+    .subscribe( (res: any) => {
+      this.name = res.Name;
+
+      this.presentAlert();
+    }, ( err ) => {
+
+    });
+
+  }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'SUCCESS!',
+      message: `The ${this.name} has been added successfully`,
+      buttons: [  {
+        text: 'Ok',
+        handler: () => {
+          this.router.navigateByUrl('/tabs/tab1');
+        }
+      }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

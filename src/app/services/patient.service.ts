@@ -36,6 +36,14 @@ public getPatientByIdScenario( uid: number): Observable<object>{
   return this.http.get <Patient>(`${environment.base_url}/Patient/PatientScenario?idIoTScenario=${uid}` );
 }
 
+public createPatient( data: Patient ): Observable<object> {
+  return this.http.post(`${environment.base_url}/Patient/New_`, data);
+}
+
+public getAllPatientProfile(): Observable<object>{
+  return this.http.get(`${environment.base_url}/PatientProfile/ReadAll`);
+}
+
 // Practitioner
 public getAllPractitioner(): Observable<object>{
   return this.http.get(`${environment.base_url}/Practitioner/ReadAll`);
