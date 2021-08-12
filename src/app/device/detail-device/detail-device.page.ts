@@ -27,7 +27,7 @@ export class DetailDevicePage implements OnInit {
     this.idPassedByURL = this.route.snapshot.params.Id;
     this.deviceService.getDeviceById(this.idPassedByURL)
     .subscribe((res: any ) => {
-      console.log(res);
+
     if(res != null){
        this.deviceName = res.Name;
        this.deviceDescrip = res.Description;

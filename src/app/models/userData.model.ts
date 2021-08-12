@@ -2,17 +2,17 @@
 
 
 export class UserData {
-  constructor(
-    Id: number,
-      BirthDate?: Date,
-      Surnames?: string,
-      Address?: string,
-      Phone?: string,
-      Photo?: string,
-      IsActive?: boolean,
-      Type?: number,
-      IsDiseased?: boolean,
-      Email?: string,
+    constructor(
+     public Id: number,
+     public BirthDate?: Date,
+     public Surnames?: string,
+     public Address?: string,
+     public Phone?: string,
+     public Photo?: string,
+     public IsActive?: boolean,
+     public Type?: number,
+     public IsDiseased?: boolean,
+     public Email?: string,
     )
   {}
 }

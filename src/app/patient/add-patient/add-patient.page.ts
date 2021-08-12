@@ -1,10 +1,12 @@
+import { UserService } from './../../services/user.service';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Patient } from './../../models/patient.model';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController, NavController } from '@ionic/angular';
 import { PatientService } from './../../services/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-add-patient',
@@ -17,11 +19,17 @@ export class AddPatientPage implements OnInit {
   name = '';
   patient: Patient;
   public idScenario: number;
-  allPatientProfiles: any [] = [];
+  invitedUserName: string;
+  invitedUserId: number;
+  allUsers: any [] = [];
+  data: any;
   constructor(
+    public navCtrl: NavController,
     private patientService: PatientService,
+    private userService: UserService,
     public alertController: AlertController,
     private router: Router,
+    private route: ActivatedRoute,
     private storage: Storage
   ) {
 
@@ -42,16 +50,23 @@ export class AddPatientPage implements OnInit {
 }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
     this.storage.get('idScenario').then((val) => {
       this.patientForm.get('Scenario_oid').setValue(val);
     });
-    this.patientService.getAllPatientProfile()
+
+    this.userService.getAllUsers()
     .subscribe( (res: any) => {
-      this.allPatientProfiles = res;
+      this.allUsers = res;
         }, ( err ) => {
     });
-  }
 
+    this.invitedUserName = this.userService.nameNewUser;
+    this.invitedUserId = this.userService.idNewUser;
+
+  }
   onSubmit(){
     this.patient = this.patientForm.value;
     this.patientService.createPatient(this.patient)
@@ -80,5 +95,6 @@ export class AddPatientPage implements OnInit {
 
     await alert.present();
   }
+
 
 }

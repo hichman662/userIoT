@@ -40,9 +40,7 @@ public createPatient( data: Patient ): Observable<object> {
   return this.http.post(`${environment.base_url}/Patient/New_`, data);
 }
 
-public getAllPatientProfile(): Observable<object>{
-  return this.http.get(`${environment.base_url}/PatientProfile/ReadAll`);
-}
+
 
 // Practitioner
 public getAllPractitioner(): Observable<object>{

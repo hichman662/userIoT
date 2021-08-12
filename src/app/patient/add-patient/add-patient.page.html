@@ -65,16 +65,28 @@
             </div>
         </ion-item>
         <ion-item lines="full">
-            <ion-label position="stacked">Patient</ion-label>
-            <ion-select multiple="false" value="" okText="Okay" cancelText="Dismiss" formControlName="UserPatient_oid">
+            <ion-label position="stacked">User</ion-label>
+
+            <ion-select multiple="false" [value]="invitedUserId" [placeholder]="invitedUserName" okText="Okay" cancelText="Dismiss" formControlName="UserPatient_oid">
+
                 <div class="error" *ngIf="patientForm.controls.UserPatient_oid.errors && patientForm.controls.UserPatient_oid.touched">
                     Please fill out this field
                 </div>
+
                 <div>
-                    <ion-select-option *ngFor="let patientProfile of allPatientProfiles" [value]="patientProfile['Id']">{{patientProfile['Name']}}</ion-select-option>
+                    <ion-select-option *ngFor="let user of allUsers" [value]="user['Id']">{{user['Surnames']}}</ion-select-option>
+
                 </div>
 
             </ion-select>
+            <ion-item [routerLink]="['add-user']">
+                <ion-button shape="round" fill="outline">
+                    <ion-icon name="add"></ion-icon>
+                    New User
+                </ion-button>
+            </ion-item>
+
+
         </ion-item>
         <br>
         <br>

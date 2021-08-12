@@ -7,15 +7,31 @@ import {of, Observable} from 'rxjs';
 import { loginForm  } from '../interfaces/loginForm.interface';
 import { Router } from '@angular/router';
 import { tap, map, catchError } from 'rxjs/operators';
+import { UserData } from '../models/userData.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+private newUser: UserData = new UserData(0, new Date(), '','','', '',false,1, false,'');
 constructor(private http: HttpClient,
                private router: Router) {
 
+}
+
+public getAllUsers(): Observable<object>{
+  return this.http.get(`${environment.base_url}/User/ReadAll`);
+}
+
+public createUser( data: UserData ): Observable<object> {
+  return this.http.post(`${environment.base_url}/User/New_`, data)
+  .pipe(
+    tap((res: any)=>{
+      const {Id ,BirhDate, Surnames, Address, Phone, Photo,IsActive, Type, IsDiseased,Email } = res;
+      this.newUser = new UserData(Id ,BirhDate, Surnames, Address, Phone, Photo,IsActive, Type, IsDiseased,Email);
+    })
+  );
 }
 
 login( formData: loginForm) {
@@ -30,6 +46,14 @@ login( formData: loginForm) {
 
               })
           );
+}
+
+get idNewUser(): number {
+  return this.newUser.Id;
+}
+
+get nameNewUser(): string | undefined {
+  return this.newUser.Surnames;
 }
 
 }
