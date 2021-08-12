@@ -54,6 +54,9 @@ public getPractitionerByIdScenario( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <Practitioner>(`${environment.base_url}/Practitioner/Practitioners?idIoTScenario=${uid}` );
 }
+public createPractitioner( data: Practitioner ): Observable<object> {
+  return this.http.post(`${environment.base_url}/Practitioner/New_`, data);
+}
 
 // Related Person
 public getAllRelatedPerson(): Observable<object>{

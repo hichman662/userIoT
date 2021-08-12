@@ -1,23 +1,23 @@
-import { UserService } from './../../services/user.service';
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Patient } from './../../models/patient.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { UserService } from './../../services/user.service';
 import { PatientService } from './../../services/patient.service';
 import { Component, OnInit } from '@angular/core';
+import { NavController, AlertController } from '@ionic/angular';
+import { Practitioner } from 'src/app/models/practitioner.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
 import { Storage } from '@ionic/storage';
-@Component({
-  selector: 'app-add-patient',
-  templateUrl: './add-patient.page.html',
-  styleUrls: ['./add-patient.page.scss'],
-})
-export class AddPatientPage implements OnInit {
 
-  patientForm: FormGroup;
+@Component({
+  selector: 'app-add-practitioner',
+  templateUrl: './add-practitioner.page.html',
+  styleUrls: ['./add-practitioner.page.scss'],
+})
+export class AddPractitionerPage implements OnInit {
+
+  practitionerForm: FormGroup;
   name = '';
-  patient: Patient;
+  practitioner: Practitioner;
   public idScenario: number;
   invitedUserName: string;
   invitedUserId: number;
@@ -32,7 +32,7 @@ export class AddPatientPage implements OnInit {
     private storage: Storage
   ) {
 
-    this.patientForm = new FormGroup({
+    this.practitionerForm = new FormGroup({
     Name: new FormControl('', [
       Validators.required
     ]),
@@ -42,7 +42,7 @@ export class AddPatientPage implements OnInit {
     Scenario_oid: new FormControl(Number, [
       Validators.required
     ]),
-    UserPatient_oid: new FormControl(Number, [
+    UserPractitioner_oid: new FormControl(Number, [
       Validators.required
     ])
   });
@@ -53,7 +53,7 @@ export class AddPatientPage implements OnInit {
 
   ionViewWillEnter(){
     this.storage.get('idScenario').then((val) => {
-      this.patientForm.get('Scenario_oid').setValue(val);
+      this.practitionerForm.get('Scenario_oid').setValue(val);
     });
 
     this.userService.getAllUsers()
@@ -67,7 +67,8 @@ export class AddPatientPage implements OnInit {
 
   }
   onSubmit(){
-    this.patientService.createPatient(this.patientForm.value)
+
+    this.patientService.createPractitioner(this.practitionerForm.value)
     .subscribe( (res: any) => {
       this.name = res.Name;
 
@@ -85,7 +86,7 @@ export class AddPatientPage implements OnInit {
       buttons: [  {
         text: 'Ok',
         handler: () => {
-          this.router.navigateByUrl('/tabs/tab1');
+          this.router.navigateByUrl('tabs/tab1/practitioner');
         }
       }
       ]

@@ -12,6 +12,7 @@ import { Storage } from '@ionic/storage';
 export class PractitionerPage implements OnInit {
 
   public practitioners: Practitioner[] = [];
+  public practitionerNull = false;
   public idScenario: number;
   constructor(
     private patientService: PatientService,
@@ -20,17 +21,26 @@ export class PractitionerPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
+  }
+  ionViewWillEnter(){
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
       if(this.idScenario != null){
         this.callPractitioner();
       }
     });
+
   }
   callPractitioner(){
     this.patientService.getPractitionerByIdScenario(this.idScenario)
     .subscribe( (res: any) => {
+      if(res != null){
         this.practitioners = res;
+        this.practitionerNull = false;
+      }else{
+        this.practitionerNull = true;
+      }
     }, ( err) => {
         console.log(err);
     });

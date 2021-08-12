@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: 'detail-practitioner/:Id',
     loadChildren: () => import('./detail-practitioner/detail-practitioner.module').then( m => m.DetailPractitionerPageModule)
+  },  {
+    path: 'add-practitioner',
+    loadChildren: () => import('./add-practitioner/add-practitioner.module').then( m => m.AddPractitionerPageModule)
   }
+
 ];
 
 @NgModule({
