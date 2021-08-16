@@ -3,10 +3,10 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Patient Dashboard" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="Related Persons Dashboard" defaultHref="/tabs/tab1/relatedPerson" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-rel-person']"></ion-icon>
+
             <ion-button>
             </ion-button>
         </ion-buttons>
@@ -44,38 +44,49 @@
     </ion-row>
 </ion-header>
 <ion-content>
-    <!--
-  <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
-      <ion-item>
-          <ion-label position="stacked">Name</ion-label>
-          <ion-input type="text" formControlName="Name" class="form-control"></ion-input>
-          <div class="error" *ngIf="patientForm.controls.Name.errors && patientForm.controls.Name.touched">
-              To add Scenario please fill out this field
-          </div>
-      </ion-item>
+    <form [formGroup]="relPersonForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+            <ion-label position="stacked">Name</ion-label>
+            <ion-input type="text" formControlName="Name" class="form-control"></ion-input>
+            <div class="error" *ngIf="relPersonForm.controls.Name.errors && relPersonForm.controls.Name.touched">
+                To add Scenario please fill out this field
+            </div>
+        </ion-item>
 
-      <ion-item>
-          <ion-label position="stacked">Description</ion-label>
-          <ion-input type="text" formControlName="Description" class="form-control"></ion-input>
-          <div class="error" *ngIf="patientForm.controls.Description.errors && patientForm.controls.Description.touched">
-              To add Scenario please fill out this field
-          </div>
-      </ion-item>
-      <ion-item lines="full">
-          <ion-label position="stacked">Patient</ion-label>
-          <ion-select multiple="false" value="" okText="Okay" cancelText="Dismiss" formControlName="UserPatient_oid">
-              <div class="error" *ngIf="patientForm.controls.UserPatient_oid.errors && patientForm.controls.UserPatient_oid.touched">
-                  Please fill out this field
-              </div>
-              <div>
-                  <ion-select-option *ngFor="let patientProfile of allPatientProfiles" [value]="patientProfile['Id']">{{patientProfile['Name']}}</ion-select-option>
-              </div>
+        <ion-item>
+            <ion-label position="stacked">Description</ion-label>
+            <ion-input type="text" formControlName="Description" class="form-control"></ion-input>
+            <div class="error" *ngIf="relPersonForm.controls.Description.errors && relPersonForm.controls.Description.touched">
+                To add Scenario please fill out this field
+            </div>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="stacked">User</ion-label>
 
-          </ion-select>
-      </ion-item>
-      <br>
-      <br>
+            <ion-select multiple="false" [value]="invitedUserId" [placeholder]="invitedUserName" okText="Okay" cancelText="Dismiss" formControlName="UserRelatedPerson_oid">
 
-      <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!patientForm.valid">Done</ion-button>
-  </form> -->
+                <div class="error" *ngIf="relPersonForm.controls.UserRelatedPerson_oid.errors && relPersonForm.controls.UserRelatedPerson_oid.touched">
+                    Please fill out this field
+                </div>
+
+                <div>
+                    <ion-select-option *ngFor="let user of allUsers" [value]="user['Id']">{{user['Surnames']}}</ion-select-option>
+
+                </div>
+
+            </ion-select>
+            <ion-item [routerLink]="['add-user']">
+                <ion-button shape="round" fill="outline">
+                    <ion-icon name="add"></ion-icon>
+                    New User
+                </ion-button>
+            </ion-item>
+
+
+        </ion-item>
+        <br>
+        <br>
+
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!relPersonForm.valid">Done</ion-button>
+    </form>
 </ion-content>

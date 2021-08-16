@@ -48,7 +48,7 @@ export class AddUserPage implements OnInit {
       Validators.required
     ]),
     Email: new FormControl('', [
-      Validators.required
+      Validators.required, Validators.email
     ]),
   });
 }

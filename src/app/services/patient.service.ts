@@ -70,6 +70,10 @@ public getRelatedPersonByIdScenario( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <RelatedPerson>(`${environment.base_url}/RelatedPerson/RelatedPeople?idIoTScenario=${uid}` );
 }
+public createRelatedPerson( data: RelatedPerson ): Observable<object> {
+  return this.http.post(`${environment.base_url}/RelatedPerson/New_`, data);
+}
+
 
 // Patient Access
 public getAllPatientAccess(): Observable<object>{

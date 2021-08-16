@@ -70,6 +70,8 @@ export class AddPatientPage implements OnInit {
     this.patientService.createPatient(this.patientForm.value)
     .subscribe( (res: any) => {
       this.name = res.Name;
+      this.userService.removeUserId();
+      this.userService.removeUserName();
 
       this.presentAlert();
     }, ( err ) => {

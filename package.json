@@ -30,11 +30,13 @@
         "@ionic/storage": "^3.0.6",
         "@ionic/storage-angular": "^3.0.6",
         "animate.css": "^4.1.1",
+        "bootstrap": "^5.1.0",
         "cordova-plugin-splashscreen": "^6.0.0",
         "cordova-plugin-statusbar": "^2.4.3",
         "cordova-sqlite-storage": "^6.0.0",
         "firebase": "^8.7.0",
         "rxjs": "~6.6.0",
+        "sweetalert2": "^11.1.2",
         "tslib": "^2.0.0",
         "zone.js": "~0.11.4"
     },

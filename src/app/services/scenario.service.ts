@@ -28,4 +28,8 @@ public getScenarioById( uid: number): Observable<object>{
 public createScenario( data: Scenario ): Observable<object> {
   return this.http.post(`${environment.base_url}/IoTScenario/New_`, data);
 }
+
+public deleteScenario(uid) {
+  return this.http.delete(`${environment.base_url}/IoTScenario/Destroy?p_iotscenario_oid=${uid}`);
+}
 }

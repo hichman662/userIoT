@@ -93,4 +93,17 @@ public getCommunicationByIdCareActivity( uid: number): Observable<object>{
   return this.http.get <any>(`${environment.base_url}/IMCommunication/CommunicationCareActivity?idIMCareActivity=${uid}` );
 }
 
+// Goal
+public getGoalByIdCarePlan( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <any>(`${environment.base_url}/IMGoal/GoalsCarePlan?idCarePlan=${uid}` );
+}
+
+//Target
+public getTargetByIdCarePlan( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <any>(`${environment.base_url}/IMTarget/TargetsCarePlan?idCarePlan=${uid}` );
+}
+
+
 }

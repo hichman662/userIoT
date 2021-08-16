@@ -19,7 +19,10 @@ export class RelPersonPage implements OnInit {
     public router: Router,
     private storage: Storage
   ) { }
-  ngOnInit() {
+
+ngOnInit() {}
+
+ionViewWillEnter(){
   this.storage.get('idScenario').then((val) => {
     this.idScenario = val;
     console.log('inja id escenario: ' ,this.idScenario);
@@ -27,6 +30,7 @@ export class RelPersonPage implements OnInit {
       this.callRelatedPerson();
     }
   });
+
 }
 callRelatedPerson(){
   this.patientService.getRelatedPersonByIdScenario(this.idScenario)

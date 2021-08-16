@@ -62,7 +62,8 @@ const routes: Routes = [
   {
     path: 'medication',
     loadChildren: () => import('./medication/medication.module').then( m => m.MedicationPageModule)
-  },  {
+  },
+  {
     path: 'device',
     loadChildren: () => import('./device/device.module').then( m => m.DevicePageModule)
   },

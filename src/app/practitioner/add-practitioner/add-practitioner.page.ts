@@ -71,6 +71,8 @@ export class AddPractitionerPage implements OnInit {
     this.patientService.createPractitioner(this.practitionerForm.value)
     .subscribe( (res: any) => {
       this.name = res.Name;
+      this.userService.removeUserId();
+      this.userService.removeUserName();
 
       this.presentAlert();
     }, ( err ) => {

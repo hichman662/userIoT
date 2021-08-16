@@ -43,6 +43,26 @@ export class DetailCarePlanPage implements OnInit {
     }, (err) => {
       console.log(err);
     });
+
+   /*  this.carePlanService.getGoalByIdCarePlan(this.idPassedByURL)
+    .subscribe((res: any ) => {
+    if(res != null){
+       this.goals = res;
+       console.log(this.goals);
+    }
+    }, (err) => {
+      console.log(err);
+    }); */
+
+    /* this.carePlanService.getTargetByIdCarePlan(this.idPassedByURL)
+    .subscribe((res: any ) => {
+    if(res != null){
+       this.targets = res;
+       console.log(this.targets);
+    }
+    }, (err) => {
+      console.log(err);
+    }); */
   }
 
 }

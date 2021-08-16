@@ -3,20 +3,27 @@
     <ion-title color="light" style="font-size: 22px;">MoSIoT LOGIN</ion-title>
 
 
-    <form>
+    <form id="loginform" (ngSubmit)="login()" [formGroup]="loginForm">
         <div class="input-group">
 
             <ion-item>
 
-                <ion-input type="email" placeholder="Email" required></ion-input>
+                <ion-input type="email" formControlName="Email" placeholder="Email" required></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-input type="password" placeholder="Password" required></ion-input>
+                <ion-input type="password" formControlName="Pass" placeholder="Password" required></ion-input>
             </ion-item>
 
         </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-danger" *ngIf="!campoValido('Email')">The user is required and must be an email</p>
+                <p class="text-danger" *ngIf="!campoValido('Pass')">The password field is required</p>
+            </div>
+        </div>
+        <ion-button class="buttonPrimary login__button" type="submit" [disabled]="waiting">
+            <ion-spinner name="" color="danger" *ngIf="waiting"></ion-spinner>Login</ion-button>
 
-        <ion-button (click)="start()">Login</ion-button>
     </form>
 </ion-content>

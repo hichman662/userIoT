@@ -14,7 +14,7 @@ ion-content {
 }
 
 ion-content {
-    --background: url('/assets/icon/backIoT.png') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.png') 0 0/100% 100% no-repeat;
     text-align: center;
     font-size: larger;
 }
@@ -23,4 +23,10 @@ ion-input {
     --background: white;
     --padding-bottom: 15px;
     font-size: 14px;
+}
+
+.text-danger {
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
 }

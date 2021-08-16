@@ -38,4 +38,41 @@ export class ScenariosPage implements OnInit {
      this.storage.set('idScenario', id);
     this.router.navigateByUrl('/tabs', { replaceUrl:true });
   }
+
+  closeSliding(slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
+ async deleteScenario(slidingItem: IonItemSliding, id: number, name: string){
+    slidingItem.close();
+    console.log(id);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Remove Scenario',
+      message: `Are you sure you want remove ${name}?`,
+      buttons: [  {
+        text: 'Cancel',
+        handler: () => {
+          console.log('Disagree clicked');
+        }
+      },
+      {
+        text: 'Agree',
+        handler: () => {
+          console.log('Agree clicked');
+          this.scenarioService.deleteScenario(id)
+          // tslint:disable-next-line: deprecation
+          .subscribe( (res: any) => {
+            this.ionViewWillEnter();
+          }, ( err) => {
+              console.log(err);
+          });
+        }
+      }]
+    });
+
+    await alert.present();
+
+  }
+
 }
