@@ -1,5 +1,5 @@
 ion-content {
-    --padding-top: 40%;
+    --padding-top: 85%;
     --padding-start: 10%;
     --padding-end: 10%;
 }
@@ -14,7 +14,7 @@ ion-content {
 }
 
 ion-content {
-    --background: url('/assets/icon/backW.png') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backWW.png') 0 0/100% 100% no-repeat;
     text-align: center;
     font-size: larger;
 }
@@ -25,8 +25,16 @@ ion-input {
     font-size: 14px;
 }
 
+ion-title {
+    color: rgb(207, 228, 207);
+    font-size: 32px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .text-danger {
     font-size: 18px;
-    font-weight: bold;
-    color: red;
+    color: black;
+    background-color: rgb(233, 233, 136);
+    border-radius: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
