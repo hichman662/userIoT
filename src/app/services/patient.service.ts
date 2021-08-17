@@ -94,5 +94,13 @@ public getPatientAccessByIdScenario( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <PatientAccess>(`${environment.base_url}/PatientAccess/PatientAccessScenario?idIoTScenario=${uid}` );
 }
+public createPatientAccess( data: RelatedPerson ): Observable<object> {
+  return this.http.post(`${environment.base_url}/PatientAccess/New_`, data);
+}
+
+public deletePatientAccess(uid) {
+  return this.http.delete(`${environment.base_url}/PatientAccess/Destroy?p_patientaccess_oid=${uid}`);
+}
+
 
 }
