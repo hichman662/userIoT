@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PatientService } from './../services/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-rel-person',
@@ -17,10 +18,14 @@ export class RelPersonPage implements OnInit {
   constructor(
     private patientService: PatientService,
     public router: Router,
-    private storage: Storage
+    private storage: Storage,
+    public alertController: AlertController,
+    public loadingController: LoadingController
   ) { }
 
-ngOnInit() {}
+ngOnInit() {
+  this.callRelatedPerson();
+}
 
 ionViewWillEnter(){
   this.storage.get('idScenario').then((val) => {
@@ -37,8 +42,10 @@ callRelatedPerson(){
   .subscribe( (res: any) => {
     if(res != null){
     this.relatedPersons = res;
+    this.relPersonNull= false;
     }else
     {
+      this.relatedPersons = null;
       this.relPersonNull= true;
     }
 
@@ -46,5 +53,41 @@ callRelatedPerson(){
   }, ( err) => {
       console.log(err);
   });
+}
+
+closeSliding(slidingItem: IonItemSliding){
+  slidingItem.close();
+}
+
+async deleterelatedPerson(slidingItem: IonItemSliding, id: number, name: string){
+  slidingItem.close();
+  console.log(id);
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Remove Related Person',
+    message: `Are you sure you want remove ${name}?`,
+    buttons: [  {
+      text: 'Cancel',
+      handler: () => {
+        console.log('Disagree clicked');
+      }
+    },
+    {
+      text: 'Agree',
+      handler: () => {
+        console.log('Agree clicked');
+        this.patientService.deleteRelatedPerson(id)
+        // tslint:disable-next-line: deprecation
+        .subscribe( (res: any) => {
+          this.ionViewWillEnter();
+        }, ( err) => {
+            console.log(err);
+        });
+      }
+    }]
+  });
+
+  await alert.present();
+
 }
 }

@@ -63,23 +63,23 @@
                 </ion-item>
 
 
-                <!--  <ion-item-options side="end" (ionSwipe)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
-                <ion-item-option color="danger" expandable (click)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
+                <ion-item-options side="end" (ionSwipe)="deletePractitioner(slidingItem,practitioner['Id'], practitioner['Name'])">
+                    <ion-item-option color="danger" expandable (click)="deletePractitioner(slidingItem,practitioner['Id'], practitioner['Name'])">
 
-                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 
-                </ion-item-option>
+                    </ion-item-option>
 
-            </ion-item-options>
+                </ion-item-options>
 
-            <ion-item-options side="start">
+                <ion-item-options side="start">
 
-                <ion-item-option color="success" expandable (click)="closeSliding(slidingItem)" [routerLink]="['edit-patient-profile',patientProfile['Id']]">
+                    <ion-item-option color="success" expandable (click)="closeSliding(slidingItem)" [routerLink]="['edit-practitioner',practitioner['Id']]">
 
-                    <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+                        <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
 
-                </ion-item-option>
-            </ion-item-options> -->
+                    </ion-item-option>
+                </ion-item-options>
             </ion-item-sliding>
         </div>
     </ion-list>

@@ -57,6 +57,9 @@ public getPractitionerByIdScenario( uid: number): Observable<object>{
 public createPractitioner( data: Practitioner ): Observable<object> {
   return this.http.post(`${environment.base_url}/Practitioner/New_`, data);
 }
+public deletePractitioner(uid) {
+  return this.http.delete(`${environment.base_url}/Practitioner/Destroy?p_practitioner_oid=${uid}`);
+}
 
 // Related Person
 public getAllRelatedPerson(): Observable<object>{
@@ -72,6 +75,10 @@ public getRelatedPersonByIdScenario( uid: number): Observable<object>{
 }
 public createRelatedPerson( data: RelatedPerson ): Observable<object> {
   return this.http.post(`${environment.base_url}/RelatedPerson/New_`, data);
+}
+
+public deleteRelatedPerson(uid) {
+  return this.http.delete(`${environment.base_url}/RelatedPerson/Destroy?p_relatedperson_oid=${uid}`);
 }
 
 
