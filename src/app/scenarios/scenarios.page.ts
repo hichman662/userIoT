@@ -34,8 +34,7 @@ export class ScenariosPage implements OnInit {
   }
 
   async start(id: any) {
-    console.log(id);
-     this.storage.set('idScenario', id);
+    this.storage.set('idScenario', id);
     this.router.navigateByUrl('/tabs', { replaceUrl:true });
   }
 
