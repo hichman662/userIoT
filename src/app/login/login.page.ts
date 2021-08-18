@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-login',
@@ -19,10 +21,12 @@ export class LoginPage implements OnInit {
     Pass: ['', Validators.required ]
   });
   constructor(private router: Router,
+    private storage: Storage,
     private fb: FormBuilder,
     private userService: UserService) { }
 
-  ngOnInit() {
+async  ngOnInit() {
+   await this.storage.clear();
   }
   /* async start() {
     this.router.navigateByUrl('/scenarios', { replaceUrl:true });
