@@ -35,6 +35,13 @@ public getCarePlanByIdScenario( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <CarePlan>(`${environment.base_url}/CarePlan/CarePlanScenario?idIoTScenario=${uid}` );
 }
+public createCarePlan( data: CarePlan ): Observable<object> {
+  return this.http.post(`${environment.base_url}/CarePlan/New_`, data);
+}
+
+public deleteCarePlan(uid) {
+  return this.http.delete(`${environment.base_url}/CarePlan/Destroy?p_careplan_oid=${uid}`);
+}
 
 // Vital Signs
 

@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CarePlanPageRoutingModule } from './care-plan-routing.module';
+import { AddCarePlanPageRoutingModule } from './add-care-plan-routing.module';
 
-import { CarePlanPage } from './care-plan.page';
+import { AddCarePlanPage } from './add-care-plan.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CarePlanPageRoutingModule,
+    AddCarePlanPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [CarePlanPage]
+  declarations: [AddCarePlanPage]
 })
-export class CarePlanPageModule {}
+export class AddCarePlanPageModule {}
