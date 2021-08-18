@@ -44,7 +44,7 @@
     </ion-row>
 </ion-header>
 <ion-content>
-
+    <ion-card-header [hidden]="!vitalSignNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">No Vital Sign has been added to this scenario. To add Vital Sign, press the Add button.</ion-card-header>
     <ion-list>
         <div class="carePlan" *ngFor="let vitalSign of vitalSigns">
 

@@ -15,6 +15,8 @@ export class VitalSignPage implements OnInit {
 
   public vitalSigns: VitalSign[] = [];
   public idScenario: number;
+  public vitalSignNull = false;
+
   constructor(
     private carePlanService: CarePlanService,
     public router: Router,
@@ -38,7 +40,13 @@ export class VitalSignPage implements OnInit {
   callCarePlans(){
     this.carePlanService.getVitalSignByIdScenario(this.idScenario)
     .subscribe( (res: any) => {
+      if(res != null){
         this.vitalSigns = res;
+        this.vitalSignNull = false;
+      }else{
+        this.vitalSigns = null;
+        this.vitalSignNull = true;
+      }
     }, ( err) => {
         console.log(err);
     });
