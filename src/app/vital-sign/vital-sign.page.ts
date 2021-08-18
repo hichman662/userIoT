@@ -53,7 +53,7 @@ export class VitalSignPage implements OnInit {
     console.log(id);
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Remove Care Plan',
+      header: 'Remove Vital Sign',
       message: `Are you sure you want remove ${name}?`,
       buttons: [  {
         text: 'Cancel',
