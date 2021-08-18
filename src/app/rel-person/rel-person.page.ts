@@ -24,7 +24,6 @@ export class RelPersonPage implements OnInit {
   ) { }
 
 ngOnInit() {
-  this.callRelatedPerson();
 }
 
 ionViewWillEnter(){
