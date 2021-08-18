@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: 'detail-vital-signs/:Id',
     loadChildren: () => import('./detail-vital-sign/detail-vital-sign.module').then( m => m.DetailVitalSignPageModule)
+  },  {
+    path: 'add-vital-sign',
+    loadChildren: () => import('./add-vital-sign/add-vital-sign.module').then( m => m.AddVitalSignPageModule)
   }
+
 ];
 
 @NgModule({

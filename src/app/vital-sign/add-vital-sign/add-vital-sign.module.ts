@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { VitalSignPageRoutingModule } from './vital-sign-routing.module';
+import { AddVitalSignPageRoutingModule } from './add-vital-sign-routing.module';
 
-import { VitalSignPage } from './vital-sign.page';
+import { AddVitalSignPage } from './add-vital-sign.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    VitalSignPageRoutingModule,
+    AddVitalSignPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [VitalSignPage]
+  declarations: [AddVitalSignPage]
 })
-export class VitalSignPageModule {}
+export class AddVitalSignPageModule {}

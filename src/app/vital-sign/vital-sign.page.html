@@ -6,6 +6,7 @@
             <ion-back-button text="Care plan dashboard" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
+            <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-vital-sign']"></ion-icon>
             <ion-button>
             </ion-button>
         </ion-buttons>
@@ -65,23 +66,23 @@
                 </ion-item>
 
 
-                <!--  <ion-item-options side="end" (ionSwipe)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
-              <ion-item-option color="danger" expandable (click)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
+                <ion-item-options side="end" (ionSwipe)="deleteVitalSign(slidingItem,vitalSign['Id'], vitalSign['Name'])">
+                    <ion-item-option color="danger" expandable (click)="deleteVitalSign(slidingItem,vitalSign['Id'], vitalSign['Name'])">
 
-                  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 
-              </ion-item-option>
+                    </ion-item-option>
 
-          </ion-item-options>
+                </ion-item-options>
 
-          <ion-item-options side="start">
+                <ion-item-options side="start">
 
-              <ion-item-option color="success" expandable (click)="closeSliding(slidingItem)" [routerLink]="['edit-patient-profile',patientProfile['Id']]">
+                    <ion-item-option color="success" expandable (click)="closeSliding(slidingItem)" [routerLink]="['edit-vital-sign',vitalSign['Id']]">
+                        vitalSign
+                        <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
 
-                  <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
-
-              </ion-item-option>
-          </ion-item-options> -->
+                    </ion-item-option>
+                </ion-item-options>
             </ion-item-sliding>
         </div>
     </ion-list>

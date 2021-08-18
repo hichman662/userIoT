@@ -58,6 +58,14 @@ public getVitalSignByIdScenario( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <VitalSign>(`${environment.base_url}/VitalSign/VitalSignsScenario?idIoTScenario=${uid}` );
 }
+public createVitalSign( data: CarePlan ): Observable<object> {
+  return this.http.post(`${environment.base_url}/VitalSign/New_`, data);
+}
+
+public deleteVitalSign(uid) {
+  return this.http.delete(`${environment.base_url}/VitalSign/Destroy?p_vitalsign_oid=${uid}`);
+}
+
 
 // Care Activities
 

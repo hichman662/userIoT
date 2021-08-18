@@ -4,6 +4,8 @@ import { CarePlanService } from './../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
 import { CarePlan } from '../models/carePlan.model';
 import { Storage } from '@ionic/storage';
+import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
+
 @Component({
   selector: 'app-vital-sign',
   templateUrl: './vital-sign.page.html',
@@ -16,11 +18,16 @@ export class VitalSignPage implements OnInit {
   constructor(
     private carePlanService: CarePlanService,
     public router: Router,
-    private storage: Storage
+    private storage: Storage,
+    public alertController: AlertController,
+    public loadingController: LoadingController
 
   ) { }
 
   ngOnInit() {
+
+  }
+  ionViewWillEnter(){
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
       if(this.idScenario != null){
@@ -35,6 +42,42 @@ export class VitalSignPage implements OnInit {
     }, ( err) => {
         console.log(err);
     });
+  }
+
+  closeSliding(slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
+  async deleteVitalSign(slidingItem: IonItemSliding, id: number, name: string){
+    slidingItem.close();
+    console.log(id);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Remove Care Plan',
+      message: `Are you sure you want remove ${name}?`,
+      buttons: [  {
+        text: 'Cancel',
+        handler: () => {
+          console.log('Disagree clicked');
+        }
+      },
+      {
+        text: 'Agree',
+        handler: () => {
+          console.log('Agree clicked');
+          this.carePlanService.deleteVitalSign(id)
+          // tslint:disable-next-line: deprecation
+          .subscribe( (res: any) => {
+            this.ionViewWillEnter();
+          }, ( err) => {
+              console.log(err);
+          });
+        }
+      }]
+    });
+
+    await alert.present();
+
   }
 
 }
