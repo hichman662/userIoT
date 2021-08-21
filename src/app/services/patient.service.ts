@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { PatientAccess } from './../models/patientAccess.model';
 /* eslint-disable @typescript-eslint/ban-types */
 import { Patient } from './../models/patient.model';
@@ -40,7 +41,15 @@ public createPatient( data: Patient ): Observable<object> {
   return this.http.post(`${environment.base_url}/Patient/New_`, data);
 }
 
+// Get All PATIENT PROFILE
+public getAllPatientProfile(): Observable<object>{
+  return this.http.get(`${environment.base_url}/PatientProfile/ReadAll`);
+}
 
+// Assign Patient profile to patient
+public assignPatientProfile(patientId: number, patientProfileId: number): Observable<object> {
+  return this.http.put(`${environment.base_url}/Patient/AssignPatientProfile?p_patient_oid=${patientId}&p_patientprofile_oid=${patientProfileId}`,null);
+}
 
 // Practitioner
 public getAllPractitioner(): Observable<object>{

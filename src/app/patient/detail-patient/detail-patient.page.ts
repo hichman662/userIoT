@@ -43,6 +43,7 @@ export class DetailPatientPage implements OnInit {
     .subscribe((res: any ) => {
       console.log(res);
     if(res != null){
+      this.storage.set('idPatient',res[0].Id);
        this.patientName = res[0].Name;
        this.patientDescrip = res[0].Description;
        this.patientData = res[0].UserData;

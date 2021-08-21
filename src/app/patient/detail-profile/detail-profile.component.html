@@ -1,4 +1,5 @@
-<ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
+<ion-card-header [hidden]="!patientProfileNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">No Patient Profile has been added to this patient. To add Patient Profile, select one.</ion-card-header>
+<ion-segment [hidden]="patientProfileNull" value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
     <ion-segment-button value="details">
         <ion-icon name="receipt-outline"></ion-icon>
         <ion-label>Details</ion-label>
@@ -12,7 +13,7 @@
         <ion-label>Disabilities</ion-label>
     </ion-segment-button>
 </ion-segment>
-<div *ngIf="segmentModel === 'details'">
+<div *ngIf="segmentModel === 'details'" [hidden]="patientProfileNull">
     <ion-list>
         <ion-list-header>
             <ion-icon class="segmentIcon" name="clipboard-outline"></ion-icon>Profile Name</ion-list-header>
@@ -63,7 +64,7 @@
         </ion-item>
     </ion-list>
 </div>
-<div *ngIf="segmentModel === 'diseases'">
+<div *ngIf="segmentModel === 'diseases'" [hidden]="patientProfileNull">
 
     <div class="container" *ngFor="let disease of diseases|keyvalue">
         <mat-expansion-panel details>
@@ -116,7 +117,7 @@
 
 </div>
 
-<div *ngIf="segmentModel === 'disabilities'">
+<div *ngIf="segmentModel === 'disabilities'" [hidden]="patientProfileNull">
 
     <div class="container" *ngFor="let disability of disabilities|keyvalue">
         <mat-expansion-panel details>
@@ -170,3 +171,27 @@
     </div>
 
 </div>
+<form [formGroup]="patientProfileForm" (ngSubmit)="onSubmit()" [hidden]="!patientProfileNull">
+
+    <ion-item lines="full">
+        <ion-label position="stacked">Patient Profile</ion-label>
+
+        <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="p_patientprofile_oid">
+
+            <div class="error" *ngIf="patientProfileForm.controls.p_patientprofile_oid.errors && patientProfileForm.controls.p_patientprofile_oid.touched">
+                Please fill out this field
+            </div>
+
+            <div>
+                <ion-select-option *ngFor="let patientProfile of allPatientProfile" [value]="patientProfile['Id']">{{patientProfile['Name']}}</ion-select-option>
+
+            </div>
+
+        </ion-select>
+
+    </ion-item>
+    <br>
+    <br>
+
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!patientProfileForm.valid">Done</ion-button>
+</form>
