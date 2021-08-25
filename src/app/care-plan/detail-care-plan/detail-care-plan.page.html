@@ -61,7 +61,7 @@
         </ion-col>
 
     </ion-row>
-    <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
+    <ion-segment [hidden]="carePlanDetailNull" value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
         <ion-segment-button value="details">
             <ion-icon name="receipt-outline"></ion-icon>
             <ion-label>Detail</ion-label>
@@ -77,8 +77,10 @@
     </ion-segment>
 </ion-header>
 <ion-content>
-
-    <div class="segment" *ngIf="segmentModel === 'details'">
+    <ion-card-header [hidden]="!carePlanDetailNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
+        <ion-icon size="large" name="warning-outline"></ion-icon> No Care Plan Template has been added to this Care Plan. To add Care Plan Template, select one.
+    </ion-card-header>
+    <div class="segment" *ngIf="segmentModel === 'details'" [hidden]="carePlanDetailNull">
         <ion-list>
             <ion-list-header>
                 <ion-icon class="segmentIcon" name="clipboard-outline"></ion-icon>Name</ion-list-header>
@@ -254,4 +256,29 @@
         </div>
 
     </div>
+
+    <form [formGroup]="carePlantemplateForm" (ngSubmit)="onSubmit()" [hidden]="!carePlanDetailNull">
+
+        <ion-item lines="full">
+            <ion-label position="stacked">Care plan Template</ion-label>
+
+            <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="idCarePlanTemplate">
+
+                <div class="error" *ngIf="carePlantemplateForm.controls.idCarePlanTemplate.errors && carePlantemplateForm.controls.idCarePlanTemplate.touched">
+                    Please fill out this field
+                </div>
+
+                <div>
+                    <ion-select-option *ngFor="let carePlan of carePlanTemplateList" [value]="carePlan['Id']">{{carePlan['Name']}}</ion-select-option>
+
+                </div>
+
+            </ion-select>
+
+        </ion-item>
+        <br>
+        <br>
+
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!carePlantemplateForm.valid">Done</ion-button>
+    </form>
 </ion-content>

@@ -69,8 +69,6 @@ public getTelemetryRespiratoryRate(): Observable<object>{
 }
 
 
-
-
 }
 
 

@@ -1,3 +1,5 @@
+import { CarePlanTemplate } from './../models/carePlanTemplate.model';
+/* eslint-disable max-len */
 import { VitalSign } from './../models/vitalSign.model';
 
 /* eslint-disable @typescript-eslint/ban-types */
@@ -19,6 +21,11 @@ export class CarePlanService {
 
 constructor(private http: HttpClient) {
 
+}
+// Care Plan Template By id PatientProfile
+public getCarePlantemplateByIdPatientProfile( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <CarePlanTemplate>(`${environment.base_url}/CarePlanTemplate/PatientProfileCarePlanTemplate?idPatientProfile=${uid}` );
 }
 
 // Care Plan
@@ -120,5 +127,10 @@ public getTargetByIdCarePlan( uid: number): Observable<object>{
   return this.http.get <any>(`${environment.base_url}/IMTarget/TargetsCarePlan?idCarePlan=${uid}` );
 }
 
+//
+// Assign Care Plan Template to Care Plan
+public assignCarePlanTemplateToCarePlan(carePlanId: number, carePlanTemplateId: number): Observable<object> {
+  return this.http.put(`${environment.base_url}/CarePlan/AssignCarePlan?p_careplan_oid=${carePlanId}&p_template_oid=${carePlanTemplateId}`,null);
+}
 
 }

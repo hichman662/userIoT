@@ -1,3 +1,4 @@
+import { PatientService } from './../services/patient.service';
 import { ScenarioService } from './../services/scenario.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,8 +14,10 @@ import { Storage } from '@ionic/storage';
 export class ScenariosPage implements OnInit {
 
   public listScenario: Scenario[] = [];
+  private idScenario: number;
   constructor(
     private scenarioService: ScenarioService,
+    private patientService: PatientService,
     public alertController: AlertController,
     public loadingController: LoadingController,
     public router: Router,
@@ -34,8 +37,24 @@ export class ScenariosPage implements OnInit {
   }
 
   async start(id: any) {
+    this.idScenario = id;
     this.storage.set('idScenario', id);
     this.router.navigateByUrl('/tabs', { replaceUrl:true });
+    this.callPatient();
+  }
+
+  callPatient(){
+    this.patientService.getPatientByIdScenario(this.idScenario)
+    .subscribe( (res: any) => {
+      if(res != null && res[0].PatientProfile != null){
+      this.storage.set('idPatientProfile',  res[0].PatientProfile.Id);
+    }
+    else{
+      this.storage.set('idPatientProfile',null);
+    }
+    }, ( err) => {
+        console.log(err);
+    });
   }
 
   closeSliding(slidingItem: IonItemSliding){

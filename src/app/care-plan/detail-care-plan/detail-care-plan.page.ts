@@ -5,6 +5,10 @@ import { CarePlanService } from './../../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarePlan } from 'src/app/models/carePlan.model';
+import { Storage } from '@ionic/storage';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlertController, NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-detail-care-plan',
@@ -19,30 +23,31 @@ export class DetailCarePlanPage implements OnInit {
   public carePlanDescription: '';
   public goals: Goal[];
   public targets: Target[];
-    segmentModel = 'details';
+  carePlanDetailNull = false;
+  segmentModel = 'details';
+  patientProfileId: number;
+  carePlanTemplateList: CarePlanTemplate[] =[];
+  carePlantemplateForm: FormGroup;
+  idcarePlantemplate: number;
   private idPassedByURL: number = null;
   constructor(
     private carePlanService: CarePlanService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: Storage,
+    public alertController: AlertController
 
-  ) { }
+  ) {
+      this.carePlantemplateForm = new FormGroup({
+      idCarePlanTemplate: new FormControl(Number, [
+        Validators.required
+      ])
+    });
+  }
 
 
   ngOnInit() {
     this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getCarePlanById(this.idPassedByURL)
-    .subscribe((res: any ) => {
-    if(res != null){
-      this.carePlanName = res.Name;
-      this.carePlanDescription = res.Description;
-       this.carePlanTemplate = res.CarePlanTemplate;
-       this.goals = res.CarePlanTemplate.Goals;
-       this.targets =  res.CarePlanTemplate.Goals[0].Targets;
-       console.log(this.targets);
-    }
-    }, (err) => {
-      console.log(err);
-    });
+    this.callCarePlanDetail();
 
    /*  this.carePlanService.getGoalByIdCarePlan(this.idPassedByURL)
     .subscribe((res: any ) => {
@@ -63,6 +68,70 @@ export class DetailCarePlanPage implements OnInit {
     }, (err) => {
       console.log(err);
     }); */
+  }
+
+  callCarePlanDetail(){
+
+    this.storage.get('idPatientProfile').then((val) => {
+      if(val != null){
+        this.patientProfileId= val;
+        this.callCarePlanTemplate();
+      }
+    });
+
+    this.carePlanService.getCarePlanById(this.idPassedByURL)
+    .subscribe((res: any ) => {
+    if(res.CarePlanTemplate != null){
+      this.carePlanDetailNull = false;
+      this.carePlanName = res.Name;
+      this.carePlanDescription = res.Description;
+       this.carePlanTemplate = res.CarePlanTemplate;
+       this.goals = res.CarePlanTemplate.Goals;
+       this.targets =  res.CarePlanTemplate.Goals[0].Targets;
+       console.log(this.targets);
+    }else{
+      this.carePlanDetailNull = true;
+      this.carePlanTemplate = null;
+    }
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  callCarePlanTemplate(){
+    this.carePlanService.getCarePlantemplateByIdPatientProfile(this.patientProfileId)
+    .subscribe((res: any ) => {
+    this.carePlanTemplateList= res;
+    }, (err) => {
+      console.log(err);
+    });
+
+  }
+
+  onSubmit(){
+
+    this.idcarePlantemplate = this.carePlantemplateForm.get('idCarePlanTemplate').value;
+    this.carePlanService.assignCarePlanTemplateToCarePlan(this.idPassedByURL, this.idcarePlantemplate)
+    .subscribe( (res: any) => {
+      this.presentAlert();
+        }, ( err ) => {
+    });
+  }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'SUCCESS!',
+      message: `The Care Plan Template has been assigned successfully`,
+      buttons: [  {
+        text: 'Ok',
+        handler: () => {
+          this.callCarePlanDetail();
+        }
+      }
+      ]
+    });
+
+    await alert.present();
   }
 
 }
