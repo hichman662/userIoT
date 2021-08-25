@@ -44,7 +44,10 @@
     </ion-row>
 </ion-header>
 <ion-content>
-    <ion-card-header [hidden]="!practitionerNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">No practitioner has been added to this scenario. To add practitioner, press the Add button.</ion-card-header>
+    <ion-card-header [hidden]="!practitionerNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
+        <ion-icon size="large" name="warning-outline"></ion-icon> No practitioner has been added to this scenario. To add practitioner, press the Add button.
+    </ion-card-header>
+
 
     <ion-list>
         <div class="patient" *ngFor="let practitioner of practitioners">

@@ -20,6 +20,7 @@ export class DevicePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.calltelemetry();
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
       if(this.idScenario != null){
@@ -35,6 +36,15 @@ export class DevicePage implements OnInit {
         }else{
           this.devicesNull = true;
         }
+    }, ( err) => {
+        console.log(err);
+    });
+  }
+
+  calltelemetry(){
+    this.deviceService.getTelemetryBloodPressure()
+    .subscribe( (res: any) => {
+        console.log(res);
     }, ( err) => {
         console.log(err);
     });

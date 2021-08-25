@@ -111,5 +111,13 @@ public deletePatientAccess(uid) {
   return this.http.delete(`${environment.base_url}/PatientAccess/Destroy?p_patientaccess_oid=${uid}`);
 }
 
+public getAccessModeByIdPatientprofile( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <PatientAccess>(`${environment.base_url}/AccessMode/ProfileAccessMode?idPatientProfile=${uid}` );
+}
 
+// Assign Access mode to Patient Access
+public assignAccessModeToPatientAccess(patientAccess: number, accessMode: number): Observable<object> {
+  return this.http.put(`${environment.base_url}/PatientAccess/AssignAccessMode?p_patientaccess_oid=${patientAccess}&p_accessmode_oid=${accessMode}`,null);
+}
 }
