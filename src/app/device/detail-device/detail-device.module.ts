@@ -1,3 +1,4 @@
+import { MatExpansionModule } from '@angular/material/expansion';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { DetailDevicePage } from './detail-device.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    DetailDevicePageRoutingModule
+    DetailDevicePageRoutingModule,
+    MatExpansionModule
   ],
   declarations: [DetailDevicePage]
 })

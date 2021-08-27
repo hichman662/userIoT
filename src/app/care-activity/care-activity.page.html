@@ -6,6 +6,7 @@
             <ion-back-button text="Care plan dashboard" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
+            <ion-icon [hidden]="!careActivityNull" size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-care-activity']"></ion-icon>
             <ion-button>
             </ion-button>
         </ion-buttons>
@@ -37,13 +38,15 @@
 
         </ion-col>
         <ion-col size="1" class="ion-align-self-end">
-
+            <ion-label class="text-top">{{nameCareActivity}}</ion-label>
         </ion-col>
 
     </ion-row>
 </ion-header>
 <ion-content>
-
+    <ion-card-header [hidden]="!careActivityNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
+        <ion-icon size="large" name="warning-outline"></ion-icon> No Care Activity has been added to this scenario. To add Care Actiity, press the Add button.
+    </ion-card-header>
     <ion-list>
         <div class="carePlan" *ngFor="let careActivitie of careActivities">
 

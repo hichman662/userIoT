@@ -64,11 +64,19 @@
     <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
         <ion-segment-button value="details">
             <ion-icon name="receipt-outline"></ion-icon>
-            <ion-label>Device detail</ion-label>
+            <ion-label>Detail</ion-label>
         </ion-segment-button>
         <ion-segment-button value="template">
-            <ion-icon name="tv-outline"></ion-icon>
-            <ion-label>Device Template</ion-label>
+            <ion-icon name="rocket-outline"></ion-icon>
+            <ion-label>Template</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="property">
+            <ion-icon name="options-outline"></ion-icon>
+            <ion-label>Properties</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="command">
+            <ion-icon name="flash-outline"></ion-icon>
+            <ion-label>Commands</ion-label>
         </ion-segment-button>
 
     </ion-segment>
@@ -164,4 +172,97 @@
         </ion-list>
     </div>
 
+    <div class="segment" *ngIf="segmentModel === 'command'">
+        <div class="container" *ngFor="let command of allCommands|keyvalue">
+            <mat-expansion-panel details>
+                <mat-expansion-panel-header slot="start">
+                    <mat-panel-title>
+                        <ion-item>
+                            <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
+                            <ion-label>{{command.value['Name']}}</ion-label>
+                        </ion-item>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+
+                <ion-item-sliding>
+                    <ion-item-options side="start">
+                        <ion-item-option color="danger" (click)="null" expandable>
+                            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+
+                <ion-card>
+                    <ion-item>
+
+                        <ion-label text-wrap>Description</ion-label>
+                        <ion-badge text-wrap> {{command.value['Description']}}</ion-badge>
+                    </ion-item>
+                    <ion-list-header>
+                        <ion-icon class="segmentIcon" name="shuffle-outline"></ion-icon>Type</ion-list-header>
+                    <ion-item>
+                        <ion-label *ngIf="command.value['Type'] === 1"> Equal</ion-label>
+                        <ion-label *ngIf="command.value['Type'] === 2"> Distinct</ion-label>
+                        <ion-label *ngIf="command.value['Type'] === 3"> Is greater than</ion-label>
+                        <ion-label *ngIf="command.value['Type'] === 4"> Is less than</ion-label>
+                    </ion-item>
+                    <ion-list-header>
+                        <ion-icon class="segmentIcon" name="calendar-number-outline"></ion-icon>Service Type</ion-list-header>
+                    <ion-item>
+                        <ion-label *ngIf="command.value['ServiceType'] === 1"> Notify</ion-label>
+                        <ion-label *ngIf="command.value['ServiceType'] === 2"> Actuation</ion-label>
+                        <ion-label *ngIf="command.value['ServiceType'] === 3"> Register</ion-label>
+                    </ion-item>
+
+                </ion-card>
+
+            </mat-expansion-panel>
+
+        </div>
+
+    </div>
+
+
+    <div class="segment" *ngIf="segmentModel === 'property'">
+        <div class="container" *ngFor="let property of allProperties|keyvalue">
+            <mat-expansion-panel details>
+                <mat-expansion-panel-header slot="start">
+                    <mat-panel-title>
+                        <ion-item>
+                            <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
+                            <ion-label>{{property.value['Name']}}</ion-label>
+                        </ion-item>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+
+                <ion-item-sliding>
+                    <ion-item-options side="start">
+                        <ion-item-option color="danger" (click)="null" expandable>
+                            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+
+                <ion-card>
+                    <ion-list-header>
+                        <ion-icon class="segmentIcon" name="shuffle-outline"></ion-icon>Type</ion-list-header>
+                    <ion-item>
+                        <ion-label *ngIf="property.value['Type'] === 0"> Equal</ion-label>
+
+                    </ion-item>
+                    <ion-list-header>
+                        <ion-icon class="segmentIcon" name="calendar-number-outline"></ion-icon>Value</ion-list-header>
+                    <ion-item>
+                        <ion-badge text-wrap> {{property.value['Value']}}</ion-badge>
+                    </ion-item>
+
+                </ion-card>
+
+            </mat-expansion-panel>
+
+        </div>
+
+    </div>
 </ion-content>

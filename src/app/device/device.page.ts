@@ -20,7 +20,7 @@ export class DevicePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.calltelemetry();
+    //this.calltelemetry();
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
       if(this.idScenario != null){

@@ -13,6 +13,8 @@ export class CareActivityPage implements OnInit {
   public careActivities: any[] = [];
   public idScenario: number;
   public valueCareActivity: number;
+  public careActivityNull = false;
+  public nameCareActivity='';
   constructor(
     private carePlanService: CarePlanService,
     public router: Router,
@@ -31,8 +33,16 @@ export class CareActivityPage implements OnInit {
   callCareActivity(){
     this.carePlanService.getCareActivityByIdScenario(this.idScenario)
     .subscribe( (res: any) => {
-      console.log(res);
+      if(res != null){
         this.careActivities = res;
+        this.nameCareActivity = res.Name;
+        this.careActivityNull= false;
+      }else{
+        this.careActivityNull= true;
+        this.careActivities = null;
+      }
+      console.log(res);
+
     }, ( err) => {
         console.log(err);
     });

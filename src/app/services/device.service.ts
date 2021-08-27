@@ -1,3 +1,6 @@
+import { ImTelemetry } from './../models/imTelemetry.model';
+import { Property } from './../models/property.model';
+import { Command } from './../models/command.model';
 /* eslint-disable quote-props */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -9,8 +12,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import {of, Observable} from 'rxjs';
 import { Device } from '../models/device.model';
-
-
 
 
 @Injectable({
@@ -41,11 +42,28 @@ public createDevice( data: Device ): Observable<object> {
   return this.http.post(`${environment.base_url}/Device/New_`, data);
 }
 
+
+// IMCommand
+public getCommandByIdDevice( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <Command>(`${environment.base_url}/IMCommand/DeviceCommands?idDevice=${uid}` );
+}
+
+//Property
+public getPropertiesByIdDevice( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <Property>(`${environment.base_url}/IMProperty/DeviceProperties?idDevice=${uid}` );
+}
+
+//ImTelemetry
+public getImTelemetryByIdScenario( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <ImTelemetry>(`${environment.base_url}/IMTelemetry/IMTelemetriesScenario?idIoTScenario=${uid}` );
+}
+
+
+
 // Header
-
-
-
-
 get token(): string {
   return  'SharedAccessSignature sr=849f84f9-b7f0-4638-9932-25893f52dea2&sig=0TPcUHrOGg9S4w0tcNgeJC6HEAHoQwmD0QJ2oEEx9HE%3D&skn=ADMINTOKEN&se=1653125144141';
 }

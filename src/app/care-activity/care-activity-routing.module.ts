@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path: 'medication/:Id',
     loadChildren: () => import('../medication/medication.module').then( m => m.MedicationPageModule)
+  },  {
+    path: 'add-care-activity',
+    loadChildren: () => import('./add-care-activity/add-care-activity.module').then( m => m.AddCareActivityPageModule)
   }
+
 ];
 
 @NgModule({

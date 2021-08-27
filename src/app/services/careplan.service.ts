@@ -90,6 +90,10 @@ public getCareActivityByIdScenario( uid: number): Observable<object>{
   return this.http.get <CareActivity>(`${environment.base_url}/IMCareActivity/CareActivitiesScenario?idIoTScenario=${uid}` );
 }
 
+public createCareActivity( data: CareActivity ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IMCareActivity/New_`, data);
+}
+
 // Appointment
 public getAppointmentByIdCareActivity( uid: number): Observable<object>{
   if (!uid) { uid = null; }
