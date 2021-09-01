@@ -16,6 +16,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { Platform } from '@ionic/angular';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -26,7 +27,8 @@ import { Platform } from '@ionic/angular';
       BrowserAnimationsModule,
       ReactiveFormsModule,
       HttpClientModule,
-      IonicStorageModule.forRoot()
+      IonicStorageModule.forRoot(),
+
     ],
   providers: [Platform,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: TelemetryPage
+  },
+  {
+    path: 'blood-pressure/:systolic/:diastolic',
+    loadChildren: () => import('./blood-pressure/blood-pressure.module').then( m => m.BloodPressurePageModule)
   }
 ];
 

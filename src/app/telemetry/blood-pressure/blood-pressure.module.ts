@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TelemetryPageRoutingModule } from './telemetry-routing.module';
+import { BloodPressurePageRoutingModule } from './blood-pressure-routing.module';
 
-import { TelemetryPage } from './telemetry.page';
-
-
+import { BloodPressurePage } from './blood-pressure.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TelemetryPageRoutingModule
+    BloodPressurePageRoutingModule
   ],
-  declarations: [TelemetryPage]
+  declarations: [BloodPressurePage]
 })
-export class TelemetryPageModule {}
+export class BloodPressurePageModule {}

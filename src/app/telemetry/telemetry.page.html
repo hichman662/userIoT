@@ -42,7 +42,7 @@
 
     </ion-row>
 </ion-header>
-<ion-content>
+<ion-content [fullscreen]="true">
     <!--  <ion-card-header [hidden]="!careActivityNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
       <ion-icon size="large" name="warning-outline"></ion-icon> No Care Activity has been added to this scenario. To add Care Actiity, press the Add button.
   </ion-card-header> -->
@@ -62,13 +62,15 @@
                     </ion-item>
                 </div>
                 <div *ngIf="telemetry['Name'] === 'BloodPressure'">
-                    <ion-item class="item" detail [routerLink]="['bloodPressure',telemetry['Id']]">
+                    <ion-item class="item" detail [routerLink]="['blood-pressure',systolic,diastolic]">
                         <ion-avatar slot="start">
                             <img src="assets/icon/bloodPressure.png">
                         </ion-avatar>
                         <ion-label text-wrap>
                             <h5>Blood Pressure</h5>
-                            <!-- <h4> {{telemetry.TeleValues[0]['Valu']}}</h4> -->
+
+                            <h4> Systolic: {{systolic}}</h4>
+                            <h4> Diastolic: {{diastolic}}</h4>
                         </ion-label>
                     </ion-item>
                 </div>
@@ -115,5 +117,15 @@
             </ion-item-sliding>
         </div>
     </ion-list>
+    <div class="ion-padding">
+        <ion-card>
+            <ion-card-header>
+                Line Chart
+            </ion-card-header>
+            <ion-card-content>
+                <canvas #lineCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+            </ion-card-content>
+        </ion-card>
+    </div>
 
 </ion-content>
