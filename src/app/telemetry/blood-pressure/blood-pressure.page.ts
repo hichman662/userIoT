@@ -1,4 +1,5 @@
-import { Router } from '@angular/router';
+/* eslint-disable max-len */
+import { ActivatedRoute, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
@@ -18,59 +19,65 @@ export class BloodPressurePage implements OnInit {
   lineChart: any;
 
   constructor(  public router: Router,
+    private route: ActivatedRoute,
     private storage: Storage) { Chart.register(...registerables);}
 
   ngOnInit() {
+
   }
 
-
+  ionViewWillEnter() {
+    this.lineChartMethod();
+    this.systolic = this.route.snapshot.params.systolic;
+    this.diastolic = this.route.snapshot.params.diastolic;
+  }
    //chart test
    lineChartMethod() {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
+        labels: ['29/08/2021', '30/08/2021', '31/08/2021', '01/09/2021', '02/09/2021', '02/09/2021', '03/09/2021', '04/09/2021', '04/09/2021'],
         datasets: [
           {
-            label: 'Sell per week',
+            label: 'Systolic',
             fill: false,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
+            backgroundColor: 'rgb(255,0,0)',
+            borderColor: 'rgb(255,0,0)',
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBorderColor: 'rgba(255,0,0,1)',
             pointBackgroundColor: '#fff',
             pointBorderWidth: 1,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBackgroundColor: 'rgba(255,0,0,1)',
+            pointHoverBorderColor: 'rgba(255,0,0,1)',
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40, 10, 5, 50, 10, 15],
+            data: [115, 118, 121, 119, 125, 111, 118, 117, 35],
             spanGaps: false,
           },
           {
-            label: 'Sell per week',
+            label: 'Diastolic',
             fill: false,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(32,98,25,1)',
+            backgroundColor: 'rgb(0,128,128)',
+            borderColor: 'rgb(0,128,128)',
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(255,258,85,1)',
+            pointBorderColor: 'rgba(0,128,128,1)',
             pointBackgroundColor: '#fff',
             pointBorderWidth: 1,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBackgroundColor: 'rgba(0,128,128,1)',
+            pointHoverBorderColor: 'rgba(0,128,128,1)',
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [40, 78, 80, 81, 2, 56, 36, 78, 24, 3, 9, 95],
+            data: [65, 78, 68, 75, 78, 69, 72, 70, 63],
             spanGaps: false,
           }
         ]

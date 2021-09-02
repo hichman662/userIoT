@@ -17,7 +17,7 @@
         </ion-col>
         <ion-col size="4" class="ion-align-self-center">
             <ion-card color="transparent" class="deviceTemplate-card">
-                <ion-img src='assets/icon/bloodPressure.png'></ion-img>
+                <ion-img src='assets/icon/RespiratoryRate.png'></ion-img>
 
             </ion-card>
         </ion-col>
@@ -32,7 +32,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Blood Pressure</ion-label>
+                <ion-label class="text-top">Respiratory Rate</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -49,8 +49,8 @@
 
             <ion-label text-wrap>
 
-                <h4> Systolic: {{systolic}}</h4>
-                <h4> Diastolic: {{diastolic}}</h4>
+                <h4>{{respiratoryRate}}%</h4>
+
             </ion-label>
 
         </ion-col>
@@ -63,10 +63,10 @@
 <ion-content>
     <ion-card>
         <ion-card-header>
-            Blood Pressure History Chart
+            Respiratory Rate History Chart
         </ion-card-header>
         <ion-card-content>
-            <canvas #lineCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+            <canvas #barCanvas style="position: relative; height:20vh; width:40vw"></canvas>
         </ion-card-content>
     </ion-card>
 

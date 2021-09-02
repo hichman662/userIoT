@@ -51,13 +51,13 @@
 
             <ion-item-sliding #slidingItem>
                 <div *ngIf="telemetry['Name'] === 'HeartRate'">
-                    <ion-item class="item" detail [routerLink]="['heartRate',telemetry['Id']]">
+                    <ion-item class="item" detail [routerLink]="['heart-rate',heartRate]">
                         <ion-avatar slot="start">
                             <img src="assets/icon/heartRate.png">
                         </ion-avatar>
                         <ion-label text-wrap>
                             <h5>Heart Rate</h5>
-                            <h4> {{telemetry.TeleValues[0]['Valu']}}</h4>
+                            <h4> {{heartRate}}</h4>
                         </ion-label>
                     </ion-item>
                 </div>
@@ -75,24 +75,24 @@
                     </ion-item>
                 </div>
                 <div *ngIf="telemetry['Name'] === 'BodyTemperature'">
-                    <ion-item class="item" detail [routerLink]="['bodyTemperature',telemetry['Id']]">
+                    <ion-item class="item" detail [routerLink]="['body-temperature',bodyTemperature]">
                         <ion-avatar slot="start">
                             <img src="assets/icon/BodyTemperature.png">
                         </ion-avatar>
                         <ion-label text-wrap>
                             <h5>Body Temperature</h5>
-                            <h4> {{telemetry.TeleValues[0]['Valu']}}</h4>
+                            <h4> {{bodyTemperature}}º C</h4>
                         </ion-label>
                     </ion-item>
                 </div>
                 <div *ngIf="telemetry['Name'] === 'RespiratoryRate'">
-                    <ion-item class="item" detail [routerLink]="['respiratoryRate',telemetry['Id']]">
+                    <ion-item class="item" detail [routerLink]="['respiratory-rate',respiratoryRate]">
                         <ion-avatar slot="start">
                             <img src="assets/icon/RespiratoryRate.png">
                         </ion-avatar>
                         <ion-label text-wrap>
                             <h5>Respiratory Rate</h5>
-                            <h4> {{telemetry.TeleValues[0]['Valu']}}</h4>
+                            <h4> {{respiratoryRate}}%</h4>
                         </ion-label>
                     </ion-item>
                 </div>
@@ -117,15 +117,6 @@
             </ion-item-sliding>
         </div>
     </ion-list>
-    <div class="ion-padding">
-        <ion-card>
-            <ion-card-header>
-                Line Chart
-            </ion-card-header>
-            <ion-card-content>
-                <canvas #lineCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-            </ion-card-content>
-        </ion-card>
-    </div>
+
 
 </ion-content>
