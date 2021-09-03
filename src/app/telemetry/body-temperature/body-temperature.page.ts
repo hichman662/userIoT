@@ -16,7 +16,9 @@ export class BodyTemperaturePage implements OnInit {
   @ViewChild('barCanvas') private barCanvas: ElementRef;
   public bodyTemperature: any;
   barChart: any;
-
+  label: any [] =['29/08/2021', '30/08/2021', '31/08/2021', '01/09/2021', '02/09/2021', '02/09/2021', '02/09/2021'];
+  data: any[]=[37, 37.5, 36, 37.5, 36.5, 36, 37];
+  date= new Date();
   constructor(  public router: Router,
     private route: ActivatedRoute,
     private storage: Storage
@@ -25,20 +27,39 @@ export class BodyTemperaturePage implements OnInit {
   ngOnInit() {
 
   }
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+ setTimeout(() => {
+   this.bodyTemperature= this.randomNumber(35,37);
+   this.data.push(this.bodyTemperature);
+   this.label.push(this.date.getFullYear()+'/'+this.date.getUTCMonth()+'/'+this.date.getDate());
+   this.barChart.update();
+   console.log('Async operation has ended');
+   event.target.complete();
+ }, 4000);
+}
+
+
+randomNumber(min, max) {
+ return Math.floor(Math.random() * (max - min )) + min;
+}
 
   ionViewWillEnter() {
-    this.barChartMethod();
     this.bodyTemperature = this.route.snapshot.params.bodyTemperature;
+    this.data.push(this.bodyTemperature);
+    this.label.push(this.date.getFullYear()+'/'+this.date.getUTCMonth()+'/'+this.date.getDate());
+    this.barChartMethod();
   }
    //chart test
    barChartMethod() {
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {
-        labels: ['29/08/2021', '30/08/2021', '31/08/2021', '01/09/2021', '02/09/2021', '02/09/2021', '03/09/2021', '04/09/2021', '04/09/2021'],
+        labels: this.label,
         datasets: [{
-          label: '# Temperature',
-          data: [37, 35, 36.5, 48, 37, 76, 57,56,98],
+          label: '# Celsius',
+          data: this.data,
           backgroundColor: [
             'rgba(81, 119, 223, 1)',
 

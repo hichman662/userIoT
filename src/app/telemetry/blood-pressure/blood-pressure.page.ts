@@ -17,6 +17,10 @@ export class BloodPressurePage implements OnInit {
   public systolic: any;
   public diastolic: any;
   lineChart: any;
+  label: any [] =[ '02/09/2021', '02/09/2021', '03/09/2021', '04/09/2021', '04/09/2021','04/09/2021'];
+  public syst: any[]=[115, 118, 121, 119, 125, 111];
+  public dias: any[]=[ 65, 78, 68, 75, 78, 69];
+  date= new Date();
 
   constructor(  public router: Router,
     private route: ActivatedRoute,
@@ -26,17 +30,40 @@ export class BloodPressurePage implements OnInit {
 
   }
 
-  ionViewWillEnter() {
-    this.lineChartMethod();
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+ setTimeout(() => {
+   this.systolic= this.randomNumber(112,120);
+   this.diastolic= this.randomNumber(60,80);
+   this.syst.push(this.systolic);
+   this.dias.push(this.diastolic);
+   this.label.push(this.date.getFullYear()+'/'+this.date.getUTCMonth()+'/'+this.date.getDate());
+   this.lineChart.update();
+   console.log('Async operation has ended');
+   event.target.complete();
+ }, 4000);
+}
+
+randomNumber(min, max) {
+ return Math.floor(Math.random() * (max - min )) + min;
+}
+
+ionViewWillEnter() {
     this.systolic = this.route.snapshot.params.systolic;
     this.diastolic = this.route.snapshot.params.diastolic;
-  }
+    this.syst.push(this.systolic);
+    this.dias.push(this.diastolic);
+    this.label.push(this.date.getFullYear()+'/'+this.date.getUTCMonth()+'/'+this.date.getDate());
+    this.lineChartMethod();
+}
+
    //chart test
    lineChartMethod() {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: ['29/08/2021', '30/08/2021', '31/08/2021', '01/09/2021', '02/09/2021', '02/09/2021', '03/09/2021', '04/09/2021', '04/09/2021'],
+        labels: this.label,
         datasets: [
           {
             label: 'Systolic',
@@ -56,7 +83,7 @@ export class BloodPressurePage implements OnInit {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [115, 118, 121, 119, 125, 111, 118, 117, 35],
+            data: this.syst,
             spanGaps: false,
           },
           {
@@ -77,7 +104,7 @@ export class BloodPressurePage implements OnInit {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 78, 68, 75, 78, 69, 72, 70, 63],
+            data: this.dias,
             spanGaps: false,
           }
         ]

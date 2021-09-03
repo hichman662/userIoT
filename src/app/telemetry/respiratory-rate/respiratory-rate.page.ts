@@ -14,9 +14,12 @@ import { Chart, registerables } from 'chart.js';
 export class RespiratoryRatePage implements OnInit {
 
   @ViewChild('barCanvas') private barCanvas: ElementRef;
+
   public respiratoryRate: any;
   barChart: any;
-
+  label: any [] =['29/08/2021', '30/08/2021', '31/08/2021', '01/09/2021', '02/09/2021', '02/09/2021', '02/09/2021', '02/09/2021'];
+  data: any[]=[15, 24, 18, 22, 17, 16, 12,18];
+  date= new Date();
   constructor(  public router: Router,
     private route: ActivatedRoute,
     private storage: Storage
@@ -25,20 +28,39 @@ export class RespiratoryRatePage implements OnInit {
   ngOnInit() {
 
   }
+  doRefresh(event) {
+       console.log('Begin async operation');
 
-  ionViewWillEnter() {
-    this.barChartMethod();
-    this.respiratoryRate = this.route.snapshot.params.respiratoryRate;
+    setTimeout(() => {
+      this.respiratoryRate= this.randomNumber(15,30);
+      this.data.push(this.respiratoryRate);
+      this.label.push(this.date.getFullYear()+'/'+this.date.getUTCMonth()+'/'+this.date.getDate());
+      this.barChart.update();
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 4000);
   }
+  ionViewWillEnter() {
+    this.respiratoryRate = this.route.snapshot.params.respiratoryRate;
+    this.data.push(this.respiratoryRate);
+    this.label.push(this.date.getFullYear()+'/'+this.date.getUTCMonth()+'/'+this.date.getDate());
+    this.barChartMethod();
+    console.log(this.date);
+  }
+
+  randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min )) + min;
+  }
+
    //chart test
    barChartMethod() {
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {
-        labels: ['29/08/2021', '30/08/2021', '31/08/2021', '01/09/2021', '02/09/2021', '02/09/2021', '03/09/2021', '04/09/2021', '04/09/2021'],
+        labels: this.label,
         datasets: [{
-          label: '# %',
-          data: [95, 98, 95, 99, 96, 97, 89,94,15],
+          label: 'Per minute',
+          data: this.data,
           backgroundColor: [
             'rgba(86, 196, 69, 1)',
 
