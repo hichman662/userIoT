@@ -58,7 +58,7 @@ randomNumber(min, max) {
       data: {
         labels: this.label,
         datasets: [{
-          label: '# Beats',
+          label: '#  Beats/Minute',
           data: this.data,
           backgroundColor: [
             'rgba(245, 225, 52, 1)',
