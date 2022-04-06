@@ -1,3 +1,4 @@
+import { Entity } from './../models/entity.model';
 import { CarePlanTemplate } from './../models/carePlanTemplate.model';
 /* eslint-disable max-len */
 import { VitalSign } from './../models/vitalSign.model';
@@ -73,7 +74,14 @@ public deleteVitalSign(uid) {
   return this.http.delete(`${environment.base_url}/VitalSign/Destroy?p_vitalsign_oid=${uid}`);
 }
 
+// *********************************vital Sign attribute******************
+public getEntitynById( uid: number): Observable<Entity>{
+  if (!uid) { uid = null; }
+  return this.http.get <Entity>(`${environment.base_url}/Entity/${uid}` );
+}
 
+
+//**************************************************** */
 // Care Activities
 
 public getAllCareActivities(): Observable<object>{

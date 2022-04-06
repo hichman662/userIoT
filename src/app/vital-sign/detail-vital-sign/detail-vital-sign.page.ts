@@ -1,7 +1,10 @@
+import { Attribute } from './../../models/attribute.model';
+/* eslint-disable @typescript-eslint/quotes */
 import { CarePlanService } from './../../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { Entity } from './../../models/entity.model';
+import { IonItemSliding, AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-detail-vital-sign',
   templateUrl: './detail-vital-sign.page.html',
@@ -12,7 +15,9 @@ export class DetailVitalSignPage implements OnInit {
   public vitalSignName: '';
   public vitalSignDescrip: '';
   public measureVitalSign: any;
+  public vitalSignLOINCode: number;
   segmentModel = 'details';
+  public attriubute: Attribute[] = [];
   private idPassedByURL: number = null;
   constructor(
     private carePlanService: CarePlanService,
@@ -22,18 +27,21 @@ export class DetailVitalSignPage implements OnInit {
 
 
   ngOnInit() {
-    this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getVitalSignById(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
-    if(res != null){
-       this.vitalSignName = res.Name;
-       this.vitalSignDescrip = res.Description;
-       this.measureVitalSign = res.MeasureVitalSign;
 
-    }
+    this.idPassedByURL = this.route.snapshot.params.Id;
+    this.carePlanService.getEntitynById(this.idPassedByURL)
+    .subscribe((res: Entity ) => {
+      this.attriubute = res.Attributes;
     }, (err) => {
       console.log(err);
     });
+  }
+  closeSliding(slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
+  editAttr(slidingItem: IonItemSliding ,id: number, attr: any){
+    slidingItem.close();
+
   }
 }
