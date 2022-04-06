@@ -1,3 +1,6 @@
+/* eslint-disable quote-props */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/quotes */
 import { Target } from './../../models/target.model';
 import { Goal } from './../../models/goal.model';
 import { CarePlanTemplate } from './../../models/carePlanTemplate.model';
@@ -7,9 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 import { CarePlan } from 'src/app/models/carePlan.model';
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AlertController, NavController } from '@ionic/angular';
-
-
+import { IonItemSliding, AlertController, ToastController, NavController } from '@ionic/angular';
+import { Attribute } from './../../models/attribute.model';
+import { Entity } from './../../models/entity.model';
 @Component({
   selector: 'app-detail-care-plan',
   templateUrl: './detail-care-plan.page.html',
@@ -29,12 +32,14 @@ export class DetailCarePlanPage implements OnInit {
   carePlanTemplateList: CarePlanTemplate[] =[];
   carePlantemplateForm: FormGroup;
   idcarePlantemplate: number;
+  public attriubute: Attribute[] = [];
   private idPassedByURL: number = null;
   constructor(
     private carePlanService: CarePlanService,
     private route: ActivatedRoute,
     private storage: Storage,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public toastController: ToastController
 
   ) {
       this.carePlantemplateForm = new FormGroup({
@@ -71,6 +76,14 @@ export class DetailCarePlanPage implements OnInit {
   }
 
   callCarePlanDetail(){
+      //la parte de los detalles de Care plan
+    this.carePlanService.getEntitynById(this.idPassedByURL)
+    .subscribe((res: Entity ) => {
+      this.attriubute = res.Attributes;
+    }, (err) => {
+      console.log(err);
+    });
+
 
     this.storage.get('idPatientProfile').then((val) => {
       if(val != null){
@@ -85,7 +98,7 @@ export class DetailCarePlanPage implements OnInit {
       this.carePlanDetailNull = false;
       this.carePlanName = res.Name;
       this.carePlanDescription = res.Description;
-       this.carePlanTemplate = res.CarePlanTemplate;
+      // this.carePlanTemplate = res.CarePlanTemplate;
        this.goals = res.CarePlanTemplate.Goals;
        this.targets =  res.CarePlanTemplate.Goals[0].Targets;
        console.log(this.targets);
@@ -133,5 +146,59 @@ export class DetailCarePlanPage implements OnInit {
 
     await alert.present();
   }
+
+  closeSliding(slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
+  async presentToast(color: string , message: string) {
+    const toast = await this.toastController.create({
+      color: `${color}`,
+      message: `${message}`,
+      duration: 2500,
+      position: 'bottom'
+    });
+    await toast.present();
+  }
+
+  async editAttr(slidingItem: IonItemSliding ,id: number, attr: string){
+    slidingItem.close();
+    const alert = await this.alertController.create({
+      inputs: [
+        {
+          name: 'ValueAttr',
+          placeholder: `${attr}`,
+          value: `${attr}`
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('You Clicked on Cancel');
+          }
+        },
+        {
+          text: 'Modify',
+          handler: data => {
+            if (data.ValueAttr !== '') {
+               this.carePlanService.modifyEntityAttribute(id, {"ValueAttr" : data.ValueAttr})
+              .subscribe((res: Attribute ) => {
+                this.presentToast('success','Your settings have been saved.');
+                this.ngOnInit();
+                 }, (err) => {
+              console.log(err);
+              this.presentToast('danger','Your settings have not been saved.');
+              });
+            } else {
+              return false;
+            }
+          }
+        }
+      ]
+    });
+    await alert.present();
+}
 
 }

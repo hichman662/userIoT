@@ -6,7 +6,7 @@ import { CarePlanService } from './../../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Entity } from './../../models/entity.model';
-import { IonItemSliding, AlertController, ToastController, IonButtons } from '@ionic/angular';
+import { IonItemSliding, AlertController, ToastController} from '@ionic/angular';
 import { Button } from 'protractor';
 @Component({
   selector: 'app-detail-vital-sign',
