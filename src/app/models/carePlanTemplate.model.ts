@@ -2,17 +2,15 @@
 import { CareActivity } from './careActivity.model';
 import { Goal } from './goal.model';
 export class CarePlanTemplate {
-  constructor(
-    Id: number,
-    Status?: number,
-    Name?: string,
-    Description?: string,
-    Intent?: number,
-    Title?: string,
-    Modified?: Date,
-    DurationDays?: number,
-    Goals?: Goal[],
-    CareActivities?: CareActivity[]
-        )
-  {}
+
+    Id: number;
+    Status?: number;
+    Name?: string;
+    Description?: string;
+    Intent?: number;
+    Title?: string;
+    Modified?: Date;
+    DurationDays?: number;
+    Goals?: Goal[];
+    CareActivities?: CareActivity[];
 }

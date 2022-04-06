@@ -3,11 +3,8 @@
 import { Measure } from './measure.model';
 
 export class VitalSign {
-  constructor(
-    Id: number,
-    Name?: string,
-    Description?: string,
-    Measure?: Measure
-  )
-  {}
+    Id: number;
+    Name?: string;
+    Description?: string;
+    Measure?: Measure;
 }

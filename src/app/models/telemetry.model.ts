@@ -5,13 +5,10 @@
 
 
 export class Telemetry {
-  constructor(
-    Id:number,
-    Frecuency?:number,
-    Schema?: number,
-    Unit?: number,
-    Name?: string,
-    Type?: number
-  )
-  {}
+    Id:number;
+    Frecuency?:number;
+    Schema?: number;
+    Unit?: number;
+    Name?: string;
+    Type?: number;
 }

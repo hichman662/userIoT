@@ -1,3 +1,4 @@
+import { Attribute } from './../models/attribute.model';
 import { Entity } from './../models/entity.model';
 import { CarePlanTemplate } from './../models/carePlanTemplate.model';
 /* eslint-disable max-len */
@@ -78,6 +79,10 @@ public deleteVitalSign(uid) {
 public getEntitynById( uid: number): Observable<Entity>{
   if (!uid) { uid = null; }
   return this.http.get <Entity>(`${environment.base_url}/Entity/${uid}` );
+}
+
+public modifyEntityAttribute(uid: number, data: any): Observable<object> {
+  return this.http.put(`${environment.base_url}/EntityAttributes/ModifyValue?idEntityAttributes=${uid}`, data);
 }
 
 

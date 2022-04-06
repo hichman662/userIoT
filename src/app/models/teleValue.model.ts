@@ -5,10 +5,7 @@
 
 
 export class TeleValue {
-  constructor(
-    Id: number,
-    TimeStamp?: Date,
-    Valu?: string
-  )
-  {}
+    Id: number;
+    TimeStamp?: Date;
+    Valu?: string;
 }

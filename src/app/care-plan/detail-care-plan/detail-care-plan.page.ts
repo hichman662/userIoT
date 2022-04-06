@@ -19,8 +19,8 @@ export class DetailCarePlanPage implements OnInit {
 
   public carePlanTemplate: CarePlanTemplate;
   public carePlan: CarePlan;
-  public carePlanName: '';
-  public carePlanDescription: '';
+  public carePlanName: string;
+  public carePlanDescription: string;
   public goals: Goal[];
   public targets: Target[];
   carePlanDetailNull = false;
@@ -80,7 +80,7 @@ export class DetailCarePlanPage implements OnInit {
     });
 
     this.carePlanService.getCarePlanById(this.idPassedByURL)
-    .subscribe((res: any ) => {
+    .subscribe((res: CarePlan ) => {
     if(res.CarePlanTemplate != null){
       this.carePlanDetailNull = false;
       this.carePlanName = res.Name;

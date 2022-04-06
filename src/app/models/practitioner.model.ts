@@ -4,11 +4,8 @@
 import { PractitionerData} from './practitionerData.model';
 
 export class Practitioner {
-  constructor(
-      Id: number,
-      Name?: string,
-      Description?: string,
-      PractitionerData?: PractitionerData
-        )
-  {}
+      Id: number;
+      Name?: string;
+      Description?: string;
+      PractitionerData?: PractitionerData;
 }

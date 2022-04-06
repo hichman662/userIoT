@@ -4,11 +4,8 @@
 import { RelatedPersonData} from './relatedPersonData.model';
 
 export class RelatedPerson {
-  constructor(
-      Id: number,
-      Name?: string,
-      Description?: string,
-      RpData?: RelatedPersonData
-        )
-  {}
+      Id: number;
+      Name?: string;
+      Description?: string;
+      RpData?: RelatedPersonData;
 }
