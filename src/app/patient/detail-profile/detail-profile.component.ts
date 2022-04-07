@@ -1,3 +1,10 @@
+/* eslint-disable quote-props */
+/* eslint-disable @typescript-eslint/quotes */
+import { Patient } from './../../models/patient.model';
+import { Entity } from './../../models/entity.model';
+/* eslint-disable @typescript-eslint/member-ordering */
+import { CarePlanService } from './../../services/careplan.service';
+import { Attribute } from './../../models/attribute.model';
 import { Router } from '@angular/router';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Disability } from './../../models/disability.model';
@@ -9,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController ,IonItemSliding,ToastController} from '@ionic/angular';
 @Component({
   selector: 'app-detail-profile',
   templateUrl: './detail-profile.component.html',
@@ -27,13 +34,16 @@ export class DetailProfileComponent implements OnInit {
     segmentModel = 'details';
   public patientId: any;
   private idScenario: number;
+  public attriubute: Attribute[] = [];
   constructor(
     private patientService: PatientService,
     private route: ActivatedRoute,
     private storage: Storage,
     public navCtrl: NavController,
     public alertController: AlertController,
-    private router: Router
+    private router: Router,
+    public carePlanService: CarePlanService,
+    public toastController: ToastController
 
   ) {
     this.patientProfileForm = new FormGroup({
@@ -55,18 +65,24 @@ export class DetailProfileComponent implements OnInit {
     this.storage.get('idPatient').then((val) => {
       if(val != null){
         this.patientId= val;
+        this.callPatientProfileEntity();
       }
     });
   }
-  ionViewWillEnter(){
-
+  callPatientProfileEntity(){
+    this.carePlanService.getEntitynById(this.patientId)
+    .subscribe((res: Entity ) => {
+      this.attriubute = res.Attributes;
+    }, (err) => {
+      console.log(err);
+    });
   }
   callingPatient(){
     this.patientService.getPatientByIdScenario(this.idScenario)
-    .subscribe((res: any ) => {
+    .subscribe((res: Patient ) => {
     if(res[0].PatientProfile != null){
       this.patientProfileNull = false;
-       this.patientProfile = res[0].PatientProfile;
+      // this.patientProfile = res[0].PatientProfile;
       this.diseases = res[0].PatientProfile.Diseases;
       this.disabilities = res[0].PatientProfile.Disabilities;
     }else{
@@ -115,4 +131,61 @@ export class DetailProfileComponent implements OnInit {
 
     await alert.present();
   }
+
+
+
+  closeSliding(slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
+  async presentToast(color: string , message: string) {
+    const toast = await this.toastController.create({
+      color: `${color}`,
+      message: `${message}`,
+      duration: 2500,
+      position: 'bottom'
+    });
+    await toast.present();
+  }
+
+  async editAttr(slidingItem: IonItemSliding ,id: number, attr: string){
+    slidingItem.close();
+    const alert = await this.alertController.create({
+      inputs: [
+        {
+          name: 'ValueAttr',
+          placeholder: `${attr}`,
+          value: `${attr}`
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('You Clicked on Cancel');
+          }
+        },
+        {
+          text: 'Modify',
+          handler: data => {
+            if (data.ValueAttr !== '') {
+               this.carePlanService.modifyEntityAttribute(id, {"ValueAttr" : data.ValueAttr})
+              .subscribe((res: Attribute ) => {
+                this.presentToast('success','Your settings have been saved.');
+                this.ngOnInit();
+                 }, (err) => {
+              console.log(err);
+              this.presentToast('danger','Your settings have not been saved.');
+              });
+            } else {
+              return false;
+            }
+          }
+        }
+      ]
+    });
+    await alert.present();
+}
+
 }
