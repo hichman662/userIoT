@@ -44,7 +44,7 @@ public createDevice( data: Device ): Observable<object> {
 
 
 // IMCommand
-public getCommandByIdDevice( uid: number): Observable<object>{
+public getCommandByIdDevice( uid: number): Observable<Command>{
   if (!uid) { uid = null; }
   return this.http.get <Command>(`${environment.base_url}/IMCommand/DeviceCommands?idDevice=${uid}` );
 }

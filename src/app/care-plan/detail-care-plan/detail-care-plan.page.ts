@@ -1,3 +1,4 @@
+import { EntityService } from './../../services/entity.service';
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/quotes */
@@ -36,6 +37,7 @@ export class DetailCarePlanPage implements OnInit {
   private idPassedByURL: number = null;
   constructor(
     private carePlanService: CarePlanService,
+    private entityService: EntityService,
     private route: ActivatedRoute,
     private storage: Storage,
     public alertController: AlertController,
@@ -77,7 +79,7 @@ export class DetailCarePlanPage implements OnInit {
 
   callCarePlanDetail(){
       //la parte de los detalles de Care plan
-    this.carePlanService.getEntitynById(this.idPassedByURL)
+    this.entityService.getEntitynById(this.idPassedByURL)
     .subscribe((res: Entity ) => {
       this.attriubute = res.Attributes;
     }, (err) => {
@@ -183,7 +185,7 @@ export class DetailCarePlanPage implements OnInit {
           text: 'Modify',
           handler: data => {
             if (data.ValueAttr !== '') {
-               this.carePlanService.modifyEntityAttribute(id, {"ValueAttr" : data.ValueAttr})
+               this.entityService.modifyEntityAttribute(id, {"ValueAttr" : data.ValueAttr})
               .subscribe((res: Attribute ) => {
                 this.presentToast('success','Your settings have been saved.');
                 this.ngOnInit();

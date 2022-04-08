@@ -40,7 +40,7 @@ export class DetailPatientPage implements OnInit {
   }
   callingPatient(){
     this.patientService.getPatientByIdScenario(this.idScenario)
-    .subscribe((res: any ) => {
+    .subscribe((res: Patient ) => {
       console.log(res);
     if(res != null){
       this.storage.set('idPatient',res[0].Id);

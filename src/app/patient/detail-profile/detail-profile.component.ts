@@ -1,3 +1,4 @@
+import { EntityService } from './../../services/entity.service';
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/quotes */
 import { Patient } from './../../models/patient.model';
@@ -43,6 +44,7 @@ export class DetailProfileComponent implements OnInit {
     public alertController: AlertController,
     private router: Router,
     public carePlanService: CarePlanService,
+    public entityService: EntityService,
     public toastController: ToastController
 
   ) {
@@ -70,7 +72,7 @@ export class DetailProfileComponent implements OnInit {
     });
   }
   callPatientProfileEntity(){
-    this.carePlanService.getEntitynById(this.patientId)
+    this.entityService.getEntitynById(this.patientId)
     .subscribe((res: Entity ) => {
       this.attriubute = res.Attributes;
     }, (err) => {
@@ -170,7 +172,7 @@ export class DetailProfileComponent implements OnInit {
           text: 'Modify',
           handler: data => {
             if (data.ValueAttr !== '') {
-               this.carePlanService.modifyEntityAttribute(id, {"ValueAttr" : data.ValueAttr})
+               this.entityService.modifyEntityAttribute(id, {"ValueAttr" : data.ValueAttr})
               .subscribe((res: Attribute ) => {
                 this.presentToast('success','Your settings have been saved.');
                 this.ngOnInit();

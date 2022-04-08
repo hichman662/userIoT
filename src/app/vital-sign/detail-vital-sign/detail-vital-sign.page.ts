@@ -1,3 +1,4 @@
+import { EntityService } from './../../services/entity.service';
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Attribute } from './../../models/attribute.model';
@@ -23,7 +24,7 @@ export class DetailVitalSignPage implements OnInit {
   public attriubute: Attribute[] = [];
   private idPassedByURL: number = null;
   constructor(
-    private carePlanService: CarePlanService,
+    private entityService: EntityService,
     private route: ActivatedRoute,
     public alertController: AlertController,
     public toastController: ToastController
@@ -34,7 +35,7 @@ export class DetailVitalSignPage implements OnInit {
   ngOnInit() {
 
     this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getEntitynById(this.idPassedByURL)
+    this.entityService.getEntitynById(this.idPassedByURL)
     .subscribe((res: Entity ) => {
       this.attriubute = res.Attributes;
     }, (err) => {
@@ -77,7 +78,7 @@ export class DetailVitalSignPage implements OnInit {
           text: 'Modify',
           handler: data => {
             if (data.ValueAttr !== '') {
-               this.carePlanService.modifyEntityAttribute(id, {"ValueAttr" : data.ValueAttr})
+               this.entityService.modifyEntityAttribute(id, {"ValueAttr" : data.ValueAttr})
               .subscribe((res: Attribute ) => {
                 this.presentToast('success','Your settings have been saved.');
                 this.ngOnInit();
