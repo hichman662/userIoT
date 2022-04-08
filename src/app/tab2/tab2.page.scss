@@ -18,6 +18,11 @@ ion-title {
     margin-right: 10px;
 }
 
+ion-item-divider {
+    font-size: 12px;
+    --background: rgb(167, 195, 236) !important;
+}
+
 #dashboardSection {
     max-width: 100%;
     max-height: auto;

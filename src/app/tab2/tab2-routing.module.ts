@@ -16,9 +16,21 @@ const routes: Routes = [
     loadChildren: () => import('../vital-sign/vital-sign.module').then( m => m.VitalSignPageModule)
   },
   {
-    path: 'careActivity',
-    loadChildren: () => import('../care-activity/care-activity.module').then( m => m.CareActivityPageModule)
+    path: 'medication',
+    loadChildren: () => import('../medication/medication.module').then( m => m.MedicationPageModule)
   },
+  {
+    path: 'appointment',
+    loadChildren: () => import('../appointment/appointment.module').then( m => m.AppointmentPageModule)
+  },
+  {
+    path: 'nutrition',
+    loadChildren: () => import('../nutrition/nutrition.module').then( m => m.NutritionPageModule)
+  },
+  {
+    path: 'communication',
+    loadChildren: () => import('../communication/communication.module').then( m => m.CommunicationPageModule)
+  }
 ];
 
 @NgModule({
