@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { ValueAppointment } from './ValueAppointment.model';
 export class Appointment {
-      Id: number;
-      IsVirtual?: boolean;
-      Description?: string;
-      Direction?: string;
-      ReasonCode?: string;
-      // tslint:disable-next-line: variable-name
-      CareActivity_oid?: number;
+  Id:               number;
+  Name:             string;
+  Date:             Date;
+  Description:      string;
+  ValueAppointment: ValueAppointment;
 }

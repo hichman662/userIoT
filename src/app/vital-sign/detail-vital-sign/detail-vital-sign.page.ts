@@ -56,9 +56,10 @@ export class DetailVitalSignPage implements OnInit {
     await toast.present();
   }
 
-  async editAttr(slidingItem: IonItemSliding ,id: number, attr: string){
+  async editAttr(slidingItem: IonItemSliding ,attrName: string ,id: number, attr: string){
     slidingItem.close();
     const alert = await this.alertController.create({
+      header:`${attrName}`,
       inputs: [
         {
           name: 'ValueAttr',

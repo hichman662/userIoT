@@ -1,3 +1,4 @@
+import { Appointment } from './../models/appointment.model';
 import { Attribute } from './../models/attribute.model';
 import { Entity } from './../models/entity.model';
 import { CarePlanTemplate } from './../models/carePlanTemplate.model';
@@ -100,8 +101,18 @@ public createCareActivity( data: CareActivity ): Observable<object> {
 // Appointment
 public getAppointmentByIdCareActivity( uid: number): Observable<object>{
   if (!uid) { uid = null; }
-  return this.http.get <any>(`${environment.base_url}/IMAppointment/AppointmentCareActitivy?idIMCareActivity=${uid}` );
+  return this.http.get <any>(`${environment.base_url}/IMAppointment/AppointmentCareActitivy?idIMCareActivity=${uid}`);
 }
+
+public getAppointmentsByIdScenario(uid: number): Observable<Appointment[]>{
+  if (!uid) { uid = null; }
+  return this.http.get <Appointment[]>(`${environment.base_url}/IMAppointment/AppointmentsCare?idIoTScenario=${uid}`);
+}
+
+public deleteAppointment(uid) {
+  return this.http.delete(`${environment.base_url}/IMAppointment/Destroy?p_imappointment_oid=${uid}`);
+}
+
 
 // Medication
 public getMedicationByIdCareActivity( uid: number): Observable<object>{

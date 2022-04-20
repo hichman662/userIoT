@@ -1,6 +1,10 @@
+import { Appointment } from './../models/appointment.model';
 import { CarePlanService } from './../services/careplan.service';
+import { CarePlan } from './../models/carePlan.model';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage';
+import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-appointment',
@@ -8,54 +12,76 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./appointment.page.scss'],
 })
 export class AppointmentPage implements OnInit {
-  public activityName: '';
-  public activityDescrip: '';
-  public appointmentName: '';
-  public appointmentDescrip: '';
-  public valueCareActivity: any;
-  public appointmentDetail: any;
-  public appointmentDate: any;
-  segmentModel = 'appointment';
-  private idPassedByURL: number = null;
+  public appointments: Appointment[] = [];
+  public idScenario: number;
+  public appointmentNull = false;
   constructor(
     private carePlanService: CarePlanService,
-    private route: ActivatedRoute
+    public router: Router,
+    private storage: Storage,
+    public alertController: AlertController,
+    public loadingController: LoadingController
 
   ) { }
 
+  ngOnInit() { }
 
-  ngOnInit() {
-    this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getCareActivityById(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
-    if(res != null){
-       this.activityName = res.ValueCareActivity.Name;
-       this.activityDescrip = res.ValueCareActivity.Description;
-       this.valueCareActivity = res.ValueCareActivity;
-       this.appointmentDetail = res.ValueCareActivity.Appointments;
-      this.callAppointmentDetail();
-    }
-    }, (err) => {
-      console.log(err);
+  ionViewWillEnter(){
+    this.storage.get('idScenario').then((val) => {
+      this.idScenario = val;
+      if(this.idScenario != null){
+        this.callAppointments();
+      }
+    });
+  }
+  callAppointments(){
+    this.carePlanService.getAppointmentsByIdScenario(this.idScenario)
+    .subscribe( (res: Appointment[]) => {
+      if(res != null){
+        this.appointments = res;
+        this.appointmentNull = false;
+      }else{
+        this.appointments = null;
+        this.appointmentNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
     });
   }
 
-  callAppointmentDetail(){
-    this.carePlanService.getAppointmentByIdCareActivity(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
-    if(res != null){
-       this.appointmentName = res[0].Name;
-       this.appointmentDate = res[0].Date;
-       this.appointmentDescrip = res[0].Description;
-       this.appointmentDetail = res[0].ValueAppointment;
-
-    }
-    }, (err) => {
-      console.log(err);
-    });
-
+  closeSliding(slidingItem: IonItemSliding){
+    slidingItem.close();
   }
 
+  async deleteAppointment(slidingItem: IonItemSliding, id: number, name: string){
+    slidingItem.close();
+    console.log(id);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Remove Appointment',
+      message: `Are you sure you want remove ${name}?`,
+      buttons: [  {
+        text: 'Cancel',
+        handler: () => {
+          console.log('Disagree clicked');
+        }
+      },
+      {
+        text: 'Agree',
+        handler: () => {
+          console.log('Agree clicked');
+          this.carePlanService.deleteAppointment(id)
+          // tslint:disable-next-line: deprecation
+          .subscribe( (res: any) => {
+            this.ionViewWillEnter();
+          }, ( err) => {
+              console.log(err);
+          });
+        }
+      }]
+    });
+
+    await alert.present();
+
+  }
 }
