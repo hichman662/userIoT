@@ -1,3 +1,4 @@
+import { Communication } from './../models/communication.model';
 import { Medication } from './../models/medication.model';
 import { Appointment } from './../models/appointment.model';
 import { Attribute } from './../models/attribute.model';
@@ -124,7 +125,9 @@ public getMedicationsByIdScenario(uid: number): Observable<Medication[]>{
   if (!uid) { uid = null; }
   return this.http.get <Medication[]>(`${environment.base_url}/IMMedication/Medications?idIoTScenario=${uid}`);
 }
-
+public deleteMedication(uid) {
+  return this.http.delete(`${environment.base_url}/IMMedication/Destroy?p_immedication_oid=${uid}`);
+}
 
 //Nutrition Order
 public getNutritionyByIdCareActivity( uid: number): Observable<object>{
@@ -137,6 +140,15 @@ public getNutritionyByIdCareActivity( uid: number): Observable<object>{
 public getCommunicationByIdCareActivity( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <any>(`${environment.base_url}/IMCommunication/CommunicationCareActivity?idIMCareActivity=${uid}` );
+}
+
+public getCommunicationByIdScenario(uid: number): Observable<Communication[]>{
+  if (!uid) { uid = null; }
+  return this.http.get <Communication[]>(`${environment.base_url}/IMCommunication/CommunicationsCare?idIoTScenario=${uid}`);
+}
+
+public deleteCommunication(uid) {
+  return this.http.delete(`${environment.base_url}/IMCommunication/Destroy?p_imcommunication_oid=${uid}`);
 }
 
 // Goal

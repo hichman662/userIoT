@@ -1,7 +1,10 @@
 import { Communication } from './../models/communication.model';
+import { Appointment } from './../models/appointment.model';
 import { CarePlanService } from './../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage';
+import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-communication',
@@ -10,49 +13,76 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CommunicationPage implements OnInit {
 
-  public communicationName: '';
-  public communicationDescrip: '';
-  public valueCareActivity: any;
-  public communicationDetail: any;
-  public careActivityName: '';
-  public careActivityDescrip: '';
-  segmentModel = 'communication';
-  private idPassedByURL: number = null;
+  public communications: Communication[] = [];
+  public idScenario: number;
+  public communicationNull = false;
   constructor(
     private carePlanService: CarePlanService,
-    private route: ActivatedRoute
+    private storage: Storage,
+    public alertController: AlertController,
+    public loadingController: LoadingController
 
   ) { }
 
+  ngOnInit() { }
 
-  ngOnInit() {
-    this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getCareActivityById(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
-    if(res != null){
-       this.careActivityName = res.ValueCareActivity.Name;
-       this.careActivityDescrip = res.ValueCareActivity.Description;
-       this.valueCareActivity = res.ValueCareActivity;
-      this.callCommunicationDetail();
-    }
-    }, (err) => {
-      console.log(err);
+  ionViewWillEnter(){
+    this.storage.get('idScenario').then((val) => {
+      this.idScenario = val;
+      if(this.idScenario != null){
+        this.callCommunications();
+      }
     });
   }
-  callCommunicationDetail(){
-    this.carePlanService.getCommunicationByIdCareActivity(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
-    if(res != null){
-       this.communicationName = res[0].Name;
-       this.communicationDescrip = res[0].Description;
-       this.communicationDetail = res[0].ValueCommunication;
 
-    }
-    }, (err) => {
-      console.log(err);
+  callCommunications(){
+    this.carePlanService.getCommunicationByIdScenario(this.idScenario)
+    .subscribe( (res: Communication[]) => {
+      if(res != null){
+        this.communications = res;
+        this.communicationNull = false;
+      }else{
+        this.communications = null;
+        this.communicationNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
     });
+  }
+
+  closeSliding(slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
+  async deleteCommunication(slidingItem: IonItemSliding, id: number, name: string){
+    slidingItem.close();
+    console.log(id);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Remove Communication',
+      message: `Are you sure you want remove ${name}?`,
+      buttons: [  {
+        text: 'Cancel',
+        handler: () => {
+          console.log('Disagree clicked');
+        }
+      },
+      {
+        text: 'Agree',
+        handler: () => {
+          console.log('Agree clicked');
+          this.carePlanService.deleteCommunication(id)
+          // tslint:disable-next-line: deprecation
+          .subscribe( (res: any) => {
+            this.ionViewWillEnter();
+          }, ( err) => {
+              console.log(err);
+          });
+        }
+      }]
+    });
+
+    await alert.present();
 
   }
 }

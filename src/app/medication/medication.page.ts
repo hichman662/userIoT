@@ -70,7 +70,7 @@ export class MedicationPage implements OnInit {
         text: 'Agree',
         handler: () => {
           console.log('Agree clicked');
-          this.carePlanService.deleteAppointment(id)
+          this.carePlanService.deleteMedication(id)
           // tslint:disable-next-line: deprecation
           .subscribe( (res: any) => {
             this.ionViewWillEnter();

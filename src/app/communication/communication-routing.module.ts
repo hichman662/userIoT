@@ -9,7 +9,7 @@ const routes: Routes = [
     component: CommunicationPage
   },
   {
-    path: 'detail-communication',
+    path: 'detail-communication/:Id',
     loadChildren: () => import('./detail-communication/detail-communication.module').then( m => m.DetailCommunicationPageModule)
   }
 ];
