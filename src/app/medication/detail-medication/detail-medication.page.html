@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Care Activities" defaultHref="tabs/tab2/appointment" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="Medications" defaultHref="tabs/tab2/medication" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button>
@@ -17,7 +17,7 @@
         </ion-col>
         <ion-col size="4" class="ion-align-self-center">
             <ion-card color="transparent" class="deviceTemplate-card">
-                <ion-img src='assets/icon/appointmentW.png'></ion-img>
+                <ion-img src='assets/icon/medicationW.png'></ion-img>
 
             </ion-card>
         </ion-col>
@@ -62,9 +62,9 @@
 
     </ion-row>
     <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
-        <ion-segment-button value="appointment">
+        <ion-segment-button value="medication">
             <ion-icon name="calendar"></ion-icon>
-            <ion-label>Appointment Detail</ion-label>
+            <ion-label>Medication Detail</ion-label>
         </ion-segment-button>
         <ion-segment-button value="details">
             <ion-icon name="medkit-outline"></ion-icon>
@@ -75,9 +75,9 @@
     </ion-segment>
 </ion-header>
 <ion-content>
-    <div class="segment" *ngIf="segmentModel === 'appointment'">
+    <div class="segment" *ngIf="segmentModel === 'medication'">
         <div *ngFor="let attr of attriubute">
-            <div *ngIf="attr.Name.indexOf('App_') !== 0">
+            <div *ngIf="attr.Name.indexOf('Med_') !== 0">
 
                 <ion-list>
 
@@ -105,7 +105,7 @@
     </div>
     <div class="segment" *ngIf="segmentModel === 'details'">
         <div *ngFor="let attr of attriubute">
-            <div *ngIf="attr.Name.indexOf('App_') === 0">
+            <div *ngIf="attr.Name.indexOf('Med_') === 0">
                 <ion-list>
 
                     <ion-list-header>

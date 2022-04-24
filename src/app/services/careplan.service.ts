@@ -1,3 +1,4 @@
+import { Medication } from './../models/medication.model';
 import { Appointment } from './../models/appointment.model';
 import { Attribute } from './../models/attribute.model';
 import { Entity } from './../models/entity.model';
@@ -119,6 +120,11 @@ public getMedicationByIdCareActivity( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <any>(`${environment.base_url}/IMMedication/MedicationCareActivity?idIMCareActivity=${uid}` );
 }
+public getMedicationsByIdScenario(uid: number): Observable<Medication[]>{
+  if (!uid) { uid = null; }
+  return this.http.get <Medication[]>(`${environment.base_url}/IMMedication/Medications?idIoTScenario=${uid}`);
+}
+
 
 //Nutrition Order
 public getNutritionyByIdCareActivity( uid: number): Observable<object>{

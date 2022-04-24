@@ -1,7 +1,9 @@
 import { Medication } from './../models/medication.model';
 import { CarePlanService } from './../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-medication',
@@ -10,49 +12,76 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MedicationPage implements OnInit {
 
-  public medicationName: '';
-  public medicationDescrip: '';
-  public valueCareActivity: any;
-  public medicationDetail: any;
-  public careActivityName: '';
-  careActivityDescrip: '';
-  segmentModel = 'medication';
-  private idPassedByURL: number = null;
+  public medications: Medication[] = [];
+  public idScenario: number;
+  public medicationNull = false;
   constructor(
     private carePlanService: CarePlanService,
-    private route: ActivatedRoute
+    public router: Router,
+    private storage: Storage,
+    public alertController: AlertController,
+    public loadingController: LoadingController
 
   ) { }
 
+  ngOnInit() { }
 
-  ngOnInit() {
-    this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getCareActivityById(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
-    if(res != null){
-       this.careActivityName = res.ValueCareActivity.Name;
-       this.careActivityDescrip = res.ValueCareActivity.Description;
-       this.valueCareActivity = res.ValueCareActivity;
-      this.callMedicationDetail();
-    }
-    }, (err) => {
-      console.log(err);
+  ionViewWillEnter(){
+    this.storage.get('idScenario').then((val) => {
+      this.idScenario = val;
+      if(this.idScenario != null){
+        this.callMedications();
+      }
     });
   }
-  callMedicationDetail(){
-    this.carePlanService.getMedicationByIdCareActivity(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
-    if(res != null){
-       this.medicationName = res[0].Name;
-       this.medicationDescrip = res[0].Description;
-       this.medicationDetail = res[0].ValueMedication;
-
-    }
-    }, (err) => {
-      console.log(err);
+  callMedications(){
+    this.carePlanService.getMedicationsByIdScenario(this.idScenario)
+    .subscribe( (res: Medication[]) => {
+      if(res != null){
+        this.medications = res;
+        this.medicationNull = false;
+      }else{
+        this.medications = null;
+        this.medicationNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
     });
+  }
+
+  closeSliding(slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
+  async deleteMedication(slidingItem: IonItemSliding, id: number, name: string){
+    slidingItem.close();
+    console.log(id);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Remove Medication',
+      message: `Are you sure you want remove ${name}?`,
+      buttons: [  {
+        text: 'Cancel',
+        handler: () => {
+          console.log('Disagree clicked');
+        }
+      },
+      {
+        text: 'Agree',
+        handler: () => {
+          console.log('Agree clicked');
+          this.carePlanService.deleteAppointment(id)
+          // tslint:disable-next-line: deprecation
+          .subscribe( (res: any) => {
+            this.ionViewWillEnter();
+          }, ( err) => {
+              console.log(err);
+          });
+        }
+      }]
+    });
+
+    await alert.present();
 
   }
 }

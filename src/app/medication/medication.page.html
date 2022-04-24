@@ -3,9 +3,10 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Care Activities" defaultHref="tabs/tab2/careActivity" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="Care plan dashboard" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
+            <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-medication']"></ion-icon>
             <ion-button>
             </ion-button>
         </ion-buttons>
@@ -17,7 +18,7 @@
         </ion-col>
         <ion-col size="4" class="ion-align-self-center">
             <ion-card color="transparent" class="deviceTemplate-card">
-                <ion-img src='assets/icon/medicationW.png'></ion-img>
+                <ion-img src='assets/icon/medication.png'></ion-img>
 
             </ion-card>
         </ion-col>
@@ -32,8 +33,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">{{ careActivityName}}</ion-label>
-
+                <ion-label class="text-top">Medications</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -42,140 +42,45 @@
         </ion-col>
 
     </ion-row>
-    <ion-row>
-        <ion-col size="1" class="ion-align-self-start">
-
-        </ion-col>
-        <ion-col size="10" class="ion-align-self-center">
-
-            <ion-list-header>
-
-                <ion-label class="text-top">
-                    <h4>{{ careActivityDescrip}}</h4>
-                </ion-label>
-            </ion-list-header>
-
-        </ion-col>
-        <ion-col size="1" class="ion-align-self-end">
-
-        </ion-col>
-
-    </ion-row>
-    <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
-
-        <ion-segment-button value="medication">
-            <ion-icon name="flask-outline"></ion-icon>
-            <ion-label>Medication Detail</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="details">
-            <ion-icon name="receipt-outline"></ion-icon>
-            <ion-label>Activity Detail</ion-label>
-        </ion-segment-button>
-
-
-    </ion-segment>
 </ion-header>
 <ion-content>
+    <ion-card-header [hidden]="!medicationNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">No medication has been added to this scenario. To add medication, press the Add button.</ion-card-header>
+    <ion-list>
+        <div class="carePlan" *ngFor="let medication of medications">
 
-    <div class="segment" *ngIf="segmentModel === 'medication'">
-        <ion-list>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="document-outline"></ion-icon>Name</ion-list-header>
-            <ion-item>
+            <ion-item-sliding #slidingItem>
 
-                <ion-label> {{$any(medicationDetail)?.Name}}</ion-label>
+                <ion-item class="item" detail [routerLink]="['detail-medication',medication['Id']]">
+                    <ion-avatar slot="start">
+                        <img src="assets/icon/medication.png">
 
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="create-outline"></ion-icon>Description</ion-list-header>
-            <ion-item>
+                    </ion-avatar>
 
-                <ion-label> {{$any(medicationDetail)?.Description}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="flask-outline"></ion-icon>Form</ion-list-header>
-            <ion-item>
-
-                <ion-label *ngIf="$any(medicationDetail)?.Form === 1"> Tablet</ion-label>
-                <ion-label *ngIf="$any(medicationDetail)?.Form === 2"> Powder</ion-label>
-                <ion-label *ngIf="$any(medicationDetail)?.Form === 3"> Capsule</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="water-outline"></ion-icon>Dosage</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(medicationDetail)?.Dosage}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="resize-outline"></ion-icon>Product Reference</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(medicationDetail)?.ProductReference}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="information-circle-outline"></ion-icon>Manufacturer</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(medicationDetail)?.Manufacturer}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="barcode-outline"></ion-icon>Medication Code</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(medicationDetail)?.MedicationCode}}</ion-label>
-
-            </ion-item>
+                    <ion-label> {{medication['Name']}}</ion-label>
 
 
-        </ion-list>
-    </div>
-    <div class="segment" *ngIf="segmentModel === 'details'">
-        <ion-list>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="timer-outline"></ion-icon>Periodicity</ion-list-header>
-            <ion-item>
-
-                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 1"> Daily</ion-label>
-                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 2"> Monthly</ion-label>
-                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 3"> Per Hour</ion-label>
-                <ion-label *ngIf="$any(valueCareActivity)?.Periodicity === 4"> Weekly</ion-label>
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="alarm-outline"></ion-icon>Duration</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(valueCareActivity)?.Duration}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="pin-outline"></ion-icon>Location</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(valueCareActivity)?.Location}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="code-outline"></ion-icon>Outcome Code</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(valueCareActivity)?.OutcomeCode}}</ion-label>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="code-working-outline"></ion-icon>Activity Code</ion-list-header>
-            <ion-item>
-
-                <ion-label> {{$any(valueCareActivity)?.ActivityCode}}</ion-label>
-
-            </ion-item>
-        </ion-list>
-    </div>
+                </ion-item>
 
 
+                <ion-item-options side="end" (ionSwipe)="deleteMedication(slidingItem,medication['Id'], medication['Name'])">
+                    <ion-item-option color="danger" expandable (click)="deleteMedication(slidingItem,medication['Id'], medication['Name'])">
+
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+
+                    </ion-item-option>
+
+                </ion-item-options>
+
+                <ion-item-options side="start">
+
+                    <ion-item-option color="success" expandable (click)="closeSliding(slidingItem)" [routerLink]="['edit-carePlan',medication['Id']]">
+
+                        <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </div>
+    </ion-list>
 
 </ion-content>

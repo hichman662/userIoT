@@ -1,7 +1,5 @@
 import { Appointment } from './../models/appointment.model';
 import { CarePlanService } from './../services/careplan.service';
-import { CarePlan } from './../models/carePlan.model';
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
@@ -17,7 +15,6 @@ export class AppointmentPage implements OnInit {
   public appointmentNull = false;
   constructor(
     private carePlanService: CarePlanService,
-    public router: Router,
     private storage: Storage,
     public alertController: AlertController,
     public loadingController: LoadingController
