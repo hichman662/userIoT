@@ -15,6 +15,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {of, Observable} from 'rxjs';
 import { CarePlan } from '../models/carePlan.model';
 import { CareActivity } from '../models/careActivity.model';
+import { Nutrition } from '../models/nutrition.model';
 
 
 
@@ -134,7 +135,13 @@ public getNutritionyByIdCareActivity( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <any>(`${environment.base_url}/IMNutritionOrder/NutritionOrderCareActivity?idIMCareActivity=${uid}` );
 }
-
+public getnutritionsByIdScenario(uid: number): Observable<Nutrition[]>{
+  if (!uid) { uid = null; }
+  return this.http.get <Nutrition[]>(`${environment.base_url}/IMNutritionOrder/NutritionsCare?idIoTScenario=${uid}`);
+}
+public deleteNutrition(uid) {
+  return this.http.delete(`${environment.base_url}/IMNutritionOrder/Destroy?p_imnutritionorder_oid=${uid}`);
+}
 
 //Communication
 public getCommunicationByIdCareActivity( uid: number): Observable<object>{

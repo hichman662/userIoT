@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: NutritionPage
+  },
+  {
+    path: 'detail-nutrition/:Id',
+    loadChildren: () => import('./detail-nutrition/detail-nutrition.module').then( m => m.DetailNutritionPageModule)
   }
+
 ];
 
 @NgModule({

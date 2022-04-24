@@ -1,6 +1,9 @@
+import { Appointment } from './../models/appointment.model';
 import { CarePlanService } from './../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage';
+import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
+import { Nutrition } from '../models/nutrition.model';
 
 @Component({
   selector: 'app-nutrition',
@@ -9,51 +12,75 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NutritionPage implements OnInit {
 
-  public nutritionName: '';
-  public nutritionDescrip: '';
-  public valueCareActivity: any;
-  public nutritionDetail: any;
-  public careActivityName: '';
-  public careActivityDescrip: '';
-  segmentModel = 'nutrition';
-  private idPassedByURL: number = null;
+  public nutritions: Nutrition[] = [];
+  public idScenario: number;
+  public nutritionNull = false;
   constructor(
     private carePlanService: CarePlanService,
-    private route: ActivatedRoute
+    private storage: Storage,
+    public alertController: AlertController,
+    public loadingController: LoadingController
 
   ) { }
 
+  ngOnInit() { }
 
-  ngOnInit() {
-    this.idPassedByURL = this.route.snapshot.params.Id;
-    this.carePlanService.getCareActivityById(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
-    if(res != null){
-       this.careActivityName = res.ValueCareActivity.Name;
-       this.careActivityDescrip = res.ValueCareActivity.Description;
-       this.valueCareActivity = res.ValueCareActivity;
-      this.callNutritionDetail();
-
-    }
-    }, (err) => {
-      console.log(err);
+  ionViewWillEnter(){
+    this.storage.get('idScenario').then((val) => {
+      this.idScenario = val;
+      if(this.idScenario != null){
+        this.callNutritions();
+      }
     });
   }
-  callNutritionDetail(){
-    this.carePlanService.getNutritionyByIdCareActivity(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
-    if(res != null){
-       this.nutritionName = res[0].Name;
-       this.nutritionDescrip = res[0].Description;
-       this.nutritionDetail = res[0];
-
-    }
-    }, (err) => {
-      console.log(err);
+  callNutritions(){
+    this.carePlanService.getnutritionsByIdScenario(this.idScenario)
+    .subscribe( (res: Nutrition[]) => {
+      if(res != null){
+        this.nutritions = res;
+        this.nutritionNull = false;
+      }else{
+        this.nutritions = null;
+        this.nutritionNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
     });
-
   }
 
+  closeSliding(slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
+  async deleteNutrition(slidingItem: IonItemSliding, id: number, name: string){
+    slidingItem.close();
+    console.log(id);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Remove Nutrition',
+      message: `Are you sure you want remove ${name}?`,
+      buttons: [  {
+        text: 'Cancel',
+        handler: () => {
+          console.log('Disagree clicked');
+        }
+      },
+      {
+        text: 'Agree',
+        handler: () => {
+          console.log('Agree clicked');
+          this.carePlanService.deleteNutrition(id)
+          // tslint:disable-next-line: deprecation
+          .subscribe( (res: any) => {
+            this.ionViewWillEnter();
+          }, ( err) => {
+              console.log(err);
+          });
+        }
+      }]
+    });
+
+    await alert.present();
+
+  }
 }
