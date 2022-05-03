@@ -2,9 +2,9 @@
 export class Command {
 
           Id: number;
-          Name?: string;
-          Description?: string;
-          Type?: number;
-          ServiceType?: number;
-          ValueCommand?: any;
+          Name: string;
+          Description: string;
+          Type: number;
+          ServiceType: number;
+
 }

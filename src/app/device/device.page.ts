@@ -1,3 +1,4 @@
+import { Device } from './../models/device.model';
 import { Router } from '@angular/router';
 import { DeviceService } from './../services/device.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +10,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./device.page.scss'],
 })
 export class DevicePage implements OnInit {
-  public devices: any[] = [];
+  public devices: Device[] = [];
   public idScenario: number;
   devicesNull= false;
   constructor(
@@ -30,7 +31,7 @@ export class DevicePage implements OnInit {
   }
   callDevice(){
     this.deviceService.getDeviceByIdScenario(this.idScenario)
-    .subscribe( (res: any) => {
+    .subscribe( (res: Device[]) => {
         if(res != null){
           this.devices = res;
         }else{

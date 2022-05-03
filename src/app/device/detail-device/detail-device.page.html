@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Devices" defaultHref="tabs/tab3/device" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="Devices" defaultHref="tabs/tab2/device" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button>
@@ -32,7 +32,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">{{ deviceName}}</ion-label>
+                <!--  <ion-label class="text-top">{{ vitalSignName}}</ion-label> -->
 
             </ion-list-header>
 
@@ -50,9 +50,9 @@
 
             <ion-list-header>
 
-                <ion-label class="text-top">
-                    <h4>{{ deviceDescrip}}</h4>
-                </ion-label>
+                <!--    <ion-label class="text-top">
+                  <h4>{{ vitalSignDescrip}}</h4>
+              </ion-label> -->
             </ion-list-header>
 
         </ion-col>
@@ -64,15 +64,7 @@
     <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
         <ion-segment-button value="details">
             <ion-icon name="receipt-outline"></ion-icon>
-            <ion-label>Detail</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="template">
-            <ion-icon name="rocket-outline"></ion-icon>
-            <ion-label>Template</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="property">
-            <ion-icon name="options-outline"></ion-icon>
-            <ion-label>Properties</ion-label>
+            <ion-label>Device Detail</ion-label>
         </ion-segment-button>
         <ion-segment-button value="command">
             <ion-icon name="flash-outline"></ion-icon>
@@ -84,102 +76,40 @@
 <ion-content>
 
     <div class="segment" *ngIf="segmentModel === 'details'">
-        <ion-list>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="logo-apple"></ion-icon>Trademark</ion-list-header>
-            <ion-item>
+        <div *ngFor="let attr of attriubute">
 
-                <ion-label text-wrap> {{$any(deviceData)?.Trademark}}</ion-label>
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="hardware-chip-outline"></ion-icon>Firm Version</ion-list-header>
-            <ion-item>
+            <ion-list>
 
-                <ion-label> {{$any(deviceData)?.FirmVersion}}</ion-label>
+                <ion-list-header>
+                    <ion-icon class="segmentIcon" name="person-outline"></ion-icon>{{attr.Name}}</ion-list-header>
+                <ion-item-sliding #slidingItem>
+                    <ion-item>
 
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="barcode-outline"></ion-icon>Serial Number</ion-list-header>
-            <ion-item>
+                        <ion-label> {{attr.ValueAttr}}</ion-label>
+                    </ion-item>
+                    <ion-item-options side="start">
 
-                <ion-label> {{$any(deviceData)?.SerialNumber}}</ion-label>
+                        <ion-item-option color="success" (click)="closeSliding(slidingItem)" expandable (click)="editAttr(slidingItem, attr.Name, attr.Id, attr.ValueAttr)">
 
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="pricetag-outline"></ion-icon>Tag</ion-list-header>
-            <ion-item>
+                            <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
 
-                <ion-label> {{$any(deviceData)?.Tag}}</ion-label>
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-list>
 
-            </ion-item>
-            <ion-list-header>
 
-                <ion-icon class="segmentIcon" name="power-outline"></ion-icon>Device Switch</ion-list-header>
-            <ion-item>
-                <ion-item [hidden]="$any(deviceData)?.DeviceSwitch === true">
-                    <ion-label>Off</ion-label>
-                </ion-item>
-                <ion-item [hidden]="$any(deviceData)?.DeviceSwitch === false">
-                    <ion-label>On</ion-label>
-                </ion-item>
 
-                <!-- <ion-label> {{$any(patientData)?.IsActive}}</ion-label> -->
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="invert-mode-outline"></ion-icon>Is Simulated</ion-list-header>
-            <ion-item>
-
-                <ion-item [hidden]="$any(deviceData)?.IsSimulated === false">
-                    <ion-label>Yes</ion-label>
-                </ion-item>
-                <ion-item [hidden]="$any(deviceData)?.IsSimulated === true">
-                    <ion-label>No</ion-label>
-                </ion-item>
-
-            </ion-item>
-        </ion-list>
+        </div>
     </div>
-    <div class="segment" *ngIf="segmentModel === 'template'">
-        <ion-list>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="reader-outline"></ion-icon>Name</ion-list-header>
-            <ion-item>
-
-                <ion-label text-wrap> {{deviceTemplate.Name}}</ion-label>
-            </ion-item>
-
-
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="triangle-outline"></ion-icon>Is Edge</ion-list-header>
-            <ion-item>
-
-                <ion-item [hidden]="deviceTemplate.IsEdge === false">
-                    <ion-label>Yes</ion-label>
-                </ion-item>
-                <ion-item [hidden]="deviceTemplate.IsEdge === true">
-                    <ion-label>No</ion-label>
-                </ion-item>
-
-            </ion-item>
-            <ion-list-header>
-                <ion-icon class="segmentIcon" name="prism-outline"></ion-icon>Type</ion-list-header>
-            <ion-item>
-                <ion-label *ngIf="deviceTemplate.Type === 1"> Sensor</ion-label>
-                <ion-label *ngIf="deviceTemplate.Type === 2"> Actuator</ion-label>
-                <ion-label *ngIf="deviceTemplate.Type === 3"> Gateway</ion-label>
-            </ion-item>
-        </ion-list>
-    </div>
-
     <div class="segment" *ngIf="segmentModel === 'command'">
-        <div class="container" *ngFor="let command of allCommands|keyvalue">
+        <div class="container" *ngFor="let command of allCommands">
             <mat-expansion-panel details>
                 <mat-expansion-panel-header slot="start">
                     <mat-panel-title>
                         <ion-item>
                             <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
-                            <ion-label>{{command.value['Name']}}</ion-label>
+                            <ion-label>{{command.Name}}</ion-label>
                         </ion-item>
                     </mat-panel-title>
 
@@ -197,65 +127,22 @@
                     <ion-item>
 
                         <ion-label text-wrap>Description</ion-label>
-                        <ion-badge text-wrap> {{command.value['Description']}}</ion-badge>
+                        <ion-badge text-wrap> {{command.Description}}</ion-badge>
                     </ion-item>
                     <ion-list-header>
                         <ion-icon class="segmentIcon" name="shuffle-outline"></ion-icon>Type</ion-list-header>
                     <ion-item>
-                        <ion-label *ngIf="command.value['Type'] === 1"> Equal</ion-label>
-                        <ion-label *ngIf="command.value['Type'] === 2"> Distinct</ion-label>
-                        <ion-label *ngIf="command.value['Type'] === 3"> Is greater than</ion-label>
-                        <ion-label *ngIf="command.value['Type'] === 4"> Is less than</ion-label>
+                        <ion-label *ngIf="command['Type'] === 1"> Equal</ion-label>
+                        <ion-label *ngIf="command['Type'] === 2"> Distinct</ion-label>
+                        <ion-label *ngIf="command['Type'] === 3"> Is greater than</ion-label>
+                        <ion-label *ngIf="command['Type'] === 4"> Is less than</ion-label>
                     </ion-item>
                     <ion-list-header>
                         <ion-icon class="segmentIcon" name="calendar-number-outline"></ion-icon>Service Type</ion-list-header>
                     <ion-item>
-                        <ion-label *ngIf="command.value['ServiceType'] === 1"> Notify</ion-label>
-                        <ion-label *ngIf="command.value['ServiceType'] === 2"> Actuation</ion-label>
-                        <ion-label *ngIf="command.value['ServiceType'] === 3"> Register</ion-label>
-                    </ion-item>
-
-                </ion-card>
-
-            </mat-expansion-panel>
-
-        </div>
-
-    </div>
-
-
-    <div class="segment" *ngIf="segmentModel === 'property'">
-        <div class="container" *ngFor="let property of allProperties|keyvalue">
-            <mat-expansion-panel details>
-                <mat-expansion-panel-header slot="start">
-                    <mat-panel-title>
-                        <ion-item>
-                            <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
-                            <ion-label>{{property.value['Name']}}</ion-label>
-                        </ion-item>
-                    </mat-panel-title>
-
-                </mat-expansion-panel-header>
-
-                <ion-item-sliding>
-                    <ion-item-options side="start">
-                        <ion-item-option color="danger" (click)="null" expandable>
-                            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-                        </ion-item-option>
-                    </ion-item-options>
-                </ion-item-sliding>
-
-                <ion-card>
-                    <ion-list-header>
-                        <ion-icon class="segmentIcon" name="shuffle-outline"></ion-icon>Type</ion-list-header>
-                    <ion-item>
-                        <ion-label *ngIf="property.value['Type'] === 0"> Equal</ion-label>
-
-                    </ion-item>
-                    <ion-list-header>
-                        <ion-icon class="segmentIcon" name="calendar-number-outline"></ion-icon>Value</ion-list-header>
-                    <ion-item>
-                        <ion-badge text-wrap> {{property.value['Value']}}</ion-badge>
+                        <ion-label *ngIf="command['ServiceType'] === 1"> Notify</ion-label>
+                        <ion-label *ngIf="command['ServiceType'] === 2"> Actuation</ion-label>
+                        <ion-label *ngIf="command['ServiceType'] === 3"> Register</ion-label>
                     </ion-item>
 
                 </ion-card>
