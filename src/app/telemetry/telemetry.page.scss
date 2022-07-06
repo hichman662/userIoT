@@ -11,6 +11,12 @@ ion-card {
     box-shadow: none !important
 }
 
+ion-content {
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
+    //--background: url('/') 0 0/100% 100% no-repeat;
+    border-radius: 20px;
+}
+
 ion-header {
     text-align: center;
     align-content: center;

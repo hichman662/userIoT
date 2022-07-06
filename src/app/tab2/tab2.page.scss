@@ -18,9 +18,15 @@ ion-title {
     margin-right: 10px;
 }
 
+.textMedio {
+    color: black;
+    align-items: center;
+}
+
 ion-item-divider {
-    font-size: 12px;
+    font-size: 14px;
     --background: rgb(167, 195, 236) !important;
+    align-items: center;
 }
 
 #dashboardSection {
