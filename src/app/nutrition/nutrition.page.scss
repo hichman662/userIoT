@@ -7,6 +7,11 @@
     color: green;
 }
 
+ion-content {
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
+    border-radius: 20px;
+}
+
 ion-card {
     box-shadow: none !important
 }

@@ -17,7 +17,7 @@ export class BloodPressurePage implements OnInit {
   public systolic: any;
   public diastolic: any;
   lineChart: any;
-  label: any [] =[ '02/09/2021', '02/09/2021', '03/09/2021', '04/09/2021', '04/09/2021','04/09/2021'];
+  label: any [] =[ '2022/5/22', '2022/5/23', '2022/5/26', '2022/5/27', '2022/6/1','2022/6/2'];
   public syst: any[]=[115, 118, 121, 119, 125, 111];
   public dias: any[]=[ 65, 78, 68, 75, 78, 69];
   date= new Date();

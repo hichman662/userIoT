@@ -51,7 +51,7 @@
             <ion-list-header>
 
                 <ion-label class="text-top">
-                    <!--     <h4>{{ activityDescrip}}</h4> -->
+                    <h2>Nutrition</h2>
                 </ion-label>
             </ion-list-header>
 
@@ -82,7 +82,15 @@
                 <ion-list>
 
                     <ion-list-header>
-                        <ion-icon class="segmentIcon" name="person-outline"></ion-icon>{{attr.Name}}</ion-list-header>
+                        <ion-icon *ngIf="attr.Name === 'Name'" class="segmentIcon" name="medkit-outline"></ion-icon>
+                        <ion-icon *ngIf="attr.Name === 'Description'" class="segmentIcon" name="document-outline"></ion-icon>
+                        <ion-icon *ngIf="attr.Name === 'Periodicity'" class="segmentIcon" name="people-circle-outline"></ion-icon>
+                        <ion-icon *ngIf="attr.Name === 'Duration'" class="segmentIcon" name="timer-outline"></ion-icon>
+                        <ion-icon *ngIf="attr.Name === 'Location'" class="segmentIcon" name="map-outline"></ion-icon>
+                        <ion-icon *ngIf="attr.Name === 'OutcomeCode'" class="segmentIcon" name="barcode-outline"></ion-icon>
+                        <ion-icon *ngIf="attr.Name === 'TypeActivity'" class="segmentIcon" name="bicycle-outline"></ion-icon>
+                        <ion-icon *ngIf="attr.Name === 'ActivityCode'" class="segmentIcon" name="qr-code-outline"></ion-icon>
+                        {{attr.Name}}</ion-list-header>
                     <ion-item-sliding #slidingItem>
                         <ion-item>
 
@@ -109,7 +117,10 @@
                 <ion-list>
 
                     <ion-list-header>
-                        <ion-icon class="segmentIcon" name="person-outline"></ion-icon>{{attr.Name}}</ion-list-header>
+                        <ion-icon *ngIf="attr.Name === 'Nut_Name'" class="segmentIcon" name="logo-apple"></ion-icon>
+                        <ion-icon *ngIf="attr.Name === 'Nut_Description'" class="segmentIcon" name="document-outline"></ion-icon>
+                        <ion-icon *ngIf="attr.Name === 'Nut_DietCode'" class="segmentIcon" name="barcode-outline"></ion-icon>
+                        {{attr.Name}}</ion-list-header>
                     <ion-item-sliding #slidingItem>
                         <ion-item>
 

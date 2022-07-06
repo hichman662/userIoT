@@ -17,8 +17,8 @@ export class RespiratoryRatePage implements OnInit {
 
   public respiratoryRate: any;
   barChart: any;
-  label: any [] =['29/08/2021', '30/08/2021', '31/08/2021', '01/09/2021', '02/09/2021', '02/09/2021', '02/09/2021', '02/09/2021'];
-  data: any[]=[15, 24, 18, 22, 17, 16, 12,18];
+  label: any [] =['2022/5/22', '2022/5/23', '2022/5/26', '2022/5/27', '2022/6/1','2022/6/2'];
+  data: any[]=[15, 24, 18, 22, 17, 27];
   date= new Date();
   constructor(  public router: Router,
     private route: ActivatedRoute,

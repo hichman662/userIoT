@@ -50,9 +50,9 @@
 
             <ion-list-header>
 
-                <!--    <ion-label class="text-top">
-                  <h4>{{ vitalSignDescrip}}</h4>
-              </ion-label> -->
+                <ion-label class="text-top">
+                    <h2>Device</h2>
+                </ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -81,7 +81,11 @@
             <ion-list>
 
                 <ion-list-header>
-                    <ion-icon class="segmentIcon" name="person-outline"></ion-icon>{{attr.Name}}</ion-list-header>
+                    <ion-icon *ngIf="attr.Name === 'name'" class="segmentIcon" name="person-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'type'" class="segmentIcon" name="logo-apple"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'IsEdge'" class="segmentIcon" name="triangle-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'Property1'" class="segmentIcon" name="prism-outline"></ion-icon>
+                    {{attr.Name}}</ion-list-header>
                 <ion-item-sliding #slidingItem>
                     <ion-item>
 

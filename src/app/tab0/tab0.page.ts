@@ -30,6 +30,4 @@ export class Tab0Page implements OnInit {
     });
 
   }
-
-
 }

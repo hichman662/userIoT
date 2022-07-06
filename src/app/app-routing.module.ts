@@ -70,8 +70,11 @@ const routes: Routes = [
   {
     path: 'telemetry',
     loadChildren: () => import('./telemetry/telemetry.module').then( m => m.TelemetryPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   }
-
 ];
 @NgModule({
   imports: [

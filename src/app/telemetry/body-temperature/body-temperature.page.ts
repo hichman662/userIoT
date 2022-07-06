@@ -16,8 +16,8 @@ export class BodyTemperaturePage implements OnInit {
   @ViewChild('barCanvas') private barCanvas: ElementRef;
   public bodyTemperature: any;
   barChart: any;
-  label: any [] =['29/08/2021', '30/08/2021', '31/08/2021', '01/09/2021', '02/09/2021', '02/09/2021', '02/09/2021'];
-  data: any[]=[37, 37.5, 36, 37.5, 36.5, 36, 37];
+  label: any [] =[' 2022/5/22', '2022/5/23', '2022/5/26', '2022/5/27', '2022/6/01','2022/6/2'];
+  data: any[]=[37, 37.5, 36, 37.5, 36.5, 37,5 ];
   date= new Date();
   constructor(  public router: Router,
     private route: ActivatedRoute,

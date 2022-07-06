@@ -16,7 +16,7 @@ export class HeartRatePage implements OnInit {
   @ViewChild('barCanvas') private barCanvas: ElementRef;
   public heartRate: any;
   barChart: any;
-    label: any [] =[ '02/09/2021', '02/09/2021', '03/09/2021', '04/09/2021', '04/09/2021'];
+  label: any [] =[ '2022/5/22', '2022/5/23', '2022/5/26', '2022/5/27', '2022/6/1'];
   data: any[]=[ 78, 90, 89,94,98];
   date= new Date();
   constructor(  public router: Router,

@@ -86,7 +86,16 @@
             <ion-list>
 
                 <ion-list-header>
-                    <ion-icon class="segmentIcon" name="person-outline"></ion-icon>{{attr.Name}}</ion-list-header>
+                    <ion-icon *ngIf="attr.Name === 'Name'" class="segmentIcon" name="person-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'Description'" class="segmentIcon" name="receipt-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'DurationDays'" class="segmentIcon" name="heart-half-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'Intent'" class="segmentIcon" name="body-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'Status'" class="segmentIcon" name="power-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'Modified'" class="segmentIcon" name="calendar-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'Title'" class="segmentIcon" name="Document-text-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'MejoraCognitiva'" class="segmentIcon" name="person-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'ReducirPulsaciones'" class="segmentIcon" name="pulse-outline"></ion-icon>
+                    {{attr.Name}}</ion-list-header>
                 <ion-item-sliding #slidingItem>
                     <ion-item>
 

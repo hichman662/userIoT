@@ -77,7 +77,10 @@
             <ion-list>
 
                 <ion-list-header>
-                    <ion-icon class="segmentIcon" name="person-outline"></ion-icon>{{attr.Name}}</ion-list-header>
+                    <ion-icon *ngIf="attr.Name === 'Name'" class="segmentIcon" name="person-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'Description'" class="segmentIcon" name="document-text-outline"></ion-icon>
+                    <ion-icon *ngIf="attr.Name === 'LOINCode'" class="segmentIcon" name="barcode-outline"></ion-icon>
+                    {{attr.Name}}</ion-list-header>
                 <ion-item-sliding #slidingItem>
                     <ion-item>
 

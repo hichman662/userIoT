@@ -1,5 +1,5 @@
 ion-content {
-    --background: url('/') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
     border-radius: 20px;
 }
 
@@ -34,7 +34,7 @@ ion-title {
 ion-header {
     text-align: center;
     align-content: center;
-    background-color: rgb(240, 133, 133) !important;
+    background-color: rgb(235, 154, 107)!important;
 }
 
 ion-icon {
@@ -77,7 +77,7 @@ ion-card {
 }
 
 ion-toolbar {
-    --background: rgb(240, 133, 133) !important;
+    --background: rgb(235, 154, 107) !important;
 }
 
 .text-top {
