@@ -15,32 +15,42 @@ import { Storage } from '@ionic/storage';
 })
 export class ChatPage implements OnInit {
 
-idUsuario: number =32768;
+idUsuario: number = 32768;
+ nameUsuario: string = 'Caregiver';
   constructor(private chatService: ChatAppService,
     private storage: Storage) {}
 
   ngOnInit(): void {
     this.chatService.retrieveMappedObject().subscribe( (receivedObj: MessageDto) => { this.addToInbox(receivedObj);});  // calls the service method to get the new messages sent
-   /*  this.storage.get('idPatient').then((val) => {
+    /* this.storage.get('idPatient').then((val) => {
       this.idUsuario = val;
     }); */
+    /* this.storage.get('NamePatient').then((val) => {
+      this.nameUsuario = val;
+    }); */
+
   }
 
   msgDto: MessageDto = new MessageDto();
   msgInboxArray: MessageDto[] = [];
 
   send(): void {
-if(this.idUsuario !== 0 || this.idUsuario !== null){
-  this.msgDto.id = this.idUsuario;
-  console.log(this.msgDto.id);
-}
+    if(this.idUsuario !== 0 || this.idUsuario !== null){
+      this.msgDto.id = this.idUsuario;
+      console.log(this.msgDto.id);
+    }
+    if(this.nameUsuario !== null){
+      this.msgDto.name = this.nameUsuario;
+      console.log(this.msgDto.name);
+    }
     if(this.msgDto) {
-      if(this.msgDto.name.length === 0 || this.msgDto.msgText.length === 0){
-        window.alert("Both fields are required.");
+      if(this.msgDto.name === '' || this.msgDto.msgText === '' || this.msgDto.id === 0){
         return;
-      } else if(this.idUsuario !== 0 || this.idUsuario !== null){
+      }
+      else{
         this.chatService.broadcastMessage(this.msgDto);                   // Send the message via a service
         console.log(this.msgDto);
+        this.msgDto.msgText = ' ';
       }
     }
   }

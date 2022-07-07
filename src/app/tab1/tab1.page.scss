@@ -139,3 +139,9 @@ ion-segment-button {
 .my-custom-menu {
     --width: 500px;
 }
+
+ion-img {
+    filter: brightness(90%);
+    filter: contrast(90%);
+    filter: drop-shadow(3px 3px 3px gray);
+}
