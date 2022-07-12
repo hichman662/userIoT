@@ -35,7 +35,8 @@ ion-title {
 ion-header {
     text-align: center;
     align-content: center;
-    background-color: rgb(180, 199, 136) !important;
+    /* background-color: rgb(180, 199, 136) !important; */
+    --background: url('/assets/icon/backTop.jpg') 0 0/100% 100% no-repeat;
 }
 
 ion-icon {
@@ -78,7 +79,8 @@ ion-card {
 }
 
 ion-toolbar {
-    --background: rgb(180, 199, 136) !important;
+    /* --background: rgb(180, 199, 136) !important; */
+    --background: url('/assets/icon/greenBackTop.jpg') 0 0/100% 100% no-repeat;
 }
 
 .text-top {

@@ -96,7 +96,8 @@ ion-img {
 /* Works - pass "my-custom-class" in cssClass to increase specificity */
 
 ion-toolbar {
-    --background: rgb(167, 195, 236) !important;
+    /* --background: rgb(167, 195, 236) !important; */
+    --background: url('/assets/icon/back.jpg') 0 0/100% 100% no-repeat;
 }
 
 .text-top {

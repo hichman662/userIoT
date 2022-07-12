@@ -18,11 +18,12 @@ ion-content {
 }
 
 ion-toolbar {
-    --background: rgb(196, 109, 207);
+    /*  --background: rgb(196, 109, 207); */
+    --background: url('/assets/icon/backTop.jpg') 0 0/100% 100% no-repeat;
 }
 
 .text-top {
-    color: white;
+    color: rgb(82, 80, 80);
 }
 
 .ionadd {
