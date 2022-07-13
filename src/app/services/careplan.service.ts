@@ -173,7 +173,10 @@ public getTargetByIdCarePlan( uid: number): Observable<object>{
 //
 // Assign Care Plan Template to Care Plan
 public assignCarePlanTemplateToCarePlan(carePlanId: number, carePlanTemplateId: number): Observable<object> {
-  return this.http.put(`${environment.base_url}/CarePlan/AssignCarePlan?p_careplan_oid=${carePlanId}&p_template_oid=${carePlanTemplateId}`,null);
+  return this.http.post(`${environment.base_url}/CarePlan/AssignCarePlan?p_careplan_oid=${carePlanId}&p_template_oid=${carePlanTemplateId}`,null);
 }
+
+
+
 
 }

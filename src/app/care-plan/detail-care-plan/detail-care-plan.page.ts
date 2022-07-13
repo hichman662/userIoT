@@ -126,6 +126,8 @@ export class DetailCarePlanPage implements OnInit {
   onSubmit(){
 
     this.idcarePlantemplate = this.carePlantemplateForm.get('idCarePlanTemplate').value;
+    console.log("Id Care plan template " + this.idcarePlantemplate);
+    console.log("pass by Url " +this.idPassedByURL);
     this.carePlanService.assignCarePlanTemplateToCarePlan(this.idPassedByURL, this.idcarePlantemplate)
     .subscribe( (res: any) => {
       this.presentAlert();
