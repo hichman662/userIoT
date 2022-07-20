@@ -32,10 +32,6 @@ public getPatientById( uid: number): Observable<object>{
   return this.http.get <Patient>(`${environment.base_url}/Patient/${uid}` );
 }
 
-public getPatientByIdScenario( uid: number): Observable<object>{
-  if (!uid) { uid = null; }
-  return this.http.get <Patient>(`${environment.base_url}/Patient/PatientScenario?idIoTScenario=${uid}` );
-}
 
 public createPatient( data: Patient ): Observable<object> {
   return this.http.post(`${environment.base_url}/Patient/New_`, data);
@@ -59,10 +55,7 @@ public getPractitionerById( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <Practitioner>(`${environment.base_url}/Practitioner/${uid}` );
 }
-public getPractitionerByIdScenario( uid: number): Observable<object>{
-  if (!uid) { uid = null; }
-  return this.http.get <Practitioner>(`${environment.base_url}/Practitioner/Practitioners?idIoTScenario=${uid}` );
-}
+
 public createPractitioner( data: Practitioner ): Observable<object> {
   return this.http.post(`${environment.base_url}/Practitioner/New_`, data);
 }

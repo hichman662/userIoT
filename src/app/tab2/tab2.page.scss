@@ -27,6 +27,9 @@ ion-item-divider {
     font-size: 14px;
     --background: rgb(167, 195, 236) !important;
     align-items: center;
+    filter: brightness(90%);
+    filter: contrast(90%);
+    filter: drop-shadow(3px 3px 3px gray);
 }
 
 #dashboardSection {

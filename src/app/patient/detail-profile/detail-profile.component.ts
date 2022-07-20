@@ -1,3 +1,5 @@
+import { UserService } from './../../services/user.service';
+import { UserData } from 'src/app/models/userData.model';
 import { EntityService } from './../../services/entity.service';
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/quotes */
@@ -18,6 +20,7 @@ import { Storage } from '@ionic/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AlertController, NavController ,IonItemSliding,ToastController} from '@ionic/angular';
+import { Disease } from 'src/app/models/disease.model';
 @Component({
   selector: 'app-detail-profile',
   templateUrl: './detail-profile.component.html',
@@ -27,7 +30,7 @@ export class DetailProfileComponent implements OnInit {
   name = '';
   patientProfileForm: FormGroup;
   public patientProfile: PatientProfile;
-  public diseases: Condition [] = [];
+  public diseases: Disease [] = [];
   public disabilities: Disability [] = [];
   public patientProfileNull = false;
   public allPatientProfile: any [] = [];
@@ -37,6 +40,7 @@ export class DetailProfileComponent implements OnInit {
   private idScenario: number;
   public attriubute: Attribute[] = [];
   constructor(
+    private userService: UserService,
     private patientService: PatientService,
     private route: ActivatedRoute,
     private storage: Storage,
@@ -80,13 +84,13 @@ export class DetailProfileComponent implements OnInit {
     });
   }
   callingPatient(){
-    this.patientService.getPatientByIdScenario(this.idScenario)
-    .subscribe((res: Patient ) => {
-    if(res[0].PatientProfile != null){
+    this.userService.getPatientByIdScenario(this.idScenario)
+    .subscribe((res: UserData[] ) => {
+    if(res[0].Patient[0].PatientProfile != null){
       this.patientProfileNull = false;
       // this.patientProfile = res[0].PatientProfile;
-      this.diseases = res[0].PatientProfile.Diseases;
-      this.disabilities = res[0].PatientProfile.Disabilities;
+      this.diseases = res[0].Patient[0].PatientProfile.Diseases;
+      this.disabilities = res[0].Patient[0].PatientProfile.Disabilities;
     }else{
       this.callingPatientProfile();
       this.patientProfileNull = true;

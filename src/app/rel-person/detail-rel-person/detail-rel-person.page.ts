@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+import { UserService } from './../../services/user.service';
 import { PatientService } from './../../services/patient.service';
 import { RelatedPersonData } from './../../models/relatedPersonData.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserData } from 'src/app/models/userData.model';
 
 @Component({
   selector: 'app-detail-rel-person',
@@ -10,13 +14,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailRelPersonPage implements OnInit {
 
-  public relPersonName: '';
-  public relPersonDescrip: '';
-  public relPersonData: RelatedPersonData;
+
+  public relPersonData: UserData;
+  relPersonEmail: string;
   segmentModel = 'details';
   private idPassedByURL: number = null;
+  load: boolean = false;
   constructor(
-    private patientService: PatientService,
+    private userService: UserService,
     private route: ActivatedRoute
 
   ) { }
@@ -24,14 +29,13 @@ export class DetailRelPersonPage implements OnInit {
 
   ngOnInit() {
     this.idPassedByURL = this.route.snapshot.params.Id;
-    this.patientService.getRelatedPersonById(this.idPassedByURL)
-    .subscribe((res: any ) => {
+    this.userService.getUserById(this.idPassedByURL)
+    .subscribe((res: UserData ) => {
       console.log(res);
     if(res != null){
-       this.relPersonName = res.Name;
-       this.relPersonDescrip = res.Description;
-       this.relPersonData = res.RpData;
-
+       this.relPersonData = res;
+      this.relPersonEmail = res.RelatedPerson[0].Email;
+      this.load= true;
     }
     }, (err) => {
       console.log(err);

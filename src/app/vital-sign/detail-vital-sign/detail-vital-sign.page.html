@@ -101,4 +101,28 @@
 
         </div>
     </div>
+    <!-- <form [formGroup]="vitalSignTemplateForm" (ngSubmit)="onSubmit()" [hidden]="!vitalSignDetailNull">
+
+        <ion-item lines="full">
+            <ion-label position="stacked">Care plan Template</ion-label>
+
+            <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="idCarePlanTemplate">
+
+                <div class="error" *ngIf="vitalSignTemplateForm.controls.idCarePlanTemplate.errors && vitalSignTemplateForm.controls.idCarePlanTemplate.touched">
+                    Please fill out this field
+                </div>
+
+                <div>
+                    <ion-select-option *ngFor="let carePlan of carePlanTemplateList" [value]="carePlan['Id']">{{carePlan['Name']}}</ion-select-option>
+
+                </div>
+
+            </ion-select>
+
+        </ion-item>
+        <br>
+        <br>
+
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!vitalSignTemplateForm.valid">Done</ion-button>
+    </form> -->
 </ion-content>

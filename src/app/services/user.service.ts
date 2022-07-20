@@ -12,16 +12,21 @@ import { UserData } from '../models/userData.model';
 import { Storage } from '@ionic/storage';
 
 
+import { Practitioner } from '../models/practitioner.model';
+import { RelatedPerson } from '../models/relatedPerson.model';
+import { Patient } from '../models/patient.model';
+import { RelatedPersonData } from '../models/relatedPersonData.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
+  patient: Patient;
   isLoggedIn = false;
   token = '';
 
-private newUser: UserData = new UserData(0, new Date(), '','','', '',false,1, false,'');
+private newUser: UserData = new UserData();
 constructor(private http: HttpClient,
                private router: Router,
                private storage: Storage) {
@@ -32,18 +37,38 @@ public getAllUsers(): Observable<object>{
   return this.http.get(`${environment.base_url}/User/ReadAll`);
 }
 
+public getPatientByIdScenario( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+ return this.http.get <Patient>(`${environment.base_url}/User/DamePacientePorScenario?p_idscenario=${uid}` );
+}
+
+public getPractitionerByIdScenario( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+ return this.http.get <Practitioner>(`${environment.base_url}/User/DameMedicoPorScenario?p_idscenario=${uid}` );
+}
+
+public getRelatedPersonByIdScenario( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+ return this.http.get <RelatedPersonData>(`${environment.base_url}/User/DameRelatedPersonPorScenario?p_idscenario=${uid}` );
+}
+
+public getUserById( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+ return this.http.get <UserData>(`${environment.base_url}/User/${uid}` );
+}
+
 public createUser( data: UserData ): Observable<object> {
   return this.http.post(`${environment.base_url}/User/New_`, data)
   .pipe(
     tap((res: any)=>{
-      const {Id ,BirhDate, Surnames, Address, Phone, Photo,IsActive, Type, IsDiseased,Email } = res;
-      this.newUser = new UserData(Id ,BirhDate, Surnames, Address, Phone, Photo,IsActive, Type, IsDiseased,Email);
+      const {} = res;
+      this.newUser = new UserData();
     })
   );
 }
 
 login( formData: loginForm) {
-  return this.http.post(`${environment.base_url}/UserAnonimous/Login`, formData)
+  return this.http.post(`${environment.base_url}/PractitionerAnonimous/Login`, formData)
           .pipe(
             tap( (res: any) => {
               this.isLoggedIn = true;

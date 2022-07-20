@@ -1,3 +1,4 @@
+import { UserService } from './../services/user.service';
 import { PatientService } from './../services/patient.service';
 import { ScenarioService } from './../services/scenario.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,9 +16,10 @@ export class ScenariosPage implements OnInit {
 
   public listScenario: Scenario[] = [];
   private idScenario: number;
+  private token: any;
   constructor(
     private scenarioService: ScenarioService,
-    private patientService: PatientService,
+    private userService: UserService,
     public alertController: AlertController,
     public loadingController: LoadingController,
     public router: Router,
@@ -28,13 +30,29 @@ export class ScenariosPage implements OnInit {
   ngOnInit(): void {}
 
   ionViewWillEnter() {
-    this.scenarioService.getAllScenario()
+    this.storage.get('token').then((val) => {
+      this.token = val;
+      console.log(val);
+      if(this.token != null){
+        this.getEscenario(this.token);
+      }
+    });
+
+  }
+
+  getEscenario(token: string){
+    console.log(token);
+    this.scenarioService.getAllScenario(token)
     .subscribe( (res: any) => {
         this.listScenario = res;
+        console.log(this.listScenario);
+        this.router.navigateByUrl('/scenarios', { replaceUrl:true });
     }, ( err) => {
         console.log(err);
     });
   }
+
+
 
   async start(id: any) {
     this.idScenario = id;
@@ -44,8 +62,9 @@ export class ScenariosPage implements OnInit {
   }
 
   callPatient(){
-    this.patientService.getPatientByIdScenario(this.idScenario)
+    this.userService.getPatientByIdScenario(this.idScenario)
     .subscribe( (res: any) => {
+      console.log(res);
       if(res != null && res[0].PatientProfile != null){
       this.storage.set('idPatientProfile',  res[0].PatientProfile.Id);
     }

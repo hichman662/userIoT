@@ -1,8 +1,9 @@
+import { UserService } from './../services/user.service';
 import { Router } from '@angular/router';
 import { PatientService } from './../services/patient.service';
 import { Component, OnInit } from '@angular/core';
-import { Patient } from '../models/patient.model';
 import { Storage } from '@ionic/storage';
+import { UserData } from '../models/userData.model';
 
 @Component({
   selector: 'app-patient',
@@ -11,10 +12,10 @@ import { Storage } from '@ionic/storage';
 })
 export class PatientPage implements OnInit {
 
-  public patients: Patient[] = [];
+  public patient: UserData ;
   public idScenario: number;
   constructor(
-    private patientService: PatientService,
+    private userService: UserService,
     public router: Router,
     private storage: Storage
 
@@ -29,9 +30,10 @@ export class PatientPage implements OnInit {
     });
   }
   callPatient(){
-    this.patientService.getPatientByIdScenario(this.idScenario)
-    .subscribe( (res: any) => {
-        this.patients = res;
+    this.userService.getPatientByIdScenario(this.idScenario)
+    .subscribe( (res: UserData[]) => {
+      console.log(res[0]);
+        this.patient = res[0];
     }, ( err) => {
         console.log(err);
     });

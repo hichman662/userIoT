@@ -1,3 +1,4 @@
+import { ScenarioService } from './../services/scenario.service';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -42,6 +43,7 @@ async  ngOnInit() {
     this.userService.login( this.loginForm.value)
       .subscribe( (res: any) => {
         this.waiting = false;
+        this.storage.set('token', res);
         this.router.navigateByUrl('/scenarios', { replaceUrl:true });
       }, (err: any) => {
         console.warn('Error respuesta api', err);
@@ -66,6 +68,7 @@ async  ngOnInit() {
       });
 
     }
+
 
   campoValido(campo: string ){
     return this.loginForm.get(campo)?.valid || !this.formSubmit;

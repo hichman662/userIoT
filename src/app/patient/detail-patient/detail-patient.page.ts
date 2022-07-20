@@ -7,6 +7,7 @@ import { Patient } from 'src/app/models/patient.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserData } from 'src/app/models/userData.model';
 import { Storage } from '@ionic/storage';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-detail-patient',
@@ -15,15 +16,18 @@ import { Storage } from '@ionic/storage';
 })
 export class DetailPatientPage implements OnInit {
 
-  public patientName: '';
-  public patientDescrip: '';
+  public patientName = '';
+  public patientDescrip = '';
   public patientData: UserData;
   public idScenario: number;
+  public patientEmail = '';
   public patientNull = false;
+  load: boolean = false;
   segmentModel = 'details';
 
   constructor(
     private patientService: PatientService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private storage: Storage
 
@@ -39,17 +43,20 @@ export class DetailPatientPage implements OnInit {
     });
   }
   callingPatient(){
-    this.patientService.getPatientByIdScenario(this.idScenario)
-    .subscribe((res: Patient ) => {
+    this.userService.getPatientByIdScenario(this.idScenario)
+    .subscribe((res: UserData[] ) => {
       console.log(res);
     if(res != null){
       this.storage.set('idPatient',res[0].Id);
        this.patientName = res[0].Name;
        this.patientDescrip = res[0].Description;
-       this.patientData = res[0].UserData;
+       this.patientEmail = res[0].Patient[0].Email;
+       this.patientData = res[0];
+       this.load= true;
 
     }else{
       this.patientNull = true;
+      this.load= true;
     }
     }, (err) => {
       console.log(err);

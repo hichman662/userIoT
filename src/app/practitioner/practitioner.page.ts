@@ -1,3 +1,4 @@
+import { UserService } from './../services/user.service';
 import { Router } from '@angular/router';
 import { PatientService } from './../services/patient.service';
 import { Practitioner } from './../models/practitioner.model';
@@ -16,6 +17,7 @@ export class PractitionerPage implements OnInit {
   public idScenario: number;
   constructor(
     private patientService: PatientService,
+    private userService: UserService,
     public router: Router,
     private storage: Storage,
     public alertController: AlertController,
@@ -35,8 +37,9 @@ export class PractitionerPage implements OnInit {
 
   }
   callPractitioner(){
-    this.patientService.getPractitionerByIdScenario(this.idScenario)
+    this.userService.getPractitionerByIdScenario(this.idScenario)
     .subscribe( (res: any) => {
+      console.log(res);
       if(res != null){
         this.practitioners = res;
         this.practitionerNull = false;

@@ -45,7 +45,7 @@
 <ion-content>
 
     <ion-list>
-        <div class="patient" *ngFor="let patient of patients">
+        <div class="patient">
 
             <ion-item-sliding #slidingItem>
 
@@ -55,7 +55,7 @@
 
                     </ion-avatar>
 
-                    <ion-label> {{patient['Name']}}</ion-label>
+                    <ion-label> {{patient.Name}}</ion-label>
 
 
                 </ion-item>

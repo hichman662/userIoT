@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+import { UserData } from './../../models/userData.model';
 import { PatientService } from './../../services/patient.service';
 import { PractitionerData } from './../../models/practitionerData.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-detail-practitioner',
@@ -10,13 +14,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailPractitionerPage implements OnInit {
 
-  public practitionerName: '';
-  public practitionerDescrip: '';
-  public practitionerData: PractitionerData;
+
+  public practitionerEmail: string;
+  public practitionerData: UserData = null;
   segmentModel = 'details';
   private idPassedByURL: number = null;
+  load: boolean = false;
+
   constructor(
-    private patientService: PatientService,
+    private userService: UserService,
     private route: ActivatedRoute
 
   ) { }
@@ -24,14 +30,14 @@ export class DetailPractitionerPage implements OnInit {
 
   ngOnInit() {
     this.idPassedByURL = this.route.snapshot.params.Id;
-    this.patientService.getPractitionerById(this.idPassedByURL)
-    .subscribe((res: any ) => {
-      console.log(res);
+    console.log(this.idPassedByURL);
+    this.userService.getUserById(this.idPassedByURL)
+    .subscribe((res: UserData ) => {
     if(res != null){
-       this.practitionerName = res.Name;
-       this.practitionerDescrip = res.Description;
-       this.practitionerData = res.PractitionerData;
-
+      console.log(res);
+       this.practitionerEmail = res.Practitioner[0].Email;
+       this.practitionerData = res;
+       this.load= true;
     }
     }, (err) => {
       console.log(err);

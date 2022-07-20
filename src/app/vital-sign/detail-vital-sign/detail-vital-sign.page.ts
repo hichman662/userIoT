@@ -7,6 +7,7 @@ import { CarePlanService } from './../../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Entity } from './../../models/entity.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IonItemSliding, AlertController, ToastController} from '@ionic/angular';
 
 @Component({
@@ -20,7 +21,9 @@ export class DetailVitalSignPage implements OnInit {
   public vitalSignDescrip: '';
   public measureVitalSign: any;
   public vitalSignLOINCode: number;
+  vitalSignTemplateForm: FormGroup;
   segmentModel = 'details';
+  vitalSignDetailNull = false;
   public attriubute: Attribute[] = [];
   private idPassedByURL: number = null;
   constructor(
@@ -29,7 +32,13 @@ export class DetailVitalSignPage implements OnInit {
     public alertController: AlertController,
     public toastController: ToastController
 
-  ) { }
+  ) {
+    this.vitalSignTemplateForm = new FormGroup({
+      idCarePlanTemplate: new FormControl(Number, [
+        Validators.required
+      ])
+    });
+  }
 
 
   ngOnInit() {

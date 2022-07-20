@@ -1,9 +1,11 @@
+import { UserData } from 'src/app/models/userData.model';
 import { RelatedPerson } from './../models/relatedPerson.model';
 import { Router } from '@angular/router';
 import { PatientService } from './../services/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IonItemSliding, AlertController, LoadingController } from '@ionic/angular';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-rel-person',
@@ -12,10 +14,11 @@ import { IonItemSliding, AlertController, LoadingController } from '@ionic/angul
 })
 export class RelPersonPage implements OnInit {
 
-  public relatedPersons: RelatedPerson[] = [];
+  public relatedPersons: UserData[] = [];
   public idScenario: number;
   relPersonNull= false;
   constructor(
+    private userService: UserService,
     private patientService: PatientService,
     public router: Router,
     private storage: Storage,
@@ -37,8 +40,9 @@ ionViewWillEnter(){
 
 }
 callRelatedPerson(){
-  this.patientService.getRelatedPersonByIdScenario(this.idScenario)
-  .subscribe( (res: any) => {
+  this.userService.getRelatedPersonByIdScenario(this.idScenario)
+  .subscribe( (res: UserData[]) => {
+    console.log(res);
     if(res != null){
     this.relatedPersons = res;
     this.relPersonNull= false;
