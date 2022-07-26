@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { UserService } from './../../services/user.service';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Patient } from './../../models/patient.model';
@@ -16,12 +17,13 @@ import { Storage } from '@ionic/storage';
 export class AddPatientPage implements OnInit {
 
   patientForm: FormGroup;
-  name = '';
+  email = '';
   patient: Patient;
   public idScenario: number;
   invitedUserName: string;
   invitedUserId: number;
-  allUsers: any [] = [];
+  findNotAlreadyPatient: any [] = [];
+
   data: any;
   constructor(
     public navCtrl: NavController,
@@ -33,13 +35,10 @@ export class AddPatientPage implements OnInit {
   ) {
 
     this.patientForm = new FormGroup({
-    Name: new FormControl('', [
-      Validators.required
+    Email: new FormControl('', [
+      Validators.required, Validators.email
     ]),
-    Description: new FormControl('', [
-      Validators.required
-    ]),
-    Scenario_oid: new FormControl(Number, [
+    Pass: new FormControl('', [
       Validators.required
     ]),
     UserPatient_oid: new FormControl(Number, [
@@ -52,13 +51,15 @@ export class AddPatientPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.storage.get('idScenario').then((val) => {
+    /* this.storage.get('idScenario').then((val) => {
       this.patientForm.get('Scenario_oid').setValue(val);
-    });
+    }); */
 
     this.userService.getAllUsers()
     .subscribe( (res: any) => {
-      this.allUsers = res;
+      console.log(res);
+      this.findNotAlreadyPatient = res.filter( obj =>  obj.Patient === null);
+      console.log(this.findNotAlreadyPatient);
         }, ( err ) => {
     });
 
@@ -69,9 +70,9 @@ export class AddPatientPage implements OnInit {
   onSubmit(){
     this.patientService.createPatient(this.patientForm.value)
     .subscribe( (res: any) => {
-      this.name = res.Name;
-      this.userService.removeUserId();
-      this.userService.removeUserName();
+      this.email = res.Email;
+      /* this.userService.removeUserId();
+      this.userService.removeUserName(); */
 
       this.presentAlert();
     }, ( err ) => {
@@ -83,7 +84,7 @@ export class AddPatientPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'SUCCESS!',
-      message: `The ${this.name} has been added successfully`,
+      message: `The ${this.email} has been added successfully`,
       buttons: [  {
         text: 'Ok',
         handler: () => {

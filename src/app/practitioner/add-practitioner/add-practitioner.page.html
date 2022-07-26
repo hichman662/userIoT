@@ -49,23 +49,25 @@
 <ion-content>
 
     <form [formGroup]="practitionerForm" (ngSubmit)="onSubmit()">
+
         <ion-item>
-            <ion-label position="stacked">Name</ion-label>
-            <ion-input type="text" formControlName="Name" class="form-control"></ion-input>
-            <div class="error" *ngIf="practitionerForm.controls.Name.errors && practitionerForm.controls.Name.touched">
-                Please fill out this field
+
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input type="email" formControlName="Email" class="form-control" required></ion-input>
+            <div class="error" *ngIf="practitionerForm.controls.Email.errors && practitionerForm.controls.Email.touched">
+                To add Patient please fill out this field
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input type="password" formControlName="Pass" class="form-control" required></ion-input>
+            <div class="error" *ngIf="practitionerForm.controls.Pass.errors && practitionerForm.controls.Pass.touched">
+                To add Patient please fill out this field
             </div>
         </ion-item>
 
-        <ion-item>
-            <ion-label position="stacked">Description</ion-label>
-            <ion-input type="text" formControlName="Description" class="form-control"></ion-input>
-            <div class="error" *ngIf="practitionerForm.controls.Description.errors && practitionerForm.controls.Description.touched">
-                Please fill out this field
-            </div>
-        </ion-item>
         <ion-item lines="full">
-            <ion-label position="stacked">User</ion-label>
+            <ion-label position="stacked">Existing user who has not been a Practitioner</ion-label>
 
             <ion-select multiple="false" [value]="invitedUserId" [placeholder]="invitedUserName" okText="Okay" cancelText="Dismiss" formControlName="UserPractitioner_oid">
 
@@ -74,7 +76,7 @@
                 </div>
 
                 <div>
-                    <ion-select-option *ngFor="let user of allUsers" [value]="user['Id']">{{user['Surnames']}}</ion-select-option>
+                    <ion-select-option *ngFor="let user of findNotAlreadyPractitioner" [value]="user['Id']">{{user['Name']}}</ion-select-option>
 
                 </div>
 
@@ -82,7 +84,7 @@
             <ion-item [routerLink]="['add-user']">
                 <ion-button shape="round" fill="outline">
                     <ion-icon name="add"></ion-icon>
-                    New User
+                    New user data
                 </ion-button>
             </ion-item>
 

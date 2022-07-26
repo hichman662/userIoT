@@ -44,7 +44,7 @@ public getAllPatientProfile(): Observable<object>{
 
 // Assign Patient profile to patient
 public assignPatientProfile(patientId: number, patientProfileId: number): Observable<object> {
-  return this.http.put(`${environment.base_url}/Patient/AssignPatientProfile?p_patient_oid=${patientId}&p_patientprofile_oid=${patientProfileId}`,null);
+  return this.http.post(`${environment.base_url}/Patient/AssignPatientProfile?p_patient_oid=${patientId}&p_patientprofile_oid=${patientProfileId}`,null);
 }
 
 // Practitioner

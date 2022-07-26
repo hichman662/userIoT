@@ -64,20 +64,6 @@
             </div>
         </ion-item>
         <ion-item>
-            <ion-label position="stacked">Password</ion-label>
-            <ion-input type="password" formControlName="Pass" class="form-control" required></ion-input>
-            <div class="error" *ngIf="userForm.controls.Pass.errors && userForm.controls.Pass.touched">
-                To add User please fill out this field
-            </div>
-        </ion-item>
-        <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input type="email" formControlName="Email" class="form-control" required></ion-input>
-            <div class="error" *ngIf="userForm.controls.Email.errors && userForm.controls.Email.touched">
-                To add User please fill out this field
-            </div>
-        </ion-item>
-        <ion-item>
             <ion-label position="stacked">Description</ion-label>
             <ion-input type="text" formControlName="Description" class="form-control"></ion-input>
             <div class="error" *ngIf="userForm.controls.Description.errors && userForm.controls.Description.touched">
@@ -104,8 +90,6 @@
             <ion-label>IsActive</ion-label>
             <ion-toggle name="IsActive" formControlName="IsActive" checked="true"></ion-toggle>
         </ion-item>
-
-
         <br>
         <br>
 

@@ -27,32 +27,40 @@ export class ScenariosPage implements OnInit {
   ) { }
 
 
-  ngOnInit(): void {}
-
-  ionViewWillEnter() {
-    this.storage.get('token').then((val) => {
+  ngOnInit(): void {
+    this.getEscenario();
+  /*   this.storage.get('token').then((val) => {
       this.token = val;
       console.log(val);
-      if(this.token != null){
-        this.getEscenario(this.token);
+      if(this.token !== null){
+        this.getEscenario();
       }
-    });
+    }); */
+  }
+
+  ionViewWillEnter() {
+    this.getEscenario();
+ /*    this.storage.get('token').then((val) => {
+      this.token = val;
+      console.log(val);
+      if(this.token !== null){
+        this.getEscenario();
+      }
+    }); */
 
   }
 
-  getEscenario(token: string){
-    console.log(token);
-    this.scenarioService.getAllScenario(token)
-    .subscribe( (res: any) => {
+  getEscenario(){
+    console.log();
+    this.scenarioService.getAllScenario()
+    .subscribe( (res: Scenario[]) => {
         this.listScenario = res;
         console.log(this.listScenario);
-        this.router.navigateByUrl('/scenarios', { replaceUrl:true });
+       // this.router.navigateByUrl('/scenarios', { replaceUrl:true });
     }, ( err) => {
         console.log(err);
     });
   }
-
-
 
   async start(id: any) {
     this.idScenario = id;
@@ -65,8 +73,8 @@ export class ScenariosPage implements OnInit {
     this.userService.getPatientByIdScenario(this.idScenario)
     .subscribe( (res: any) => {
       console.log(res);
-      if(res != null && res[0].PatientProfile != null){
-      this.storage.set('idPatientProfile',  res[0].PatientProfile.Id);
+      if(res != null && res[0].Patient.PatientProfile !== null){
+      this.storage.set('idPatientProfile',  res[0].Patient.PatientProfile.Id);
     }
     else{
       this.storage.set('idPatientProfile',null);
@@ -100,7 +108,7 @@ export class ScenariosPage implements OnInit {
           this.scenarioService.deleteScenario(id)
           // tslint:disable-next-line: deprecation
           .subscribe( (res: any) => {
-            this.ionViewWillEnter();
+           this.ionViewWillEnter();
           }, ( err) => {
               console.log(err);
           });

@@ -34,7 +34,7 @@ export class DetailRelPersonPage implements OnInit {
       console.log(res);
     if(res != null){
        this.relPersonData = res;
-      this.relPersonEmail = res.RelatedPerson[0].Email;
+      this.relPersonEmail = res.RelatedPerson.Email;
       this.load= true;
     }
     }, (err) => {

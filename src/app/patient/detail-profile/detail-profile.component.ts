@@ -36,7 +36,7 @@ export class DetailProfileComponent implements OnInit {
   public allPatientProfile: any [] = [];
   patientprofileId: number;
     segmentModel = 'details';
-  public patientId: any;
+  public patientId: number;
   private idScenario: number;
   public attriubute: Attribute[] = [];
   constructor(
@@ -86,11 +86,11 @@ export class DetailProfileComponent implements OnInit {
   callingPatient(){
     this.userService.getPatientByIdScenario(this.idScenario)
     .subscribe((res: UserData[] ) => {
-    if(res[0].Patient[0].PatientProfile != null){
+    if(res[0].Patient.PatientProfile != null){
       this.patientProfileNull = false;
       // this.patientProfile = res[0].PatientProfile;
-      this.diseases = res[0].Patient[0].PatientProfile.Diseases;
-      this.disabilities = res[0].Patient[0].PatientProfile.Disabilities;
+      this.diseases = res[0].Patient.PatientProfile.Diseases;
+      this.disabilities = res[0].Patient.PatientProfile.Disabilities;
     }else{
       this.callingPatientProfile();
       this.patientProfileNull = true;

@@ -72,8 +72,8 @@ export class AddRelPersonPage implements OnInit {
     this.patientService.createRelatedPerson(this.relPersonForm.value)
     .subscribe( (res: any) => {
       this.name = res.Name;
-      this.userService.removeUserId();
-      this.userService.removeUserName();
+/*       this.userService.removeUserId();
+      this.userService.removeUserName(); */
 
       this.presentAlert();
     }, ( err ) => {

@@ -16,7 +16,7 @@ export class UserData {
   IsDiseased?:    boolean;
   Name?:          string;
   Description?:   string;
-  RelatedPerson?: RelatedPerson[];
-  Patient?:       Patient[];
-  Practitioner?:  Practitioner[];
+  RelatedPerson?: RelatedPerson;
+  Patient?:       Patient;
+  Practitioner?:  Practitioner;
 }

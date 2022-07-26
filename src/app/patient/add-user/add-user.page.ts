@@ -7,6 +7,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { UserData } from 'src/app/models/userData.model';
 import { Location } from '@angular/common';
 
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.page.html',
@@ -22,7 +23,8 @@ export class AddUserPage implements OnInit {
     private userService: UserService,
     public alertController: AlertController,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private storage: Storage
   ) {
 
     this.userForm = new FormGroup({
@@ -35,9 +37,6 @@ export class AddUserPage implements OnInit {
     Description: new FormControl('', [
       Validators.required
     ]),
-    Pass: new FormControl('', [
-      Validators.required
-    ]),
     Type: new FormControl(Number, [
       Validators.required
     ]),
@@ -47,19 +46,22 @@ export class AddUserPage implements OnInit {
     IsActive: new FormControl(Boolean, [
       Validators.required
     ]),
-    Email: new FormControl('', [
-      Validators.required, Validators.email
-    ]),
+    Scenario_oid: new FormControl(Number, [
+      Validators.required
+    ])
   });
 }
 
   ngOnInit() {
-
+  this.storage.get('idScenario').then((val) => {
+      this.userForm.get('Scenario_oid').setValue(val);
+    });
   }
 
   onSubmit(){
     this.userService.createUser(this.userForm.value)
     .subscribe( (res: any) => {
+      console.log(res);
       this.surenames = res.Surnames;
 
       this.presentAlert();

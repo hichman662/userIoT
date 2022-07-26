@@ -80,7 +80,7 @@
 
     <ion-spinner class="spin" *ngIf="!load" name="bubbles"></ion-spinner>
     <div [hidden]="patientNull" class="segment" *ngIf="segmentModel === 'details'">
-        <ion-list *ngIf="load" class="animate__animated animate__slideInUp animate__slow">
+        <ion-list *ngIf="load && !patientNull" class="animate__animated animate__slideInUp animate__slow">
             <ion-list-header>
                 <ion-icon class="segmentIcon" name="person-outline"></ion-icon>Surname</ion-list-header>
             <ion-item>

@@ -16,12 +16,13 @@ import { Storage } from '@ionic/storage';
 export class AddPractitionerPage implements OnInit {
 
   practitionerForm: FormGroup;
-  name = '';
+  email = '';
   practitioner: Practitioner;
   public idScenario: number;
   invitedUserName: string;
   invitedUserId: number;
-  allUsers: any [] = [];
+  findNotAlreadyPractitioner: any [] = [];
+
   data: any;
   constructor(
     public navCtrl: NavController,
@@ -33,13 +34,10 @@ export class AddPractitionerPage implements OnInit {
   ) {
 
     this.practitionerForm = new FormGroup({
-    Name: new FormControl('', [
-      Validators.required
+    Email: new FormControl('', [
+      Validators.required, Validators.email
     ]),
-    Description: new FormControl('', [
-      Validators.required
-    ]),
-    Scenario_oid: new FormControl(Number, [
+    Pass: new FormControl('', [
       Validators.required
     ]),
     UserPractitioner_oid: new FormControl(Number, [
@@ -52,13 +50,15 @@ export class AddPractitionerPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.storage.get('idScenario').then((val) => {
-      this.practitionerForm.get('Scenario_oid').setValue(val);
-    });
+    /* this.storage.get('idScenario').then((val) => {
+      this.patientForm.get('Scenario_oid').setValue(val);
+    }); */
 
     this.userService.getAllUsers()
     .subscribe( (res: any) => {
-      this.allUsers = res;
+      console.log(res);
+      this.findNotAlreadyPractitioner = res.filter( obj =>  obj.Practitioner === null);
+      console.log(this.findNotAlreadyPractitioner);
         }, ( err ) => {
     });
 
@@ -67,12 +67,11 @@ export class AddPractitionerPage implements OnInit {
 
   }
   onSubmit(){
-
     this.patientService.createPractitioner(this.practitionerForm.value)
     .subscribe( (res: any) => {
-      this.name = res.Name;
-      this.userService.removeUserId();
-      this.userService.removeUserName();
+      this.email = res.Email;
+     /*  this.userService.removeUserId();
+      this.userService.removeUserName(); */
 
       this.presentAlert();
     }, ( err ) => {
@@ -84,11 +83,11 @@ export class AddPractitionerPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'SUCCESS!',
-      message: `The ${this.name} has been added successfully`,
+      message: `The ${this.email} has been added successfully`,
       buttons: [  {
         text: 'Ok',
         handler: () => {
-          this.router.navigateByUrl('tabs/tab1/practitioner');
+          this.router.navigateByUrl('/tabs/tab1/practitioner');
         }
       }
       ]

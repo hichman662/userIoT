@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/ban-types */
@@ -14,13 +15,13 @@ import { Storage } from '@ionic/storage';
 export class ScenarioService {
 
     scenario: Scenario;
-    private token = '';
     private idEscenario: number ;
-    private headers = new HttpHeaders();
+    private token =  '';
 constructor(private http: HttpClient,
   private storage: Storage) {
 
 }
+
 
 getToken(): string {
   this.storage.get('token').then((val) => {
@@ -30,20 +31,38 @@ getToken(): string {
   return this.token;
 }
 
-public getAllScenario(token: string): Observable<object>{
-  this.headers = new HttpHeaders ({'Authorization': token});
-  return this.http.get(`${environment.base_url}/IoTScenario/ReadAll`,{headers:this.headers});
+
+
+
+public getAllScenario(): Observable<object>{
+  /* this.headers = new HttpHeaders ({'Authorization': token}); */
+  /* return this.http.get(`${environment.base_url}/IoTScenario/ReadAll`,{headers:this.headers}); */
+  return this.http.get(`${environment.base_url}/IoTScenario/ReadAll`,this.getHeaderToken());
 }
+
 public getScenarioById( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <Scenario>(`${environment.base_url}/IoTScenario/${uid}`);
 }
 
 public createScenario( data: Scenario ): Observable<object> {
-  return this.http.post(`${environment.base_url}/IoTScenario/New_`, data);
+  return this.http.post(`${environment.base_url}/IoTScenario/New_`, data, this.getHeaderToken());
 }
 
-public deleteScenario(uid) {
-  return this.http.delete(`${environment.base_url}/IoTScenario/Destroy?p_iotscenario_oid=${uid}`);
+public deleteScenario(uid: number) {
+  console.log(this.getHeaderToken());
+  return this.http.delete(`${environment.base_url}/IoTScenario/Destroy?p_iotscenario_oid=${uid}`,this.getHeaderToken());
+}
+
+private getHeaderToken() {
+
+  const header = {
+      Authorization: this.getToken(),
+  };
+
+  const requestOptions = {
+      headers: new HttpHeaders(header),
+  };
+  return requestOptions;
 }
 }

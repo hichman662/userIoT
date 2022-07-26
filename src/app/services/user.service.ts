@@ -1,3 +1,4 @@
+import { UserDataInterface } from './../interfaces/usuario.interface';
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/ban-types */
@@ -23,10 +24,10 @@ import { RelatedPersonData } from '../models/relatedPersonData.model';
 })
 export class UserService {
   patient: Patient;
+  newUserData: UserData;
   isLoggedIn = false;
   token = '';
 
-private newUser: UserData = new UserData();
 constructor(private http: HttpClient,
                private router: Router,
                private storage: Storage) {
@@ -57,12 +58,17 @@ public getUserById( uid: number): Observable<object>{
  return this.http.get <UserData>(`${environment.base_url}/User/${uid}` );
 }
 
+public getUserByIdScenario( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+ return this.http.get <UserData>(`${environment.base_url}/User/UsersScenario?idIoTScenario=${uid}` );
+}
+
 public createUser( data: UserData ): Observable<object> {
   return this.http.post(`${environment.base_url}/User/New_`, data)
   .pipe(
-    tap((res: any)=>{
-      const {} = res;
-      this.newUser = new UserData();
+    tap((res: UserData)=>{
+      this.newUserData = res;
+      console.log(this.newUserData);
     })
   );
 }
@@ -90,19 +96,24 @@ get getToken(): string {
   return this.token || '';
 }
 
-get idNewUser(): number {
-  return this.newUser.Id;
+ get idNewUser(): number {
+  return this.newUserData.Id;
 }
 
 get nameNewUser(): string | undefined {
-  return this.newUser.Surnames;
+  return this.newUserData.Surnames;
 }
 
-removeUserId(){
-  this.newUser.Id = null;
+/* removeUserId(){
+  if(this.newUserData.Id !== null){
+    this.newUserData.Id = null;
+  }
 }
+
 removeUserName(){
-  this.newUser.Surnames = null;
-}
+  if(this.newUserData.Id !== null){
+    this.newUserData.Surnames = null;
+  }
+} */
 
 }
