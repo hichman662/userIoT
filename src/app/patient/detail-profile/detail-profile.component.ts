@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { UserService } from './../../services/user.service';
 import { UserData } from 'src/app/models/userData.model';
 import { EntityService } from './../../services/entity.service';
@@ -35,6 +36,7 @@ export class DetailProfileComponent implements OnInit {
   public patientProfileNull = false;
   public allPatientProfile: any [] = [];
   patientprofileId: number;
+  load: boolean = false;
     segmentModel = 'details';
   public patientId: number;
   private idScenario: number;
@@ -88,9 +90,11 @@ export class DetailProfileComponent implements OnInit {
     .subscribe((res: UserData[] ) => {
     if(res[0].Patient.PatientProfile != null){
       this.patientProfileNull = false;
-      // this.patientProfile = res[0].PatientProfile;
+       this.patientProfile = res[0].Patient.PatientProfile;
       this.diseases = res[0].Patient.PatientProfile.Diseases;
       this.disabilities = res[0].Patient.PatientProfile.Disabilities;
+      this.load= true;
+
     }else{
       this.callingPatientProfile();
       this.patientProfileNull = true;

@@ -16,7 +16,8 @@
     </ion-segment-button>
 </ion-segment>
 <div *ngIf="segmentModel === 'details'" [hidden]="patientProfileNull">
-    <div *ngFor="let attr of attriubute">
+    <ion-spinner class="spin" *ngIf="!load" name="bubbles"></ion-spinner>
+    <!-- <div *ngFor="let attr of attriubute">
         <ion-list>
             <ion-list-header>
                 <ion-icon class="segmentIcon" name="person-outline"></ion-icon>{{attr.Name}}</ion-list-header>
@@ -36,7 +37,56 @@
             </ion-item-sliding>
         </ion-list>
 
-    </div>
+    </div> -->
+    <ion-list *ngIf="load">
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="clipboard-outline"></ion-icon>Profile Name</ion-list-header>
+        <ion-item>
+
+            <ion-label text-wrap> {{patientProfile.Name}}</ion-label>
+        </ion-item>
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="clipboard-outline"></ion-icon>Profile Description</ion-list-header>
+        <ion-item>
+
+            <ion-label text-wrap> {{patientProfile.Description}}</ion-label>
+
+        </ion-item>
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="warning-outline"></ion-icon>Hazard value</ion-list-header>
+        <ion-item>
+            <ion-label *ngIf="patientProfile.HazardAvoidance === 0"> Undefined</ion-label>
+            <ion-label *ngIf="patientProfile.HazardAvoidance === 1"> Flashing</ion-label>
+            <ion-label *ngIf="patientProfile.HazardAvoidance === 2"> Motion Simulation</ion-label>
+            <ion-label *ngIf="patientProfile.HazardAvoidance === 3"> Olfatory Hazard</ion-label>
+            <ion-label *ngIf="patientProfile.HazardAvoidance === 4"> Sound</ion-label>
+        </ion-item>
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="globe-outline"></ion-icon>Region</ion-list-header>
+        <ion-item>
+
+            <ion-label> {{patientProfile.Region}}</ion-label>
+
+        </ion-item>
+
+
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="language-outline"></ion-icon>Preferred language</ion-list-header>
+        <ion-item>
+
+            <ion-label *ngIf="patientProfile.PreferredLanguage === 1"> ES</ion-label>
+            <ion-label *ngIf="patientProfile.PreferredLanguage === 2"> EN</ion-label>
+            <ion-label *ngIf="patientProfile.PreferredLanguage === 3"> FR</ion-label>
+            <ion-label *ngIf="patientProfile.PreferredLanguage === 4"> IT</ion-label>
+            <ion-label *ngIf="patientProfile.PreferredLanguage === 5"> PR</ion-label>
+            <ion-label *ngIf="patientProfile.PreferredLanguage === 6"> DE</ion-label>
+            <ion-label *ngIf="patientProfile.PreferredLanguage === 7"> JA</ion-label>
+            <ion-label *ngIf="patientProfile.PreferredLanguage === 8"> KO</ion-label>
+            <ion-label *ngIf="patientProfile.PreferredLanguage === 9"> ZH</ion-label>
+
+
+        </ion-item>
+    </ion-list>
 </div>
 <div *ngIf="segmentModel === 'diseases'" [hidden]="patientProfileNull">
 

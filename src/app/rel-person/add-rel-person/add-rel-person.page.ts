@@ -17,12 +17,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class AddRelPersonPage implements OnInit {
 
   relPersonForm: FormGroup;
-  name = '';
-  relatedPerson: RelatedPerson;
+  email = '';
+  practitioner: RelatedPerson;
   public idScenario: number;
   invitedUserName: string;
   invitedUserId: number;
-  allUsers: any [] = [];
+  findNotAlreadyRelatedPerson: any [] = [];
+
   data: any;
   constructor(
     public navCtrl: NavController,
@@ -34,16 +35,13 @@ export class AddRelPersonPage implements OnInit {
   ) {
 
     this.relPersonForm = new FormGroup({
-    Name: new FormControl('', [
+    Email: new FormControl('', [
+      Validators.required, Validators.email
+    ]),
+    Pass: new FormControl('', [
       Validators.required
     ]),
-    Description: new FormControl('', [
-      Validators.required
-    ]),
-    Scenario_oid: new FormControl(Number, [
-      Validators.required
-    ]),
-    UserRelatedPerson_oid: new FormControl(Number, [
+    UserPractitioner_oid: new FormControl(Number, [
       Validators.required
     ])
   });
@@ -53,13 +51,15 @@ export class AddRelPersonPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.storage.get('idScenario').then((val) => {
-      this.relPersonForm.get('Scenario_oid').setValue(val);
-    });
+    /* this.storage.get('idScenario').then((val) => {
+      this.patientForm.get('Scenario_oid').setValue(val);
+    }); */
 
     this.userService.getAllUsers()
     .subscribe( (res: any) => {
-      this.allUsers = res;
+      console.log(res);
+      this.findNotAlreadyRelatedPerson = res.filter( obj =>  obj.RelatedPerson === null);
+      console.log(this.findNotAlreadyRelatedPerson);
         }, ( err ) => {
     });
 
@@ -68,11 +68,10 @@ export class AddRelPersonPage implements OnInit {
 
   }
   onSubmit(){
-
-    this.patientService.createRelatedPerson(this.relPersonForm.value)
+    this.patientService.createPractitioner(this.relPersonForm.value)
     .subscribe( (res: any) => {
-      this.name = res.Name;
-/*       this.userService.removeUserId();
+      this.email = res.Email;
+     /*  this.userService.removeUserId();
       this.userService.removeUserName(); */
 
       this.presentAlert();
@@ -85,11 +84,11 @@ export class AddRelPersonPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'SUCCESS!',
-      message: `The ${this.name} has been added successfully`,
+      message: `The ${this.email} has been added successfully`,
       buttons: [  {
         text: 'Ok',
         handler: () => {
-          this.router.navigateByUrl('tabs/tab1/relatedPerson');
+          this.router.navigateByUrl('/tabs/tab1/relatedPerson');
         }
       }
       ]
@@ -97,6 +96,7 @@ export class AddRelPersonPage implements OnInit {
 
     await alert.present();
   }
+
 
 
 }

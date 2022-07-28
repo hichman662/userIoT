@@ -46,18 +46,18 @@
 <ion-content>
     <form [formGroup]="relPersonForm" (ngSubmit)="onSubmit()">
         <ion-item>
-            <ion-label position="stacked">Name</ion-label>
-            <ion-input type="text" formControlName="Name" class="form-control"></ion-input>
-            <div class="error" *ngIf="relPersonForm.controls.Name.errors && relPersonForm.controls.Name.touched">
-                Please fill out this field
+
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input type="email" formControlName="Email" class="form-control" required></ion-input>
+            <div class="error" *ngIf="relPersonForm.controls.Email.errors && relPersonForm.controls.Email.touched">
+                To add Patient please fill out this field
             </div>
         </ion-item>
-
         <ion-item>
-            <ion-label position="stacked">Description</ion-label>
-            <ion-input type="text" formControlName="Description" class="form-control"></ion-input>
-            <div class="error" *ngIf="relPersonForm.controls.Description.errors && relPersonForm.controls.Description.touched">
-                Please fill out this field
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input type="password" formControlName="Pass" class="form-control" required></ion-input>
+            <div class="error" *ngIf="relPersonForm.controls.Pass.errors && relPersonForm.controls.Pass.touched">
+                To add Patient please fill out this field
             </div>
         </ion-item>
         <ion-item lines="full">
@@ -70,7 +70,7 @@
                 </div>
 
                 <div>
-                    <ion-select-option *ngFor="let user of allUsers" [value]="user['Id']">{{user['Surnames']}}</ion-select-option>
+                    <ion-select-option *ngFor="let user of findNotAlreadyRelatedPerson" [value]="user['Id']">{{user['Surnames']}}</ion-select-option>
 
                 </div>
 
