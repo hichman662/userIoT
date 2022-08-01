@@ -11,8 +11,6 @@ import { Router } from '@angular/router';
 import { tap, map, catchError } from 'rxjs/operators';
 import { UserData } from '../models/userData.model';
 import { Storage } from '@ionic/storage';
-
-
 import { Practitioner } from '../models/practitioner.model';
 import { RelatedPerson } from '../models/relatedPerson.model';
 import { Patient } from '../models/patient.model';
@@ -22,9 +20,10 @@ import { RelatedPersonData } from '../models/relatedPersonData.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
   patient: Patient;
-  newUserData: UserData;
+  newUserData: UserData = new UserData();
   isLoggedIn = false;
   token = '';
 
@@ -100,7 +99,7 @@ get getToken(): string {
   return this.newUserData.Id;
 }
 
-get nameNewUser(): string | undefined {
+get nameNewUser(): string {
   return this.newUserData.Surnames;
 }
 

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Platform } from '@ionic/angular';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 
 
 
@@ -28,6 +29,7 @@ import { Platform } from '@ionic/angular';
       ReactiveFormsModule,
       HttpClientModule,
       IonicStorageModule.forRoot(),
+      NgIdleKeepaliveModule.forRoot()
 
     ],
   providers: [Platform,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

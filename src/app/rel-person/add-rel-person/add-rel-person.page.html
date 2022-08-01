@@ -69,9 +69,8 @@
                     Please fill out this field
                 </div>
 
-                <div>
+                <div *ngIf="findNotAlreadyRelatedPerson !== null">
                     <ion-select-option *ngFor="let user of findNotAlreadyRelatedPerson" [value]="user['Id']">{{user['Surnames']}}</ion-select-option>
-
                 </div>
 
             </ion-select>

@@ -41,7 +41,7 @@ export class AddRelPersonPage implements OnInit {
     Pass: new FormControl('', [
       Validators.required
     ]),
-    UserPractitioner_oid: new FormControl(Number, [
+    UserRelatedPerson_oid: new FormControl(Number, [
       Validators.required
     ])
   });
@@ -63,12 +63,14 @@ export class AddRelPersonPage implements OnInit {
         }, ( err ) => {
     });
 
-    this.invitedUserName = this.userService.nameNewUser;
-    this.invitedUserId = this.userService.idNewUser;
+    if(this.userService.nameNewUser !== undefined){
+      this.invitedUserName = this.userService.nameNewUser;
+      this.invitedUserId = this.userService.idNewUser;
+    }
 
   }
   onSubmit(){
-    this.patientService.createPractitioner(this.relPersonForm.value)
+    this.patientService.createRelatedPerson(this.relPersonForm.value)
     .subscribe( (res: any) => {
       this.email = res.Email;
      /*  this.userService.removeUserId();

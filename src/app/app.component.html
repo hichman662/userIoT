@@ -1,11 +1,12 @@
 <ion-menu contentId="main-content" side="start">
     <ion-header>
         <ion-toolbar>
-            <ion-title>MoSIoT</ion-title>
+            <ion-title>Twin4Disabilities</ion-title>
         </ion-toolbar>
     </ion-header>
 
     <ion-content>
+
         <ion-list>
             <ion-menu-toggle auto-hide="false" *ngFor="let nav of NAV">
                 <ion-item routerDirection="root" [routerLink]="nav.link" [class.active-menu]="active === nav.link">
@@ -14,7 +15,9 @@
                 </ion-item>
             </ion-menu-toggle>
         </ion-list>
+
+        <p><strong>{{idleState}}</strong></p>
+        <button (click)="reset()" *ngIf="timedOut">Restart</button>
     </ion-content>
 </ion-menu>
-
 <ion-router-outlet id="main-content" main></ion-router-outlet>

@@ -19,6 +19,7 @@ export class DetailPatientAccessPage implements OnInit {
   public patientAccessDescrip: '';
   public accessMode: AccessMode;
   patientProfileId: number;
+  idScenario: number;
   segmentModel = 'details';
   public allAccessMode: AccessMode []= [];
   patientAccessDetailNull = false;
@@ -42,6 +43,11 @@ export class DetailPatientAccessPage implements OnInit {
 
 
   ngOnInit() {
+    this.storage.get('idScenario').then((val) => {
+      if(val != null){
+        this.idScenario= val;
+      }
+    });
     this.idPassedByURL = this.route.snapshot.params.Id;
     this.callingAccessdatil();
   }
@@ -85,7 +91,7 @@ accessModeId() {
   onSubmit(){
 
     this.idAccessMode = this.patientAccessForm.get('idPatientProfile').value;
-    this.patientService.assignAccessModeToPatientAccess(this.idPassedByURL, this.idAccessMode)
+    this.patientService.assignAccessModeToPatientAccess(this.idScenario, this.idPassedByURL, this.idAccessMode)
     .subscribe( (res: any) => {
       this.presentAlert();
         }, ( err ) => {
