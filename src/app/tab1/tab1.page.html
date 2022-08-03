@@ -50,30 +50,36 @@
                 <ion-col size="6" class="ion-align-self-center" [routerLink]="['patient']">
                     <ion-card color="transparent" class="disability-card">
                         <ion-img src='assets/icon/pati.png'></ion-img>
-                        <ion-label>Patient Data</ion-label>
+                        <ion-label>Patient</ion-label>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="6" class="ion-align-self-end" [routerLink]="['patientAccess']">
+                    <ion-card text-center color="transparent" class="vital-card">
+                        <ion-img src='assets/icon/access.png'></ion-img>
+                        <span class=bellnumbers>10</span>
+                        <ion-label>Patient Access</ion-label>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <ion-item-divider text-center>
+                <ion-label text-center style="width: 100%;" class="textMedio">Another users</ion-label>
+            </ion-item-divider>
+            <ion-row class="animate__animated animate__fadeInUp animate__slower">
+                <ion-col size="6" class="ion-align-self-start" [routerLink]="['relatedPerson']">
+                    <ion-card color="transparent" class="nurse-card">
+                        <ion-img src='assets/icon/family.png'></ion-img>
+                        <span class=bellnumbers>10</span>
+                        <ion-label>Related Persons</ion-label>
                     </ion-card>
                 </ion-col>
                 <ion-col size="6" class="ion-align-self-end" [routerLink]="['practitioner']">
                     <ion-card color="transparent" class="deviceTemplate-card">
                         <ion-img src='assets/icon/practitioner.png'></ion-img>
+                        <span class=bellnumbers>10</span>
                         <ion-label>Practitioners</ion-label>
                     </ion-card>
                 </ion-col>
-            </ion-row>
-            <ion-row class="animate__animated animate__fadeInUp animate__slower">
-                <ion-col size="6" class="ion-align-self-start" [routerLink]="['relatedPerson']">
-                    <ion-card color="transparent" class="nurse-card">
-                        <ion-img src='assets/icon/family.png'></ion-img>
-                        <ion-label>Related Persons</ion-label>
-                    </ion-card>
-                </ion-col>
 
-                <ion-col size="6" class="ion-align-self-end" [routerLink]="['patientAccess']">
-                    <ion-card text-center color="transparent" class="vital-card">
-                        <ion-img src='assets/icon/access.png'></ion-img>
-                        <ion-label>Patient Access</ion-label>
-                    </ion-card>
-                </ion-col>
 
             </ion-row>
 

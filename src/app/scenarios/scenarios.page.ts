@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { UserService } from './../services/user.service';
 import { PatientService } from './../services/patient.service';
 import { ScenarioService } from './../services/scenario.service';
@@ -14,9 +15,11 @@ import { Storage } from '@ionic/storage';
 })
 export class ScenariosPage implements OnInit {
 
+  load: boolean = false;
   public listScenario: Scenario[] = [];
   private idScenario: number;
   private token: any;
+
   constructor(
     private scenarioService: ScenarioService,
     private userService: UserService,
@@ -29,6 +32,7 @@ export class ScenariosPage implements OnInit {
 
   ngOnInit(): void {
     this.getEscenario();
+    //this.getEscenario();
   /*   this.storage.get('token').then((val) => {
       this.token = val;
       console.log(val);
@@ -39,23 +43,17 @@ export class ScenariosPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.getEscenario();
- /*    this.storage.get('token').then((val) => {
-      this.token = val;
-      console.log(val);
-      if(this.token !== null){
-        this.getEscenario();
-      }
-    }); */
 
   }
 
-  getEscenario(){
+  async getEscenario(){
     console.log();
-    this.scenarioService.getAllScenario()
+    await this.scenarioService.getAllScenario()
     .subscribe( (res: Scenario[]) => {
         this.listScenario = res;
         console.log(this.listScenario);
+        this.load= true;
+
        // this.router.navigateByUrl('/scenarios', { replaceUrl:true });
     }, ( err) => {
         console.log(err);

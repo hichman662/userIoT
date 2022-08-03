@@ -1,91 +1,210 @@
 <ion-header>
 
     <ion-toolbar>
-
         <ion-buttons slot="start">
-            <ion-back-button text="Scenarios" defaultHref="/scenarios" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="Scenarios" defaultHref="scenarios" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
+        <!--  <ion-buttons slot="start">
+          <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons> -->
+
+        <ion-row>
+            <ion-col size="3" class="ion-align-self-start">
+
+            </ion-col>
+            <ion-col size="6" class="ion-align-self-end">
+                <ion-card color="transparent" class="deviceTemplate-card">
+                    <ion-img src='assets/icon/scenario.svg'></ion-img>
+
+                </ion-card>
+            </ion-col>
+            <ion-col size="3" class="ion-align-self-center">
+            </ion-col>
+
+        </ion-row>
+        <ion-row>
+            <ion-col size="1" class="ion-align-self-start">
+
+            </ion-col>
+            <ion-col size="10" class="ion-align-self-center">
+
+                <ion-list-header>
+                    <ion-label class="text-top">Summary</ion-label>
+                </ion-list-header>
+
+            </ion-col>
+            <ion-col size="1" class="ion-align-self-end">
+
+            </ion-col>
+
+        </ion-row>
     </ion-toolbar>
-    <ion-row>
-        <ion-col size="4" class="ion-align-self-start">
-
-        </ion-col>
-        <ion-col size="4" class="ion-align-self-end">
-            <ion-card color="transparent" class="deviceTemplate-card">
-                <ion-img src='assets/icon/scenario.svg'></ion-img>
-
-            </ion-card>
-        </ion-col>
-        <ion-col size="4" class="ion-align-self-center">
-        </ion-col>
-
-    </ion-row>
-    <ion-row>
-        <ion-col size="1" class="ion-align-self-start">
-
-        </ion-col>
-        <ion-col size="10" class="ion-align-self-center">
-
-            <ion-list-header>
-                <ion-label class="text-top">{{scenarioName}}</ion-label>
-            </ion-list-header>
-
-        </ion-col>
-        <ion-col size="1" class="ion-align-self-end">
-
-        </ion-col>
-
-    </ion-row>
 </ion-header>
+<ion-content>
+    <ion-spinner class="spin" *ngIf="!load" name="bubbles"></ion-spinner>
+    <ion-card *ngIf="load">
+        <ion-card-header>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-card-subtitle>Scenario</ion-card-subtitle>
+            <ion-card-title>{{scenario.Name}}</ion-card-title>
+        </ion-card-header>
 
-<ion-content [fullscreen]="true">
+        <ion-card-content>
+            {{scenario.Description}}
+        </ion-card-content>
+    </ion-card>
 
-    <section id="dashboardSection">
-        <ion-grid>
-            <ion-row>
+    <ion-card>
+        <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label>{{patientName}}</ion-label>
+            <ion-label>{{patientSurnames}}</ion-label>
+            <ion-button fill="outline" slot="end">View</ion-button>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="reader-outline" slot="start"></ion-icon>
+            <ion-label>{{patientDescription}}</ion-label>
+        </ion-item>
+        <ion-card-content>
+            <ion-segment [hidden]="patientProfileNull" value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
 
-                <ion-col size="6" class="ion-align-self-center" [routerLink]="['patient']">
-                    <ion-card color="transparent" class="disability-card">
-                        <ion-img src='assets/icon/disabilityW.svg'></ion-img>
-                        <ion-label>Patient</ion-label>
-                    </ion-card>
-                </ion-col>
-                <ion-col size="6" class="ion-align-self-end" [routerLink]="['devices']">
-                    <ion-card color="transparent" class="deviceTemplate-card">
-                        <ion-img src='assets/icon/deviceTemplateW.svg'></ion-img>
-                        <ion-label>Devices</ion-label>
-                    </ion-card>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size="6" class="ion-align-self-start" [routerLink]="['telemetry-data']">
-                    <ion-card color="transparent" class="nurse-card">
-                        <ion-img src='assets/icon/caregiverW.svg'></ion-img>
-                        <ion-label>Practitioner</ion-label>
-                    </ion-card>
+                <ion-segment-button value="diseases">
+                    <ion-icon name="heart-half-outline"></ion-icon>
+                    <ion-label>Diseases</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="disabilities">
+                    <ion-icon name="body-outline"></ion-icon>
+                    <ion-label>Disabilities</ion-label>
+                </ion-segment-button>
+            </ion-segment>
+            <div *ngIf="segmentModel === 'diseases'" [hidden]="patientProfileNull">
 
-                    <!-- <ion-card text-center color="transparent" class="nurse-card">
-                        <ion-img src='assets/icon/telemetryDataW.svg'></ion-img>
-                        <ion-label>Telemetry Data</ion-label>
-                    </ion-card> -->
-                </ion-col>
+                <div class="container" *ngFor="let disease of diseases|keyvalue">
+                    <mat-expansion-panel details>
+                        <mat-expansion-panel-header slot="start">
+                            <mat-panel-title>
+                                <ion-item>
+                                    <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
+                                    <ion-label>{{disease.value['Name']}}</ion-label>
+                                </ion-item>
+                            </mat-panel-title>
 
-                <ion-col size="6" class="ion-align-self-end" [routerLink]="['/tabs/tab2']">
-                    <ion-card text-center color="transparent" class="vital-card">
-                        <ion-img src='assets/icon/vital.svg'></ion-img>
-                        <ion-label>Vital signal</ion-label>
-                    </ion-card>
+                        </mat-expansion-panel-header>
 
-                    <!--  <ion-card color="transparent" class="deviceTemplate-card" [routerLink]="['/tabs/tab2']">
-                        <ion-img src='assets/icon/disabilityBehavW.svg'></ion-img>
-                        <ion-label>Disability behavior</ion-label>
-                    </ion-card> -->
-                </ion-col>
+                        <ion-item-sliding>
+                            <ion-item-options side="start">
+                                <ion-item-option color="danger" (click)="null" expandable>
+                                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                                </ion-item-option>
+                            </ion-item-options>
+                        </ion-item-sliding>
 
-            </ion-row>
+                        <ion-card>
+                            <ion-item>
+
+                                <ion-label>Disease</ion-label>
+
+                                <ion-badge *ngIf="disease.value['Disease'] === 1"> Alzheimer</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 2"> Parkinson</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 3"> Cancer</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 4"> Heart Disease</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 5"> Obesity</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 6"> Diabetes</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 7"> Epilepsy</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 8"> Apnea Sleep</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 9"> Narcolepsy</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 10"> Eating disorders</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 11"> Osteoporosis</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 12"> Asthma</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 13"> Fibrosis</ion-badge>
+                                <ion-badge *ngIf="disease.value['Disease'] === 14"> Oral_Health</ion-badge>
+                            </ion-item>
+
+                        </ion-card>
+
+                    </mat-expansion-panel>
 
 
-        </ion-grid>
-    </section>
 
+                </div>
+
+            </div>
+            <div *ngIf="segmentModel === 'disabilities'" [hidden]="patientProfileNull">
+
+                <div class="container" *ngFor="let disability of disabilities|keyvalue">
+                    <mat-expansion-panel details>
+                        <mat-expansion-panel-header slot="start">
+                            <mat-panel-title>
+                                <ion-item>
+                                    <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
+                                    <ion-label>{{disability.value['Name']}}</ion-label>
+                                </ion-item>
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+
+                        <ion-item-sliding>
+                            <ion-item-options side="start">
+                                <ion-item-option color="danger" (click)="null" expandable>
+                                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                                </ion-item-option>
+                            </ion-item-options>
+                        </ion-item-sliding>
+
+                        <ion-card>
+                            <ion-item>
+
+                                <ion-label>Disability type</ion-label>
+
+                                <ion-badge *ngIf="$any(disability).value.Type === 1"> Auditory</ion-badge>
+                                <ion-badge *ngIf="$any(disability).value.Type === 2"> Cognitive</ion-badge>
+                                <ion-badge *ngIf="$any(disability).value.Type === 3"> Physical</ion-badge>
+                                <ion-badge *ngIf="$any(disability).value.Type === 4"> Speech</ion-badge>
+                                <ion-badge *ngIf="$any(disability).value.Type === 5"> Visual</ion-badge>
+
+                            </ion-item>
+                            <ion-item>
+
+                                <ion-label>Severity</ion-label>
+
+                                <ion-badge *ngIf="$any(disability).value.Severity === 1"> Severe</ion-badge>
+                                <ion-badge *ngIf="$any(disability).value.Severity === 2"> Moderate</ion-badge>
+                                <ion-badge *ngIf="$any(disability).value.Severity === 3"> Mild</ion-badge>
+
+
+                            </ion-item>
+
+                        </ion-card>
+
+                    </mat-expansion-panel>
+
+
+
+                </div>
+
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-item href="#" class="ion-activated">
+            <ion-icon name="wifi" slot="start"></ion-icon>
+            <ion-label>Card Link Item 1 activated</ion-label>
+        </ion-item>
+
+        <ion-item href="#">
+            <ion-icon name="wine" slot="start"></ion-icon>
+            <ion-label>Card Link Item 2</ion-label>
+        </ion-item>
+
+        <ion-item class="ion-activated">
+            <ion-icon name="warning" slot="start"></ion-icon>
+            <ion-label>Card Button Item 1 activated</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-icon name="walk" slot="start"></ion-icon>
+            <ion-label>Card Button Item 2</ion-label>
+        </ion-item>
+    </ion-card>
 </ion-content>

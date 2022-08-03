@@ -56,7 +56,7 @@ export class DetailPatientPage implements OnInit {
 
     }else{
       this.patientNull = true;
-      this.load= true;
+      this.load= false;
     }
     }, (err) => {
       console.log(err);

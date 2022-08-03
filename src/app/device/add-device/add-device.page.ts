@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+
+import { DeviceService } from './../../services/device.service';
 import { Router } from '@angular/router';
-import { CarePlanService } from './../../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './../../services/user.service';
 import { NavController, AlertController } from '@ionic/angular';
-import { Practitioner } from 'src/app/models/practitioner.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { CarePlan } from 'src/app/models/carePlan.model';
@@ -16,25 +15,42 @@ import { CarePlan } from 'src/app/models/carePlan.model';
 })
 export class AddDevicePage implements OnInit {
 
-  carePlanForm: FormGroup;
+  deviceForm: FormGroup;
   name = '';
   carePlan: CarePlan;
   public idScenario: number;
 
   constructor(
     public navCtrl: NavController,
-    private carePlanService: CarePlanService,
-    private userService: UserService,
+    private deviceService: DeviceService,
     public alertController: AlertController,
     private router: Router,
     private storage: Storage
   ) {
 
-    this.carePlanForm = new FormGroup({
+    this.deviceForm = new FormGroup({
     Name: new FormControl('', [
       Validators.required
     ]),
     Description: new FormControl('', [
+      Validators.required
+    ]),
+    Tag: new FormControl('', [
+      Validators.required
+    ]),
+    SerialNumber: new FormControl('', [
+      Validators.required
+    ]),
+    FirmVersion: new FormControl('', [
+      Validators.required
+    ]),
+    Trademark: new FormControl('', [
+      Validators.required
+    ]),
+    IsSimulated: new FormControl(Boolean, [
+      Validators.required
+    ]),
+    DeviceSwitch: new FormControl(Boolean, [
       Validators.required
     ]),
     Scenario_oid: new FormControl(Number, [
@@ -43,17 +59,17 @@ export class AddDevicePage implements OnInit {
   });
 }
 
-  ngOnInit() {
+ngOnInit() {
   }
 
   ionViewWillEnter(){
     this.storage.get('idScenario').then((val) => {
-      this.carePlanForm.get('Scenario_oid').setValue(val);
+      this.deviceForm.get('Scenario_oid').setValue(val);
     });
   }
   onSubmit(){
 
-    this.carePlanService.createCarePlan(this.carePlanForm.value)
+    this.deviceService.createDevice(this.deviceForm.value)
     .subscribe( (res: any) => {
       this.name = res.Name;
       this.presentAlert();

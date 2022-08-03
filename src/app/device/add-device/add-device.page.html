@@ -48,25 +48,60 @@
 </ion-header>
 <ion-content>
 
-    <form [formGroup]="carePlanForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
         <ion-item>
             <ion-label position="stacked">Name</ion-label>
             <ion-input type="text" formControlName="Name" class="form-control"></ion-input>
-            <div class="error" *ngIf="carePlanForm.controls.Name.errors && carePlanForm.controls.Name.touched">
+            <div class="error" *ngIf="deviceForm.controls.Name.errors && deviceForm.controls.Name.touched">
                 Please fill out this field
             </div>
         </ion-item>
-
         <ion-item>
             <ion-label position="stacked">Description</ion-label>
             <ion-input type="text" formControlName="Description" class="form-control"></ion-input>
-            <div class="error" *ngIf="carePlanForm.controls.Description.errors && carePlanForm.controls.Description.touched">
+            <div class="error" *ngIf="deviceForm.controls.Description.errors && deviceForm.controls.Description.touched">
                 Please fill out this field
             </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Firm Version</ion-label>
+            <ion-input type="text" formControlName="FirmVersion" class="form-control"></ion-input>
+            <div class="error" *ngIf="deviceForm.controls.FirmVersion.errors && deviceForm.controls.FirmVersion.touched">
+                Please fill out this field
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Tag</ion-label>
+            <ion-input type="text" formControlName="Tag" class="form-control"></ion-input>
+            <div class="error" *ngIf="deviceForm.controls.Tag.errors && deviceForm.controls.Tag.touched">
+                Please fill out this field
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Serial Number</ion-label>
+            <ion-input type="text" formControlName="SerialNumber" class="form-control"></ion-input>
+            <div class="error" *ngIf="deviceForm.controls.SerialNumber.errors && deviceForm.controls.SerialNumber.touched">
+                Please fill out this field
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Trademark</ion-label>
+            <ion-input type="text" formControlName="Trademark" class="form-control"></ion-input>
+            <div class="error" *ngIf="deviceForm.controls.Trademark.errors && deviceForm.controls.Trademark.touched">
+                Please fill out this field
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Is Simulated</ion-label>
+            <ion-toggle name="IsSimulated" formControlName="IsSimulated" checked="true"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Device Switch</ion-label>
+            <ion-toggle name="DeviceSwitch" formControlName="DeviceSwitch" checked="true"></ion-toggle>
         </ion-item>
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!carePlanForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!deviceForm.valid">Done</ion-button>
     </form>
 </ion-content>

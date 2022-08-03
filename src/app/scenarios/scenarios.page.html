@@ -40,8 +40,9 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <ion-spinner class="spin" *ngIf="!load" name="bubbles"></ion-spinner>
+    <ion-list *ngIf="load">
 
-    <ion-list>
         <div class="patientProfile" *ngFor="let scenario of listScenario">
 
             <ion-item-sliding #slidingItem>
@@ -58,8 +59,8 @@
                         <ion-card-title>{{scenario['Name']}}</ion-card-title>
                         <!-- <h3> {{scenario['Name']}}</h3>
                         <h4>{{scenario['Description']}}</h4> -->
-                        <ion-card-content>{{scenario['Description']}}
-                        </ion-card-content>
+                        <!--    <ion-card-content>{{scenario['Description']}}
+                        </ion-card-content> -->
                     </ion-card>
                     <!-- </ion-label> -->
                 </ion-item>
