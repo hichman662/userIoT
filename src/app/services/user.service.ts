@@ -76,8 +76,8 @@ login( formData: loginForm) {
   return this.http.post(`${environment.base_url}/PractitionerAnonimous/Login`, formData)
           .pipe(
             tap( (res: any) => {
-              this.isLoggedIn = true;
-             // this.storage.set('token', res);
+             // this.isLoggedIn = true;
+             this.storage.set('token', res);
               })
           );
 }
@@ -101,6 +101,10 @@ get getToken(): string {
 
 get nameNewUser(): string {
   return this.newUserData.Surnames;
+}
+
+async logout(){
+     await this.storage.clear();
 }
 
 /* removeUserId(){

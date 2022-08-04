@@ -43,6 +43,7 @@ export class ScenariosPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.getEscenario();
 
   }
 

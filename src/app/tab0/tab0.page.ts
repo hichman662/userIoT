@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Scenario } from '../models/scenario.model';
 import { Disease } from '../models/disease.model';
-
+import { CarePlanService } from './../services/careplan.service';
+import { CarePlan } from './../models/carePlan.model';
 @Component({
   selector: 'app-tab0',
   templateUrl: './tab0.page.html',
@@ -25,10 +26,14 @@ export class Tab0Page implements OnInit {
   public scenario: Scenario;
   public idSecanrio: number;
   public scenarioName: string;
+  public carePlans: CarePlan[] = [];
+  public carePlanNull = false;
   segmentModel = 'diseases';
+
   constructor(private storage: Storage,
     private scenarioService: ScenarioService,
-    private userService: UserService
+    private userService: UserService,
+    private carePlanService: CarePlanService
 )
    { }
 
@@ -39,11 +44,16 @@ export class Tab0Page implements OnInit {
     if( this.idSecanrio !== null || this.idSecanrio !== undefined ){
       this.getEscenarioById (this.idSecanrio);
       this.callingPatientByIdScenario(this.idSecanrio);
+      this.callCarePlans(this.idSecanrio);
     }
 
-
-
   }
+
+  ionViewWillEnter(){
+    this.ngOnInit();
+  }
+
+
 
   async getEscenarioById( id: number){
     console.log();
@@ -81,7 +91,22 @@ export class Tab0Page implements OnInit {
     });
 
   }
-}
 
+
+  callCarePlans(id: number){
+    this.carePlanService.getCarePlanByIdScenario(id)
+    .subscribe( (res: any) => {
+      if(res != null){
+        this.carePlans = res;
+        this.carePlanNull = false;
+      }else{
+        this.carePlans = null;
+        this.carePlanNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
+    });
+  }
+}
 
 

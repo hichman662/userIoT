@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
     private userService: UserService) { }
 
 async  ngOnInit() {
-   await this.storage.clear();
+  await this.storage.clear();
   }
   /* async start() {
     this.router.navigateByUrl('/scenarios', { replaceUrl:true });
@@ -43,7 +43,7 @@ async  ngOnInit() {
     this.userService.login( this.loginForm.value)
       .subscribe( (res: any) => {
         this.waiting = false;
-        this.storage.set('token', res);
+        //this.storage.set('token', res);
         this.router.navigateByUrl('/scenarios', { replaceUrl:true });
       }, (err: any) => {
         console.warn('Error respuesta api', err);
