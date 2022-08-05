@@ -23,6 +23,14 @@ export class AddPatientPage implements OnInit {
   invitedUserName: string;
   invitedUserId: number;
   findNotAlreadyPatient: any [] = [];
+  patientAddDone = false;
+  patientProfileForm: FormGroup;
+  public patientProfileNull = false;
+  public allPatientProfile: any [] = [];
+  patientprofileId: number;
+  patientId: number;
+
+
 
   data: any;
   constructor(
@@ -42,6 +50,12 @@ export class AddPatientPage implements OnInit {
       Validators.required
     ]),
     UserPatient_oid: new FormControl(Number, [
+      Validators.required
+    ])
+  });
+
+  this.patientProfileForm = new FormGroup({
+    p_patientprofile_oid: new FormControl(Number, [
       Validators.required
     ])
   });
@@ -71,6 +85,9 @@ export class AddPatientPage implements OnInit {
     this.patientService.createPatient(this.patientForm.value)
     .subscribe( (res: any) => {
       this.email = res.Email;
+      this.patientId = res.Id;
+      this.storage.set('idPatient',res.Id);
+      this.patientProfileNull = true;
       /* this.userService.removeUserId();
       this.userService.removeUserName(); */
 
@@ -88,7 +105,9 @@ export class AddPatientPage implements OnInit {
       buttons: [  {
         text: 'Ok',
         handler: () => {
-          this.router.navigateByUrl('/tabs/tab1');
+          this.patientAddDone = true;
+          this.callingPatientProfile();
+         // this.router.navigateByUrl('/tabs/tab1');
         }
       }
       ]
@@ -97,5 +116,25 @@ export class AddPatientPage implements OnInit {
     await alert.present();
   }
 
+  callingPatientProfile(){
+    this.patientService.getAllPatientProfile()
+   .subscribe( (res2: any) => {
+     this.allPatientProfile = res2;
+       }, ( err ) => {
+   });
+ }
+
+ AssignPatientProfile(){
+
+  this.patientprofileId = this.patientProfileForm.get('p_patientprofile_oid').value;
+  this.patientService.assignPatientProfile(this.patientId, this.patientprofileId)
+  .subscribe( (res: any) => {
+    this.storage.set('idPatientProfile', this.patientprofileId);
+    this.patientProfileNull = false;
+
+    this.presentAlert();
+      }, ( err ) => {
+  });
+}
 
 }

@@ -15,6 +15,7 @@ export class AddScenarioPage implements OnInit {
 
   scanearioForm: FormGroup;
   scenario: Scenario;
+  scenarioAddDone = false;
   name = '';
   constructor(
     private scenarioService: ScenarioService,
@@ -55,7 +56,8 @@ export class AddScenarioPage implements OnInit {
       buttons: [  {
         text: 'Ok',
         handler: () => {
-          this.router.navigateByUrl('/scenarios');
+          this.scenarioAddDone = true;
+          //this.router.navigateByUrl('/scenarios');
         }
       }/* ,
       {

@@ -93,6 +93,36 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!patientForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!patientForm.valid || patientAddDone">Done</ion-button>
     </form>
+    <br>
+    <br>
+
+    <form [formGroup]="patientProfileForm" (ngSubmit)="AssignPatientProfile()" [hidden]="!patientProfileNull">
+
+        <ion-item lines="full">
+            <ion-label position="stacked">Patient Profile</ion-label>
+
+            <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="p_patientprofile_oid">
+
+                <div class="error" *ngIf="patientProfileForm.controls.p_patientprofile_oid.errors && patientProfileForm.controls.p_patientprofile_oid.touched">
+                    Please fill out this field
+                </div>
+
+                <div>
+                    <ion-select-option *ngFor="let patientProfile of allPatientProfile" [value]="patientProfile['Id']">{{patientProfile['Name']}}</ion-select-option>
+
+                </div>
+
+            </ion-select>
+
+        </ion-item>
+        <br>
+        <br>
+
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!patientProfileForm.valid">Done</ion-button>
+    </form>
+    <br>
+    <br>
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!patientAddDone">2/5 NEXT</ion-button>
 </ion-content>
