@@ -43,8 +43,12 @@ public getAllPatientProfile(): Observable<object>{
 }
 
 // Assign Patient profile to patient
-public assignPatientProfile(patientId: number, patientProfileId: number): Observable<object> {
+ public assignPatientProfile(patientId: number, patientProfileId: number): Observable<object> {
   return this.http.post(`${environment.base_url}/Patient/AssignPatientProfile?p_patient_oid=${patientId}&p_patientprofile_oid=${patientProfileId}`,null);
+}
+
+public assignPatientProfileTemplate(patientId: number, patientProfileId: number): Observable<object> {
+  return this.http.post(`${environment.base_url}/Patient/AssignTemplate?p_patient_oid=${patientId}&p_patientprofile_oid=${patientProfileId}`,null);
 }
 
 // Practitioner
@@ -112,5 +116,9 @@ public getAccessModeByIdPatientprofile( uid: number): Observable<object>{
 // Assign Access mode to Patient Access
 public assignAccessModeToPatientAccess(idScenario: number, patientAccess: number, accessMode: number): Observable<object> {
   return this.http.put(`${environment.base_url}/IoTScenario/${idScenario}/PatientAccessScenario/AssignAccessMode?p_patientaccess_oid=${patientAccess}&p_accessmode_oid=${accessMode}`,null);
+}
+
+public assignAccessModeTemplateToPatientAccess( patientAccess: number, accessMode: number): Observable<object> {
+  return this.http.post(`${environment.base_url}/PatientAccess/AssignTemplate?p_patientaccess_oid=${patientAccess}&p_accessmode_oid=${accessMode}`,null);
 }
 }

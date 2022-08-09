@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PatientService } from './../../services/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
+import { AccessMode } from './../../models/accessMode.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
@@ -14,11 +15,17 @@ import { Storage } from '@ionic/storage';
 })
 export class AddPatientAccessPage implements OnInit {
 
+  patientProfileId: number;
   patientAccessForm: FormGroup;
+  patientAccessProfileForm: FormGroup;
   name = '';
   patientAccess: PatientAccess;
-  public idScenario: number;
-
+  public idScenario: any;
+  public allAccessMode: AccessMode []= [];
+  idAccessMode: number;
+  accessModeAddDone = false;
+  accessModeProfileAddDone = false;
+  idPatientAcess: number;
   constructor(
     public navCtrl: NavController,
     private patientService: PatientService,
@@ -38,36 +45,56 @@ export class AddPatientAccessPage implements OnInit {
       Validators.required
     ])
   });
+
+  this.patientAccessProfileForm = new FormGroup({
+    idPatientProfile: new FormControl(Number, [
+      Validators.required
+    ])
+  });
 }
 
   ngOnInit() {
-  }
 
-  ionViewWillEnter(){
     this.storage.get('idScenario').then((val) => {
       this.patientAccessForm.get('Scenario_oid').setValue(val);
     });
+
   }
+
+  ionViewWillEnter(){
+  }
+
   onSubmit(){
 
     this.patientService.createPatientAccess(this.patientAccessForm.value)
     .subscribe( (res: any) => {
       this.name = res.Name;
-      this.presentAlert();
+      this.idPatientAcess = res.Id;
+      this.storage.get('idPatientProfile').then((val) => {
+        if(val != null){
+          this.patientProfileId= val;
+          this.accessModeId();
+        }else{
+          //errorrrr tiene que salir que no hay Patient profile para el paciente
+        }
+      });
+      this.presentAlert(this.name);
     }, ( err ) => {
 
     });
 
   }
-  async presentAlert() {
+
+  async presentAlert(message: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'SUCCESS!',
-      message: `The ${this.name} has been added successfully`,
+      message: `The ${message} has been added successfully`,
       buttons: [  {
         text: 'Ok',
         handler: () => {
-          this.router.navigateByUrl('tabs/tab1/patientAccess');
+        //  this.router.navigateByUrl('tabs/tab1/patientAccess');
+        this.accessModeAddDone = true;
         }
       }
       ]
@@ -75,6 +102,27 @@ export class AddPatientAccessPage implements OnInit {
 
     await alert.present();
   }
+
+
+accessModeId() {
+this.patientService.getAccessModeByIdPatientprofile(this.patientProfileId)
+  .subscribe((res: any ) => {
+    this.allAccessMode = res;
+  }, (err) => {
+    console.log(err);
+  });
+}
+
+assignAccessMode(){
+
+  this.idAccessMode = this.patientAccessProfileForm.get('idPatientProfile').value;
+  this.patientService.assignAccessModeTemplateToPatientAccess(this.idPatientAcess, this.idAccessMode)
+  .subscribe( (res: any) => {
+    this.presentAlert('access mode');
+    this.accessModeProfileAddDone = false;
+      }, ( err ) => {
+  });
+}
 
 
 }

@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: AddPatientAccessPage
+  },
+  {
+    path: 'add-device',
+    loadChildren: () => import('../../device/add-device/add-device.module').then( m => m.AddDevicePageModule)
   }
 ];
 

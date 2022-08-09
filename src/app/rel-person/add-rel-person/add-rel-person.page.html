@@ -70,7 +70,7 @@
                 </div>
 
                 <div *ngIf="findNotAlreadyRelatedPerson !== null">
-                    <ion-select-option *ngFor="let user of findNotAlreadyRelatedPerson" [value]="user['Id']">{{user['Surnames']}}</ion-select-option>
+                    <ion-select-option *ngFor="let user of findNotAlreadyRelatedPerson" [value]="user['Id']">{{user['Name']}} {{user['Surnames']}}</ion-select-option>
                 </div>
 
             </ion-select>

@@ -1,3 +1,4 @@
+import { DeviceTemplate } from './../models/deviceTemplate.model';
 import { ImTelemetry } from './../models/imTelemetry.model';
 import { Property } from './../models/property.model';
 import { Command } from './../models/command.model';
@@ -42,6 +43,12 @@ public createDevice( data: Device ): Observable<object> {
   return this.http.post(`${environment.base_url}/Device/New_`, data);
 }
 
+//Device Templates
+
+public getDeviceTemplateByIdAccessMode( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <DeviceTemplate>(`${environment.base_url}/api/DeviceTemplate/DevTemplatesAccessMode?idAccessMode=${uid}` );
+}
 
 // IMCommand
 public getCommandByIdDevice( uid: number): Observable<Command>{

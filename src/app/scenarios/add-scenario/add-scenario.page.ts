@@ -5,13 +5,15 @@ import { AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Scenario } from 'src/app/models/scenario.model';
-
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-add-scenario',
   templateUrl: './add-scenario.page.html',
   styleUrls: ['./add-scenario.page.scss'],
 })
 export class AddScenarioPage implements OnInit {
+
+
 
   scanearioForm: FormGroup;
   scenario: Scenario;
@@ -21,6 +23,7 @@ export class AddScenarioPage implements OnInit {
     private scenarioService: ScenarioService,
     public alertController: AlertController,
     private router: Router,
+    private storage: Storage
   ) {
 
     this.scanearioForm = new FormGroup({
@@ -41,6 +44,7 @@ export class AddScenarioPage implements OnInit {
     this.scenarioService.createScenario(this.scenario)
     .subscribe( (res: any) => {
       this.name = res.Name;
+      this.storage.set('idScenario',res.Id);
 
       this.presentAlert();
     }, ( err ) => {

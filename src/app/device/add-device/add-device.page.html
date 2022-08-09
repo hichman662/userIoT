@@ -102,6 +102,64 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!deviceForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!deviceForm.valid || deviceAddDone">Done</ion-button>
     </form>
+    <br>
+    <br>
+    <form [formGroup]="accessModeForm" (ngSubmit)="callAccessMode()" [hidden]="!deviceAddDone" class="animate__animated animate__slideInDown animate__fast">
+
+        <ion-item lines="full">
+            <ion-label position="stacked">Access Modes</ion-label>
+
+            <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="idAccessMode">
+
+                <div class="error" *ngIf="accessModeForm.controls.idAccessMode.errors && accessModeForm.controls.idAccessMode.touched">
+                    Please fill out this field
+                </div>
+
+                <div>
+                    <ion-select-option *ngFor="let profileAccessMod of allProfileAccessMods" [value]="profileAccessMod['Id']">{{profileAccessMod['Name']}}</ion-select-option>
+
+                </div>
+
+            </ion-select>
+
+        </ion-item>
+        <br>
+        <br>
+
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!accessModeForm.valid || assignAccessModeDone">Done</ion-button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form [formGroup]="deviceTemplateForm" (ngSubmit)="callDeviceTemplate()" [hidden]="!deviceAddDone" class="animate__animated animate__slideInDown animate__fast">
+
+        <ion-item lines="full">
+            <ion-label position="stacked">Access Modes</ion-label>
+
+            <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="p_devicetemplate_oid">
+
+                <div class="error" *ngIf="deviceTemplateForm.controls.p_devicetemplate_oid.errors && deviceTemplateForm.controls.p_devicetemplate_oid.touched">
+                    Please fill out this field
+                </div>
+
+                <div>
+                    <ion-select-option *ngFor="let profileAccessMod of allProfileAccessMods" [value]="profileAccessMod['Id']">{{profileAccessMod['Name']}}</ion-select-option>
+
+                </div>
+
+            </ion-select>
+
+        </ion-item>
+        <br>
+        <br>
+
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!accessModeForm.valid || assignDeviceTemplateDone">Done</ion-button>
+    </form>
+    <br>
+    <br>
+
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!allOkey" [routerLink]="['add-device']">4/4 Finish</ion-button>
 </ion-content>

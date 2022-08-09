@@ -76,7 +76,7 @@
                 </div>
 
                 <div>
-                    <ion-select-option *ngFor="let user of findNotAlreadyPractitioner" [value]="user['Id']">{{user['Name']}}</ion-select-option>
+                    <ion-select-option *ngFor="let user of findNotAlreadyPractitioner" [value]="user['Id']">{{user['Name']}} {{user['Surnames']}}</ion-select-option>
 
                 </div>
 

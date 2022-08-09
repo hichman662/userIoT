@@ -3,13 +3,14 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Patient Dashboard" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="Back" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-buttons slot="end">
 
-            <ion-button>
-            </ion-button>
-        </ion-buttons>
+
+        <ion-button slot="end" fill="clear" href="/scenarios">
+            skip
+        </ion-button>
+
 
     </ion-toolbar>
     <ion-row>
@@ -76,7 +77,7 @@
                 </div>
 
                 <div>
-                    <ion-select-option *ngFor="let user of findNotAlreadyPatient" [value]="user['Id']">{{user['Id']}}</ion-select-option>
+                    <ion-select-option *ngFor="let user of findNotAlreadyPatient" [value]="user['Id']">{{user['Name']}} {{user['Surnames']}}</ion-select-option>
 
                 </div>
 
@@ -93,12 +94,12 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!patientForm.valid || patientAddDone">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!patientForm.valid || patientAddDone">Done</ion-button>
     </form>
     <br>
     <br>
 
-    <form [formGroup]="patientProfileForm" (ngSubmit)="AssignPatientProfile()" [hidden]="!patientProfileNull">
+    <form [formGroup]="patientProfileForm" (ngSubmit)="AssignPatientProfile()" [hidden]="!patientAddDone" class="animate__animated animate__slideInDown animate__fast">
 
         <ion-item lines="full">
             <ion-label position="stacked">Patient Profile</ion-label>
@@ -120,9 +121,9 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!patientProfileForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!patientProfileForm.valid || patientProfileAddDone">Done</ion-button>
     </form>
     <br>
     <br>
-    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!patientAddDone">2/5 NEXT</ion-button>
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!patientProfileAddDone" [routerLink]="['add-patient-access']">2/4 NEXT</ion-button>
 </ion-content>

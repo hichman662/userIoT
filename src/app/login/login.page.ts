@@ -1,5 +1,5 @@
-import { ScenarioService } from './../services/scenario.service';
 /* eslint-disable @typescript-eslint/naming-convention */
+import { ScenarioService } from './../services/scenario.service';
 import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -24,7 +24,8 @@ export class LoginPage implements OnInit {
   constructor(private router: Router,
     private storage: Storage,
     private fb: FormBuilder,
-    private userService: UserService) { }
+    private userService: UserService,
+    private scenarioService: ScenarioService) { }
 
 async  ngOnInit() {
   await this.storage.clear();

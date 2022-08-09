@@ -31,7 +31,6 @@ export class ScenariosPage implements OnInit {
 
 
   ngOnInit(): void {
-    this.getEscenario();
     //this.getEscenario();
   /*   this.storage.get('token').then((val) => {
       this.token = val;
@@ -43,6 +42,7 @@ export class ScenariosPage implements OnInit {
   }
 
   ionViewWillEnter() {
+
     this.getEscenario();
 
   }

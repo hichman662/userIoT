@@ -24,15 +24,14 @@ export class AddPatientPage implements OnInit {
   invitedUserId: number;
   findNotAlreadyPatient: any [] = [];
   patientAddDone = false;
+  patientProfileAddDone = false;
   patientProfileForm: FormGroup;
   public patientProfileNull = false;
   public allPatientProfile: any [] = [];
   patientprofileId: number;
   patientId: number;
-
-
-
   data: any;
+
   constructor(
     public navCtrl: NavController,
     private patientService: PatientService,
@@ -91,17 +90,17 @@ export class AddPatientPage implements OnInit {
       /* this.userService.removeUserId();
       this.userService.removeUserName(); */
 
-      this.presentAlert();
+      this.presentAlert(this.email);
     }, ( err ) => {
 
     });
 
   }
-  async presentAlert() {
+  async presentAlert(message: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'SUCCESS!',
-      message: `The ${this.email} has been added successfully`,
+      message: `The ${message} has been added successfully`,
       buttons: [  {
         text: 'Ok',
         handler: () => {
@@ -127,12 +126,12 @@ export class AddPatientPage implements OnInit {
  AssignPatientProfile(){
 
   this.patientprofileId = this.patientProfileForm.get('p_patientprofile_oid').value;
-  this.patientService.assignPatientProfile(this.patientId, this.patientprofileId)
+  this.patientService.assignPatientProfileTemplate(this.patientId, this.patientprofileId)
   .subscribe( (res: any) => {
     this.storage.set('idPatientProfile', this.patientprofileId);
     this.patientProfileNull = false;
-
-    this.presentAlert();
+    this.patientProfileAddDone = true;
+    this.presentAlert('patient profile');
       }, ( err ) => {
   });
 }

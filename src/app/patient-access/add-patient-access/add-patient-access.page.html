@@ -3,13 +3,14 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Patient Access" defaultHref="/tabs/tab1/patientAccess" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="Back" defaultHref="/tabs/tab1/patientAccess" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-buttons slot="end">
 
-            <ion-button>
-            </ion-button>
-        </ion-buttons>
+
+        <ion-button slot="end" fill="clear" href="/scenarios">
+            skip
+        </ion-button>
+
 
     </ion-toolbar>
     <ion-row>
@@ -67,6 +68,35 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!patientAccessForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!patientAccessForm.valid || accessModeAddDone">Done</ion-button>
     </form>
+    <br>
+    <br>
+    <form [formGroup]="patientAccessProfileForm" (ngSubmit)="assignAccessMode()" [hidden]="!accessModeAddDone" class="animate__animated animate__slideInDown animate__fast">
+
+        <ion-item lines="full">
+            <ion-label position="stacked">Profile Access</ion-label>
+
+            <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="idPatientProfile">
+
+                <div class="error" *ngIf="patientAccessProfileForm.controls.idPatientProfile.errors && patientAccessProfileForm.controls.idPatientProfile.touched">
+                    Please fill out this field
+                </div>
+
+                <div>
+                    <ion-select-option *ngFor="let accessMode of allAccessMode" [value]="accessMode['Id']">{{accessMode['Name']}}</ion-select-option>
+
+                </div>
+
+            </ion-select>
+
+        </ion-item>
+        <br>
+        <br>
+
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!patientAccessProfileForm.valid || accessModeProfileAddDone">Done</ion-button>
+    </form>
+    <br>
+    <br>
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!accessModeProfileAddDone" [routerLink]="['add-device']">3/4 NEXT</ion-button>
 </ion-content>

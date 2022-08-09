@@ -116,7 +116,7 @@ export class DetailProfileComponent implements OnInit {
   onSubmit(){
 
     this.patientprofileId = this.patientProfileForm.get('p_patientprofile_oid').value;
-    this.patientService.assignPatientProfile(this.patientId, this.patientprofileId)
+    this.patientService.assignPatientProfileTemplate(this.patientId, this.patientprofileId)
     .subscribe( (res: any) => {
       this.storage.set('idPatientProfile', this.patientprofileId);
       this.presentAlert();
