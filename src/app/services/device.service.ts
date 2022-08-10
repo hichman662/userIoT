@@ -43,11 +43,21 @@ public createDevice( data: Device ): Observable<object> {
   return this.http.post(`${environment.base_url}/Device/New_`, data);
 }
 
+public deleteDevice(uid) {
+  return this.http.delete(`${environment.base_url}/Device/Destroy?p_device_oid=${uid}`);
+}
+
 //Device Templates
 
 public getDeviceTemplateByIdAccessMode( uid: number): Observable<object>{
   if (!uid) { uid = null; }
-  return this.http.get <DeviceTemplate>(`${environment.base_url}/api/DeviceTemplate/DevTemplatesAccessMode?idAccessMode=${uid}` );
+  return this.http.get <DeviceTemplate>(`${environment.base_url}/DeviceTemplate/DevTemplatesAccessMode?idAccessMode=${uid}` );
+}
+
+//Assign Device Template to the Device
+
+public assignDeviceTemplate( p_device_oid: number , p_devicetemplate_oid: number ): Observable<object>{
+  return this.http.post (`${environment.base_url}/Device/AssignTemplate?p_device_oid=${p_device_oid}&p_devicetemplate_oid=${p_devicetemplate_oid}`, null );
 }
 
 // IMCommand

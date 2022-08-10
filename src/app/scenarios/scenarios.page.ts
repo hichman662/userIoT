@@ -42,14 +42,19 @@ export class ScenariosPage implements OnInit {
   }
 
   ionViewWillEnter() {
-
-    this.getEscenario();
+    this.storage.get('token').then((val) => {
+      this.token = val;
+      console.log(val);
+      if(this.token !== null){
+        this.getEscenario(this.token);
+      }
+    });
 
   }
 
-  async getEscenario(){
+  async getEscenario(token: any){
     console.log();
-    await this.scenarioService.getAllScenario()
+    await this.scenarioService.getAllScenario(token)
     .subscribe( (res: Scenario[]) => {
         this.listScenario = res;
         console.log(this.listScenario);
@@ -104,7 +109,7 @@ export class ScenariosPage implements OnInit {
         text: 'Agree',
         handler: () => {
           console.log('Agree clicked');
-          this.scenarioService.deleteScenario(id)
+          this.scenarioService.deleteScenario(id, this.token)
           // tslint:disable-next-line: deprecation
           .subscribe( (res: any) => {
            this.ionViewWillEnter();

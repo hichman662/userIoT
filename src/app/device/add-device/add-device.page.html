@@ -3,13 +3,11 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Devices" defaultHref="/tabs/tab3/device" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="Back" defaultHref="/tabs/tab3/device" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-buttons slot="end">
-
-            <ion-button>
-            </ion-button>
-        </ion-buttons>
+        <ion-button slot="end" fill="clear" href="/tabs/tab0">
+            skip
+        </ion-button>
 
     </ion-toolbar>
     <ion-row>
@@ -118,7 +116,7 @@
                 </div>
 
                 <div>
-                    <ion-select-option *ngFor="let profileAccessMod of allProfileAccessMods" [value]="profileAccessMod['Id']">{{profileAccessMod['Name']}}</ion-select-option>
+                    <ion-select-option *ngFor="let profileAccessMode of allProfileAccessMods" [value]="profileAccessMode['Id']">{{profileAccessMode['Name']}}</ion-select-option>
 
                 </div>
 
@@ -134,10 +132,10 @@
     <br>
     <br>
     <br>
-    <form [formGroup]="deviceTemplateForm" (ngSubmit)="callDeviceTemplate()" [hidden]="!deviceAddDone" class="animate__animated animate__slideInDown animate__fast">
+    <form [formGroup]="deviceTemplateForm" (ngSubmit)="assignDeviceTemplate()" [hidden]="!assignAccessModeDone" class="animate__animated animate__slideInDown animate__fast">
 
         <ion-item lines="full">
-            <ion-label position="stacked">Access Modes</ion-label>
+            <ion-label position="stacked">Device Templates</ion-label>
 
             <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="p_devicetemplate_oid">
 
@@ -146,7 +144,7 @@
                 </div>
 
                 <div>
-                    <ion-select-option *ngFor="let profileAccessMod of allProfileAccessMods" [value]="profileAccessMod['Id']">{{profileAccessMod['Name']}}</ion-select-option>
+                    <ion-select-option *ngFor="let deviceTemplate of allDeviceTemplates" [value]="deviceTemplate['Id']">{{deviceTemplate['Name']}}</ion-select-option>
 
                 </div>
 
@@ -161,5 +159,5 @@
     <br>
     <br>
 
-    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!allOkey" [routerLink]="['add-device']">4/4 Finish</ion-button>
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!allOkey" href="/tabs/tab0">4/4 Finish</ion-button>
 </ion-content>

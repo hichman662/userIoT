@@ -31,6 +31,8 @@ export class AddDevicePage implements OnInit {
   deviceAddDone = false;
   assignAccessModeDone = false;
   allOkey = false;
+  idDevice: number;
+  idDeviceTemplateChoosen: number;
   idAccessModeChoosen: number;
   constructor(
     public navCtrl: NavController,
@@ -105,6 +107,7 @@ ngOnInit() {
     this.deviceService.createDevice(this.deviceForm.value)
     .subscribe( (res: any) => {
       this.name = res.Name;
+      this.idDevice = res.Id;
       this.deviceAddDone = true;
       this.presentAlert();
     }, ( err ) => {
@@ -129,7 +132,7 @@ ngOnInit() {
     await alert.present();
   }
 
-
+//FIRST
  callAllProfileAccessMode(){
   this.patientService.getAccessModeByIdPatientprofile(this.patientProfileId)
   .subscribe( (res: AccessMode[]) => {
@@ -140,7 +143,22 @@ ngOnInit() {
   });
  }
 
+
+//Second
  callAccessMode(){
+  this.idAccessModeChoosen = this.accessModeForm.get('idAccessMode').value;
+  this.deviceService.getDeviceTemplateByIdAccessMode(this.idAccessModeChoosen)
+  .subscribe( (res: DeviceTemplate[]) => {
+    this.allDeviceTemplates = res;
+    this.assignAccessModeDone = true;
+    console.log(this.allDeviceTemplates);
+  }, ( err ) => {
+
+  });
+
+ }
+
+/*  assignChosenDeviceTemplate(){
   this.patientService.getAccessModeByIdPatientprofile(this.patientProfileId)
   .subscribe( (res: AccessMode[]) => {
     this.allProfileAccessMods = res;
@@ -148,18 +166,21 @@ ngOnInit() {
   }, ( err ) => {
 
   });
- }
+ } */
 
- callDeviceTemplate(){
-  this.idAccessModeChoosen = this.accessModeForm.get('idAccessMode').value;
-  this.deviceService.getDeviceTemplateByIdAccessMode(this.idAccessModeChoosen)
-  .subscribe( (res: DeviceTemplate[]) => {
-    this.allDeviceTemplates = res;
-    console.log(this.allDeviceTemplates);
+ assignDeviceTemplate(){
+  this.idDeviceTemplateChoosen = this.deviceTemplateForm.get('p_devicetemplate_oid').value;
+  this.deviceService.assignDeviceTemplate( this.idDevice, this.idDeviceTemplateChoosen)
+  .subscribe( (res: any) => {
+    console.log(res);
+    this.assignDeviceTemplateDone = true;
+    this.allOkey = true;
+    this.presentAlert();
   }, ( err ) => {
 
   });
 
  }
+
 
 }

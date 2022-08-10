@@ -119,7 +119,7 @@ assignAccessMode(){
   this.patientService.assignAccessModeTemplateToPatientAccess(this.idPatientAcess, this.idAccessMode)
   .subscribe( (res: any) => {
     this.presentAlert('access mode');
-    this.accessModeProfileAddDone = false;
+    this.accessModeProfileAddDone = true;
       }, ( err ) => {
   });
 }

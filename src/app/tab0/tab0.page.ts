@@ -28,6 +28,7 @@ export class Tab0Page implements OnInit {
   public scenarioName: string;
   public carePlans: CarePlan[] = [];
   public carePlanNull = false;
+  token: '';
   segmentModel = 'diseases';
 
   constructor(private storage: Storage,
@@ -37,27 +38,29 @@ export class Tab0Page implements OnInit {
 )
    { }
 
-  async ngOnInit() {
+ ngOnInit() {
 
+  }
+
+  async ionViewWillEnter(){
     this.idSecanrio = await this.storage.get('idScenario');
     console.log('I´m carrying Scenario Id', this.idSecanrio);
-    if( this.idSecanrio !== null || this.idSecanrio !== undefined ){
-      this.getEscenarioById (this.idSecanrio);
-      this.callingPatientByIdScenario(this.idSecanrio);
-      this.callCarePlans(this.idSecanrio);
-    }
-
+    this.storage.get('token').then((val) => {
+      this.token = val;
+      console.log(val);
+      if(this.token !== null && this.idSecanrio !== null && this.idSecanrio !== undefined){
+        this.getEscenarioById (this.idSecanrio, this.token);
+        this.callingPatientByIdScenario(this.idSecanrio);
+        this.callCarePlans(this.idSecanrio);
+      }
+    });
   }
 
-  ionViewWillEnter(){
-    this.ngOnInit();
-  }
 
 
-
-  async getEscenarioById( id: number){
+  async getEscenarioById( id: number, token: any){
     console.log();
-    await this.scenarioService.getScenarioById(id)
+    await this.scenarioService.getScenarioById(id, token)
     .subscribe( (res: Scenario) => {
         this.scenario = res;
         this.load = true;
@@ -71,12 +74,12 @@ export class Tab0Page implements OnInit {
   async callingPatientByIdScenario(id: number){
     await this.userService.getPatientByIdScenario(id)
     .subscribe((res: UserData[] ) => {
-      if(res[0] != null){
+      if(res[0] !== null){
         this.patientName = res[0].Name;
         this.patientSurnames = res[0].Surnames;
         this.patientDescription = res[0].Description;
       }
-    if(res[0].Patient.PatientProfile != null){
+    if(res[0].Patient.PatientProfile !== null){
       this.patientProfileNull = false;
        this.patientProfile = res[0].Patient.PatientProfile;
       this.diseases = res[0].Patient.PatientProfile.Diseases;

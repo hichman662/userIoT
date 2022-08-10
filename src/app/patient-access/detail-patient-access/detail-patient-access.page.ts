@@ -91,12 +91,13 @@ accessModeId() {
   onSubmit(){
 
     this.idAccessMode = this.patientAccessForm.get('idPatientProfile').value;
-    this.patientService.assignAccessModeToPatientAccess(this.idScenario, this.idPassedByURL, this.idAccessMode)
+    this.patientService.assignAccessModeTemplateToPatientAccess(this.idPassedByURL, this.idAccessMode)
     .subscribe( (res: any) => {
       this.presentAlert();
         }, ( err ) => {
     });
   }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

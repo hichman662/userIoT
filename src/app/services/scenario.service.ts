@@ -17,6 +17,7 @@ export class ScenarioService {
     scenario: Scenario;
     private idEscenario: number ;
     private token =  '';
+   headers = new HttpHeaders ();
 constructor(private http: HttpClient,
   private storage: Storage) {
 
@@ -45,24 +46,26 @@ private getHeaderToken() {
 
 
 
-public getAllScenario(): Observable<object>{
-  /* this.headers = new HttpHeaders ({'Authorization': token}); */
-  /* return this.http.get(`${environment.base_url}/IoTScenario/ReadAll`,{headers:this.headers}); */
-  return this.http.get(`${environment.base_url}/IoTScenario/ReadAll`,this.getHeaderToken());
+public getAllScenario(token: any): Observable<object>{
+  this.headers = new HttpHeaders ({'Authorization': token});
+   return this.http.get(`${environment.base_url}/IoTScenario/ReadAll`,{headers:this.headers});
+ // return this.http.get(`${environment.base_url}/IoTScenario/ReadAll`,this.getHeaderToken());
 }
 
-public getScenarioById( uid: number): Observable<object>{
+public getScenarioById( uid: number, token: any): Observable<object>{
   if (!uid) { uid = null; }
-  return this.http.get <Scenario>(`${environment.base_url}/IoTScenario/${uid}`,this.getHeaderToken());
+  this.headers = new HttpHeaders ({'Authorization': token});
+  return this.http.get <Scenario>(`${environment.base_url}/IoTScenario/${uid}`,{headers:this.headers});
 }
 
-public createScenario( data: Scenario ): Observable<object> {
-  return this.http.post(`${environment.base_url}/IoTScenario/New_`, data, this.getHeaderToken());
+public createScenario( data: Scenario , token: any): Observable<object> {
+  this.headers = new HttpHeaders ({'Authorization': token});
+  return this.http.post(`${environment.base_url}/IoTScenario/New_`, data, {headers:this.headers});
 }
 
-public deleteScenario(uid: number) {
-  console.log(this.getHeaderToken());
-  return this.http.delete(`${environment.base_url}/IoTScenario/Destroy?p_iotscenario_oid=${uid}`,this.getHeaderToken());
+public deleteScenario(uid: number, token: any) {
+  this.headers = new HttpHeaders ({'Authorization': token});
+  return this.http.delete(`${environment.base_url}/IoTScenario/Destroy?p_iotscenario_oid=${uid}`,{headers:this.headers});
 }
 
 

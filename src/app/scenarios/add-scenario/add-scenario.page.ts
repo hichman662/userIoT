@@ -19,6 +19,7 @@ export class AddScenarioPage implements OnInit {
   scenario: Scenario;
   scenarioAddDone = false;
   name = '';
+  token: any;
   constructor(
     private scenarioService: ScenarioService,
     public alertController: AlertController,
@@ -37,15 +38,20 @@ export class AddScenarioPage implements OnInit {
 }
 
   ngOnInit() {
+
+    this.storage.get('token').then((val) => {
+      this.token = val;
+      console.log(val);
+    });
   }
 
   onSubmit(){
     this.scenario = this.scanearioForm.value;
-    this.scenarioService.createScenario(this.scenario)
+    this.scenarioService.createScenario(this.scenario, this.token)
     .subscribe( (res: any) => {
       this.name = res.Name;
       this.storage.set('idScenario',res.Id);
-
+      this.scenarioAddDone = true;
       this.presentAlert();
     }, ( err ) => {
 
@@ -60,7 +66,6 @@ export class AddScenarioPage implements OnInit {
       buttons: [  {
         text: 'Ok',
         handler: () => {
-          this.scenarioAddDone = true;
           //this.router.navigateByUrl('/scenarios');
         }
       }/* ,
