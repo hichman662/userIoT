@@ -3,13 +3,14 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="care Plans" defaultHref="/tabs/tab2/careplan" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="back" defaultHref="/tabs/tab2/careplan" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-buttons slot="end">
 
-            <ion-button>
-            </ion-button>
-        </ion-buttons>
+
+        <ion-button slot="end" fill="clear" href="/tabs/tab0">
+            skip
+        </ion-button>
+
 
     </ion-toolbar>
     <ion-row>
@@ -67,6 +68,35 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!carePlanForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!carePlanForm.valid || carePlanAddDone">Done</ion-button>
     </form>
+    <br>
+    <br>
+    <form [formGroup]="carePlantemplateForm" (ngSubmit)="assignCarePlanTemplate()" [hidden]="!carePlanAddDone" class="animate__animated animate__slideInDown animate__fast">
+
+        <ion-item lines="full">
+            <ion-label position="stacked">Care plan Template</ion-label>
+
+            <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="idCarePlanTemplate">
+
+                <div class="error" *ngIf="carePlantemplateForm.controls.idCarePlanTemplate.errors && carePlantemplateForm.controls.idCarePlanTemplate.touched">
+                    Please fill out this field
+                </div>
+
+                <div>
+                    <ion-select-option *ngFor="let carePlan of carePlanTemplateList" [value]="carePlan['Id']">{{carePlan['Name']}}</ion-select-option>
+
+                </div>
+
+            </ion-select>
+
+        </ion-item>
+        <br>
+        <br>
+
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!carePlantemplateForm.valid || assignCarePlanTemplateDone">Done</ion-button>
+    </form>
+    <br>
+    <br>
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" (click)="inicio()" color="success" [disabled]="!assignCarePlanTemplateDone">5/5 Finish</ion-button>
 </ion-content>

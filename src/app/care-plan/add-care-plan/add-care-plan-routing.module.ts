@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

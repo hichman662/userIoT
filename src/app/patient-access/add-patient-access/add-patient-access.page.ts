@@ -120,6 +120,7 @@ assignAccessMode(){
   .subscribe( (res: any) => {
     this.presentAlert('access mode');
     this.accessModeProfileAddDone = true;
+    this.storage.set('idAccessMode', this.idAccessMode);
       }, ( err ) => {
   });
 }

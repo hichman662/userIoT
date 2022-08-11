@@ -34,6 +34,8 @@ export class AddDevicePage implements OnInit {
   idDevice: number;
   idDeviceTemplateChoosen: number;
   idAccessModeChoosen: number;
+  idAccessModeFromStorage: number;
+  weHaveAccessModeId = false;
   constructor(
     public navCtrl: NavController,
     private deviceService: DeviceService,
@@ -89,7 +91,7 @@ export class AddDevicePage implements OnInit {
 ngOnInit() {
   }
 
-  ionViewWillEnter(){
+ionViewWillEnter(){
     this.storage.get('idScenario').then((val) => {
       this.deviceForm.get('Scenario_oid').setValue(val);
     });
@@ -100,8 +102,16 @@ ngOnInit() {
           this.callAllProfileAccessMode();
         }
     });
-
+    this.storage.get('idAccessMode').then((val) => {
+      if(this.idAccessModeFromStorage !== undefined || this.idAccessModeFromStorage != null ){
+        this.idAccessModeFromStorage = val;
+        this.weHaveAccessModeId = true;
+        this.CallAccessModeWithPatientOidStorage(this.idAccessModeFromStorage);
+      }
+  });
   }
+
+
   onSubmit(){
 
     this.deviceService.createDevice(this.deviceForm.value)
@@ -158,15 +168,15 @@ ngOnInit() {
 
  }
 
-/*  assignChosenDeviceTemplate(){
-  this.patientService.getAccessModeByIdPatientprofile(this.patientProfileId)
-  .subscribe( (res: AccessMode[]) => {
-    this.allProfileAccessMods = res;
-    console.log(this.allProfileAccessMods);
+ CallAccessModeWithPatientOidStorage(idAccessModeStorage: number){
+  this.deviceService.getDeviceTemplateByIdAccessMode(idAccessModeStorage)
+  .subscribe( (res: DeviceTemplate[]) => {
+    this.allDeviceTemplates = res;
+    console.log(this.allDeviceTemplates);
   }, ( err ) => {
 
   });
- } */
+ }
 
  assignDeviceTemplate(){
   this.idDeviceTemplateChoosen = this.deviceTemplateForm.get('p_devicetemplate_oid').value;

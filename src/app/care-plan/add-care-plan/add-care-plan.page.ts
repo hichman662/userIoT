@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/quotes */
+import { CarePlanTemplate } from './../../models/carePlanTemplate.model';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Router } from '@angular/router';
 import { CarePlanService } from './../../services/careplan.service';
@@ -8,6 +10,7 @@ import { Practitioner } from 'src/app/models/practitioner.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { CarePlan } from 'src/app/models/carePlan.model';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-care-plan',
@@ -17,9 +20,16 @@ import { CarePlan } from 'src/app/models/carePlan.model';
 export class AddCarePlanPage implements OnInit {
 
   carePlanForm: FormGroup;
+  carePlantemplateForm: FormGroup;
   name = '';
   carePlan: CarePlan;
   public idScenario: number;
+  patientProfileId: number;
+  carePlanTemplateList: CarePlanTemplate[] =[];
+  carePlanAddDone = false;
+  idcarePlantemplate: number;
+  idCarePlan: number;
+  assignCarePlanTemplateDone= false;
 
   constructor(
     public navCtrl: NavController,
@@ -27,7 +37,8 @@ export class AddCarePlanPage implements OnInit {
     private userService: UserService,
     public alertController: AlertController,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    public toastController: ToastController
   ) {
 
     this.carePlanForm = new FormGroup({
@@ -41,6 +52,11 @@ export class AddCarePlanPage implements OnInit {
       Validators.required
     ])
   });
+  this.carePlantemplateForm = new FormGroup({
+    idCarePlanTemplate: new FormControl(Number, [
+      Validators.required
+    ])
+  });
 }
 
   ngOnInit() {
@@ -50,18 +66,52 @@ export class AddCarePlanPage implements OnInit {
     this.storage.get('idScenario').then((val) => {
       this.carePlanForm.get('Scenario_oid').setValue(val);
     });
+
+    this.storage.get('idPatientProfile').then((val) => {
+      if(val != null){
+        this.patientProfileId= val;
+        this.callCarePlanTemplate();
+      }
+    });
   }
+
+
   onSubmit(){
 
     this.carePlanService.createCarePlan(this.carePlanForm.value)
     .subscribe( (res: any) => {
       this.name = res.Name;
+      this.idCarePlan = res.Id;
+      this.carePlanAddDone = true;
       this.presentAlert();
     }, ( err ) => {
 
     });
 
   }
+
+  callCarePlanTemplate(){
+    this.carePlanService.getCarePlantemplateByIdPatientProfile(this.patientProfileId)
+    .subscribe((res: any ) => {
+    this.carePlanTemplateList= res;
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  assignCarePlanTemplate(){
+  this.idcarePlantemplate = this.carePlantemplateForm.get('idCarePlanTemplate').value;
+
+  this.carePlanService.assignCarePlanTemplateToCarePlan(this.idCarePlan, this.idcarePlantemplate)
+  .subscribe( (res: any) => {
+    this.assignCarePlanTemplateDone = true;
+    //this.presentAlert();
+    this.presentToast();
+      }, ( err ) => {
+  });
+}
+
+
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -70,7 +120,7 @@ export class AddCarePlanPage implements OnInit {
       buttons: [  {
         text: 'Ok',
         handler: () => {
-          this.router.navigateByUrl('tabs/tab2/carePlan');
+         // this.router.navigateByUrl('tabs/tab2/carePlan');
         }
       }
       ]
@@ -79,5 +129,17 @@ export class AddCarePlanPage implements OnInit {
     await alert.present();
   }
 
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Your settings have been saved.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  inicio(){
+    this.router.navigateByUrl("tabs", { skipLocationChange: false });
+  }
 
 }

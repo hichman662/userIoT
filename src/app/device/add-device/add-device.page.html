@@ -104,35 +104,31 @@
     </form>
     <br>
     <br>
-    <form [formGroup]="accessModeForm" (ngSubmit)="callAccessMode()" [hidden]="!deviceAddDone" class="animate__animated animate__slideInDown animate__fast">
+    <div [hidden]="weHaveAccessModeId">
+        <form [formGroup]="accessModeForm" (ngSubmit)="callAccessMode()" [hidden]="!deviceAddDone" class="animate__animated animate__slideInDown animate__fast">
 
-        <ion-item lines="full">
-            <ion-label position="stacked">Access Modes</ion-label>
+            <ion-item lines="full">
+                <ion-label position="stacked">Access Modes</ion-label>
 
-            <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="idAccessMode">
+                <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="idAccessMode">
 
-                <div class="error" *ngIf="accessModeForm.controls.idAccessMode.errors && accessModeForm.controls.idAccessMode.touched">
-                    Please fill out this field
-                </div>
+                    <div class="error" *ngIf="accessModeForm.controls.idAccessMode.errors && accessModeForm.controls.idAccessMode.touched">
+                        Please fill out this field
+                    </div>
 
-                <div>
-                    <ion-select-option *ngFor="let profileAccessMode of allProfileAccessMods" [value]="profileAccessMode['Id']">{{profileAccessMode['Name']}}</ion-select-option>
+                    <div>
+                        <ion-select-option *ngFor="let profileAccessMode of allProfileAccessMods" [value]="profileAccessMode['Id']">{{profileAccessMode['Name']}}</ion-select-option>
+                    </div>
 
-                </div>
+                </ion-select>
 
-            </ion-select>
-
-        </ion-item>
-        <br>
-        <br>
-
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!accessModeForm.valid || assignAccessModeDone">Done</ion-button>
-    </form>
+            </ion-item>
+            <br>
+            <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!accessModeForm.valid || assignAccessModeDone">Done</ion-button>
+        </form>
+    </div>
     <br>
-    <br>
-    <br>
-    <br>
-    <form [formGroup]="deviceTemplateForm" (ngSubmit)="assignDeviceTemplate()" [hidden]="!assignAccessModeDone" class="animate__animated animate__slideInDown animate__fast">
+    <form [formGroup]="deviceTemplateForm" (ngSubmit)="assignDeviceTemplate()" [hidden]="!deviceAddDone" class="animate__animated animate__slideInDown animate__fast">
 
         <ion-item lines="full">
             <ion-label position="stacked">Device Templates</ion-label>
@@ -152,12 +148,9 @@
 
         </ion-item>
         <br>
-        <br>
-
         <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!accessModeForm.valid || assignDeviceTemplateDone">Done</ion-button>
     </form>
     <br>
-    <br>
 
-    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!allOkey" href="/tabs/tab0">4/4 Finish</ion-button>
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!allOkey" [routerLink]="['add-carePlan']">4/5 Next</ion-button>
 </ion-content>
