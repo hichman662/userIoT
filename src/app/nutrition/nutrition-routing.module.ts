@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: 'detail-nutrition/:Id',
     loadChildren: () => import('./detail-nutrition/detail-nutrition.module').then( m => m.DetailNutritionPageModule)
+  },  {
+    path: 'add-nutrition',
+    loadChildren: () => import('./add-nutrition/add-nutrition.module').then( m => m.AddNutritionPageModule)
   }
+
 
 ];
 

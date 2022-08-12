@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 import { DeviceTemplate } from './../../models/deviceTemplate.model';
 import { AccessMode } from './../../models/accessMode.model';
 import { PatientService } from './../../services/patient.service';
@@ -103,7 +104,7 @@ ionViewWillEnter(){
         }
     });
     this.storage.get('idAccessMode').then((val) => {
-      if(this.idAccessModeFromStorage !== undefined || this.idAccessModeFromStorage != null ){
+      if(val !== null ){
         this.idAccessModeFromStorage = val;
         this.weHaveAccessModeId = true;
         this.CallAccessModeWithPatientOidStorage(this.idAccessModeFromStorage);
@@ -192,5 +193,8 @@ ionViewWillEnter(){
 
  }
 
+ goToInicio(){
+  this.router.navigateByUrl("tabs", { skipLocationChange: false });
+}
 
 }

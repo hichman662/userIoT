@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { PatientAccess } from './../../models/patientAccess.model';
 import { Router } from '@angular/router';
@@ -125,5 +126,7 @@ assignAccessMode(){
   });
 }
 
-
+goToInicio(){
+  this.router.navigateByUrl("tabs", { skipLocationChange: false });
+}
 }

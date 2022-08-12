@@ -48,6 +48,7 @@ public getCarePlanByIdScenario( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <CarePlan>(`${environment.base_url}/CarePlan/CarePlanScenario?idIoTScenario=${uid}` );
 }
+
 public createCarePlan( data: CarePlan ): Observable<object> {
   return this.http.post(`${environment.base_url}/CarePlan/New_`, data);
 }
@@ -95,6 +96,11 @@ public getCareActivityById( uid: number): Observable<object>{
 public getCareActivityByIdScenario( uid: number): Observable<object>{
   if (!uid) { uid = null; }
   return this.http.get <CareActivity>(`${environment.base_url}/IMCareActivity/CareActivitiesScenario?idIoTScenario=${uid}` );
+}
+
+public getCareActivityByIdCarePlanTemplate( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <CareActivity>(`${environment.base_url}/CareActivity/CarePlanActivities?idCarePlanTemplate=${uid}` );
 }
 
 public createCareActivity( data: CareActivity ): Observable<object> {
@@ -176,7 +182,10 @@ public assignCarePlanTemplateToCarePlan(carePlanId: number, carePlanTemplateId: 
   return this.http.post(`${environment.base_url}/CarePlan/AssignCarePlan?p_careplan_oid=${carePlanId}&p_template_oid=${carePlanTemplateId}`,null);
 }
 
-
+public getCarePlanTemplateByIdPatientProfile( uid: number): Observable<object>{
+  if (!uid) { uid = null; }
+  return this.http.get <CarePlanTemplate>(`${environment.base_url}/CarePlanTemplate/PatientProfileCarePlanTemplate?idPatientProfile=${uid}` );
+}
 
 
 }

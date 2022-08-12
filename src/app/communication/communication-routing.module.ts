@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: 'detail-communication/:Id',
     loadChildren: () => import('./detail-communication/detail-communication.module').then( m => m.DetailCommunicationPageModule)
+  },  {
+    path: 'add-communication',
+    loadChildren: () => import('./add-communication/add-communication.module').then( m => m.AddCommunicationPageModule)
   }
+
 ];
 
 @NgModule({

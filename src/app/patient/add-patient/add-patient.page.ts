@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { UserService } from './../../services/user.service';
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -135,5 +136,12 @@ export class AddPatientPage implements OnInit {
       }, ( err ) => {
   });
 }
+
+
+goToInicio(){
+  this.router.navigateByUrl("tabs", { skipLocationChange: false });
+}
+
+
 
 }

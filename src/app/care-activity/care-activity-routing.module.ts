@@ -13,21 +13,22 @@ const routes: Routes = [
     loadChildren: () => import('./detail-care-activity/detail-care-activity.module').then( m => m.DetailCareActivityPageModule)
   },
   {
-    path: 'nutrition/:Id',
+    path: 'addNutrition/:Id',
     loadChildren: () => import('../nutrition/nutrition.module').then( m => m.NutritionPageModule)
   },
   {
-    path: 'appointment/:Id',
+    path: 'addAppointment/:Id',
     loadChildren: () => import('../appointment/appointment.module').then( m => m.AppointmentPageModule)
   },
   {
-    path: 'communication/:Id',
+    path: 'addCommunication/:Id',
     loadChildren: () => import('../communication/communication.module').then( m => m.CommunicationPageModule)
   },
   {
-    path: 'medication/:Id',
+    path: 'addMedication/:Id',
     loadChildren: () => import('../medication/medication.module').then( m => m.MedicationPageModule)
-  },  {
+  },
+  {
     path: 'add-care-activity',
     loadChildren: () => import('./add-care-activity/add-care-activity.module').then( m => m.AddCareActivityPageModule)
   }

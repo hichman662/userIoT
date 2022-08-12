@@ -8,7 +8,12 @@ const routes: Routes = [
   {
     path: '',
     component: AddCarePlanPage
+  },
+  {
+    path: 'careActivity',
+    loadChildren: () => import('../../care-activity/care-activity.module').then( m => m.CareActivityPageModule)
   }
+
 ];
 
 @NgModule({

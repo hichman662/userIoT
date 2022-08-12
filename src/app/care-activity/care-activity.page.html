@@ -3,14 +3,18 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Care plan dashboard" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="Back" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-buttons slot="end">
+        <!--  <ion-buttons slot="end">
             <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-care-activity']"></ion-icon>
             <ion-button>
             </ion-button>
-        </ion-buttons>
+        </ion-buttons> -->
 
+
+        <ion-button slot="end" fill="clear" (click)="goToInicio()">
+            skip
+        </ion-button>
     </ion-toolbar>
     <ion-row>
         <ion-col size="4" class="ion-align-self-start">
@@ -51,8 +55,9 @@
         <div class="carePlan" *ngFor="let careActivitie of careActivities">
 
             <ion-item-sliding #slidingItem>
-                <div *ngIf="careActivitie.ValueCareActivity['TypeActivity'] === 1">
-                    <ion-item class="item" detail [routerLink]="['medication',careActivitie['Id']]">
+                <div *ngIf="careActivitie.TypeActivity === 1">
+                    <ion-item class="item">
+                        <ion-button fill="outline" slot="end" [routerLink]="['addMedication',careActivitie['Id']]">Add</ion-button>
                         <ion-avatar slot="start">
                             <img src="assets/icon/medication.png">
                         </ion-avatar>
@@ -62,8 +67,9 @@
                         </ion-label>
                     </ion-item>
                 </div>
-                <div *ngIf="careActivitie.ValueCareActivity['TypeActivity'] === 2">
-                    <ion-item class="item" detail [routerLink]="['nutrition',careActivitie['Id']]">
+                <div *ngIf="careActivitie.TypeActivity === 2">
+                    <ion-item class="item">
+                        <ion-button fill="outline" slot="end" [routerLink]="['addNutrition',careActivitie['Id']]">Add</ion-button>
                         <ion-avatar slot="start">
                             <img src="assets/icon/nutrition.png">
                         </ion-avatar>
@@ -73,8 +79,9 @@
                         </ion-label>
                     </ion-item>
                 </div>
-                <div *ngIf="careActivitie.ValueCareActivity['TypeActivity'] === 3">
-                    <ion-item class="item" detail [routerLink]="['communication',careActivitie['Id']]">
+                <div *ngIf="careActivitie.TypeActivity === 3">
+                    <ion-item class="item">
+                        <ion-button fill="outline" slot="end" [routerLink]="['addCommunication',careActivitie['Id']]">Add</ion-button>
                         <ion-avatar slot="start">
                             <img src="assets/icon/communication.png">
                         </ion-avatar>
@@ -84,8 +91,9 @@
                         </ion-label>
                     </ion-item>
                 </div>
-                <div *ngIf="careActivitie.ValueCareActivity['TypeActivity'] === 4">
-                    <ion-item class="item" detail [routerLink]="['appointment',careActivitie['Id']]">
+                <div *ngIf="careActivitie.TypeActivity === 4">
+                    <ion-item class="item">
+                        <ion-button fill="outline" slot="end" [routerLink]="['addAppointment',careActivitie['Id']]">Add</ion-button>
                         <ion-avatar slot="start">
                             <img src="assets/icon/appointment.png">
                         </ion-avatar>

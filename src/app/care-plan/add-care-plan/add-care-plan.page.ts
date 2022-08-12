@@ -27,7 +27,7 @@ export class AddCarePlanPage implements OnInit {
   patientProfileId: number;
   carePlanTemplateList: CarePlanTemplate[] =[];
   carePlanAddDone = false;
-  idcarePlantemplate: number;
+  idcarePlanTemplate: number;
   idCarePlan: number;
   assignCarePlanTemplateDone= false;
 
@@ -100,13 +100,14 @@ export class AddCarePlanPage implements OnInit {
   }
 
   assignCarePlanTemplate(){
-  this.idcarePlantemplate = this.carePlantemplateForm.get('idCarePlanTemplate').value;
+  this.idcarePlanTemplate = this.carePlantemplateForm.get('idCarePlanTemplate').value;
 
-  this.carePlanService.assignCarePlanTemplateToCarePlan(this.idCarePlan, this.idcarePlantemplate)
+  this.carePlanService.assignCarePlanTemplateToCarePlan(this.idCarePlan, this.idcarePlanTemplate)
   .subscribe( (res: any) => {
     this.assignCarePlanTemplateDone = true;
-    //this.presentAlert();
-    this.presentToast();
+    this.storage.set('idcarePlanTemplate', this.idcarePlanTemplate);
+    this.presentAlert();
+    //this.presentToast();
       }, ( err ) => {
   });
 }
@@ -138,7 +139,7 @@ export class AddCarePlanPage implements OnInit {
     toast.present();
   }
 
-  inicio(){
+  goToInicio(){
     this.router.navigateByUrl("tabs", { skipLocationChange: false });
   }
 
