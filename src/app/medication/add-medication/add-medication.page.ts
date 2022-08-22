@@ -1,3 +1,5 @@
+import { Medication } from './../../models/medication.model';
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { CarePlanService } from './../../services/careplan.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { CareActivity } from 'src/app/models/careActivity.model';
 
+
 @Component({
   selector: 'app-add-medication',
   templateUrl: './add-medication.page.html',
@@ -14,10 +17,12 @@ import { CareActivity } from 'src/app/models/careActivity.model';
 })
 export class AddMedicationPage implements OnInit {
 
-  careActivityForm: FormGroup;
+  addMedicationForm: FormGroup;
   name = '';
   careActivity: CareActivity;
   public idScenario: number;
+  idNewMedication: number;
+
   constructor(
     public navCtrl: NavController,
     private carePlanService: CarePlanService,
@@ -26,7 +31,7 @@ export class AddMedicationPage implements OnInit {
     private storage: Storage
   ) {
 
-    this.careActivityForm = new FormGroup({
+    this.addMedicationForm = new FormGroup({
     Name: new FormControl('', [
       Validators.required
     ]),
@@ -34,6 +39,9 @@ export class AddMedicationPage implements OnInit {
       Validators.required
     ]),
     Scenario_oid: new FormControl(Number, [
+      Validators.required
+    ]),
+    TimeAct: new FormControl(Date, [
       Validators.required
     ])
   });
@@ -44,14 +52,16 @@ export class AddMedicationPage implements OnInit {
 
   ionViewWillEnter(){
     this.storage.get('idScenario').then((val) => {
-      this.careActivityForm.get('Scenario_oid').setValue(val);
+      this.addMedicationForm.get('Scenario_oid').setValue(val);
     });
   }
 
   onSubmit(){
-    this.carePlanService.createCareActivity(this.careActivityForm.value)
-    .subscribe( (res: any) => {
+    this.carePlanService.createMedication(this.addMedicationForm.value)
+    .subscribe( (res: Medication) => {
       this.name = res.Name;
+      this.idNewMedication = res.Id;
+      console.log(this.idNewMedication);
       this.presentAlert();
     }, ( err ) => {
 
@@ -66,7 +76,7 @@ export class AddMedicationPage implements OnInit {
       buttons: [  {
         text: 'Ok',
         handler: () => {
-          this.router.navigateByUrl('/tabs/tab2');
+          //this.router.navigateByUrl('/tabs/tab2');
         }
       }
       ]

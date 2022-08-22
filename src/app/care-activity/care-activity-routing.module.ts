@@ -14,19 +14,19 @@ const routes: Routes = [
   },
   {
     path: 'addNutrition/:Id',
-    loadChildren: () => import('../nutrition/nutrition.module').then( m => m.NutritionPageModule)
+    loadChildren: () => import('../nutrition/add-nutrition/add-nutrition.module').then( m => m.AddNutritionPageModule)
   },
   {
     path: 'addAppointment/:Id',
-    loadChildren: () => import('../appointment/appointment.module').then( m => m.AppointmentPageModule)
+    loadChildren: () => import('../appointment/add-appointment/add-appointment.module').then( m => m.AddAppointmentPageModule)
   },
   {
     path: 'addCommunication/:Id',
-    loadChildren: () => import('../communication/communication.module').then( m => m.CommunicationPageModule)
+    loadChildren: () => import('../communication/add-communication/add-communication.module').then( m => m.AddCommunicationPageModule)
   },
   {
     path: 'addMedication/:Id',
-    loadChildren: () => import('../medication/medication.module').then( m => m.MedicationPageModule)
+    loadChildren: () => import('../medication/add-medication/add-medication.module').then( m => m.AddMedicationPageModule)
   },
   {
     path: 'add-care-activity',

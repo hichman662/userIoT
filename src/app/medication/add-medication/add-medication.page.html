@@ -33,7 +33,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Add Care Activity</ion-label>
+                <ion-label class="text-top">Add Medication</ion-label>
 
             </ion-list-header>
 
@@ -48,11 +48,11 @@
 </ion-header>
 <ion-content>
 
-    <form [formGroup]="careActivityForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="addMedicationForm" (ngSubmit)="onSubmit()">
         <ion-item>
             <ion-label position="stacked">Name</ion-label>
             <ion-input type="text" formControlName="Name" class="form-control"></ion-input>
-            <div class="error" *ngIf="careActivityForm.controls.Name.errors && careActivityForm.controls.Name.touched">
+            <div class="error" *ngIf="addMedicationForm.controls.Name.errors && addMedicationForm.controls.Name.touched">
                 Please fill out this field
             </div>
         </ion-item>
@@ -60,13 +60,20 @@
         <ion-item>
             <ion-label position="stacked">Description</ion-label>
             <ion-input type="text" formControlName="Description" class="form-control"></ion-input>
-            <div class="error" *ngIf="careActivityForm.controls.Description.errors && careActivityForm.controls.Description.touched">
+            <div class="error" *ngIf="addMedicationForm.controls.Description.errors && addMedicationForm.controls.Description.touched">
                 Please fill out this field
             </div>
         </ion-item>
+        <ion-item>
+            <ion-label>Activity time</ion-label>
+            <ion-datetime locale="es-ES" value="2022-04-21T00:00:00" min="2022-09-01T00:00:00" max="2050-05-31T23:59:59" formControlName="TimeAct">
+                <span slot="title">Select a Activity Date</span>
+            </ion-datetime>
+        </ion-item>
+
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!careActivityForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!addMedicationForm.valid">Done</ion-button>
     </form>
 </ion-content>

@@ -122,6 +122,10 @@ public deleteAppointment(uid) {
   return this.http.delete(`${environment.base_url}/IMAppointment/Destroy?p_imappointment_oid=${uid}`);
 }
 
+public createAppointment( data: Appointment ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IMAppointment/New_`, data);
+}
+
 
 // Medication
 public getMedicationByIdCareActivity( uid: number): Observable<object>{
@@ -132,6 +136,11 @@ public getMedicationsByIdScenario(uid: number): Observable<Medication[]>{
   if (!uid) { uid = null; }
   return this.http.get <Medication[]>(`${environment.base_url}/IMMedication/Medications?idIoTScenario=${uid}`);
 }
+
+public createMedication( data: Medication ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IMMedication/New_`, data);
+}
+
 public deleteMedication(uid) {
   return this.http.delete(`${environment.base_url}/IMMedication/Destroy?p_immedication_oid=${uid}`);
 }
@@ -148,6 +157,11 @@ public getnutritionsByIdScenario(uid: number): Observable<Nutrition[]>{
 public deleteNutrition(uid) {
   return this.http.delete(`${environment.base_url}/IMNutritionOrder/Destroy?p_imnutritionorder_oid=${uid}`);
 }
+
+public createNutritionOrder( data: Nutrition ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IMNutritionOrder/New_`, data);
+}
+
 
 //Communication
 public getCommunicationByIdCareActivity( uid: number): Observable<object>{
