@@ -54,6 +54,8 @@ public getDeviceTemplateByIdAccessMode( uid: number): Observable<object>{
   return this.http.get <DeviceTemplate>(`${environment.base_url}/DeviceTemplate/DevTemplatesAccessMode?idAccessMode=${uid}` );
 }
 
+
+
 //Assign Device Template to the Device
 
 public assignDeviceTemplate( p_device_oid: number , p_devicetemplate_oid: number ): Observable<object>{

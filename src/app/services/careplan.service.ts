@@ -25,9 +25,27 @@ import { Nutrition } from '../models/nutrition.model';
 })
 export class CarePlanService {
 
+public temporalAddedActivities: number[] = [];
+
 constructor(private http: HttpClient) {
 
 }
+
+
+get getTemporalAddedActivity(): number[]{
+  return this.temporalAddedActivities;
+}
+
+set setTemporalAddActivity(idActivity: number){
+ this.temporalAddedActivities.push(idActivity);
+}
+
+get clearTemporalActivityArray(): boolean{
+  this.temporalAddedActivities = [];
+  return true;
+}
+
+
 // Care Plan Template By id PatientProfile
 public getCarePlantemplateByIdPatientProfile( uid: number): Observable<object>{
   if (!uid) { uid = null; }

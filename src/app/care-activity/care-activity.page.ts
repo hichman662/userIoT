@@ -18,6 +18,7 @@ export class CareActivityPage implements OnInit {
   public nameCareActivity='';
   idPatientProfile: number;
   idcarePlanTemplate: number;
+  addedCareActivityList: any [] = [];
   constructor(
     private carePlanService: CarePlanService,
     public router: Router,
@@ -26,6 +27,8 @@ export class CareActivityPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
+
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
     });
@@ -43,6 +46,11 @@ export class CareActivityPage implements OnInit {
     });
   }
 
+
+  ionViewWillEnter(){
+    this.addedCareActivityList = this.carePlanService.getTemporalAddedActivity;
+   console.log(this.addedCareActivityList);
+  }
 
 
   callCarePlanTemplatesByIdPatientProfile(){

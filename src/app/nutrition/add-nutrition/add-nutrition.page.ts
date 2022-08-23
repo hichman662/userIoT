@@ -21,12 +21,12 @@ export class AddNutritionPage implements OnInit {
   careActivity: CareActivity;
   public idScenario: number;
   idNewNutrition: number;
-
+idCareactivityByUrl: number;
   constructor(
     public navCtrl: NavController,
     private carePlanService: CarePlanService,
     public alertController: AlertController,
-    private router: Router,
+    private route: ActivatedRoute,
     private storage: Storage
   ) {
 
@@ -47,6 +47,8 @@ export class AddNutritionPage implements OnInit {
 }
 
   ngOnInit() {
+    this.idCareactivityByUrl = this.route.snapshot.params.Id;
+    console.log(this.idCareactivityByUrl);
   }
 
   ionViewWillEnter(){
@@ -60,7 +62,10 @@ export class AddNutritionPage implements OnInit {
     .subscribe( (res: Nutrition) => {
       this.name = res.Name;
       this.idNewNutrition = res.Id;
+      this.carePlanService.setTemporalAddActivity = this.idCareactivityByUrl;
+      console.log(this.carePlanService.getTemporalAddedActivity);
       console.log(this.idNewNutrition);
+      window.history.back();
       this.presentAlert();
     }, ( err ) => {
 

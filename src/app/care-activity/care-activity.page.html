@@ -48,63 +48,72 @@
     </ion-row>
 </ion-header>
 <ion-content>
-    <ion-card-header [hidden]="!careActivityNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
+    <!--  <ion-card-header [hidden]="!careActivityNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
         <ion-icon size="large" name="warning-outline"></ion-icon> No Care Activity has been added to this scenario. To add Care Actiity, press the Add button.
-    </ion-card-header>
+    </ion-card-header> -->
     <ion-list>
         <div class="carePlan" *ngFor="let careActivitie of careActivities">
 
-            <ion-item-sliding #slidingItem>
-                <div *ngIf="careActivitie.TypeActivity === 1">
-                    <ion-item class="item">
-                        <ion-button fill="outline" slot="end" [routerLink]="['addMedication',careActivitie['Id']]">Add</ion-button>
-                        <ion-avatar slot="start">
-                            <img src="assets/icon/medication.png">
-                        </ion-avatar>
-                        <ion-label text-wrap>
-                            <h5>Medication</h5>
-                            <h4> {{careActivitie['Name']}}</h4>
-                        </ion-label>
-                    </ion-item>
-                </div>
-                <div *ngIf="careActivitie.TypeActivity === 2">
-                    <ion-item class="item">
-                        <ion-button fill="outline" slot="end" [routerLink]="['addNutrition',careActivitie['Id']]">Add</ion-button>
-                        <ion-avatar slot="start">
-                            <img src="assets/icon/nutrition.png">
-                        </ion-avatar>
-                        <ion-label text-wrap>
-                            <h5>Nutrition</h5>
-                            <h4> {{careActivitie['Name']}}</h4>
-                        </ion-label>
-                    </ion-item>
-                </div>
-                <div *ngIf="careActivitie.TypeActivity === 3">
-                    <ion-item class="item">
-                        <ion-button fill="outline" slot="end" [routerLink]="['addCommunication',careActivitie['Id']]">Add</ion-button>
-                        <ion-avatar slot="start">
-                            <img src="assets/icon/communication.png">
-                        </ion-avatar>
-                        <ion-label text-wrap>
-                            <h5>Communication</h5>
-                            <h4> {{careActivitie['Name']}}</h4>
-                        </ion-label>
-                    </ion-item>
-                </div>
-                <div *ngIf="careActivitie.TypeActivity === 4">
-                    <ion-item class="item">
-                        <ion-button fill="outline" slot="end" [routerLink]="['addAppointment',careActivitie['Id']]">Add</ion-button>
-                        <ion-avatar slot="start">
-                            <img src="assets/icon/appointment.png">
-                        </ion-avatar>
-                        <ion-label text-wrap>
-                            <h5>Appointment</h5>
-                            <h4> {{careActivitie['Name']}}</h4>
-                        </ion-label>
-                    </ion-item>
-                </div>
+            <!--  <ion-item-sliding #slidingItem> -->
+            <div *ngIf="careActivitie.TypeActivity === 1">
+                <ion-item class="item">
 
-                <!--  <ion-item-options side="end" (ionSwipe)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
+                    <ion-button fill="outline" slot="end" [routerLink]="['addMedication',careActivitie['Id']]">Add</ion-button>
+                    <ion-icon slot="end" color="success" name="checkmark-circle" class="trashIcon"></ion-icon>
+
+                    <ion-avatar slot="start">
+                        <img src="assets/icon/medication.png">
+                        <ion-icon color="success" name="checkmark-circle"></ion-icon>
+                    </ion-avatar>
+                    <ion-label text-wrap>
+                        <h5>Medication</h5>
+                        <h4> {{careActivitie['Name']}}</h4>
+                    </ion-label>
+                </ion-item>
+            </div>
+            <div *ngIf="careActivitie.TypeActivity === 2">
+                <ion-item class="item">
+
+
+                    <ion-button fill="outline" slot="end" [routerLink]="['addNutrition',careActivitie['Id']]">Add</ion-button>
+                    <ion-icon slot="end" color="success" name="checkmark-circle" class="trashIcon"></ion-icon>
+
+
+                    <ion-avatar slot="start">
+                        <img src="assets/icon/nutrition.png">
+                    </ion-avatar>
+                    <ion-label text-wrap>
+                        <h5>Nutrition</h5>
+                        <h4> {{careActivitie['Name']}}</h4>
+                    </ion-label>
+                </ion-item>
+            </div>
+            <div *ngIf="careActivitie.TypeActivity === 3">
+                <ion-item class="item">
+                    <ion-button fill="outline" slot="end" [routerLink]="['addCommunication',careActivitie['Id']]">Add</ion-button>
+                    <ion-avatar slot="start">
+                        <img src="assets/icon/communication.png">
+                    </ion-avatar>
+                    <ion-label text-wrap>
+                        <h5>Communication</h5>
+                        <h4> {{careActivitie['Name']}}</h4>
+                    </ion-label>
+                </ion-item>
+            </div>
+            <div *ngIf="careActivitie.TypeActivity === 4">
+                <ion-item class="item">
+                    <ion-button fill="outline" slot="end" [routerLink]="['addAppointment',careActivitie['Id']]">Add</ion-button>
+                    <ion-avatar slot="start">
+                        <img src="assets/icon/appointment.png">
+                    </ion-avatar>
+                    <ion-label text-wrap>
+                        <h5>Appointment</h5>
+                        <h4> {{careActivitie['Name']}}</h4>
+                    </ion-label>
+                </ion-item>
+            </div>
+
+            <!--  <ion-item-options side="end" (ionSwipe)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
               <ion-item-option color="danger" expandable (click)="deletePatientProfile(slidingItem,patientProfile['Id'], patientProfile['Name'])">
 
                   <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
@@ -121,7 +130,7 @@
 
               </ion-item-option>
           </ion-item-options> -->
-            </ion-item-sliding>
+            <!-- </ion-item-sliding> -->
         </div>
     </ion-list>
     <br>
