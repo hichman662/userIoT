@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./detail-care-activity/detail-care-activity.module').then( m => m.DetailCareActivityPageModule)
   },
   {
-    path: 'addNutrition/:Id',
+    path: 'addNutrition',
     loadChildren: () => import('../nutrition/add-nutrition/add-nutrition.module').then( m => m.AddNutritionPageModule)
   },
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
     loadChildren: () => import('../communication/add-communication/add-communication.module').then( m => m.AddCommunicationPageModule)
   },
   {
-    path: 'addMedication/:Id',
+    path: 'addMedication',
     loadChildren: () => import('../medication/add-medication/add-medication.module').then( m => m.AddMedicationPageModule)
   },
   {

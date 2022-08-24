@@ -94,4 +94,14 @@ export class CareActivityPage implements OnInit {
   goToInicio(){
     this.router.navigateByUrl("tabs", { skipLocationChange: false });
   }
+
+  addMedication(careActivityId: number, medicationId: number){
+    this.storage.set('careActivityIdForAdd', careActivityId);
+    this.storage.set('medicationIdForAdd', medicationId);
+  }
+
+  addNutrition(careActivityId: number, nutritionId: number){
+    this.storage.set('careActivityIdForAdd', careActivityId);
+    this.storage.set('nutritionIdForAdd', nutritionId);
+  }
 }

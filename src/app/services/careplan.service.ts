@@ -163,6 +163,10 @@ public deleteMedication(uid) {
   return this.http.delete(`${environment.base_url}/IMMedication/Destroy?p_immedication_oid=${uid}`);
 }
 
+public assignTemplateMedication( idNewMedication: number,idCareActivity: number, idMedicationTemplate: number ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IMMedication/AssignTemplate?p_immedicationoid=${idNewMedication}&p_oidcareactivity=${idCareActivity}&p_oidmedication=${idMedicationTemplate}`, null);
+}
+
 //Nutrition Order
 public getNutritionyByIdCareActivity( uid: number): Observable<object>{
   if (!uid) { uid = null; }
@@ -180,6 +184,9 @@ public createNutritionOrder( data: Nutrition ): Observable<object> {
   return this.http.post(`${environment.base_url}/IMNutritionOrder/New_`, data);
 }
 
+public assignTemplateNutritionOrder( idNewNutrition: number,idCareActivity: number, idNutritionTemplate: number ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IMNutritionOrder/AssignTemplate?p_imnutritionoid=${idNewNutrition}&p_oidcareactivity=${idCareActivity}&p_oidnutritionorder=${idNutritionTemplate}`, null);
+}
 
 //Communication
 public getCommunicationByIdCareActivity( uid: number): Observable<object>{

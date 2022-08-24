@@ -58,7 +58,7 @@
             <div *ngIf="careActivitie.TypeActivity === 1">
                 <ion-item class="item">
 
-                    <ion-button fill="outline" slot="end" [routerLink]="['addMedication',careActivitie['Id']]">Add</ion-button>
+                    <ion-button fill="outline" slot="end" (click)="addMedication(careActivitie['Id'], careActivitie.MedicationsCare['ProductReference'])" [routerLink]="['addMedication']">Add</ion-button>
                     <ion-icon slot="end" color="success" name="checkmark-circle" class="trashIcon"></ion-icon>
 
                     <ion-avatar slot="start">
@@ -75,7 +75,7 @@
                 <ion-item class="item">
 
 
-                    <ion-button fill="outline" slot="end" [routerLink]="['addNutrition',careActivitie['Id']]">Add</ion-button>
+                    <ion-button fill="outline" slot="end" (click)="addNutrition(careActivitie['Id'], careActivitie.NutritionOrders['Id'])" [routerLink]="['addNutrition']">Add</ion-button>
                     <ion-icon slot="end" color="success" name="checkmark-circle" class="trashIcon"></ion-icon>
 
 

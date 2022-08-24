@@ -22,7 +22,8 @@ export class AddMedicationPage implements OnInit {
   careActivity: CareActivity;
   public idScenario: number;
   idNewMedication: number;
-
+  idCareactivityForAdd: number;
+  idMedicationForAdd: number;
   constructor(
     public navCtrl: NavController,
     private carePlanService: CarePlanService,
@@ -54,6 +55,12 @@ export class AddMedicationPage implements OnInit {
     this.storage.get('idScenario').then((val) => {
       this.addMedicationForm.get('Scenario_oid').setValue(val);
     });
+    this.storage.get('careActivityIdForAdd').then((val) => {
+      this.idCareactivityForAdd = val;
+    });
+    this.storage.get('medicationIdForAdd').then((val) => {
+      this.idMedicationForAdd = val;
+    });
   }
 
   onSubmit(){
@@ -61,13 +68,27 @@ export class AddMedicationPage implements OnInit {
     .subscribe( (res: Medication) => {
       this.name = res.Name;
       this.idNewMedication = res.Id;
-      console.log(this.idNewMedication);
-      this.presentAlert();
+      this.assignMedicationTemplate();
+      console.log("id new mediction: " + this.idNewMedication);
+      window.history.back();
     }, ( err ) => {
 
     });
 
   }
+
+  assignMedicationTemplate(){
+    this.carePlanService.assignTemplateMedication(this.idNewMedication,this.idCareactivityForAdd,this.idMedicationForAdd)
+    .subscribe( (res: any) => {
+      this.carePlanService.setTemporalAddActivity = this.idCareactivityForAdd;
+      console.log(this.carePlanService.getTemporalAddedActivity);
+      this.storage.set('careActivityIdForAdd',null);
+      this.storage.set('medicationIdForAdd',null);
+      this.presentAlert();
+    }, ( err ) => {
+    });
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

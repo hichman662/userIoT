@@ -21,7 +21,8 @@ export class AddNutritionPage implements OnInit {
   careActivity: CareActivity;
   public idScenario: number;
   idNewNutrition: number;
-idCareactivityByUrl: number;
+  idCareactivityForAdd: number;
+  idNutritionForAdd: number;
   constructor(
     public navCtrl: NavController,
     private carePlanService: CarePlanService,
@@ -47,13 +48,18 @@ idCareactivityByUrl: number;
 }
 
   ngOnInit() {
-    this.idCareactivityByUrl = this.route.snapshot.params.Id;
-    console.log(this.idCareactivityByUrl);
+
   }
 
   ionViewWillEnter(){
     this.storage.get('idScenario').then((val) => {
       this.addNutritionForm.get('Scenario_oid').setValue(val);
+    });
+    this.storage.get('careActivityIdForAdd').then((val) => {
+      this.idCareactivityForAdd = val;
+    });
+    this.storage.get('nutritionIdForAdd').then((val) => {
+      this.idNutritionForAdd = val;
     });
   }
 
@@ -62,16 +68,26 @@ idCareactivityByUrl: number;
     .subscribe( (res: Nutrition) => {
       this.name = res.Name;
       this.idNewNutrition = res.Id;
-      this.carePlanService.setTemporalAddActivity = this.idCareactivityByUrl;
-      console.log(this.carePlanService.getTemporalAddedActivity);
-      console.log(this.idNewNutrition);
+      this.assignNutritionTemplate();
+      console.log("id new nutrition: " + this.idNewNutrition);
       window.history.back();
-      this.presentAlert();
     }, ( err ) => {
 
     });
 
   }
+  assignNutritionTemplate(){
+    this.carePlanService.assignTemplateNutritionOrder(this.idNewNutrition,this.idCareactivityForAdd,this.idNutritionForAdd)
+    .subscribe( (res: any) => {
+      this.carePlanService.setTemporalAddActivity = this.idCareactivityForAdd;
+      console.log(this.carePlanService.getTemporalAddedActivity);
+      this.storage.set('careActivityIdForAdd',null);
+      this.storage.set('nutritionIdForAdd',null);
+      this.presentAlert();
+    }, ( err ) => {
+    });
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
