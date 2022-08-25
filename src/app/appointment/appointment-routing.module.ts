@@ -11,9 +11,10 @@ const routes: Routes = [
   {
     path: 'detail-appointment/:Id',
     loadChildren: () => import('./detail-appointment/detail-appointment.module').then( m => m.DetailAppointmentPageModule)
-  },  {
-    path: 'add-appointment',
-    loadChildren: () => import('./add-appointment/add-appointment.module').then( m => m.AddAppointmentPageModule)
+  },
+  {
+    path: 'add-appointment/:Id',
+    loadChildren: () => import('../care-activity/care-activity.module').then( m => m.CareActivityPageModule)
   }
 
 ];

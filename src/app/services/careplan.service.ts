@@ -144,6 +144,10 @@ public createAppointment( data: Appointment ): Observable<object> {
   return this.http.post(`${environment.base_url}/IMAppointment/New_`, data);
 }
 
+public assignTemplateAppointment( idNewAppointment: number,idCareActivity: number, idAppointmentTemplate: number ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IMAppointment/AssignTemplate?p_imappointmentoid=${idNewAppointment}&p_oidcareactivity=${idCareActivity}&p_oidappointment=${idAppointmentTemplate}`, null);
+}
+
 
 // Medication
 public getMedicationByIdCareActivity( uid: number): Observable<object>{

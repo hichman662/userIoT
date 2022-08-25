@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('../nutrition/add-nutrition/add-nutrition.module').then( m => m.AddNutritionPageModule)
   },
   {
-    path: 'addAppointment/:Id',
+    path: 'addAppointment',
     loadChildren: () => import('../appointment/add-appointment/add-appointment.module').then( m => m.AddAppointmentPageModule)
   },
   {

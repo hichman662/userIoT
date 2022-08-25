@@ -10,7 +10,7 @@ const routes: Routes = [
     component: AddCarePlanPage
   },
   {
-    path: 'careActivity',
+    path: 'careActivity/:Id',
     loadChildren: () => import('../../care-activity/care-activity.module').then( m => m.CareActivityPageModule)
   }
 

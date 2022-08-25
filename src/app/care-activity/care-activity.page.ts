@@ -1,6 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
 /* eslint-disable @typescript-eslint/quotes */
 import { CarePlanService } from './../services/careplan.service';
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { CareActivity } from '../models/careActivity.model';
@@ -15,19 +16,20 @@ export class CareActivityPage implements OnInit {
   public idScenario: number;
   public valueCareActivity: number;
   public careActivityNull = false;
-  public nameCareActivity='';
-  idPatientProfile: number;
-  idcarePlanTemplate: number;
-  addedCareActivityList: any [] = [];
+  public nameCareActivity = '';
+  public idPatientProfile: number;
+  public idcarePlanTemplate: number;
+  public addedCareActivityList: any [] = [];
+  public listFilter = 'all';
   constructor(
     private carePlanService: CarePlanService,
     public router: Router,
+    public route: ActivatedRoute,
     private storage: Storage
 
   ) { }
 
   ngOnInit() {
-
 
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
@@ -48,6 +50,8 @@ export class CareActivityPage implements OnInit {
 
 
   ionViewWillEnter(){
+    this.listFilter = this.route.snapshot.params.Id;
+    console.log("Type of filter: " + this.listFilter);
     this.addedCareActivityList = this.carePlanService.getTemporalAddedActivity;
    console.log(this.addedCareActivityList);
   }
@@ -58,6 +62,7 @@ export class CareActivityPage implements OnInit {
     .subscribe( (res: any) => {
       if(res != null){
         this.careActivities = res;
+        res.filter( obj =>  obj.Patient === null);
         this.nameCareActivity = res.Name;
         this.careActivityNull= false;
       }else{
@@ -103,5 +108,10 @@ export class CareActivityPage implements OnInit {
   addNutrition(careActivityId: number, nutritionId: number){
     this.storage.set('careActivityIdForAdd', careActivityId);
     this.storage.set('nutritionIdForAdd', nutritionId);
+  }
+
+  addAppointment(careActivityId: number, appointmentId: number){
+    this.storage.set('careActivityIdForAdd', careActivityId);
+    this.storage.set('appointmentIdForAdd', appointmentId);
   }
 }
