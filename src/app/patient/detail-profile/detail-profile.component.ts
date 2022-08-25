@@ -73,10 +73,11 @@ export class DetailProfileComponent implements OnInit {
     this.storage.get('idPatient').then((val) => {
       if(val != null){
         this.patientId= val;
-        this.callPatientProfileEntity();
+       // this.callPatientProfileEntity();
       }
     });
   }
+
   callPatientProfileEntity(){
     this.entityService.getEntitynById(this.patientId)
     .subscribe((res: Entity ) => {
@@ -85,6 +86,7 @@ export class DetailProfileComponent implements OnInit {
       console.log(err);
     });
   }
+
   callingPatient(){
     this.userService.getPatientByIdScenario(this.idScenario)
     .subscribe((res: UserData[] ) => {

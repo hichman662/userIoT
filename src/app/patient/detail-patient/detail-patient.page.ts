@@ -42,6 +42,7 @@ export class DetailPatientPage implements OnInit {
       }
     });
   }
+
   callingPatient(){
     this.userService.getPatientByIdScenario(this.idScenario)
     .subscribe((res: UserData[] ) => {

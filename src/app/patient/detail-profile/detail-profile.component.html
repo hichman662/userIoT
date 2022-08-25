@@ -143,13 +143,13 @@
 
 <div *ngIf="segmentModel === 'disabilities'" [hidden]="patientProfileNull">
 
-    <div class="container" *ngFor="let disability of disabilities|keyvalue">
+    <div class="container" *ngFor="let disability of disabilities">
         <mat-expansion-panel details>
             <mat-expansion-panel-header slot="start">
                 <mat-panel-title>
                     <ion-item>
                         <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
-                        <ion-label>{{disability.value['Name']}}</ion-label>
+                        <ion-label>{{disability['Name']}}</ion-label>
                     </ion-item>
                 </mat-panel-title>
 
@@ -168,20 +168,20 @@
 
                     <ion-label>Disability type</ion-label>
 
-                    <ion-badge *ngIf="$any(disability).value.Type === 1"> Auditory</ion-badge>
-                    <ion-badge *ngIf="$any(disability).value.Type === 2"> Cognitive</ion-badge>
-                    <ion-badge *ngIf="$any(disability).value.Type === 3"> Physical</ion-badge>
-                    <ion-badge *ngIf="$any(disability).value.Type === 4"> Speech</ion-badge>
-                    <ion-badge *ngIf="$any(disability).value.Type === 5"> Visual</ion-badge>
+                    <ion-badge *ngIf="disability.Type === 1"> Auditory</ion-badge>
+                    <ion-badge *ngIf="disability.Type === 2"> Cognitive</ion-badge>
+                    <ion-badge *ngIf="disability.Type === 3"> Physical</ion-badge>
+                    <ion-badge *ngIf="disability.Type === 4"> Speech</ion-badge>
+                    <ion-badge *ngIf="disability.Type === 5"> Visual</ion-badge>
 
                 </ion-item>
                 <ion-item>
 
                     <ion-label>Severity</ion-label>
 
-                    <ion-badge *ngIf="$any(disability).value.Severity === 1"> Severe</ion-badge>
-                    <ion-badge *ngIf="$any(disability).value.Severity === 2"> Moderate</ion-badge>
-                    <ion-badge *ngIf="$any(disability).value.Severity === 3"> Mild</ion-badge>
+                    <ion-badge *ngIf="disability.Severity === 1"> Severe</ion-badge>
+                    <ion-badge *ngIf="disability.Severity === 2"> Moderate</ion-badge>
+                    <ion-badge *ngIf="disability.Severity === 3"> Mild</ion-badge>
 
 
                 </ion-item>
