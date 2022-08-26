@@ -1,3 +1,4 @@
+import { DeviceTemplate } from './deviceTemplate.model';
 /* eslint-disable @typescript-eslint/naming-convention */
 export class Device {
     Id: number;
@@ -9,5 +10,6 @@ export class Device {
     SerialNumber?: string;
     FirmVersion?: string;
     Trademark?: string;
-    DeviceTemplate?: any;
+    DeviceTemplate?: DeviceTemplate;
+
 }

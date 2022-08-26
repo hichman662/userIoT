@@ -1,5 +1,4 @@
-import { DeviceService } from './../../services/device.service';
-import { Property } from './../../models/property.model';
+
 import { Command } from './../../models/command.model';
 import { EntityService } from './../../services/entity.service';
 /* eslint-disable quote-props */
@@ -11,51 +10,43 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Entity } from './../../models/entity.model';
 import { IonItemSliding, AlertController, ToastController} from '@ionic/angular';
-import { Device } from 'src/app/models/device.model';
+import { Property } from 'src/app/models/property.model';
 
 @Component({
-  selector: 'app-detail-device',
-  templateUrl: './detail-device.page.html',
-  styleUrls: ['./detail-device.page.scss'],
+  selector: 'app-device-template',
+  templateUrl: './device-template.component.html',
+  styleUrls: ['./device-template.component.scss'],
 })
-export class DetailDevicePage implements OnInit {
-  public deviceName: string;
-  public deviceDescrip: string;
-  public deviceData: Device;
+export class DeviceTemplateComponent implements OnInit {
+
+  deviceTemplateNull= false;
   segmentModel = 'details';
-  load = false;
+  public attriubute: Attribute[] = [];
+  public allCommands: Command[] = [];
+  public allProperties: Property[] = [];
   private idPassedByURL: number = null;
 
   constructor(
     private entityService: EntityService,
     private route: ActivatedRoute,
     public alertController: AlertController,
-    public toastController: ToastController,
-    private deviceService: DeviceService
+    public toastController: ToastController
 
   ) { }
 
 
   ngOnInit() {
 
-    this.load = true;
     this.idPassedByURL = this.route.snapshot.params.Id;
-    this.deviceService.getDeviceById(this.idPassedByURL)
-    .subscribe((res: Device ) => {
-      console.log(res);
-    if(res != null){
-      this.load = false;
-       this.deviceName = res.Name;
-       this.deviceDescrip = res.Description;
-       this.deviceData = res;
-
-    }
+    this.entityService.getEntitynById(this.idPassedByURL)
+    .subscribe((res: Entity ) => {
+      this.attriubute = res.Attributes;
+      this.allCommands = res.Operations;
+      console.log(this.allCommands);
     }, (err) => {
       console.log(err);
     });
   }
-
-
   closeSliding(slidingItem: IonItemSliding){
     slidingItem.close();
   }
