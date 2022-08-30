@@ -207,6 +207,14 @@ public deleteCommunication(uid) {
   return this.http.delete(`${environment.base_url}/IMCommunication/Destroy?p_imcommunication_oid=${uid}`);
 }
 
+public createCommunication( data: Communication ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IMCommunication/New_`, data);
+}
+
+public assignTemplateCommunication( idNewCommunication: number,idCareActivity: number, idCommunicationTemplate: number ): Observable<object> {
+  return this.http.post(`${environment.base_url}/IMCommunication/AssignTemplate?p_imcommunicationoid=${idNewCommunication}&p_oidcareactivity=${idCareActivity}&p_oidcomunication=${idCommunicationTemplate}`, null);
+}
+
 // Goal
 public getGoalByIdCarePlan( uid: number): Observable<object>{
   if (!uid) { uid = null; }

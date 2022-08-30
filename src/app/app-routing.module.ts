@@ -15,11 +15,6 @@ const routes: Routes = [
     loadChildren: () => import('./scenarios/scenarios.module').then( m => m.ScenariosPageModule)
   },
   {
-    path: '**',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -74,6 +69,15 @@ const routes: Routes = [
   {
     path: 'chat',
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: '**',
+    redirectTo: '/login',
+    pathMatch: 'full'
   }
 ];
 @NgModule({

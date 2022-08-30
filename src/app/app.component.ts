@@ -16,8 +16,8 @@ export class AppComponent {
 
   NAV = [
     {
-      name: 'About',
-      link: '/nav/about',
+      name: 'Profile',
+      link: '/profile',
       icon: 'person-circle'
     },
     {

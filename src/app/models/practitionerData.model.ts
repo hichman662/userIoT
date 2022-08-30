@@ -10,5 +10,6 @@ export class PractitionerData {
       IsActive?: boolean;
       Type?: number;
       IsDiseased?: boolean;
-      Email?: string;
+      Name: string;
+      Description: string;
 }

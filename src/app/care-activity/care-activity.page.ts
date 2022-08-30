@@ -114,4 +114,9 @@ export class CareActivityPage implements OnInit {
     this.storage.set('careActivityIdForAdd', careActivityId);
     this.storage.set('appointmentIdForAdd', appointmentId);
   }
+
+  addCommunication(careActivityId: number, communicationId: number){
+    this.storage.set('careActivityIdForAdd', careActivityId);
+    this.storage.set('communicationIdForAdd', communicationId);
+  }
 }

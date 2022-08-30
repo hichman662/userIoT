@@ -12,16 +12,21 @@ ion-content {
     border-radius: 20px;
 }
 
+.ionadd {
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
 ion-card {
     box-shadow: none !important
 }
 
 ion-toolbar {
-    --background: rgb(167, 195, 236) !important;
+    --background: rgb(255, 232, 128) !important;
 }
 
 ion-header {
-    background-color: rgb(167, 195, 236);
+    background-color: rgb(255, 232, 128);
 }
 
 .text-top {

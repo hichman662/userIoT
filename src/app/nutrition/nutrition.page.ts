@@ -1,4 +1,3 @@
-import { Appointment } from './../models/appointment.model';
 import { CarePlanService } from './../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';

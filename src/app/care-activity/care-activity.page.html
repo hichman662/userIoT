@@ -89,7 +89,7 @@
             </div>
             <div *ngIf="(careActivity.TypeActivity === 3 && listFilter === '3') || (careActivity.TypeActivity === 3 && listFilter === 'all')">
                 <ion-item class="item">
-                    <ion-button fill="outline" slot="end" [routerLink]="['addCommunication',careActivity['Id']]">Add</ion-button>
+                    <ion-button fill="outline" slot="end" (click)="addCommunication(careActivity['Id'], 753678)" [routerLink]="['addCommunication']">Add</ion-button>
                     <ion-avatar slot="start">
                         <img src="assets/icon/communication.png">
                     </ion-avatar>

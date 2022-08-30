@@ -1,28 +1,26 @@
-/* eslint-disable @typescript-eslint/no-inferrable-types */
-import { PatientProfile } from './../../models/patientProfile.model';
-/* eslint-disable @typescript-eslint/naming-convention */
-import { PatientService } from './../../services/patient.service';
+import { PatientService } from './../services/patient.service';
+import { Practitioner } from 'src/app/models/practitioner.model';
 import { Component, OnInit } from '@angular/core';
-import { Patient } from 'src/app/models/patient.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserData } from 'src/app/models/userData.model';
 import { Storage } from '@ionic/storage';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-detail-patient',
-  templateUrl: './detail-patient.page.html',
-  styleUrls: ['./detail-patient.page.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
-export class DetailPatientPage implements OnInit {
+export class ProfilePage implements OnInit {
 
+  load = false;
   public patientName = '';
   public patientDescrip = '';
   public patientData: UserData;
   public idPaciente: number;
-  public patientEmail = '';
-  public patientNull = false;
-  load: boolean = false;
+  public profileEmail = '';
+  public profileNull = false;
+
   segmentModel = 'details';
 
   constructor(
@@ -45,18 +43,18 @@ export class DetailPatientPage implements OnInit {
 
   callingPatient(){
     this.patientService.getPatientById(this.idPaciente)
-    .subscribe((res: Patient ) => {
+    .subscribe((res: Practitioner ) => {
       console.log(res);
     if(res != null){
       this.storage.set('idPatient',res[0].Patient.Id);
        this.patientName = res[0].Name;
        this.patientDescrip = res[0].Description;
-       this.patientEmail = res[0].Patient.Email;
+      // this.patientEmail = res[0].Patient.Email;
        this.patientData = res[0];
        this.load= true;
 
     }else{
-      this.patientNull = true;
+      //this.patientNull = true;
       this.load= false;
     }
     }, (err) => {
