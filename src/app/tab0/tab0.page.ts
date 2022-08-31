@@ -19,6 +19,7 @@ export class Tab0Page implements OnInit {
   public diseases: Disease [] = [];
   public disabilities: Disability [] = [];
   public patientProfileNull = false;
+  public patientNull = false;
   public patientName = '';
   public patientSurnames = '';
   patientDescription = '';
@@ -74,10 +75,13 @@ export class Tab0Page implements OnInit {
   async callingPatientByIdScenario(id: number){
     await this.userService.getPatientByIdScenario(id)
     .subscribe((res: UserData[] ) => {
-      if(res[0] !== null){
+      if(res !== null){
         this.patientName = res[0].Name;
         this.patientSurnames = res[0].Surnames;
         this.patientDescription = res[0].Description;
+        this.patientNull = false;
+      }else{
+        this.patientNull = true;
       }
     if(res[0].Patient.PatientProfile !== null){
       this.patientProfileNull = false;

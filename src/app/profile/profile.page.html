@@ -33,8 +33,8 @@
         </ion-col>
         <ion-col size="10" class="ion-align-self-center">
 
-            <ion-list-header>
-                <ion-label class="text-top">Profile</ion-label>
+            <ion-list-header *ngIf="load">
+                <ion-label class="text-top">{{practitionerData.Name}}'s Profile </ion-label>
 
             </ion-list-header>
 
@@ -50,42 +50,48 @@
 <ion-content>
     <ion-spinner class="spin" *ngIf="!load" name="bubbles"></ion-spinner>
 
-    <ion-list *ngIf="load && !profileNull" class="animate__animated animate__slideInUp animate__slow">
+    <ion-list *ngIf="load" class="animate__animated animate__slideInUp animate__slow">
+        <ion-list-header>
+            <ion-icon class="segmentIcon" name="person-outline"></ion-icon>Name</ion-list-header>
+        <ion-item>
+
+            <ion-label text-wrap> {{practitionerData.Name}}</ion-label>
+        </ion-item>
         <ion-list-header>
             <ion-icon class="segmentIcon" name="person-outline"></ion-icon>Surname</ion-list-header>
         <ion-item>
 
-            <ion-label text-wrap> {{patientData.Surnames}}</ion-label>
+            <ion-label text-wrap> {{practitionerData.Surnames}}</ion-label>
         </ion-item>
         <ion-list-header>
             <ion-icon class="segmentIcon" name="at-outline"></ion-icon>Email</ion-list-header>
         <ion-item>
 
-            <!--   <ion-label> {{patientEmail}}</ion-label> -->
+            <ion-label> {{practitionerEmail}}</ion-label>
 
         </ion-item>
         <ion-list-header>
 
             <ion-icon class="segmentIcon" name="power-outline"></ion-icon>Active Status</ion-list-header>
         <ion-item>
-            <ion-item [hidden]="patientData.IsActive === true">
+            <ion-item [hidden]="practitionerData.IsActive === true">
                 <ion-label>Disactive</ion-label>
             </ion-item>
-            <ion-item [hidden]="patientData.IsActive === false">
+            <ion-item [hidden]="practitionerData.IsActive === false">
                 <ion-label>Active</ion-label>
             </ion-item>
 
-            <!-- <ion-label> {{$any(patientData)?.IsActive}}</ion-label> -->
+            <!-- <ion-label> {{$any(practitionerData)?.IsActive}}</ion-label> -->
 
         </ion-item>
         <ion-list-header>
             <ion-icon class="segmentIcon" name="heart-half-outline"></ion-icon>Is Diseased</ion-list-header>
         <ion-item>
 
-            <ion-item [hidden]="patientData.IsDiseased === false">
+            <ion-item [hidden]="practitionerData.IsDiseased === false">
                 <ion-label>Yes</ion-label>
             </ion-item>
-            <ion-item [hidden]="patientData.IsDiseased === true">
+            <ion-item [hidden]="practitionerData.IsDiseased === true">
                 <ion-label>No</ion-label>
             </ion-item>
 
@@ -95,10 +101,10 @@
         <ion-list-header>
             <ion-icon class="segmentIcon" name="male-female-outline"></ion-icon>Gender</ion-list-header>
         <ion-item>
-            <ion-label *ngIf="patientData.Type === 1"> Male</ion-label>
-            <ion-label *ngIf="patientData.Type === 2"> Female</ion-label>
-            <ion-label *ngIf="patientData.Type === 3"> Other</ion-label>
-            <ion-label *ngIf="patientData.Type === 4"> Unknown</ion-label>
+            <ion-label *ngIf="practitionerData.Type === 1"> Male</ion-label>
+            <ion-label *ngIf="practitionerData.Type === 2"> Female</ion-label>
+            <ion-label *ngIf="practitionerData.Type === 3"> Other</ion-label>
+            <ion-label *ngIf="practitionerData.Type === 4"> Unknown</ion-label>
         </ion-item>
 
 

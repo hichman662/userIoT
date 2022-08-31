@@ -16,6 +16,14 @@ const routes: Routes = [
     path: 'detail-care-plan/:Id',
     loadChildren: () => import('../care-plan/detail-care-plan/detail-care-plan.module').then( m => m.DetailCarePlanPageModule)
   },
+  {
+    path: 'add-patient',
+    loadChildren: () => import('./../patient/add-patient/add-patient.module').then( m => m.AddPatientPageModule)
+  },
+  {
+    path: 'add-careplan',
+    loadChildren: () => import('./../care-plan/add-care-plan/add-care-plan.module').then(m => m.AddCarePlanPageModule)
+  }
 ];
 
 @NgModule({

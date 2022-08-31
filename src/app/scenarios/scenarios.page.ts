@@ -79,9 +79,11 @@ export class ScenariosPage implements OnInit {
       console.log(res);
       if(res != null && res[0].Patient.PatientProfile !== null){
       this.storage.set('idPatientProfile',  res[0].Patient.PatientProfile.Id);
+      this.storage.set('idPatient',  res[0].Patient.Id);
     }
     else{
       this.storage.set('idPatientProfile',null);
+      this.storage.set('idPatient',null);
     }
     }, ( err) => {
         console.log(err);

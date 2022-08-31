@@ -44,7 +44,7 @@ async  ngOnInit() {
     this.userService.login( this.loginForm.value)
       .subscribe( (res: any) => {
         this.waiting = false;
-        //this.storage.set('token', res);
+        this.storage.set('email', this.loginForm.get('Email').value);
         this.router.navigateByUrl('/scenarios', { replaceUrl:true });
       }, (err: any) => {
         console.warn('Error respuesta api', err);

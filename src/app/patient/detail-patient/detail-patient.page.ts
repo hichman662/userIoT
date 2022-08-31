@@ -19,7 +19,7 @@ export class DetailPatientPage implements OnInit {
   public patientName = '';
   public patientDescrip = '';
   public patientData: UserData;
-  public idPaciente: number;
+  public idScenario: number;
   public patientEmail = '';
   public patientNull = false;
   load: boolean = false;
@@ -35,16 +35,16 @@ export class DetailPatientPage implements OnInit {
 
 
   ngOnInit() {
-    this.storage.get('idPatient').then((val) => {
-      this.idPaciente = val;
-      if(this.idPaciente !== 0){
+    this.storage.get('idScenario').then((val) => {
+      this.idScenario = val;
+      if(this.idScenario !== 0){
         this.callingPatient();
       }
     });
   }
 
   callingPatient(){
-    this.patientService.getPatientById(this.idPaciente)
+    this.userService.getPatientByIdScenario(this.idScenario)
     .subscribe((res: Patient ) => {
       console.log(res);
     if(res != null){

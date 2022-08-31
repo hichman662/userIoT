@@ -35,7 +35,7 @@ export class DetailPractitionerPage implements OnInit {
     .subscribe((res: UserData ) => {
     if(res != null){
       console.log(res);
-       this.practitionerEmail = res.Practitioner.Email;
+      // this.practitionerEmail = res.Practitioner.Email;
        this.practitionerData = res;
        this.load= true;
     }

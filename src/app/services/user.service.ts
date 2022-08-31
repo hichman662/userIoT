@@ -47,6 +47,9 @@ public getPractitionerByIdScenario( uid: number): Observable<object>{
  return this.http.get <Practitioner>(`${environment.base_url}/User/DameMedicoPorScenario?p_idscenario=${uid}` );
 }
 
+public getPractitionerByEmail( email: string): Observable<object>{
+ return this.http.get <Practitioner>(`${environment.base_url}/Practitioner/DamePorEmail?p_email=${email}` );
+}
 public getRelatedPersonByIdScenario( uid: number): Observable<object>{
   if (!uid) { uid = null; }
  return this.http.get <RelatedPersonData>(`${environment.base_url}/User/DameRelatedPersonPorScenario?p_idscenario=${uid}` );

@@ -1,3 +1,4 @@
+import { PractitionerData } from './../models/practitionerData.model';
 import { PatientService } from './../services/patient.service';
 import { Practitioner } from 'src/app/models/practitioner.model';
 import { Component, OnInit } from '@angular/core';
@@ -14,9 +15,10 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfilePage implements OnInit {
 
   load = false;
-  public patientName = '';
-  public patientDescrip = '';
-  public patientData: UserData;
+  public emailMedico ='';
+  public practitionerEmail = '';
+  public practitioner: Practitioner;
+  public practitionerData: PractitionerData;
   public idPaciente: number;
   public profileEmail = '';
   public profileNull = false;
@@ -33,28 +35,24 @@ export class ProfilePage implements OnInit {
 
 
   ngOnInit() {
-    this.storage.get('idPatient').then((val) => {
-      this.idPaciente = val;
-      if(this.idPaciente !== 0){
+    this.storage.get('email').then((val) => {
+      this.emailMedico = val;
+      if(this.emailMedico !== 'null'){
         this.callingPatient();
       }
     });
   }
 
   callingPatient(){
-    this.patientService.getPatientById(this.idPaciente)
+    this.userService.getPractitionerByEmail(this.emailMedico)
     .subscribe((res: Practitioner ) => {
       console.log(res);
     if(res != null){
-      this.storage.set('idPatient',res[0].Patient.Id);
-       this.patientName = res[0].Name;
-       this.patientDescrip = res[0].Description;
-      // this.patientEmail = res[0].Patient.Email;
-       this.patientData = res[0];
+      this.practitionerEmail = res[0].Email;
+       this.practitionerData = res[0].UserPractitioner;
        this.load= true;
 
     }else{
-      //this.patientNull = true;
       this.load= false;
     }
     }, (err) => {
