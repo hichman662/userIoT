@@ -53,13 +53,18 @@ idle.onIdleEnd.subscribe(() => this.idleState = 'No longer idle.');
 idle.onTimeout.subscribe(() => {
        this.idleState = 'Timed out!';
       this.timedOut = true;
+      console.log(this.idleState);
+      this.router.navigate(['/']);
 });
 idle.onIdleStart.subscribe(() => this.idleState = 'idle state');
 
 idle.onTimeoutWarning.subscribe((countdown) => this.idleState = 'You will time out in ' + countdown + ' seconds!');     // sets the ping interval to 15 seconds
 
+// sets the ping interval to 15 seconds
 keepalive.interval(15);
 
+keepalive.onPing.subscribe(() => this.lastPing = new Date());
+console.log(this.lastPing);
 this.reset();
  }
 

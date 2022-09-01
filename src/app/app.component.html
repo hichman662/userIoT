@@ -16,8 +16,11 @@
             </ion-menu-toggle>
         </ion-list>
 
-        <p><strong>{{idleState}}</strong></p>
-        <button (click)="reset()" *ngIf="timedOut">Restart</button>
+
     </ion-content>
 </ion-menu>
+<ion-item>
+    <p><strong>{{idleState}}</strong></p>
+    <button (click)="reset()" *ngIf="timedOut">Restart</button>
+</ion-item>
 <ion-router-outlet id="main-content" main></ion-router-outlet>
