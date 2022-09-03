@@ -6,14 +6,17 @@ import { Storage } from '@ionic/storage';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 import { Router, RouterEvent } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  active = '';
 
+  active = '';
+  isModalOpen = false;
   NAV = [
     {
       name: 'Profile',
@@ -27,12 +30,16 @@ export class AppComponent {
     }
   ];
 
-  idleState = 'Not started.';
+  public idleState = 'NotStarted';
   timedOut = false;
   lastPing?: Date = null;
+  showModal = false;
+  handlerMessage = '';
+  roleMessage = '';
+
 
   constructor(public storage: Storage,private router: Router,
-    private idle: Idle, private keepalive: Keepalive) {
+    public idle: Idle, private keepalive: Keepalive,private alertController: AlertController) {
     this.storage.create();
     this.router.events.subscribe((event: RouterEvent) => {
       this.active = event.url;
@@ -55,10 +62,19 @@ idle.onTimeout.subscribe(() => {
       this.timedOut = true;
       console.log(this.idleState);
       this.router.navigate(['/']);
+      this.showModal = false;
 });
-idle.onIdleStart.subscribe(() => this.idleState = 'idle state');
+idle.onIdleStart.subscribe(() => {this.idleState = 'idle state';
+  this.showModal = true;
+  this.presentAlert();
+});
 
-idle.onTimeoutWarning.subscribe((countdown) => this.idleState = 'You will time out in ' + countdown + ' seconds!');     // sets the ping interval to 15 seconds
+
+idle.onTimeoutWarning.subscribe((countdown) => {
+
+  //this.idleState = 'You will time out in ' + countdown + ' seconds!';
+  this.idleState =  countdown + ' seconds!';
+} );     // sets the ping interval to 15 seconds
 
 // sets the ping interval to 15 seconds
 keepalive.interval(15);
@@ -70,8 +86,52 @@ this.reset();
 
 reset() {
     this.idle.watch();
+
     this.idleState = 'Started.';
     this.timedOut = false;
+    this.showModal = false;
   }
+
+  async presentAlert() {
+
+    const alert = await this.alertController.create({
+
+      header:  `Idle timer expired; Session has been idle over its time limit. Plaese press continue to continue session.`,
+      buttons: [
+        {
+          text: 'Continue',
+          role: 'cancel',
+          handler: () => {
+            this.handlerMessage = 'Alert canceled';
+            this.reset();
+            this.showModal = false;
+          },
+        },
+        {
+          text: 'Logout',
+          role: 'confirm',
+          handler: () => {
+            this.handlerMessage = 'Alert confirmed';
+            this.router.navigate(['/']);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+    setTimeout(()=>{
+      alert.dismiss();
+  }, 10000);
+
+    const { role } = await alert.onDidDismiss();
+    this.roleMessage = `Dismissed with role: ${role}`;
+
+
+  }
+
+  setOpen(isOpen: boolean) {
+    this.showModal = isOpen;
+  }
+
 
 }

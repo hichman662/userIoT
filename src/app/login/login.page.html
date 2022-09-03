@@ -75,8 +75,11 @@
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <ion-button class="btn btn-success" (click)="login();" type="submit" [disabled]="waiting" fill="solid" expand="full">
-                                <ion-spinner name="" color="danger" *ngIf="waiting"></ion-spinner>Login
+                            <ion-button (click)="login();" type="submit" [hidden]="waiting">
+                                <ion-spinner name="" *ngIf="waiting"></ion-spinner>Login
+                            </ion-button>
+                            <ion-button [hidden]="!waiting" [disabled]="waiting">
+                                <ion-spinner name="" color="danger" *ngIf="waiting"></ion-spinner>Loading
                             </ion-button>
                         </ion-col>
                     </ion-row>

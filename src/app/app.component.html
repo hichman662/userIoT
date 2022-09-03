@@ -19,8 +19,17 @@
 
     </ion-content>
 </ion-menu>
-<ion-item>
+
+<!-- <ion-item *ngIf="showModal">
     <p><strong>{{idleState}}</strong></p>
     <button (click)="reset()" *ngIf="timedOut">Restart</button>
+</ion-item> -->
+<ion-item *ngIf="showModal" class="timerIdle ion-text-center align-center">
+    {{idleState}}
 </ion-item>
+
+
+
+
+
 <ion-router-outlet id="main-content" main></ion-router-outlet>

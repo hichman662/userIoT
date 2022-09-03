@@ -1,3 +1,14 @@
 ion-content {
     --background: #bcd0eeb0;
 }
+
+.timerIdle {
+    font-size: 35px;
+    align-items: center;
+    text-align: center;
+    margin-top: 200px;
+    margin-left: 80px;
+    margin-right: 80px;
+    --background: #d8db30c2;
+    color: black;
+}

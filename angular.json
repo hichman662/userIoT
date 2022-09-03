@@ -33,7 +33,7 @@
                         "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css", "src/theme/variables.scss", "src/global.scss"
                         ],
-                        "scripts": [],
+                        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"],
                         "aot": false,
                         "vendorChunk": true,
                         "extractLicenses": false,
