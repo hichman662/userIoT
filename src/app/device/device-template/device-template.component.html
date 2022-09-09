@@ -76,17 +76,21 @@
                 <ion-list-header>
                     <ion-icon class="segmentIcon" name="shuffle-outline"></ion-icon>Type</ion-list-header>
                 <ion-item>
-                    <ion-label *ngIf="command['Type'] === 1"> Equal</ion-label>
-                    <ion-label *ngIf="command['Type'] === 2"> Distinct</ion-label>
-                    <ion-label *ngIf="command['Type'] === 3"> Is greater than</ion-label>
-                    <ion-label *ngIf="command['Type'] === 4"> Is less than</ion-label>
+                    <ion-label *ngIf="command.Type === 1">Create</ion-label>
+                    <ion-label *ngIf="command.Type === 2">Execute</ion-label>
+                    <ion-label *ngIf="command.Type === 3">Delete</ion-label>
+                    <ion-label *ngIf="command.Type === 4">Update</ion-label>
+                    <ion-label *ngIf="command.Type === 5">GetById</ion-label>
+                    <ion-label *ngIf="command.Type === 6">GetProperty</ion-label>
+                    <ion-label *ngIf="command.Type === 7">SetProperty</ion-label>
+                    <ion-label *ngIf="command.Type === 8">List</ion-label>
+                    <ion-label *ngIf="command.Type === 9">Reboot</ion-label>
+                    <ion-label *ngIf="command.Type === 10">Login</ion-label>
                 </ion-item>
-                <ion-list-header>
-                    <ion-icon class="segmentIcon" name="calendar-number-outline"></ion-icon>Service Type</ion-list-header>
                 <ion-item>
-                    <ion-label *ngIf="command['ServiceType'] === 1"> Notify</ion-label>
-                    <ion-label *ngIf="command['ServiceType'] === 2"> Actuation</ion-label>
-                    <ion-label *ngIf="command['ServiceType'] === 3"> Register</ion-label>
+
+                    <ion-label text-wrap>Is Synchronous</ion-label>
+                    <ion-badge text-wrap> {{command.IsSynchronous}}</ion-badge>
                 </ion-item>
 
             </ion-card>

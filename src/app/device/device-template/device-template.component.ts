@@ -1,3 +1,4 @@
+import { CommandTemplate } from './../../models/commandTemplate.model';
 import { PropertyTemplate } from './../../models/propertyTemplate.model';
 import { DeviceService } from './../../services/device.service';
 
@@ -24,7 +25,7 @@ export class DeviceTemplateComponent implements OnInit {
   deviceTemplateNull= false;
   segmentModel = 'detail';
   public attriubute: Attribute[] = [];
-  public allCommands: Command[] = [];
+  public allCommands: CommandTemplate[] = [];
   public allProperties: PropertyTemplate[] = [];
   private idPassedByURL: number = null;
 
@@ -47,7 +48,7 @@ export class DeviceTemplateComponent implements OnInit {
     this.entityService.getEntitynById(this.idPassedByURL)
     .subscribe((res: Entity ) => {
       this.attriubute = res.Attributes;
-      this.allCommands = res.Operations;
+      //this.allCommands = res.Operations;
       console.log(this.allCommands);
     }, (err) => {
       console.log(err);
@@ -62,6 +63,7 @@ export class DeviceTemplateComponent implements OnInit {
       console.log(res);
     if(res != null){
       this.allProperties = res.DeviceTemplate.Properties;
+      this.allCommands = res.DeviceTemplate.Commands;
       console.log(this.allProperties);
     }
     }, (err) => {

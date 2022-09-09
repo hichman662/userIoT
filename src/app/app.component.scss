@@ -21,3 +21,8 @@ ion-content {
     margin-left: 55px;
     margin-right: 30px;
 }
+
+ion-input {
+    border: none; // for black border
+    outline: none; // for focus outline remove
+}

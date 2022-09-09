@@ -82,3 +82,8 @@ ion-segment-button {
 .my-custom-menu {
     --width: 500px;
 }
+
+ion-input {
+    border: none; // for black border
+    background-color: transparent;
+}

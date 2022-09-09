@@ -38,3 +38,8 @@
     height: auto;
     contain: content;
 }
+
+ion-input {
+    border: none; // for black border
+    outline: none; // for focus outline remove
+}
