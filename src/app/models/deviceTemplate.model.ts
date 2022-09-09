@@ -6,6 +6,6 @@ export class DeviceTemplate {
         name?: string;
         isEdge?: boolean;
         type?: number;
-        command?: CommandTemplate[];
-        property?: PropertyTemplate[];
+        Commands?: CommandTemplate[];
+        Properties?: PropertyTemplate[];
 }

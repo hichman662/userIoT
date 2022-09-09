@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export class PropertyTemplate {
-        id: number;
-        name: string;
-        isWritable: boolean;
-        isCloudable: number;
+        Id: number;
+        Name: string;
+        IsWritable: boolean;
+        IsCloudable: number;
 }
 

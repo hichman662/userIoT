@@ -1,5 +1,5 @@
 <ion-segment [hidden]="deviceTemplateNull" value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
-    <ion-segment-button value="details">
+    <ion-segment-button value="detail">
         <ion-icon name="receipt-outline"></ion-icon>
         <ion-label>Details</ion-label>
     </ion-segment-button>
@@ -15,7 +15,7 @@
 
 
 
-<div class="segment" *ngIf="segmentModel === 'details'">
+<div class="segment" *ngIf="segmentModel === 'detail'">
     <div *ngFor="let attr of attriubute">
 
         <ion-list>
@@ -46,7 +46,7 @@
 
     </div>
 </div>
-<div class="segment" *ngIf="segmentModel === 'command'">
+<div class="segment" *ngIf="segmentModel === 'commands'">
     <div class="container" *ngFor="let command of allCommands">
         <mat-expansion-panel details>
             <mat-expansion-panel-header slot="start">
@@ -88,6 +88,46 @@
                     <ion-label *ngIf="command['ServiceType'] === 2"> Actuation</ion-label>
                     <ion-label *ngIf="command['ServiceType'] === 3"> Register</ion-label>
                 </ion-item>
+
+            </ion-card>
+
+        </mat-expansion-panel>
+
+    </div>
+</div>
+<div class="segment" *ngIf="segmentModel === 'propetries'">
+    <div class="container" *ngFor="let property of allProperties">
+        <mat-expansion-panel details>
+            <mat-expansion-panel-header slot="start">
+                <mat-panel-title>
+                    <ion-item>
+                        <ion-icon class="segmentIcon" name="list-circle-outline"></ion-icon>
+                        <ion-label>{{property.Name}}</ion-label>
+                    </ion-item>
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <ion-item-sliding>
+                <ion-item-options side="start">
+                    <ion-item-option color="danger" (click)="null" expandable>
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+
+            <ion-card>
+                <ion-item>
+
+                    <ion-label text-wrap>Is Writable</ion-label>
+                    <ion-badge text-wrap> {{property.IsWritable}}</ion-badge>
+                </ion-item>
+                <ion-item>
+
+                    <ion-label text-wrap>Is Cloudable</ion-label>
+                    <ion-badge text-wrap> {{property.IsCloudable}}</ion-badge>
+                </ion-item>
+
 
             </ion-card>
 

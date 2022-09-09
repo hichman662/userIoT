@@ -1,3 +1,5 @@
+import { PropertyTemplate } from './../../models/propertyTemplate.model';
+import { DeviceService } from './../../services/device.service';
 
 import { Command } from './../../models/command.model';
 import { EntityService } from './../../services/entity.service';
@@ -5,12 +7,12 @@ import { EntityService } from './../../services/entity.service';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Attribute } from './../../models/attribute.model';
 /* eslint-disable @typescript-eslint/quotes */
-import { CarePlanService } from './../../services/careplan.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Entity } from './../../models/entity.model';
 import { IonItemSliding, AlertController, ToastController} from '@ionic/angular';
 import { Property } from 'src/app/models/property.model';
+import { Device } from 'src/app/models/device.model';
 
 @Component({
   selector: 'app-device-template',
@@ -20,24 +22,28 @@ import { Property } from 'src/app/models/property.model';
 export class DeviceTemplateComponent implements OnInit {
 
   deviceTemplateNull= false;
-  segmentModel = 'details';
+  segmentModel = 'detail';
   public attriubute: Attribute[] = [];
   public allCommands: Command[] = [];
-  public allProperties: Property[] = [];
+  public allProperties: PropertyTemplate[] = [];
   private idPassedByURL: number = null;
 
   constructor(
     private entityService: EntityService,
     private route: ActivatedRoute,
     public alertController: AlertController,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public deviceService: DeviceService
 
   ) { }
 
 
   ngOnInit() {
 
+
+
     this.idPassedByURL = this.route.snapshot.params.Id;
+    this.callDeviceByIdTemporal();
     this.entityService.getEntitynById(this.idPassedByURL)
     .subscribe((res: Entity ) => {
       this.attriubute = res.Attributes;
@@ -47,6 +53,23 @@ export class DeviceTemplateComponent implements OnInit {
       console.log(err);
     });
   }
+
+
+  callDeviceByIdTemporal(){
+
+    this.deviceService.getDeviceById(this.idPassedByURL)
+    .subscribe((res: Device ) => {
+      console.log(res);
+    if(res != null){
+      this.allProperties = res.DeviceTemplate.Properties;
+      console.log(this.allProperties);
+    }
+    }, (err) => {
+      console.log(err);
+    });
+
+  }
+
   closeSliding(slidingItem: IonItemSliding){
     slidingItem.close();
   }

@@ -62,8 +62,8 @@
                 </ion-item>
 
 
-                <ion-item-options side="end" (ionSwipe)="deletePatientAccess(slidingItem,device['Id'], device['Name'])">
-                    <ion-item-option color="danger" expandable (click)="deletePatientAccess(slidingItem,device['Id'], device['Name'])">
+                <ion-item-options side="end" (ionSwipe)="deleteDevice(slidingItem,device['Id'], device['Name'])">
+                    <ion-item-option color="danger" expandable (click)="deleteDevice(slidingItem,device['Id'], device['Name'])">
 
                         <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 

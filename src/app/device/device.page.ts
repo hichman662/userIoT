@@ -60,7 +60,7 @@ export class DevicePage implements OnInit {
     slidingItem.close();
   }
 
-  async deletePatientAccess(slidingItem: IonItemSliding, id: number, name: string){
+  async deleteDevice(slidingItem: IonItemSliding, id: number, name: string){
     slidingItem.close();
     console.log(id);
     const alert = await this.alertController.create({
