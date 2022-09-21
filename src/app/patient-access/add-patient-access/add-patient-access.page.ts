@@ -1,3 +1,4 @@
+import { ToastController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { PatientAccess } from './../../models/patientAccess.model';
@@ -32,7 +33,8 @@ export class AddPatientAccessPage implements OnInit {
     private patientService: PatientService,
     public alertController: AlertController,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    public toastController: ToastController
   ) {
 
     this.patientAccessForm = new FormGroup({
@@ -79,12 +81,25 @@ export class AddPatientAccessPage implements OnInit {
           //errorrrr tiene que salir que no hay Patient profile para el paciente
         }
       });
-      this.presentAlert(this.name);
+     // this.presentAlert(this.name);
+     this.presentToast('success',this.name);
     }, ( err ) => {
 
     });
 
   }
+
+  async presentToast(color: string, message: string) {
+    const toast = await this.toastController.create({
+      color: `${color}`,
+      message: `The ${message} has been added successfully`,
+      duration: 2500,
+      position: 'bottom'
+    });
+    this.accessModeAddDone = true;
+    await toast.present();
+  }
+
 
   async presentAlert(message: string) {
     const alert = await this.alertController.create({
@@ -119,7 +134,9 @@ assignAccessMode(){
   this.idAccessMode = this.patientAccessProfileForm.get('idPatientProfile').value;
   this.patientService.assignAccessModeTemplateToPatientAccess(this.idPatientAcess, this.idAccessMode)
   .subscribe( (res: any) => {
-    this.presentAlert('access mode');
+//    this.presentAlert('access mode');
+    this.presentToast('success','access mode');
+
     this.accessModeProfileAddDone = true;
     this.storage.set('idAccessMode', this.idAccessMode);
       }, ( err ) => {

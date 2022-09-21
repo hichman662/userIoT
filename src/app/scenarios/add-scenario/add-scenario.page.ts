@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Scenario } from 'src/app/models/scenario.model';
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
+
 @Component({
   selector: 'app-add-scenario',
   templateUrl: './add-scenario.page.html',
@@ -24,6 +26,7 @@ export class AddScenarioPage implements OnInit {
     private scenarioService: ScenarioService,
     public alertController: AlertController,
     private router: Router,
+    public toastController: ToastController,
     private storage: Storage
   ) {
 
@@ -52,12 +55,25 @@ export class AddScenarioPage implements OnInit {
       this.name = res.Name;
       this.storage.set('idScenario',res.Id);
       this.scenarioAddDone = true;
-      this.presentAlert();
+      //this.presentAlert();
+      this.presentToast('success');
+
     }, ( err ) => {
 
     });
 
   }
+
+  async presentToast(color: string) {
+    const toast = await this.toastController.create({
+      color: `${color}`,
+      message: `The ${this.name} has been added successfully`,
+      duration: 2500,
+      position: 'bottom'
+    });
+    await toast.present();
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

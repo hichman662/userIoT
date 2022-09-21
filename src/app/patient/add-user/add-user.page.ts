@@ -1,3 +1,4 @@
+import { ToastController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { AlertController } from '@ionic/angular';
 import { UserService } from './../../services/user.service';
@@ -24,7 +25,8 @@ export class AddUserPage implements OnInit {
     public alertController: AlertController,
     private router: Router,
     private location: Location,
-    private storage: Storage
+    private storage: Storage,
+    public toastController: ToastController
   ) {
 
     this.userForm = new FormGroup({
@@ -64,12 +66,28 @@ export class AddUserPage implements OnInit {
       console.log(res);
       this.surenames = res.Surnames;
 
-      this.presentAlert();
+     // this.presentAlert();
+     this.presentToast('success');
+
     }, ( err ) => {
 
     });
 
   }
+
+
+  async presentToast(color: string) {
+    const toast = await this.toastController.create({
+      color: `${color}`,
+      message: `The ${this.surenames} has been added successfully`,
+      duration: 2500,
+      position: 'bottom'
+    });
+    this.location.back();
+    await toast.present();
+  }
+
+
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

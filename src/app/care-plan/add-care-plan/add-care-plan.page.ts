@@ -131,12 +131,14 @@ export class AddCarePlanPage implements OnInit {
   }
 
 
-  async presentToast() {
+  async presentToast(color: string, message: string) {
     const toast = await this.toastController.create({
-      message: 'Your settings have been saved.',
-      duration: 2000
+      color: `${color}`,
+      message: `The ${message} has been added successfully`,
+      duration: 2500,
+      position: 'bottom'
     });
-    toast.present();
+    await toast.present();
   }
 
   goToInicio(){

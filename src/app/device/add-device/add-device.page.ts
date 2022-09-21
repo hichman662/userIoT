@@ -1,3 +1,4 @@
+import { ToastController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/quotes */
 import { DeviceTemplate } from './../../models/deviceTemplate.model';
 import { AccessMode } from './../../models/accessMode.model';
@@ -43,7 +44,9 @@ export class AddDevicePage implements OnInit {
     public alertController: AlertController,
     private router: Router,
     private storage: Storage,
-    private patientService: PatientService
+    private patientService: PatientService,
+    public toastController: ToastController
+
   ) {
 
     this.deviceForm = new FormGroup({
@@ -120,12 +123,25 @@ ionViewWillEnter(){
       this.name = res.Name;
       this.idDevice = res.Id;
       this.deviceAddDone = true;
-      this.presentAlert();
+      //this.presentAlert();
+      this.presentToast('success',this.name);
+
     }, ( err ) => {
 
     });
 
   }
+
+  async presentToast(color: string, message: string) {
+    const toast = await this.toastController.create({
+      color: `${color}`,
+      message: `The ${message} has been added successfully`,
+      duration: 2500,
+      position: 'bottom'
+    });
+    await toast.present();
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -186,7 +202,9 @@ ionViewWillEnter(){
     console.log(res);
     this.assignDeviceTemplateDone = true;
     this.allOkey = true;
-    this.presentAlert();
+//    this.presentAlert();
+    this.presentToast('success',this.name);
+
   }, ( err ) => {
 
   });

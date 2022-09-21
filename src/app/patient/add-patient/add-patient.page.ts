@@ -1,3 +1,4 @@
+import { ToastController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { UserService } from './../../services/user.service';
@@ -39,7 +40,8 @@ export class AddPatientPage implements OnInit {
     private userService: UserService,
     public alertController: AlertController,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    public toastController: ToastController
   ) {
 
     this.patientForm = new FormGroup({
@@ -90,13 +92,26 @@ export class AddPatientPage implements OnInit {
       this.patientProfileNull = true;
       /* this.userService.removeUserId();
       this.userService.removeUserName(); */
-
-      this.presentAlert(this.email);
+      this.presentToast('success',this.email);
+     // this.presentAlert(this.email);
     }, ( err ) => {
 
     });
 
   }
+
+  async presentToast(color: string, message: string) {
+    const toast = await this.toastController.create({
+      color: `${color}`,
+      message: `The ${message} has been added successfully`,
+      duration: 2500,
+      position: 'bottom'
+    });
+    this.patientAddDone = true;
+    this.callingPatientProfile();
+    await toast.present();
+  }
+
   async presentAlert(message: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -132,7 +147,8 @@ export class AddPatientPage implements OnInit {
     this.storage.set('idPatientProfile', this.patientprofileId);
     this.patientProfileNull = false;
     this.patientProfileAddDone = true;
-    this.presentAlert('patient profile');
+    //this.presentAlert('patient profile');
+    this.presentToast('success','patient profile');
       }, ( err ) => {
   });
 }

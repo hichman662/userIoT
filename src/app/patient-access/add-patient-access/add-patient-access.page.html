@@ -44,7 +44,19 @@
         </ion-col>
 
     </ion-row>
+    <ion-col size="12">
 
+        <ul class="progressbar">
+            <li class="active">Scenario</li>
+            <li class="active">Patient</li>
+            <li class="actual">Access mode</li>
+            <li>Device</li>
+            <li>Care plan</li>
+            <li>Activities</li>
+
+        </ul>
+
+    </ion-col>
 
 </ion-header>
 <ion-content>
@@ -98,5 +110,5 @@
     </form>
     <br>
     <br>
-    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!accessModeProfileAddDone" [routerLink]="['add-device']">3/5 NEXT</ion-button>
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!accessModeProfileAddDone" [routerLink]="['add-device']">3/6 NEXT</ion-button>
 </ion-content>

@@ -16,7 +16,7 @@ import { Storage } from '@ionic/storage';
 export class ChatPage implements OnInit {
 
 idUsuario: number = 32768;
- nameUsuario: string = 'Caregiver';
+ nameUsuario: string = 'Dr. Sanz';
   constructor(private chatService: ChatAppService,
     private storage: Storage) {}
 
