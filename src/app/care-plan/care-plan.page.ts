@@ -15,6 +15,7 @@ export class CarePlanPage implements OnInit {
   public carePlans: CarePlan[] = [];
   public idScenario: number;
   public carePlanNull = false;
+  patientNull = false;
   constructor(
     private carePlanService: CarePlanService,
     public router: Router,
@@ -27,6 +28,14 @@ export class CarePlanPage implements OnInit {
   ngOnInit() { }
 
   ionViewWillEnter(){
+    this.storage.get('idPatient').then((val) => {
+      console.log(val);
+      if(val != null){
+       this.patientNull = false;
+      }else{
+        this.patientNull = true;
+      }
+    });
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
       if(this.idScenario != null){

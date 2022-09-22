@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
             <ion-back-button text="Patient Dashboard" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-buttons slot="end">
+        <ion-buttons slot="end" [hidden]="patientNull">
             <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-patient-access']"></ion-icon>
             <ion-button>
             </ion-button>
@@ -44,7 +44,17 @@
     </ion-row>
 </ion-header>
 <ion-content>
-    <ion-card-header [hidden]="!patientAccessNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
+    <ion-card [hidden]="!patientNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
+        <ion-item class="warning">
+            <ion-icon size="large" name="warning-outline"></ion-icon>
+            <ion-button fill="outline" slot="end" [routerLink]="['add-patient']">Add Patient</ion-button>
+        </ion-item>
+        <ion-card-header>
+            <ion-card-subtitle>No Patient has been added to this scenario. To add Patient, press the Add button.</ion-card-subtitle>
+            <!-- <ion-card-title>Care Plans</ion-card-title> -->
+        </ion-card-header>
+    </ion-card>
+    <ion-card-header [hidden]="!patientAccessNull || patientNull " color="warning" class="animate__animated animate__fadeInLeft animate__slow">
         <ion-icon size="large" name="warning-outline"></ion-icon> No Patient Access has been added to this scenario. To add Patient Access, press the Add button.
     </ion-card-header>
     <ion-list>

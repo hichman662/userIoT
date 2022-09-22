@@ -78,9 +78,10 @@
         <ion-icon size="large" name="warning-outline"></ion-icon> No patient has been added to this scenario. To add a patient, press the Add button.
     </ion-card-header>
 
-    <ion-spinner class="spin" *ngIf="!load" name="bubbles"></ion-spinner>
+
     <div [hidden]="patientNull" class="segment" *ngIf="segmentModel === 'details'">
-        <ion-list *ngIf="load && !patientNull" class="animate__animated animate__slideInUp animate__slow">
+        <ion-spinner class="spin" *ngIf="!load" name="bubbles"></ion-spinner>
+        <ion-list *ngIf="load" class="animate__animated animate__slideInUp animate__slow">
             <ion-list-header>
                 <ion-icon class="segmentIcon" name="person-outline"></ion-icon>Surname</ion-list-header>
             <ion-item>

@@ -17,11 +17,13 @@ ion-card {
 }
 
 ion-toolbar {
-    --background: rgba(207, 218, 182, 0.658) !important;
+    --background: rgb(226, 225, 225);
+    //    --background: rgba(207, 218, 182, 0.658) !important;
 }
 
 ion-header {
-    background-color: rgba(180, 199, 136, 0.658);
+    //  background-color: rgba(180, 199, 136, 0.658);
+    background-color: rgb(226, 225, 225);
 }
 
 .text-top {

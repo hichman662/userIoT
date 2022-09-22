@@ -14,6 +14,9 @@ export class PatientAccessPage implements OnInit {
   public idScenario: number;
   public patientAccess: PatientAccess[] = [];
   public patientAccessNull = false;
+  public patientNull = false;
+  public idPatient: number;
+
 
   constructor(
     private patientService: PatientService,
@@ -27,7 +30,15 @@ export class PatientAccessPage implements OnInit {
   ngOnInit() {
   }
 
-  ionViewWillEnter(){
+  async ionViewWillEnter(){
+    this.idPatient = await this.storage.get('idPatient');
+    if(this.idPatient == null){
+      this.patientNull = true;
+    }else{
+      this.patientNull = false;
+    }
+   console.log('I´m carrying Patient Id', this.idPatient);
+   console.log('Patient not existe', this.patientNull);
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
       if(this.idScenario != null){

@@ -29,6 +29,8 @@ export class AddCarePlanPage implements OnInit {
   carePlanAddDone = false;
   idcarePlanTemplate: number;
   idCarePlan: number;
+  idPatientProfileNull = false;
+  idPatient = false;
   assignCarePlanTemplateDone= false;
 
   constructor(
