@@ -15,7 +15,9 @@ export class PatientAccessPage implements OnInit {
   public patientAccess: PatientAccess[] = [];
   public patientAccessNull = false;
   public patientNull = false;
+  public patientProfileNull = false;
   public idPatient: number;
+  public idPatientProfile: number;
 
 
   constructor(
@@ -36,6 +38,12 @@ export class PatientAccessPage implements OnInit {
       this.patientNull = true;
     }else{
       this.patientNull = false;
+    }
+    this.idPatientProfile = await this.storage.get('idPatientProfile');
+    if(this.idPatientProfile == null){
+      this.patientProfileNull = true;
+    }else{
+      this.patientProfileNull = false;
     }
    console.log('I´m carrying Patient Id', this.idPatient);
    console.log('Patient not existe', this.patientNull);

@@ -82,6 +82,7 @@ export class Tab0Page implements OnInit {
         this.patientNull = false;
       }else{
         this.patientNull = true;
+        this.storage.set('idPatient',null);
       }
     if(res[0].Patient.PatientProfile !== null){
       this.patientProfileNull = false;
@@ -89,9 +90,9 @@ export class Tab0Page implements OnInit {
       this.diseases = res[0].Patient.PatientProfile.Diseases;
       this.disabilities = res[0].Patient.PatientProfile.Disabilities;
       this.load= true;
-
     }else{
       this.patientProfileNull = true;
+      this.storage.set('idPatientProfile',null);
     }
     }, (err) => {
       console.log(err);

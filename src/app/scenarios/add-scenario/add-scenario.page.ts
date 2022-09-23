@@ -68,7 +68,7 @@ export class AddScenarioPage implements OnInit {
     const toast = await this.toastController.create({
       color: `${color}`,
       message: `The ${this.name} has been added successfully`,
-      duration: 2500,
+      duration: 1500,
       position: 'bottom'
     });
     await toast.present();

@@ -2,7 +2,7 @@ import { ToastController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { PatientAccess } from './../../models/patientAccess.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PatientService } from './../../services/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
@@ -28,13 +28,17 @@ export class AddPatientAccessPage implements OnInit {
   accessModeAddDone = false;
   accessModeProfileAddDone = false;
   idPatientAcess: number;
+  idPassedByURL = '';
+
   constructor(
     public navCtrl: NavController,
     private patientService: PatientService,
     public alertController: AlertController,
     private router: Router,
     private storage: Storage,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private route: ActivatedRoute,
+
   ) {
 
     this.patientAccessForm = new FormGroup({
@@ -57,7 +61,8 @@ export class AddPatientAccessPage implements OnInit {
 }
 
   ngOnInit() {
-
+    this.idPassedByURL = this.route.snapshot.params.Id;
+    console.log(this.idPassedByURL);
     this.storage.get('idScenario').then((val) => {
       this.patientAccessForm.get('Scenario_oid').setValue(val);
     });
@@ -93,7 +98,7 @@ export class AddPatientAccessPage implements OnInit {
     const toast = await this.toastController.create({
       color: `${color}`,
       message: `The ${message} has been added successfully`,
-      duration: 2500,
+      duration: 1500,
       position: 'bottom'
     });
     this.accessModeAddDone = true;
@@ -138,6 +143,9 @@ assignAccessMode(){
     this.presentToast('success','access mode');
 
     this.accessModeProfileAddDone = true;
+    if (this.idPassedByURL === 'noWizard'){
+      this.router.navigateByUrl("tabs/tab1/patientAccess", { skipLocationChange: false });
+    }
     this.storage.set('idAccessMode', this.idAccessMode);
       }, ( err ) => {
   });

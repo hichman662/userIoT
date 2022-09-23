@@ -24,6 +24,8 @@ export class DetailPatientPage implements OnInit {
   public patientNull = false;
   load: boolean = false;
   segmentModel = 'details';
+  idPassedByURL = '';
+
 
   constructor(
     private patientService: PatientService,
@@ -35,6 +37,12 @@ export class DetailPatientPage implements OnInit {
 
 
   ngOnInit() {
+    this.idPassedByURL = this.route.snapshot.params.Id;
+    if(this.idPassedByURL === 'profile'){
+      this.segmentModel = 'profile';
+    }else{
+      this.segmentModel = 'details';
+    }
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
       if(this.idScenario !== 0){

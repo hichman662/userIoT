@@ -13,12 +13,16 @@ const routes: Routes = [
     loadChildren: () => import('./detail-patient-access/detail-patient-access.module').then( m => m.DetailPatientAccessPageModule)
   },
   {
-    path: 'add-patient-access',
+    path: 'add-patient-access/:Id',
     loadChildren: () => import('./add-patient-access/add-patient-access.module').then( m => m.AddPatientAccessPageModule)
   },
   {
     path: 'add-patient',
     loadChildren: () => import('./../patient/add-patient/add-patient.module').then( m => m.AddPatientPageModule)
+  },
+  {
+    path: 'patient/:Id',
+    loadChildren: () => import('../patient/detail-patient/detail-patient.module').then( m => m.DetailPatientPageModule)
   }
 
 ];
