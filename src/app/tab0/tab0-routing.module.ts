@@ -23,6 +23,14 @@ const routes: Routes = [
   {
     path: 'add-careplan',
     loadChildren: () => import('./../care-plan/add-care-plan/add-care-plan.module').then(m => m.AddCarePlanPageModule)
+  },
+  {
+    path: 'add-patient-access',
+    loadChildren: () => import('./../patient-access/add-patient-access/add-patient-access.module').then( m => m.AddPatientAccessPageModule)
+  },
+  {
+    path: 'add-device',
+    loadChildren: () => import('./../device/add-device/add-device.module').then( m => m.AddDevicePageModule)
   }
 ];
 

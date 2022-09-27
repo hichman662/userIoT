@@ -1,5 +1,5 @@
 import { Device } from './../models/device.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DeviceService } from './../services/device.service';
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
@@ -14,11 +14,15 @@ export class DevicePage implements OnInit {
   public devices: Device[] = [];
   public idScenario: number;
   devicesNull= false;
+  idPassedByURL = '';
+
   constructor(
     private deviceService: DeviceService,
     public router: Router,
     private storage: Storage,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private route: ActivatedRoute
+
 
   ) { }
 
@@ -27,6 +31,7 @@ export class DevicePage implements OnInit {
 
   }
   ionViewWillEnter(){
+    this.idPassedByURL = this.route.snapshot.params.Id;
     this.storage.get('idScenario').then((val) => {
       this.idScenario = val;
       if(this.idScenario != null){

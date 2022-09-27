@@ -152,7 +152,7 @@ ion-list-header {
 
 .progressbar li.active {
     //color: white;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 .progressbar li.active:before {
@@ -167,4 +167,9 @@ ion-list-header {
 .progressbar li.actual:before {
     border-color: #f3ea71;
     background-color: #f3ea71;
+}
+
+.progressbar li.lack:before {
+    border-color: #fffc3b;
+    background-color: #fffc3b;
 }

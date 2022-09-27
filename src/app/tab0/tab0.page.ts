@@ -1,3 +1,8 @@
+/* eslint-disable max-len */
+import { Appointment } from './../models/appointment.model';
+import { Medication } from './../models/medication.model';
+import { DeviceService } from './../services/device.service';
+import { PatientService } from './../services/patient.service';
 import { UserData } from './../models/userData.model';
 import { Disability } from './../models/disability.model';
 import { PatientProfile } from './../models/patientProfile.model';
@@ -9,6 +14,11 @@ import { Scenario } from '../models/scenario.model';
 import { Disease } from '../models/disease.model';
 import { CarePlanService } from './../services/careplan.service';
 import { CarePlan } from './../models/carePlan.model';
+import { PatientAccess } from '../models/patientAccess.model';
+import { Device } from '../models/device.model';
+import { Nutrition } from '../models/nutrition.model';
+import { Communication } from '../models/communication.model';
+import { ConsoleLogger } from '@microsoft/signalr/dist/esm/Utils';
 @Component({
   selector: 'app-tab0',
   templateUrl: './tab0.page.html',
@@ -25,17 +35,31 @@ export class Tab0Page implements OnInit {
   patientDescription = '';
   load = false;
   public scenario: Scenario;
-  public idSecanrio: number;
+  public idScenario: number;
   public scenarioName: string;
   public carePlans: CarePlan[] = [];
   public carePlanNull = false;
   token: '';
   segmentModel = 'diseases';
+  public patientAccess: PatientAccess[] = [];
+  public patientAccessNull = false;
+  public devices: Device[] = [];
+  devicesNull= false;
+  public nutritions: Nutrition[] = [];
+  public nutritionNull = false;
+  public medications: Medication[] = [];
+  public medicationNull = false;
+  public appointments: Appointment[] = [];
+  public appointmentNull = false;
+  public communications: Communication[] = [];
+  public communicationNull = false;
 
   constructor(private storage: Storage,
     private scenarioService: ScenarioService,
     private userService: UserService,
-    private carePlanService: CarePlanService
+    private carePlanService: CarePlanService,
+    private patientService: PatientService,
+    private deviceService: DeviceService
 )
    { }
 
@@ -44,15 +68,21 @@ export class Tab0Page implements OnInit {
   }
 
   async ionViewWillEnter(){
-    this.idSecanrio = await this.storage.get('idScenario');
-    console.log('I´m carrying Scenario Id', this.idSecanrio);
+    this.idScenario = await this.storage.get('idScenario');
+    console.log('I´m carrying Scenario Id', this.idScenario);
     this.storage.get('token').then((val) => {
       this.token = val;
       console.log(val);
-      if(this.token !== null && this.idSecanrio !== null && this.idSecanrio !== undefined){
-        this.getEscenarioById (this.idSecanrio, this.token);
-        this.callingPatientByIdScenario(this.idSecanrio);
-        this.callCarePlans(this.idSecanrio);
+      if(this.token !== null && this.idScenario !== null && this.idScenario !== undefined){
+        this.getEscenarioById (this.idScenario, this.token);
+        this.callingPatientByIdScenario(this.idScenario);
+        this.callCarePlans(this.idScenario);
+        this.callPatientAccess();
+        this.callDevice();
+        this.callNutritions();
+        this.callAppointments();
+        this.callCommunications();
+        this.callMedications();
       }
     });
   }
@@ -104,7 +134,7 @@ export class Tab0Page implements OnInit {
   callCarePlans(id: number){
     this.carePlanService.getCarePlanByIdScenario(id)
     .subscribe( (res: any) => {
-      if(res != null){
+      if(res !== null){
         this.carePlans = res;
         this.carePlanNull = false;
       }else{
@@ -115,6 +145,94 @@ export class Tab0Page implements OnInit {
         console.log(err);
     });
   }
-}
 
+  callPatientAccess(){
+    this.patientService.getPatientAccessByIdScenario(this.idScenario)
+    .subscribe( (res: any) => {
+      if(res !== null){
+        this.patientAccess = res;
+        this.patientAccessNull = false;
+      }else{
+        this.patientAccess = null;
+        this.patientAccessNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
+    });
+  }
+
+  callNutritions(){
+    this.carePlanService.getnutritionsByIdScenario(this.idScenario)
+    .subscribe( (res: Nutrition[]) => {
+      if(res !== null){
+        this.nutritions = res;
+        this.nutritionNull = false;
+      }else{
+        this.nutritions = null;
+        this.nutritionNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
+    });
+  }
+
+  callMedications(){
+    this.carePlanService.getMedicationsByIdScenario(this.idScenario)
+    .subscribe( (res: Medication[]) => {
+      if(res !== null){
+        this.medications = res;
+        this.medicationNull = false;
+      }else{
+        console.log(res);
+        this.medications = null;
+        this.medicationNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
+    });
+  }
+
+  callAppointments(){
+    this.carePlanService.getAppointmentsByIdScenario(this.idScenario)
+    .subscribe( (res: Appointment[]) => {
+      if(res !== null){
+        this.appointments = res;
+        this.appointmentNull = false;
+      }else{
+        this.appointments = null;
+        this.appointmentNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
+    });
+  }
+
+  callCommunications(){
+    this.carePlanService.getCommunicationByIdScenario(this.idScenario)
+    .subscribe( (res: Communication[]) => {
+      if(res !== null){
+        this.communications = res;
+        this.communicationNull = false;
+      }else{
+        this.communications = null;
+        this.communicationNull = true;
+      }
+    }, ( err) => {
+        console.log(err);
+    });
+  }
+  callDevice(){
+    this.deviceService.getDeviceByIdScenario(this.idScenario)
+    .subscribe( (res: Device[]) => {
+        if(res !== null){
+          this.devices = res;
+        }else{
+          this.devicesNull = true;
+        }
+    }, ( err) => {
+        console.log(err);
+    });
+  }
+
+}
 
