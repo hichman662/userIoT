@@ -18,7 +18,7 @@ import { PatientAccess } from '../models/patientAccess.model';
 import { Device } from '../models/device.model';
 import { Nutrition } from '../models/nutrition.model';
 import { Communication } from '../models/communication.model';
-import { ConsoleLogger } from '@microsoft/signalr/dist/esm/Utils';
+
 @Component({
   selector: 'app-tab0',
   templateUrl: './tab0.page.html',

@@ -1,3 +1,4 @@
+import { ProgressBarModule } from './../progress-bar/progress-bar.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,8 @@ import { ExploreContainerComponentModule } from './../explore-container/explore-
     ExploreContainerComponentModule,
     Tab0PageRoutingModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ProgressBarModule
   ],
   declarations: [Tab0Page]
 })
