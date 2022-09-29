@@ -13,8 +13,6 @@ import { Storage } from '@ionic/storage';
 import { Scenario } from '../models/scenario.model';
 import { Disease } from '../models/disease.model';
 import { CarePlanService } from './../services/careplan.service';
-import { CarePlan } from './../models/carePlan.model';
-import { PatientAccess } from '../models/patientAccess.model';
 import { Device } from '../models/device.model';
 import { Nutrition } from '../models/nutrition.model';
 import { Communication } from '../models/communication.model';

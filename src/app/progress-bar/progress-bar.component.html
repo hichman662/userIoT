@@ -9,7 +9,7 @@
     <li [hidden]="devicesNull" class="active">Device</li>
     <li [hidden]="!carePlanNull" class="lack" [routerLink]="patientNull === false ? ['add-careplan']: [] ">Care plan</li>
     <li [hidden]="carePlanNull" class="active">Care plan</li>
-    <li [hidden]="(!medicationNull || !communicationNull) || (!appointmentNull || !nutritionNull)" class="lack">Activities</li>
+    <li [hidden]="(!medicationNull || !communicationNull) || (!appointmentNull || !nutritionNull)" class="lack" [routerLink]="carePlanNull === false ? ['careActivity','all']: [] ">Activities</li>
     <li [hidden]="(medicationNull && communicationNull) && (appointmentNull && nutritionNull)" class="active">Activities</li>
 
 </ul>
