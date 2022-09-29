@@ -41,7 +41,7 @@ export class AddScenarioPage implements OnInit {
 }
 
   ngOnInit() {
-    this.storage.set('idScenario',null);
+    this.restartIdScenario();
     this.storage.get('token').then((val) => {
       this.token = val;
       console.log(val);
@@ -97,4 +97,7 @@ export class AddScenarioPage implements OnInit {
     await alert.present();
   }
 
+  restartIdScenario(){
+    this.storage.set('idScenario',null);
+  }
 }

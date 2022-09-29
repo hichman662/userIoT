@@ -47,12 +47,12 @@ export class ProgressBarComponent implements OnInit {
    { }
 
  async ngOnInit() {
-  this.storage.get('idScenario').then((val) => {
+  this.storage.get('idScenario').then(( val) => {
     this.idScenario = val;
     if(this.idScenario !== null && this.idScenario !== undefined){
       this.scenarioNull = false;
-      this.callingPatientByIdScenario(this.idScenario);
-      this.callCarePlans(this.idScenario);
+      this.callingPatientByIdScenario();
+      this.callCarePlans();
       this.callPatientAccess();
       this.callDevice();
       this.callNutritions();
@@ -64,14 +64,12 @@ export class ProgressBarComponent implements OnInit {
       this.scenarioNull = true;
     }
   });
- // this.idScenario   =  parseInt (await this.storage.get('idScenario'), 10);
-  console.log('I´m carrying Scenario Id', this.idScenario);
   }
 
 
 
-  async callingPatientByIdScenario(id: number){
-    await this.userService.getPatientByIdScenario(id)
+  callingPatientByIdScenario(){
+     this.userService.getPatientByIdScenario(this.idScenario)
     .subscribe((res: UserData[] ) => {
       if(res !== null){
         this.patientNull = false;
@@ -92,8 +90,8 @@ export class ProgressBarComponent implements OnInit {
   }
 
 
-  callCarePlans(id: number){
-    this.carePlanService.getCarePlanByIdScenario(id)
+  callCarePlans(){
+    this.carePlanService.getCarePlanByIdScenario(this.idScenario)
     .subscribe( (res: any) => {
       if(res !== null){
 
