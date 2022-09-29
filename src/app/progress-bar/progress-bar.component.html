@@ -1,7 +1,8 @@
 <ul class="progressbar">
-    <li class="active">Scenario</li>
-    <li [hidden]="!patientNull" class="lack" [routerLink]="['add-patient']">User</li>
-    <li [hidden]="patientNull" class="active">User</li>
+    <li [hidden]="scenarioNull" class="active">Scenario</li>
+    <li [hidden]="!scenarioNull" class="lack">Scenario</li>
+    <li [hidden]="!patientNull" class="lack" [routerLink]="scenarioNull === false ?['add-patient'] : []">Patient</li>
+    <li [hidden]="patientNull" class="active">Patient</li>
     <li [hidden]="!patientAccessNull" class="lack" [routerLink]="patientNull === false ? ['add-patient-access']: [] ">Access mode</li>
     <li [hidden]="patientAccessNull" class="active">Access mode</li>
     <li [hidden]="!devicesNull" class="lack" [routerLink]="patientAccessNull === false ? ['add-device']: [] ">Device</li>

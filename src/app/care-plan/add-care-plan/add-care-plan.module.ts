@@ -1,3 +1,4 @@
+import { ProgressBarModule } from './../../progress-bar/progress-bar.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +15,8 @@ import { AddCarePlanPage } from './add-care-plan.page';
     FormsModule,
     IonicModule,
     AddCarePlanPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProgressBarModule
   ],
   declarations: [AddCarePlanPage]
 })

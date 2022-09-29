@@ -1,3 +1,4 @@
+import { ProgressBarModule } from './../progress-bar/progress-bar.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { CareActivityPage } from './care-activity.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CareActivityPageRoutingModule
+    CareActivityPageRoutingModule,
+    ProgressBarModule
   ],
   declarations: [CareActivityPage]
 })

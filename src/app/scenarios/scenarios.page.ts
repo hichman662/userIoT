@@ -31,6 +31,7 @@ export class ScenariosPage implements OnInit {
 
 
   ngOnInit(): void {
+    this.storage.set('idScenario',null);
     //this.getEscenario();
   /*   this.storage.get('token').then((val) => {
       this.token = val;

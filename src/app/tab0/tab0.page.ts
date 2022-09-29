@@ -77,12 +77,12 @@ export class Tab0Page implements OnInit {
         this.getEscenarioById (this.idScenario, this.token);
         this.callingPatientByIdScenario(this.idScenario);
         this.callCarePlans(this.idScenario);
-        this.callPatientAccess();
+       /*  this.callPatientAccess();
         this.callDevice();
         this.callNutritions();
         this.callAppointments();
         this.callCommunications();
-        this.callMedications();
+        this.callMedications(); */
       }
     });
   }

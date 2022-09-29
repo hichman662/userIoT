@@ -25,16 +25,17 @@ import { Communication } from '../models/communication.model';
 })
 export class ProgressBarComponent implements OnInit {
 
-  public patientProfileNull   = false;
-  public patientNull   = false;
-  public idScenario: number;
-  public carePlanNull   = false;
-  public patientAccessNull   = false;
-  public devicesNull  = false;
-  public nutritionNull   = false;
-  public medicationNull   = false;
-  public appointmentNull   = false;
-  public communicationNull   = false;
+  public patientProfileNull   = true;
+  public patientNull   = true;
+  public scenarioNull = true;
+  public idScenario: number = null;
+  public carePlanNull   = true;
+  public patientAccessNull   = true;
+  public devicesNull  = true;
+  public nutritionNull   = true;
+  public medicationNull   = true;
+  public appointmentNull   = true;
+  public communicationNull   = true;
 
   constructor(
     private storage: Storage,
@@ -46,9 +47,10 @@ export class ProgressBarComponent implements OnInit {
    { }
 
  async ngOnInit() {
-  this.idScenario   =  parseInt (await this.storage.get('idScenario'), 10);
-  console.log('I´m carrying Scenario Id', this.idScenario);
+  this.storage.get('idScenario').then((val) => {
+    this.idScenario = val;
     if(this.idScenario !== null && this.idScenario !== undefined){
+      this.scenarioNull = false;
       this.callingPatientByIdScenario(this.idScenario);
       this.callCarePlans(this.idScenario);
       this.callPatientAccess();
@@ -58,6 +60,12 @@ export class ProgressBarComponent implements OnInit {
       this.callCommunications();
       this.callMedications();
     }
+    else{
+      this.scenarioNull = true;
+    }
+  });
+ // this.idScenario   =  parseInt (await this.storage.get('idScenario'), 10);
+  console.log('I´m carrying Scenario Id', this.idScenario);
   }
 
 
