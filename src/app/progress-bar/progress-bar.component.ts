@@ -64,8 +64,6 @@ export class ProgressBarComponent implements OnInit {
   });
   }
 
-
-
   callingPatientByIdScenario(){
      this.userService.getPatientByIdScenario(this.idScenario)
     .subscribe((res: UserData[] ) => {
@@ -75,12 +73,6 @@ export class ProgressBarComponent implements OnInit {
         this.patientNull = true;
         this.storage.set('idPatient',null);
       }
-    if(res[0].Patient.PatientProfile !== null){
-      this.patientProfileNull = false;
-    }else{
-      this.patientProfileNull = true;
-      this.storage.set('idPatientProfile',null);
-    }
     }, (err) => {
       console.log(err);
     });
