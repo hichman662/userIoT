@@ -1,3 +1,4 @@
+import { ProgressBarRoutingModule } from './progress-bar/progress-bar-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -29,7 +30,8 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
       ReactiveFormsModule,
       HttpClientModule,
       IonicStorageModule.forRoot(),
-      NgIdleKeepaliveModule.forRoot()
+      NgIdleKeepaliveModule.forRoot(),
+      ProgressBarRoutingModule
 
     ],
   providers: [Platform,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'add-device',
     loadChildren: () => import('./../device/add-device/add-device.module').then( m => m.AddDevicePageModule)
+  },
+  {
+    path: 'careActivity/:Id',
+    loadChildren: () => import('./../care-activity/care-activity.module').then( m => m.CareActivityPageModule)
   }
 ];
 

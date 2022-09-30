@@ -97,24 +97,24 @@ export class Tab0Page implements OnInit {
   async callingPatientByIdScenario(id: number){
     await this.userService.getPatientByIdScenario(id)
     .subscribe((res: UserData[] ) => {
-      if(res !== null){
+      if(res !== null ){
         this.patientName = res[0].Name;
         this.patientSurnames = res[0].Surnames;
         this.patientDescription = res[0].Description;
         this.patientNull = false;
-        if(res[0].Patient.PatientProfile !== null){
-          this.patientProfileNull = false;
-           this.patientProfile = res[0].Patient.PatientProfile;
-          this.diseases = res[0].Patient.PatientProfile.Diseases;
-          this.disabilities = res[0].Patient.PatientProfile.Disabilities;
-          this.load= true;
-        }else{
-          this.patientProfileNull = true;
-          this.storage.set('idPatientProfile',null);
-        }
       }else{
         this.patientNull = true;
         this.storage.set('idPatient',null);
+      }
+      if(res !== null && res[0].Patient.PatientProfile !== null){
+        this.patientProfileNull = false;
+         this.patientProfile = res[0].Patient.PatientProfile;
+        this.diseases = res[0].Patient.PatientProfile.Diseases;
+        this.disabilities = res[0].Patient.PatientProfile.Disabilities;
+        this.load= true;
+      }else{
+        this.patientProfileNull = true;
+        this.storage.set('idPatientProfile',null);
       }
     }, (err) => {
       console.log(err);
