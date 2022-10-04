@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,7 +19,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    TranslateModule
   ],
   declarations: [ScenariosPage]
 })

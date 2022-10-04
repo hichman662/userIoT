@@ -1,0 +1,16 @@
+{
+    "SCENARIO": {
+        "title": "Scenario"
+    },
+    "ADDSCENARIO": {
+        "title": "Add Scenario"
+    },
+    "WIZARD": {
+        "scenario": "SCENARIO",
+        "patient": "PATIENT",
+        "accessMode": "ACCESS MODE",
+        "device": "DEVICE",
+        "carePlan": "CARE PLAN",
+        "activities": "ACTIVITIES"
+    }
+}

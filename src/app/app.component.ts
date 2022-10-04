@@ -1,3 +1,4 @@
+import { LoadingController } from '@ionic/angular';
 /* eslint-disable max-len */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -7,6 +8,7 @@ import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 import { Router, RouterEvent } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +42,8 @@ export class AppComponent {
 
   constructor(public storage: Storage,private router: Router,
     public idle: Idle, private keepalive: Keepalive,private alertController: AlertController) {
+
+
     this.storage.create();
     this.router.events.subscribe((event: RouterEvent) => {
       this.active = event.url;

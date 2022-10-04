@@ -1,0 +1,16 @@
+{
+    "SCENARIO": {
+        "title": "Escenario"
+    },
+    "ADDSCENARIO": {
+        "title": "Añadir Escenario"
+    },
+    "WIZARD": {
+        "scenario": "ECENARIO",
+        "patient": "PACIENTE",
+        "accessMode": "MODO DE ACCESO",
+        "device": "DISPOSITIVO",
+        "carePlan": "PLAN DE CUIDADO",
+        "activities": "ACTIVIDADES"
+    }
+}
