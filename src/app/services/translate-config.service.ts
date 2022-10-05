@@ -13,6 +13,7 @@ export class TranslateConfigService {
 
   getDefaultLanguage(){
     let language = this.translate.getBrowserLang();
+    console.log('language is: '+ language);
     this.translate.setDefaultLang(language);
     return language;
   }

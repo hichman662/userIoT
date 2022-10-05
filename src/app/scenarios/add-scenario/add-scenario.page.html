@@ -2,7 +2,7 @@
 
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button text="Scenarios" (click)="restartIdScenario()" defaultHref="/scenarios" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'ADDSCENARIO.return' | translate }}" (click)="restartIdScenario()" defaultHref="/scenarios" icon="chevron-back-outline"></ion-back-button>
             <ion-buttons slot="start">
                 <ion-menu-button menu="main-menu"></ion-menu-button>
             </ion-buttons>
@@ -62,7 +62,7 @@
 
     <form [formGroup]="scanearioForm" (ngSubmit)="onSubmit()">
         <ion-item>
-            <ion-label position="stacked">Name</ion-label>
+            <ion-label position="stacked">{{ 'ADDSCENARIO.name' | translate }}</ion-label>
             <ion-input type="text" formControlName="Name" class="form-control"></ion-input>
             <div class="error" *ngIf="scanearioForm.controls.Name.errors && scanearioForm.controls.Name.touched">
                 To add Scenario please fill out this field
@@ -70,7 +70,7 @@
         </ion-item>
 
         <ion-item>
-            <ion-label position="stacked">Description</ion-label>
+            <ion-label position="stacked">{{ 'ADDSCENARIO.description' | translate }}</ion-label>
             <ion-input type="text" formControlName="Description" class="form-control"></ion-input>
             <div class="error" *ngIf="scanearioForm.controls.Description.errors && scanearioForm.controls.Description.touched">
                 To add Scenario please fill out this field
@@ -79,9 +79,9 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!scanearioForm.valid || scenarioAddDone">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="primary" [disabled]="!scanearioForm.valid || scenarioAddDone">{{ 'ADDSCENARIO.done' | translate }}</ion-button>
     </form>
     <br>
     <br>
-    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!scenarioAddDone" [routerLink]="['add-patient']">1/6 PATIENT</ion-button>
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" [disabled]="!scenarioAddDone" [routerLink]="['add-patient']">1/6 {{ 'ADDSCENARIO.patientButton' | translate }}</ion-button>
 </ion-content>

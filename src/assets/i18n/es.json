@@ -3,7 +3,12 @@
         "title": "Escenario"
     },
     "ADDSCENARIO": {
-        "title": "Añadir Escenario"
+        "title": "Añadir Escenario",
+        "name": "Nombre",
+        "description": "Descripción",
+        "done": "Guardar",
+        "patientButton": "Paciente",
+        "return": "ESCENARIO"
     },
     "WIZARD": {
         "scenario": "ECENARIO",
@@ -12,5 +17,17 @@
         "device": "DISPOSITIVO",
         "carePlan": "PLAN DE CUIDADO",
         "activities": "ACTIVIDADES"
+    },
+    "HOME": {
+        "title": "Resumen",
+        "scenario": "Escenario",
+        "patient": "Patient",
+        "diseases": "Enfermedades",
+        "disabilities": "Discapacidades",
+        "carePlans": "Los planes de cuidado",
+        "view": "VER",
+        "return": "ESCENARIOS",
+        "addPatient": "Añadir paciente",
+        "errorPatient": "No se ha agregado ningún paciente a este escenario. Para agregar Paciente, presione el botón Añadir."
     }
 }

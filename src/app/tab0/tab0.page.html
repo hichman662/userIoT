@@ -2,7 +2,7 @@
 
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button text="Scenarios" defaultHref="scenarios" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'HOME.return' | translate }}" defaultHref="scenarios" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <!--  <ion-buttons slot="start">
           <ion-menu-button menu="main-menu"></ion-menu-button>
@@ -28,7 +28,7 @@
             <ion-col size="10" class="ion-align-self-center">
 
                 <ion-list-header>
-                    <ion-label class="text-top">Summary</ion-label>
+                    <ion-label class="text-top">{{ 'HOME.title' | translate }}</ion-label>
                 </ion-list-header>
 
             </ion-col>
@@ -46,7 +46,7 @@
     <ion-card *ngIf="load" class="animate__animated animate__fadeInUp animate__slow">
         <ion-card-header>
             <ion-icon name="person-outline" slot="start"></ion-icon>
-            <ion-card-subtitle>Scenario</ion-card-subtitle>
+            <ion-card-subtitle>{{ 'HOME.scenario' | translate }}</ion-card-subtitle>
             <ion-card-title>{{scenario.Name}}</ion-card-title>
         </ion-card-header>
 
@@ -64,36 +64,36 @@
         <ion-card [hidden]="!patientNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
             <ion-item class="warning">
                 <ion-icon size="large" name="warning-outline"></ion-icon>
-                <ion-button fill="outline" slot="end" [routerLink]="['add-patient']">Add Patient</ion-button>
+                <ion-button fill="outline" slot="end" [routerLink]="['add-patient']">{{ 'HOME.addPatient' | translate }}</ion-button>
             </ion-item>
             <ion-card-header>
 
-                <ion-card-subtitle>No Patient has been added to this scenario. To add Patient, press the Add button.</ion-card-subtitle>
+                <ion-card-subtitle>{{ 'HOME.errorPatient' | translate }}</ion-card-subtitle>
                 <!-- <ion-card-title>Care Plans</ion-card-title> -->
             </ion-card-header>
         </ion-card>
         <div [hidden]="patientNull">
             <ion-card-header>
 
-                <ion-card-subtitle>Patient </ion-card-subtitle>
+                <ion-card-subtitle>{{ 'HOME.patient' | translate }} </ion-card-subtitle>
                 <ion-card-title>{{patientName}} {{patientSurnames}}</ion-card-title>
             </ion-card-header>
 
             <ion-item>
                 <ion-icon name="reader-outline" slot="start"></ion-icon>
                 <ion-label>{{patientDescription}}</ion-label>
-                <ion-button fill="outline" slot="end" [routerLink]="['patient']">View</ion-button>
+                <ion-button fill="outline" slot="end" [routerLink]="['patient']">{{ 'HOME.view' | translate }}</ion-button>
             </ion-item>
             <ion-card-content>
                 <ion-segment [hidden]="patientProfileNull" value="all" color="tertiary" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
 
                     <ion-segment-button value="diseases">
                         <ion-icon name="heart-half-outline"></ion-icon>
-                        <ion-label>Diseases</ion-label>
+                        <ion-label>{{ 'HOME.diseases' | translate }}</ion-label>
                     </ion-segment-button>
                     <ion-segment-button value="disabilities">
                         <ion-icon name="body-outline"></ion-icon>
-                        <ion-label>Disabilities</ion-label>
+                        <ion-label>{{ 'HOME.disabilities' | translate }}</ion-label>
                     </ion-segment-button>
                 </ion-segment>
                 <div *ngIf="segmentModel === 'diseases'" [hidden]="patientProfileNull">
@@ -121,7 +121,7 @@
                             <ion-card>
                                 <ion-item>
 
-                                    <ion-label>Disease</ion-label>
+                                    <ion-label>{{ 'HOME.diseases' | translate }}</ion-label>
 
                                     <ion-badge *ngIf="disease.Disease === 1"> Alzheimer</ion-badge>
                                     <ion-badge *ngIf="disease.Disease === 2"> Parkinson</ion-badge>

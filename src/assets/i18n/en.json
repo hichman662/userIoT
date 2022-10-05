@@ -3,7 +3,12 @@
         "title": "Scenario"
     },
     "ADDSCENARIO": {
-        "title": "Add Scenario"
+        "title": "Add Scenario",
+        "name": "Name",
+        "description": "Description",
+        "done": "Done",
+        "patientButton": "PATIENT",
+        "return": "SCENARIO"
     },
     "WIZARD": {
         "scenario": "SCENARIO",
@@ -12,5 +17,17 @@
         "device": "DEVICE",
         "carePlan": "CARE PLAN",
         "activities": "ACTIVITIES"
+    },
+    "HOME": {
+        "title": "Summary",
+        "scenario": "Scenario",
+        "patient": "Patient",
+        "diseases": "Diseases",
+        "disabilities": "Disabilities",
+        "carePlans": "Care plans",
+        "view": "View",
+        "return": "Scenarios",
+        "addPatient": "Add Patient",
+        "errorPatient": "No Patient has been added to this scenario. To add Patient, press the Add button."
     }
 }

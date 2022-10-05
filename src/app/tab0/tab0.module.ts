@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { ProgressBarModule } from './../progress-bar/progress-bar.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { ExploreContainerComponentModule } from './../explore-container/explore-
     Tab0PageRoutingModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    ProgressBarModule
+    ProgressBarModule,
+    TranslateModule
   ],
   declarations: [Tab0Page]
 })
