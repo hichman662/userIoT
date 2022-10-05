@@ -21,7 +21,7 @@
     "HOME": {
         "title": "Resumen",
         "scenario": "Escenario",
-        "patient": "Patient",
+        "patient": "Paciente",
         "diseases": "Enfermedades",
         "disabilities": "Discapacidades",
         "carePlans": "Los planes de cuidado",
@@ -29,5 +29,11 @@
         "return": "ESCENARIOS",
         "addPatient": "Añadir paciente",
         "errorPatient": "No se ha agregado ningún paciente a este escenario. Para agregar Paciente, presione el botón Añadir."
+    },
+    "TABS": {
+        "home": "INICIO",
+        "patient": "PACIENTE",
+        "device": "DISPOSITIVO",
+        "carePlan": "PLAN DE CUIDADO"
     }
 }

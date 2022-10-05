@@ -29,5 +29,12 @@
         "return": "Scenarios",
         "addPatient": "Add Patient",
         "errorPatient": "No Patient has been added to this scenario. To add Patient, press the Add button."
+    },
+    "TABS": {
+        "home": "HOME",
+        "patient": "PATIENT",
+        "device": "DEVICE",
+        "carePlan": "CARE PLAN"
+
     }
 }
