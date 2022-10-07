@@ -4,7 +4,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Scenarios" defaultHref="/scenarios" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'DEVICETAB.return' | translate }}" defaultHref="/scenarios" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
 
         <ion-row>
@@ -28,7 +28,7 @@
             <ion-col size="10" class="ion-align-self-center">
 
                 <ion-list-header>
-                    <ion-label class="text-top">Device Section</ion-label>
+                    <ion-label id="text-top">{{ 'DEVICETAB.title' | translate }}</ion-label>
                 </ion-list-header>
 
             </ion-col>
@@ -49,13 +49,13 @@
                 <ion-col size="6" class="ion-align-self-center" [routerLink]="['device']">
                     <ion-card color="transparent" class="disability-card">
                         <ion-img src='assets/icon/devices.png'></ion-img>
-                        <ion-label>Devices</ion-label>
+                        <ion-label>{{ 'DEVICETAB.devices' | translate }}</ion-label>
                     </ion-card>
                 </ion-col>
                 <ion-col size="6" class="ion-align-self-end" [routerLink]="['telemetry']">
                     <ion-card color="transparent" class="deviceTemplate-card">
                         <ion-img src='assets/icon/telemetries.png'></ion-img>
-                        <ion-label>Telemetries</ion-label>
+                        <ion-label>{{ 'DEVICETAB.telemetries' | translate }}</ion-label>
                     </ion-card>
                 </ion-col>
             </ion-row>

@@ -22,11 +22,11 @@ ion-content {
 
 ion-toolbar {
     /*  --background: rgb(196, 109, 207); */
-    --background: url('/assets/icon/backTop.jpg') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
 }
 
 .text-top {
-    color: rgb(82, 80, 80);
+    color: white;
 }
 
 .ionadd {
@@ -40,7 +40,7 @@ ion-toolbar {
 
 ion-header {
     //background-color: rgb(196, 109, 207);
-    --background: url('/assets/icon/backTop.jpg') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
 }
 
 .text-top {
@@ -100,6 +100,10 @@ ion-list-header {
 
 .warning {
     background-color: yellow;
+}
+
+ion-back-button {
+    color: white;
 }
 
 

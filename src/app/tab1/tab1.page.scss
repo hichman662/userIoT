@@ -13,17 +13,19 @@ ion-title {
     font-size: 18px;
 }
 
-.text-top {
+#text-top {
     font-weight: bold;
-    font-size: 22px;
+    font-size: 18px;
     margin-right: 10px;
+    margin-top: 2px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #dashboardSection {
     max-width: 100%;
     max-height: auto;
     text-align: center;
-    background-color: rgba(221, 230, 225, 0.24);
+    background-color: rgba(221, 230, 225, 0.37);
     margin-top: 2px;
     margin-left: 3px;
     margin-bottom: 6px;
@@ -36,7 +38,7 @@ ion-header {
     text-align: center;
     align-content: center;
     /* background-color: rgb(180, 199, 136) !important; */
-    --background: url('/assets/icon/backTop.jpg') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
 }
 
 ion-icon {
@@ -59,7 +61,7 @@ ion-label {
     align-content: center;
     text-align: center;
     font-size: 16px;
-    color: black;
+    color: white;
 }
 
 .pati-card {
@@ -80,7 +82,7 @@ ion-card {
 
 ion-toolbar {
     /* --background: rgb(180, 199, 136) !important; */
-    --background: url('/assets/icon/greenBackTop.jpg') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
 }
 
 .text-top {
@@ -166,10 +168,11 @@ ion-img {
 }
 
 ion-item-divider {
+    color: white;
     font-size: 14px;
     min-height: 1px !important;
     max-height: 30px !important;
-    --background: url('/assets/icon/greenBackTop.jpg') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
     background-size: 800px 300px;
     //--background: rgba(157, 255, 173, 0.603) !important;
     align-items: center;
@@ -181,10 +184,14 @@ ion-item-divider {
 }
 
 .textMedio {
-    color: black;
+    color: white;
     font-size: 18px;
     filter: brightness(90%);
     filter: contrast(90%);
     filter: drop-shadow(3px 3px 3px gray);
     top: -3px;
+}
+
+ion-back-button {
+    color: white;
 }

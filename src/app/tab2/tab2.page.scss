@@ -22,7 +22,7 @@ ion-title {
     max-width: 100%;
     max-height: auto;
     text-align: center;
-    background-color: rgba(221, 230, 225, 0.24);
+    background-color: rgba(221, 230, 225, 0.37);
     margin-top: 2px;
     margin-left: 3px;
     margin-bottom: 6px;
@@ -63,7 +63,7 @@ ion-label {
     align-content: center;
     text-align: center;
     font-size: 16px;
-    color: black;
+    color: white;
 }
 
 .pati-card {
@@ -86,7 +86,7 @@ ion-img {
 
 ion-toolbar {
     /* --background: rgb(167, 195, 236) !important; */
-    --background: url('/assets/icon/back.jpg') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
 }
 
 .text-top {
@@ -162,10 +162,14 @@ ion-item-divider {
 }
 
 .textMedio {
-    color: black;
+    color: white;
     font-size: 18px;
     filter: brightness(90%);
     filter: contrast(90%);
     filter: drop-shadow(3px 3px 3px gray);
     top: -3px;
+}
+
+ion-back-button {
+    color: white;
 }

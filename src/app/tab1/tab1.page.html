@@ -4,7 +4,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Scenarios" defaultHref="/scenarios" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'PATIENTTAB.return' | translate }}" defaultHref="/scenarios" icon="chevron-back-outline"></ion-back-button>
 
         </ion-buttons>
 
@@ -29,7 +29,7 @@
             <ion-col size="10" class="ion-align-self-center">
 
                 <ion-list-header>
-                    <ion-label class="text-top">Patient Section</ion-label>
+                    <ion-label id="text-top">{{ 'PATIENTTAB.title' | translate }}</ion-label>
                 </ion-list-header>
 
             </ion-col>
@@ -50,33 +50,33 @@
                 <ion-col size="6" class="ion-align-self-center" [routerLink]="['patient']">
                     <ion-card color="transparent" class="disability-card">
                         <ion-img src='assets/icon/pati.png'></ion-img>
-                        <ion-label>Patient</ion-label>
+                        <ion-label>{{ 'PATIENTTAB.patient' | translate }}</ion-label>
                     </ion-card>
                 </ion-col>
                 <ion-col size="6" class="ion-align-self-end" [routerLink]="['patientAccess']">
                     <ion-card text-center color="transparent" class="vital-card">
                         <ion-img src='assets/icon/access.png'></ion-img>
                         <span class=bellnumbers>{{patientAccessCounter}}</span>
-                        <ion-label>Patient Access</ion-label>
+                        <ion-label>{{ 'PATIENTTAB.patientAccess' | translate }}</ion-label>
                     </ion-card>
                 </ion-col>
             </ion-row>
             <ion-item-divider text-center>
-                <ion-label text-center style="width: 100%;" class="textMedio">Another users</ion-label>
+                <ion-label text-center style="width: 100%;" class="textMedio">{{ 'PATIENTTAB.anotherUsers' | translate }}</ion-label>
             </ion-item-divider>
             <ion-row class="animate__animated animate__fadeInUp animate__slower">
                 <ion-col size="6" class="ion-align-self-start" [routerLink]="['relatedPerson']">
                     <ion-card color="transparent" class="nurse-card">
                         <ion-img src='assets/icon/family.png'></ion-img>
                         <span class=bellnumbers>{{relatedPersonCounter}}</span>
-                        <ion-label>Related Persons</ion-label>
+                        <ion-label>{{ 'PATIENTTAB.relatedPersons' | translate }}</ion-label>
                     </ion-card>
                 </ion-col>
                 <ion-col size="6" class="ion-align-self-end" [routerLink]="['practitioner']">
                     <ion-card color="transparent" class="deviceTemplate-card">
                         <ion-img src='assets/icon/practitioner.png'></ion-img>
                         <span class=bellnumbers>{{practitionerCounter}}</span>
-                        <ion-label>Practitioners</ion-label>
+                        <ion-label>{{ 'PATIENTTAB.practitioners' | translate }}</ion-label>
                     </ion-card>
                 </ion-col>
 

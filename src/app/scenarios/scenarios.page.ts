@@ -31,7 +31,7 @@ export class ScenariosPage implements OnInit {
     private storage: Storage,
     private translateConfigService: TranslateConfigService
   ) {
-    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+    this.selectedLanguage = this.translateConfigService.getDefaultLanguage() +'';
   }
 
 

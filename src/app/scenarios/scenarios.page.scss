@@ -19,16 +19,17 @@ ion-content {
 
 ion-toolbar {
     /*  --background: rgb(196, 109, 207); */
-    --background: url('/assets/icon/backTop.jpg') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
 }
 
 .text-top {
-    color: rgb(82, 80, 80);
+    color: white;
 }
 
 .ionadd {
     margin-right: 20px;
     margin-top: 10px;
+    color: white;
 }
 
 .my-custom-menu {
@@ -92,4 +93,12 @@ ion-list-header {
     font-size: 22px;
     margin-right: 10px;
     margin-top: -24px;
+}
+
+ion-back-button {
+    color: white;
+}
+
+ion-menu-button {
+    color: white;
 }

@@ -11,7 +11,7 @@
         "return": "ESCENARIO"
     },
     "WIZARD": {
-        "scenario": "ECENARIO",
+        "scenario": "ESCENARIO",
         "patient": "PACIENTE",
         "accessMode": "MODO DE ACCESO",
         "device": "DISPOSITIVO",
@@ -35,5 +35,20 @@
         "patient": "PACIENTE",
         "device": "DISPOSITIVO",
         "carePlan": "PLAN DE CUIDADO"
+    },
+    "PATIENTTAB": {
+        "patient": "Paciente",
+        "patientAccess": "Acceso del paciente",
+        "relatedPersons": "Familiares",
+        "practitioners": "Practicantes",
+        "anotherUsers": "Otros usuarios",
+        "return": "Escenarios",
+        "title": "Sección de paciente"
+    },
+    "DEVICETAB": {
+        "devices": "Dispositivos",
+        "telemetries": "Telemetrias",
+        "return": "Escenarios",
+        "title": "Sección de dispositivos"
     }
 }

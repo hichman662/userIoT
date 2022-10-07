@@ -36,5 +36,20 @@
         "device": "DEVICE",
         "carePlan": "CARE PLAN"
 
+    },
+    "PATIENTTAB": {
+        "patient": "Patient",
+        "patientAccess": "Patient Access",
+        "relatedPersons": "Related Persons",
+        "practitioners": "Practitioners",
+        "anotherUsers": "Another users",
+        "return": "Scenarios",
+        "title": "Patient Section"
+    },
+    "DEVICETAB": {
+        "devices": "Devices",
+        "telemetries": "Telemetries",
+        "return": "Scenarios",
+        "title": "Device Section"
     }
 }
