@@ -10,6 +10,19 @@
         "patientButton": "Paciente",
         "return": "ESCENARIO"
     },
+    "ADDPATIENT": {
+        "title": "Añadir Paciente",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "existingUserWhoHasBeenAPatient": "Usuario existente que ha sido paciente",
+        "done": "Guardar",
+        "accessModeButton": "Modo de Acceso",
+        "return": "Volver",
+        "skip": "Omitir",
+        "newUserData": "Nuevos datos de usuario",
+        "patientProfile": "Perfil del paciente",
+        "pleaseFillOutThisField": "Por favor complete el campo"
+    },
     "WIZARD": {
         "scenario": "ESCENARIO",
         "patient": "PACIENTE",
@@ -50,5 +63,17 @@
         "telemetries": "Telemetrias",
         "return": "Escenarios",
         "title": "Sección de dispositivos"
+    },
+    "CAREPLANTAB": {
+        "carePlans": "Planes de cuidado",
+        "vitalSigns": "Signos vitales",
+        "medication": "Medicamento",
+        "appointment": "Cita",
+        "communication": "Comunicación",
+        "nutrition": "Nutrición",
+        "messanger": "Messanger",
+        "return": "Escenarios",
+        "title": "Plan de cuidado",
+        "careActivities": "Actividades de cuidado"
     }
 }
