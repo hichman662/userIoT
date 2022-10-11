@@ -132,5 +132,17 @@
         "return": "Scenarios",
         "title": "Care Plan Section",
         "careActivities": "Care Activities"
+    },
+
+    "CAREACTIVITIES": {
+        "title": "Care activities",
+        "medication": "Medication",
+        "appointment": "Appointment",
+        "communication": "Communication",
+        "nutrition": "Nutrition",
+        "return": "Return",
+        "skip": "Skip",
+        "addButton": "Add",
+        "finish": "Finish"
     }
 }

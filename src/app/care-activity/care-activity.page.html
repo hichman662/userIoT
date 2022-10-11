@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Back" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'CAREACTIVITIES.return' | translate }}" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <!--  <ion-buttons slot="end">
             <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-care-activity']"></ion-icon>
@@ -13,7 +13,7 @@
 
 
         <ion-button slot="end" fill="clear" (click)="goToInicio()">
-            skip
+            {{ 'CAREACTIVITIES.skip' | translate }}
         </ion-button>
     </ion-toolbar>
     <ion-row>
@@ -37,7 +37,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Care Activities</ion-label>
+                <ion-label class="text-top">{{ 'CAREACTIVITIES.title' | translate }}</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -75,7 +75,7 @@
             <!--  <ion-item-sliding #slidingItem> -->
             <div *ngIf="(careActivity.TypeActivity === 1 && listFilter === '1') || (careActivity.TypeActivity === 1 && listFilter === 'all')">
                 <ion-item class="item">
-                    <ion-button fill="outline" slot="end" (click)="addMedication(careActivity['Id'], careActivity.MedicationsCare['ProductReference'])" [routerLink]="['addMedication']">Add</ion-button>
+                    <ion-button fill="outline" slot="end" (click)="addMedication(careActivity['Id'], careActivity.MedicationsCare['ProductReference'])" [routerLink]="['addMedication']">{{ 'CAREACTIVITIES.addButton' | translate }}</ion-button>
                     <!-- <ion-icon slot="end" color="success" name="checkmark-circle" class="trashIcon"></ion-icon> -->
 
                     <ion-avatar slot="start">
@@ -83,7 +83,7 @@
                         <!--   <ion-icon color="success" name="checkmark-circle"></ion-icon> -->
                     </ion-avatar>
                     <ion-label text-wrap>
-                        <h5>Medication</h5>
+                        <h5>{{ 'CAREACTIVITIES.medication' | translate }}</h5>
                         <h4> {{careActivity['Name']}}</h4>
                     </ion-label>
                 </ion-item>
@@ -92,7 +92,7 @@
                 <ion-item class="item">
 
 
-                    <ion-button fill="outline" slot="end" (click)="addNutrition(careActivity['Id'], careActivity.NutritionOrders['Id'])" [routerLink]="['addNutrition']">Add</ion-button>
+                    <ion-button fill="outline" slot="end" (click)="addNutrition(careActivity['Id'], careActivity.NutritionOrders['Id'])" [routerLink]="['addNutrition']">{{ 'CAREACTIVITIES.addButton' | translate }}</ion-button>
                     <!-- <ion-icon slot="end" color="success" name="checkmark-circle" class="trashIcon"></ion-icon> -->
 
 
@@ -100,31 +100,31 @@
                         <img src="assets/icon/nutrition.png">
                     </ion-avatar>
                     <ion-label text-wrap>
-                        <h5>Nutrition</h5>
+                        <h5>{{ 'CAREACTIVITIES.nutrition' | translate }}</h5>
                         <h4> {{careActivity['Name']}}</h4>
                     </ion-label>
                 </ion-item>
             </div>
             <div *ngIf="(careActivity.TypeActivity === 3 && listFilter === '3') || (careActivity.TypeActivity === 3 && listFilter === 'all')">
                 <ion-item class="item">
-                    <ion-button fill="outline" slot="end" (click)="addCommunication(careActivity['Id'], 753678)" [routerLink]="['addCommunication']">Add</ion-button>
+                    <ion-button fill="outline" slot="end" (click)="addCommunication(careActivity['Id'], 753678)" [routerLink]="['addCommunication']">{{ 'CAREACTIVITIES.addButton' | translate }}</ion-button>
                     <ion-avatar slot="start">
                         <img src="assets/icon/communication.png">
                     </ion-avatar>
                     <ion-label text-wrap>
-                        <h5>Communication</h5>
+                        <h5>{{ 'CAREACTIVITIES.communication' | translate }}</h5>
                         <h4> {{careActivity['Name']}}</h4>
                     </ion-label>
                 </ion-item>
             </div>
             <div *ngIf="(careActivity.TypeActivity === 4 && listFilter === '4') || (careActivity.TypeActivity === 4 && listFilter === 'all')">
                 <ion-item class="item">
-                    <ion-button fill="outline" slot="end" (click)="addAppointment(careActivity['Id'], careActivity.Appointments['Id'])" [routerLink]="['addAppointment']">Add</ion-button>
+                    <ion-button fill="outline" slot="end" (click)="addAppointment(careActivity['Id'], careActivity.Appointments['Id'])" [routerLink]="['addAppointment']">{{ 'CAREACTIVITIES.addButton' | translate }}</ion-button>
                     <ion-avatar slot="start">
                         <img src="assets/icon/appointment.png">
                     </ion-avatar>
                     <ion-label text-wrap>
-                        <h5>Appointment</h5>
+                        <h5>{{ 'CAREACTIVITIES.appointment' | translate }}</h5>
                         <h4> {{careActivity['Name']}}</h4>
                     </ion-label>
                 </ion-item>
@@ -153,5 +153,5 @@
     </ion-list>
     <br>
     <br>
-    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" (click)="goToInicio()">6/6 Finish</ion-button>
+    <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="success" (click)="goToInicio()">6/6 {{ 'CAREACTIVITIES.finish' | translate }}</ion-button>
 </ion-content>

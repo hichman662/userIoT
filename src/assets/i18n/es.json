@@ -80,7 +80,6 @@
         "skip": "Omitir",
         "pleaseFillOutThisField": "Por favor complete el campo"
     },
-
     "WIZARD": {
         "scenario": "ESCENARIO",
         "patient": "PACIENTE",
@@ -133,5 +132,16 @@
         "return": "Escenarios",
         "title": "Plan de cuidado",
         "careActivities": "Actividades de cuidado"
+    },
+    "CAREACTIVITIES": {
+        "title": "Actividades de cuidado",
+        "medication": "Medicamento",
+        "appointment": "Cita",
+        "communication": "Comunicación",
+        "nutrition": "Nutrición",
+        "return": "Volver",
+        "skip": "Omitir",
+        "addButton": "Añadir",
+        "finish": "Terminar"
     }
 }
