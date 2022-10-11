@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +15,8 @@ import { AddUserPage } from './add-user.page';
     FormsModule,
     IonicModule,
     AddUserPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [AddUserPage]
 })

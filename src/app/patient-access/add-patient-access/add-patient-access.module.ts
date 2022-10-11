@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { ProgressBarModule } from './../../progress-bar/progress-bar.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +17,8 @@ import { AddPatientAccessPage } from './add-patient-access.page';
     IonicModule,
     AddPatientAccessPageRoutingModule,
     ReactiveFormsModule,
-    ProgressBarModule
+    ProgressBarModule,
+    TranslateModule
   ],
   declarations: [AddPatientAccessPage]
 })

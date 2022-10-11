@@ -23,6 +23,63 @@
         "patientProfile": "Patient profile",
         "pleaseFillOutThisField": "Please fill out this field"
     },
+    "ADDUSER": {
+        "title": "Add new user",
+        "name": "Name",
+        "surnames": "Surenames",
+        "description": "Description",
+        "gender": "Gender",
+        "isDiseased": "Is diseased",
+        "isActive": "Is active",
+        "done": "Done",
+        "return": "Return",
+        "male": "male",
+        "female": "female",
+        "other": "Other",
+        "unknown": "Unknown",
+        "pleaseFillOutThisField": "Please fill out this field"
+    },
+    "ADDACCESSMODE": {
+        "title": "Add Patient Access",
+        "name": "Name",
+        "description": "Description",
+        "done": "Done",
+        "deviceButton": "Device",
+        "return": "Return",
+        "skip": "Skip",
+        "profileAccess": "Profile Access",
+        "pleaseFillOutThisField": "Please fill out this field"
+    },
+    "ADDDEVICE": {
+        "title": "Add Device",
+        "name": "Name",
+        "description": "Description",
+        "firmVersion": "Firm Version",
+        "tag": "Tag",
+        "serialNumber": "Serial Number",
+        "trademark": "Trademark",
+        "isSimulated": "Is simulated",
+        "deviceSwitch": "Device Switch",
+        "done": "Done",
+        "carePlanButton": "Care Plan",
+        "deviceTemplates": "Device Templates",
+        "return": "Return",
+        "skip": "Skip",
+        "profileAccess": "Profile Access",
+        "accessModes": "Access Modes",
+        "pleaseFillOutThisField": "Please fill out this field"
+    },
+    "ADDCAREPLAN": {
+        "title": "Add care plan",
+        "name": "Name",
+        "description": "Description",
+        "done": "Done",
+        "activitiesButton": "Activities",
+        "carePlanTemplates": "Care plan templates",
+        "return": "Return",
+        "skip": "Skip",
+        "pleaseFillOutThisField": "Please fill out this field"
+    },
     "WIZARD": {
         "scenario": "SCENARIO",
         "patient": "PATIENT",
@@ -48,7 +105,6 @@
         "patient": "PATIENT",
         "device": "DEVICE",
         "carePlan": "CARE PLAN"
-
     },
     "PATIENTTAB": {
         "patient": "Patient",

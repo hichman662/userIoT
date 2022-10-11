@@ -1,3 +1,4 @@
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ProgressBarModule } from './../../progress-bar/progress-bar.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +17,8 @@ import { AddDevicePage } from './add-device.page';
     IonicModule,
     AddDevicePageRoutingModule,
     ReactiveFormsModule,
-    ProgressBarModule
+    ProgressBarModule,
+    TranslateModule
   ],
   declarations: [AddDevicePage]
 })

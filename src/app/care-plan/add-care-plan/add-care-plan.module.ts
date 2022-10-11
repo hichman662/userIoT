@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { ProgressBarModule } from './../../progress-bar/progress-bar.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +17,8 @@ import { AddCarePlanPage } from './add-care-plan.page';
     IonicModule,
     AddCarePlanPageRoutingModule,
     ReactiveFormsModule,
-    ProgressBarModule
+    ProgressBarModule,
+    TranslateModule
   ],
   declarations: [AddCarePlanPage]
 })
