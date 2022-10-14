@@ -80,6 +80,46 @@
         "skip": "Omitir",
         "pleaseFillOutThisField": "Por favor complete el campo"
     },
+    "ADDMEDICATION": {
+        "title": "Añadir medicamento",
+        "name": "Nombre",
+        "description": "Descripción",
+        "activityTime": "Tiempo de actividad",
+        "done": "Guardar",
+        "return": "actividades de cuidado",
+        "selectActivityTime": "Selecciona una fecha de actividad",
+        "pleaseFillOutThisField": "Por favor complete el campo"
+    },
+    "ADDAPPOINTMENT": {
+        "title": "Añadir cita",
+        "name": "Nombre",
+        "description": "Descripción",
+        "activityTime": "Tiempo de actividad",
+        "done": "Guardar",
+        "return": "actividades de cuidado",
+        "selectActivityTime": "Selecciona una fecha de actividad",
+        "pleaseFillOutThisField": "Por favor complete el campo"
+    },
+    "ADDCOMMUNICATION": {
+        "title": "Añadir comunicación",
+        "name": "Nombre",
+        "description": "Descripción",
+        "activityTime": "Tiempo de actividad",
+        "done": "Guardar",
+        "return": "actividades de cuidado",
+        "selectActivityTime": "Selecciona una fecha de actividad",
+        "pleaseFillOutThisField": "Por favor complete el campo"
+    },
+    "ADDNUTRITION": {
+        "title": "Add Nutrtition",
+        "name": "Nombre",
+        "description": "Descripción",
+        "activityTime": "Tiempo de actividad",
+        "done": "Guardar",
+        "return": "actividades de cuidado",
+        "selectActivityTime": "Selecciona una fecha de actividad",
+        "pleaseFillOutThisField": "Por favor complete el campo"
+    },
     "WIZARD": {
         "scenario": "ESCENARIO",
         "patient": "PACIENTE",
@@ -143,5 +183,25 @@
         "skip": "Omitir",
         "addButton": "Añadir",
         "finish": "Terminar"
+    },
+    "PATIENT": {
+        "userData": "Datos del usuario",
+        "surnames": "Apellidos",
+        "email": "Correo electrónico",
+        "activeStatus": "Estado activo",
+        "isDiseased": "Esta enfermo/a",
+        "return": "Volver",
+        "gender": "Sexo",
+        "patientProfile": "Perfil del paciente",
+        "activated": "Activado",
+        "deactivated": "Desactivado",
+        "yes": "Sí",
+        "no": "No",
+        "male": "Hombre",
+        "female": "Mujer",
+        "other": "Otro",
+        "unknown": "Desconocido",
+        "alertNoPatient": "No patient has been added to this scenario. To add a patient, press the Add button."
     }
+
 }

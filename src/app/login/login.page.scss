@@ -53,7 +53,7 @@ ion-title {
 }
 
 ion-content {
-    --background: url('/assets/icon/back.jpg') 0 0/100% 100% no-repeat;
+    --background: url('/assets/icon/backW.jpg') 0 0/100% 100% no-repeat;
     text-align: center;
     font-size: larger;
     --padding-top: 1%;
@@ -118,4 +118,9 @@ ion-icon {
     display: flex;
     justify-content: center;
     // align-items: center; this only if you want to vertical align it to the center too
+}
+
+h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }

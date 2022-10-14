@@ -80,6 +80,46 @@
         "skip": "Skip",
         "pleaseFillOutThisField": "Please fill out this field"
     },
+    "ADDMEDICATION": {
+        "title": "Add Medication",
+        "name": "Name",
+        "description": "Description",
+        "activityTime": "Activity time",
+        "done": "Done",
+        "return": "Care Activities",
+        "selectActivityTime": "Select a Activity Date",
+        "pleaseFillOutThisField": "Please fill out this field"
+    },
+    "ADDAPPOINTMENT": {
+        "title": "Add Appointment",
+        "name": "Name",
+        "description": "Description",
+        "activityTime": "Activity time",
+        "done": "Done",
+        "return": "Care Activities",
+        "selectActivityTime": "Select a Activity Date",
+        "pleaseFillOutThisField": "Please fill out this field"
+    },
+    "ADDCOMMUNICATION": {
+        "title": "Add Communication",
+        "name": "Name",
+        "description": "Description",
+        "activityTime": "Activity time",
+        "done": "Done",
+        "return": "Care Activities",
+        "selectActivityTime": "Select a Activity Date",
+        "pleaseFillOutThisField": "Please fill out this field"
+    },
+    "ADDNUTRITION": {
+        "title": "Add Nutrtition",
+        "name": "Name",
+        "description": "Description",
+        "activityTime": "Activity time",
+        "done": "Done",
+        "return": "Care Activities",
+        "selectActivityTime": "Select a Activity Date",
+        "pleaseFillOutThisField": "Please fill out this field"
+    },
     "WIZARD": {
         "scenario": "SCENARIO",
         "patient": "PATIENT",
@@ -133,7 +173,6 @@
         "title": "Care Plan Section",
         "careActivities": "Care Activities"
     },
-
     "CAREACTIVITIES": {
         "title": "Care activities",
         "medication": "Medication",
@@ -144,5 +183,25 @@
         "skip": "Skip",
         "addButton": "Add",
         "finish": "Finish"
+    },
+    "PATIENT": {
+        "userData": "User data",
+        "surnames": "Surenames",
+        "email": "Email",
+        "activeStatus": "Active status",
+        "isDiseased": "Is diseased",
+        "return": "Return",
+        "gender": "Gender",
+        "patientProfile": "Patient Profile",
+        "activated": "Activated",
+        "deactivated": "Deactivated",
+        "yes": "Yes",
+        "no": "No",
+        "male": "male",
+        "female": "female",
+        "other": "Other",
+        "unknown": "Unknown",
+        "alertNoPatient": "No patient has been added to this scenario. To add a patient, press the Add button."
+
     }
 }

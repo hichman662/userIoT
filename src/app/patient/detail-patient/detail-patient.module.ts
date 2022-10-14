@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DetailProfileComponent } from './../detail-profile/detail-profile.component';
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ReactiveFormsModule,
     MatExpansionModule,
+    TranslateModule
 
   ],
   declarations: [DetailPatientPage,
