@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Patient Dashboard" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'PATIENTACCESSLIST.return' | translate }}" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end" [hidden]="patientNull">
             <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-patient-access','Wizard']"></ion-icon>

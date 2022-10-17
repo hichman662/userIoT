@@ -248,5 +248,17 @@
         "alertNoPatientProfile": "No Patient Profile has been added to this patient. To add Patient Profile, select one.",
         "pleaseFillOutThisField": "Please fill out this field",
         "done": "Done"
+    },
+    "PATIENTACCESSLIST": {
+        "title": "Patient Access",
+        "alertNoPatient": "No Patient has been added to this scenario. To add Patient, press the Add button.",
+        "alertNoPatientAccess": " No Patient Access has been added to this scenario. To add Patient Access, press the Add button.",
+        "alertNoPatientProfile": "No Patient profile has been added to this patient. To add Patient Profile, press the Add Patient Profile button.",
+        "addPatientProfile": "Add Patient Profile",
+        "addPatient": "Add Patient",
+        "return": "Patient Dashboard",
+        "addButton": "Add"
+
     }
+
 }

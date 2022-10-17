@@ -201,7 +201,7 @@
         "female": "Mujer",
         "other": "Otro",
         "unknown": "Desconocido",
-        "alertNoPatient": "No patient has been added to this scenario. To add a patient, press the Add button."
+        "alertNoPatient": "No se ha agregado ningún paciente a este escenario. Para agregar un paciente, presione el botón Agregar."
     },
     "PATIENTPROFILE": {
         "details": "Detalles",
@@ -248,6 +248,17 @@
         "alertNoPatientProfile": "No se ha agregado ningún perfil de paciente a este paciente. Para agregar un perfil de paciente, seleccione uno",
         "pleaseFillOutThisField": "Por favor complete el campo",
         "done": "Guardar"
+    },
+    "PATIENTACCESSLIST": {
+        "title": "Accesos del paciente",
+        "alertNoPatient": "No se ha agregado ningún paciente a este escenario. Para agregar Paciente, presione el botón Agregar",
+        "alertNoPatientAccess": "No se ha agregado acceso de pacientes a este escenario. Para agregar acceso de pacientes, presione el botón Agregar.",
+        "alertNoPatientProfile": "No se ha agregado ningún perfil de paciente a este paciente. Para agregar un perfil de paciente, seleccione uno",
+        "addPatientProfile": "Añadir perfil de paciente",
+        "addPatient": "Añadir paciente",
+        "return": "Dashboard del paciente",
+        "addButton": "Agregar"
+
     }
 
 }
