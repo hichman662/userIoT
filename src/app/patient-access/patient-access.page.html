@@ -33,7 +33,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Patient Access</ion-label>
+                <ion-label class="text-top"> {{ 'PATIENTACCESSLIST.title' | translate }}</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -47,25 +47,25 @@
     <ion-card [hidden]="!patientNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
         <ion-item class="warning">
             <ion-icon size="large" name="warning-outline"></ion-icon>
-            <ion-button fill="outline" slot="end" [routerLink]="['add-patient']">Add Patient</ion-button>
+            <ion-button fill="outline" slot="end" [routerLink]="['add-patient']">{{ 'PATIENTACCESSLIST.addPatient' | translate }}</ion-button>
         </ion-item>
         <ion-card-header>
-            <ion-card-subtitle>No Patient has been added to this scenario. To add Patient, press the Add button.</ion-card-subtitle>
+            <ion-card-subtitle>{{ 'PATIENTACCESSLIST.alertNoPatient' | translate }}</ion-card-subtitle>
             <!-- <ion-card-title>Care Plans</ion-card-title> -->
         </ion-card-header>
     </ion-card>
     <ion-card [hidden]="!patientProfileNull || patientNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
         <ion-item class="warning">
             <ion-icon size="large" name="warning-outline"></ion-icon>
-            <ion-button fill="outline" slot="end" [routerLink]="['patient','profile']">Add Patient Profile</ion-button>
+            <ion-button fill="outline" slot="end" [routerLink]="['patient','profile']">{{ 'PATIENTACCESSLIST.addPatientProfile' | translate }}</ion-button>
         </ion-item>
         <ion-card-header>
-            <ion-card-subtitle>No Patient profile has been added to this patient. To add Patient Profile, press the Add Patient Profile button.</ion-card-subtitle>
+            <ion-card-subtitle>{{ 'PATIENTACCESSLIST.alertNoPatientProfile' | translate }}</ion-card-subtitle>
             <!-- <ion-card-title>Care Plans</ion-card-title> -->
         </ion-card-header>
     </ion-card>
     <ion-card-header [hidden]="!patientAccessNull || patientNull || patientProfileNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
-        <ion-icon size="large" name="warning-outline"></ion-icon> No Patient Access has been added to this scenario. To add Patient Access, press the Add button.
+        <ion-icon size="large" name="warning-outline"></ion-icon> {{ 'PATIENTACCESSLIST.alertNoPatientAccess' | translate }}
     </ion-card-header>
     <ion-list>
         <div class="patient" *ngFor="let patientAcces of patientAccess">

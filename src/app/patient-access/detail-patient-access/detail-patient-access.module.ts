@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { DetailAccessModeComponent } from './../detail-access-mode/detail-access-mode.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -20,7 +21,8 @@ import { DetailPatientAccessPage } from './detail-patient-access.page';
     HttpClientModule,
     DetailPatientAccessPageRoutingModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    TranslateModule
   ],
   declarations: [DetailPatientAccessPage, DetailAccessModeComponent]
 })
