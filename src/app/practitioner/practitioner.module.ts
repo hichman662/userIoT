@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,8 @@ import { PractitionerPage } from './practitioner.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PractitionerPageRoutingModule
+    PractitionerPageRoutingModule,
+    TranslateModule
   ],
   declarations: [PractitionerPage]
 })

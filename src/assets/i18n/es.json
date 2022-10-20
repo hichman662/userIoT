@@ -314,6 +314,47 @@
         "symbolic": "Simbólico",
         "synthesized": "Sintetizado",
         "verbatim": "Literal"
+    },
+    "RELATEDPERSONSLIST": {
+        "title": "Familiares",
+        "alertNoRelatedPerson": "No se ha agregado ninguna familiar a este escenario. Para agregar una familiar relacionada, presione el botón Agregar.",
+        "return": "Dashboard del paciente"
+    },
+    "RELATEDPERSON": {
+        "surnames": "Apellidos",
+        "email": "Correo electrónico",
+        "activeStatus": "Estado activo",
+        "isDiseased": "Esta enfermo/a",
+        "gender": "Sexo",
+        "activated": "Activado",
+        "deactivated": "Desactivado",
+        "yes": "Sí",
+        "no": "No",
+        "male": "Hombre",
+        "female": "Mujer",
+        "other": "Otro",
+        "unknown": "Desconocido",
+        "return": "Familiares"
+    },
+    "PRACTITIONERSLIST": {
+        "title": "Practitioners",
+        "alertNoPractitioner": "No se ha agregado ningun/a practicante a este escenario. Para agregar uno/a practicante, presione el botón Agregar.",
+        "return": "Dashboard del paciente"
+    },
+    "PRACTITIONER": {
+        "surnames": "Apellidos",
+        "activeStatus": "Estado activo",
+        "isDiseased": "Esta enfermo/a",
+        "gender": "Sexo",
+        "activated": "Activado",
+        "deactivated": "Desactivado",
+        "yes": "Sí",
+        "no": "No",
+        "male": "Hombre",
+        "female": "Mujer",
+        "other": "Otro",
+        "unknown": "Desconocido",
+        "return": "Practicantes"
     }
 
 }

@@ -41,7 +41,8 @@ export function LanguageLoader(http: HttpClient) {
             provide: TranslateLoader,
             useFactory: LanguageLoader,
             deps: [HttpClient]
-        }
+        },
+        defaultLanguage:'es'
     }),
 
     ],

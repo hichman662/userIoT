@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Patient Dashboard" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'RELATEDPERSONSLIST.return' | translate }}" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-rel-person']"></ion-icon>
@@ -33,7 +33,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Related Persons</ion-label>
+                <ion-label class="text-top">{{ 'RELATEDPERSONSLIST.title' | translate }}</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -45,7 +45,7 @@
 </ion-header>
 <ion-content>
     <ion-card-header [hidden]="!relPersonNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
-        <ion-icon size="large" name="warning-outline"></ion-icon> No Related Person has been added to this scenario. To add a Related Person, press the Add button.
+        <ion-icon size="large" name="warning-outline"></ion-icon> {{ 'RELATEDPERSONSLIST.alertNoRelatedPerson' | translate }}
     </ion-card-header>
 
     <ion-list>

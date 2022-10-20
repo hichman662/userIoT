@@ -313,6 +313,51 @@
         "symbolic": "Symbolic",
         "synthesized": "Synthesized",
         "verbatim": "Verbatim"
+    },
+    "RELATEDPERSONSLIST": {
+        "title": "Related Persons",
+        "alertNoRelatedPerson": "No Related Person has been added to this scenario. To add a Related Person, press the Add button.",
+        "return": "Patient Dashboard"
+    },
+    "RELATEDPERSON": {
+        "surnames": "Surenames",
+        "email": "Email",
+        "activeStatus": "Active status",
+        "active": "Active",
+        "disactive": "Disactive",
+        "isDiseased": "Is diseased",
+        "gender": "Gender",
+        "activated": "Activated",
+        "deactivated": "Deactivated",
+        "yes": "Yes",
+        "no": "No",
+        "male": "male",
+        "female": "female",
+        "other": "Other",
+        "unknown": "Unknown",
+        "return": "Related Persons"
+    },
+    "PRACTITIONERSLIST": {
+        "title": "Practitioners",
+        "alertNoPractitioner": "No practitioner has been added to this scenario. To add practitioner, press the Add button.",
+        "return": "Patient Dashboard"
+    },
+    "PRACTITIONER": {
+        "surnames": "Surenames",
+        "activeStatus": "Active status",
+        "active": "Active",
+        "disactive": "Disactive",
+        "isDiseased": "Is diseased",
+        "gender": "Gender",
+        "activated": "Activated",
+        "deactivated": "Deactivated",
+        "yes": "Yes",
+        "no": "No",
+        "male": "male",
+        "female": "female",
+        "other": "Other",
+        "unknown": "Unknown",
+        "return": "Practitioners"
     }
 
 }
