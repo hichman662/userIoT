@@ -336,8 +336,18 @@
         "unknown": "Desconocido",
         "return": "Familiares"
     },
+    "ADDRELATEDPERSON": {
+        "title": "Añadir familiar",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "user": "Usuarios",
+        "newUser": "Usuario nuevo",
+        "done": "Guardar",
+        "return": "Familiares",
+        "pleaseFillOutThisField": "Por favor complete el campo"
+    },
     "PRACTITIONERSLIST": {
-        "title": "Practitioners",
+        "title": "Practicantes",
         "alertNoPractitioner": "No se ha agregado ningun/a practicante a este escenario. Para agregar uno/a practicante, presione el botón Agregar.",
         "return": "Dashboard del paciente"
     },
@@ -355,6 +365,16 @@
         "other": "Otro",
         "unknown": "Desconocido",
         "return": "Practicantes"
+    },
+    "ADDPRACTITIONER": {
+        "title": "Añadir Practicante",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "user": "Los usuarios existentes",
+        "newUser": "Usuario nuevo",
+        "done": "Guardar",
+        "return": "Practicantes",
+        "pleaseFillOutThisField": "Por favor complete el campo"
     }
 
 }

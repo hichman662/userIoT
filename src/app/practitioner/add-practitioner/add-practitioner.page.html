@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Patient Dashboard" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'ADDPRACTITIONER.return' | translate }}" defaultHref="/tabs/tab1" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
 
@@ -33,7 +33,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Add Practitioner</ion-label>
+                <ion-label class="text-top">{{ 'ADDPRACTITIONER.title' | translate }}</ion-label>
 
             </ion-list-header>
 
@@ -52,27 +52,27 @@
 
         <ion-item>
 
-            <ion-label position="stacked">Email</ion-label>
+            <ion-label position="stacked">{{ 'ADDPRACTITIONER.email' | translate }}</ion-label>
             <ion-input type="email" formControlName="Email" class="form-control" required></ion-input>
             <div class="error" *ngIf="practitionerForm.controls.Email.errors && practitionerForm.controls.Email.touched">
-                To add Patient please fill out this field
+                {{ 'ADDPRACTITIONER.pleaseFillOutThisField' | translate }}
             </div>
         </ion-item>
         <ion-item>
-            <ion-label position="stacked">Password</ion-label>
+            <ion-label position="stacked">{{ 'ADDPRACTITIONER.password' | translate }}</ion-label>
             <ion-input type="password" formControlName="Pass" class="form-control" required></ion-input>
             <div class="error" *ngIf="practitionerForm.controls.Pass.errors && practitionerForm.controls.Pass.touched">
-                To add Patient please fill out this field
+                {{ 'ADDPRACTITIONER.pleaseFillOutThisField' | translate }}
             </div>
         </ion-item>
 
         <ion-item lines="full">
-            <ion-label position="stacked">Existing user who has not been a Practitioner</ion-label>
+            <ion-label position="stacked">{{ 'ADDPRACTITIONER.user' | translate }}</ion-label>
 
             <ion-select multiple="false" [value]="invitedUserId" [placeholder]="invitedUserName" okText="Okay" cancelText="Dismiss" formControlName="UserPractitioner_oid">
 
                 <div class="error" *ngIf="practitionerForm.controls.UserPractitioner_oid.errors && practitionerForm.controls.UserPractitioner_oid.touched">
-                    Please fill out this field
+                    {{ 'ADDPRACTITIONER.pleaseFillOutThisField' | translate }}
                 </div>
 
                 <div>
@@ -84,7 +84,7 @@
             <ion-item [routerLink]="['add-user']">
                 <ion-button shape="round" fill="outline">
                     <ion-icon name="add"></ion-icon>
-                    New user data
+                    {{ 'ADDPRACTITIONER.newUser' | translate }}
                 </ion-button>
             </ion-item>
 
@@ -93,6 +93,6 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!practitionerForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!practitionerForm.valid">{{ 'ADDPRACTITIONER.done' | translate }}</ion-button>
     </form>
 </ion-content>

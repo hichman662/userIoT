@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Related Persons Dashboard" defaultHref="/tabs/tab1/relatedPerson" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'ADDRELATEDPERSON.return' | translate }}" defaultHref="/tabs/tab1/relatedPerson" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
 
@@ -33,7 +33,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Add Related Person</ion-label>
+                <ion-label class="text-top">{{ 'ADDRELATEDPERSON.title' | translate }}</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -47,26 +47,26 @@
     <form [formGroup]="relPersonForm" (ngSubmit)="onSubmit()">
         <ion-item>
 
-            <ion-label position="stacked">Email</ion-label>
+            <ion-label position="stacked">{{ 'ADDRELATEDPERSON.email' | translate }}</ion-label>
             <ion-input type="email" formControlName="Email" class="form-control" required></ion-input>
             <div class="error" *ngIf="relPersonForm.controls.Email.errors && relPersonForm.controls.Email.touched">
-                To add Patient please fill out this field
+                {{ 'ADDRELATEDPERSON.pleaseFillOutThisField' | translate }}
             </div>
         </ion-item>
         <ion-item>
-            <ion-label position="stacked">Password</ion-label>
+            <ion-label position="stacked">{{ 'ADDRELATEDPERSON.password' | translate }}</ion-label>
             <ion-input type="password" formControlName="Pass" class="form-control" required></ion-input>
             <div class="error" *ngIf="relPersonForm.controls.Pass.errors && relPersonForm.controls.Pass.touched">
-                To add Patient please fill out this field
+                {{ 'ADDRELATEDPERSON.pleaseFillOutThisField' | translate }}
             </div>
         </ion-item>
         <ion-item lines="full">
-            <ion-label position="stacked">User</ion-label>
+            <ion-label position="stacked">{{ 'ADDRELATEDPERSON.user' | translate }}</ion-label>
 
             <ion-select multiple="false" [value]="invitedUserId" [placeholder]="invitedUserName" okText="Okay" cancelText="Dismiss" formControlName="UserRelatedPerson_oid">
 
                 <div class="error" *ngIf="relPersonForm.controls.UserRelatedPerson_oid.errors && relPersonForm.controls.UserRelatedPerson_oid.touched">
-                    Please fill out this field
+                    {{ 'ADDRELATEDPERSON.pleaseFillOutThisField' | translate }}
                 </div>
 
                 <div *ngIf="findNotAlreadyRelatedPerson !== null">
@@ -77,7 +77,7 @@
             <ion-item [routerLink]="['add-user']">
                 <ion-button shape="round" fill="outline">
                     <ion-icon name="add"></ion-icon>
-                    New User
+                    {{ 'ADDRELATEDPERSON.newUser' | translate }}
                 </ion-button>
             </ion-item>
 
@@ -86,6 +86,6 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!relPersonForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!relPersonForm.valid">{{ 'ADDRELATEDPERSON.done' | translate }}</ion-button>
     </form>
 </ion-content>

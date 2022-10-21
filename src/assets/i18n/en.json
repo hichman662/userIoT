@@ -337,6 +337,16 @@
         "unknown": "Unknown",
         "return": "Related Persons"
     },
+    "ADDRELATEDPERSON": {
+        "title": "Add Related Person",
+        "email": "Email",
+        "password": "Password",
+        "user": "Users",
+        "newUser": "New user",
+        "done": "Done",
+        "return": "Related persons",
+        "pleaseFillOutThisField": "Please fill out this field"
+    },
     "PRACTITIONERSLIST": {
         "title": "Practitioners",
         "alertNoPractitioner": "No practitioner has been added to this scenario. To add practitioner, press the Add button.",
@@ -358,6 +368,16 @@
         "other": "Other",
         "unknown": "Unknown",
         "return": "Practitioners"
+    },
+    "ADDPRACTITIONER": {
+        "title": "Add Practitioner",
+        "email": "Email",
+        "password": "Password",
+        "user": "Existing users",
+        "newUser": "New user",
+        "done": "Done",
+        "return": "Practitioners",
+        "pleaseFillOutThisField": "Please fill out this field"
     }
 
 }
