@@ -375,6 +375,60 @@
         "done": "Guardar",
         "return": "Practicantes",
         "pleaseFillOutThisField": "Por favor complete el campo"
+    },
+    "DEVICELIST": {
+        "title": "Dispositivos",
+        "return": "Sección de dispositivos"
+    },
+    "DEVICE": {
+        "device": "Dispositivo",
+        "deviceTemplate": "Plantilla del dispositivo",
+        "firmVersion": "Versión de firmware",
+        "tag": "Etiqueta",
+        "serialNumber": "Número de serie",
+        "trademark": "Marca comercial",
+        "isSimulated": "Es simulado",
+        "deviceSwitch": "Interruptor de dispositivo",
+        "on": "Encendido",
+        "off": "apagado",
+        "yes": "Sí",
+        "no": "No",
+        "return": "Dispositivos"
+    },
+    "DEVICETEMPLATE": {
+        "details": "Detalles",
+        "commands": "Comandos",
+        "properties": "Propiedades",
+        "description": "Descripción",
+        "type": "Tipo",
+        "create": "Crear",
+        "execute": "Ejecutar",
+        "delete": "Eliminar",
+        "update": "Actualizar",
+        "getById": "obtener por el Id",
+        "getProperty": "Obtener propiedad",
+        "setProperty": "Establecer propiedad",
+        "list": "Lista",
+        "reboot": "Reiniciar",
+        "login": "Iniciar sesión",
+        "isSynchronous": "Es síncrono",
+        "isWritable": "Es escribible",
+        "isCloudable": "Es cloudable"
+    },
+    "TELEMETRYLIST": {
+        "telemetries": "Telemetrias",
+        "heartRate": "El ritmo cardiaco",
+        "bodyTemperature": "La temperatura corporal",
+        "bloodPressure": "La presión arterial",
+        "respiratoryRate": "La frecuencia respiratoria",
+        "return": "Sección de dispositivos"
+    },
+    "HEARTRATE": {
+        "heartRate": "El ritmo cardiaco",
+        "beats/minute": "latidos/minuto",
+        "heartRateHistoryChart": " Cuadro de historial de frecuencia cardíaca",
+        "refreshing": "Actualizando...",
+        "return": "Telemetrias"
     }
 
 }

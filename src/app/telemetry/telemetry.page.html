@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Device dashboard" defaultHref="/tabs/tab3" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'TELEMETRYLIST.return' | translate}}" defaultHref="/tabs/tab3" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button>
@@ -32,7 +32,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Telemetries</ion-label>
+                <ion-label class="text-top">{{ 'TELEMETRYLIST.telemetries' | translate}}</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -56,7 +56,7 @@
                             <img src="assets/icon/heartRate.png">
                         </ion-avatar>
                         <ion-label text-wrap>
-                            <h5>Heart Rate</h5>
+                            <h5>{{ 'TELEMETRYLIST.heartRate' | translate}} </h5>
                             <!--
                             <h4> {{heartRate}}</h4> -->
                         </ion-label>
@@ -68,7 +68,7 @@
                             <img src="assets/icon/bloodPressure.png">
                         </ion-avatar>
                         <ion-label text-wrap>
-                            <h5>Blood Pressure</h5>
+                            <h5>{{ 'TELEMETRYLIST.bloodPressure' | translate}} </h5>
 
                             <!--  <h4> Systolic: {{systolic}}</h4>
                             <h4> Diastolic: {{diastolic}}</h4> -->
@@ -81,7 +81,7 @@
                             <img src="assets/icon/BodyTemperature.png">
                         </ion-avatar>
                         <ion-label text-wrap>
-                            <h5>Body Temperature</h5>
+                            <h5>{{ 'TELEMETRYLIST.bodyTemperature' | translate}} </h5>
                             <!--  <h4> {{bodyTemperature}}º C</h4> -->
                         </ion-label>
                     </ion-item>
@@ -92,7 +92,7 @@
                             <img src="assets/icon/RespiratoryRate.png">
                         </ion-avatar>
                         <ion-label text-wrap>
-                            <h5>Respiratory Rate</h5>
+                            <h5>{{ 'TELEMETRYLIST.respiratoryRate' | translate}} </h5>
                             <!--
                             <h4> {{respiratoryRate}}%</h4> -->
                         </ion-label>

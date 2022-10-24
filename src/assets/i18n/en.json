@@ -378,6 +378,60 @@
         "done": "Done",
         "return": "Practitioners",
         "pleaseFillOutThisField": "Please fill out this field"
+    },
+    "DEVICELIST": {
+        "title": "Devices",
+        "return": "Device Dashboard"
+    },
+    "DEVICE": {
+        "device": "Device",
+        "deviceTemplate": "Device Template",
+        "firmVersion": "Firm Version",
+        "tag": "Tag",
+        "serialNumber": "Serial Number",
+        "trademark": "Trademark",
+        "isSimulated": "Is simulated",
+        "deviceSwitch": "Device Switch",
+        "on": "On",
+        "off": "Off",
+        "yes": "Yes",
+        "no": "No",
+        "return": "Devices"
+    },
+    "DEVICETEMPLATE": {
+        "details": "Details",
+        "commands": "Commands",
+        "properties": "Properties",
+        "description": "Description",
+        "type": "Type",
+        "create": "Create",
+        "execute": "Execute",
+        "delete": "Delete",
+        "update": "Update",
+        "getById": "GetById",
+        "getProperty": "GetProperty",
+        "setProperty": "setProperty",
+        "list": "List",
+        "reboot": "Reboot",
+        "login": "Login",
+        "isSynchronous": "Is synchronous",
+        "isWritable": "Is writable",
+        "isCloudable": "Is cloudable"
+    },
+    "TELEMETRYLIST": {
+        "telemetries": "Telemetries",
+        "heartRate": "Heart Rate",
+        "bodyTemperature": "Body Temperature",
+        "bloodPressure": "Blood Pressure",
+        "respiratoryRate": "Respiratory Rate",
+        "return": "Device seccion"
+    },
+    "HEARTRATE": {
+        "heartRate": "Heart Rate",
+        "beats/minute": "beats/minute",
+        "heartRateHistoryChart": " Heart Rate History Chart",
+        "refreshing": "Refreshing...",
+        "return": "Telemetries"
     }
 
 }

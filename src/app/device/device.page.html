@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Device Dashboard" defaultHref="/tabs/tab3" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'DEVICELIST.return' | translate }}" defaultHref="/tabs/tab3" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-device']"></ion-icon>
@@ -33,7 +33,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Devices</ion-label>
+                <ion-label class="text-top">{{ 'DEVICELIST.title' | translate }}</ion-label>
             </ion-list-header>
 
         </ion-col>

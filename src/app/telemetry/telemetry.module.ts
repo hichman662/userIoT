@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +16,8 @@ import { TelemetryPage } from './telemetry.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TelemetryPageRoutingModule
+    TelemetryPageRoutingModule,
+    TranslateModule
   ],
   declarations: [TelemetryPage]
 })

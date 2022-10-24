@@ -1,15 +1,15 @@
 <ion-segment [hidden]="deviceTemplateNull" value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
     <ion-segment-button value="detail">
         <ion-icon name="receipt-outline"></ion-icon>
-        <ion-label>Details</ion-label>
+        <ion-label>{{ 'DEVICETEMPLATE.details' | translate }}</ion-label>
     </ion-segment-button>
     <ion-segment-button value="commands">
         <ion-icon name="heart-half-outline"></ion-icon>
-        <ion-label>Commands</ion-label>
+        <ion-label>{{ 'DEVICETEMPLATE.commands' | translate }}</ion-label>
     </ion-segment-button>
     <ion-segment-button value="propetries">
         <ion-icon name="body-outline"></ion-icon>
-        <ion-label>Properties</ion-label>
+        <ion-label>{{ 'DEVICETEMPLATE.properties' | translate }}</ion-label>
     </ion-segment-button>
 </ion-segment>
 
@@ -70,26 +70,26 @@
             <ion-card>
                 <ion-item>
 
-                    <ion-label text-wrap>Description</ion-label>
+                    <ion-label text-wrap>{{ 'DEVICETEMPLATE.description' | translate }}</ion-label>
                     <ion-badge text-wrap> {{command.Description}}</ion-badge>
                 </ion-item>
                 <ion-list-header>
-                    <ion-icon class="segmentIcon" name="shuffle-outline"></ion-icon>Type</ion-list-header>
+                    <ion-icon class="segmentIcon" name="shuffle-outline"></ion-icon>{{ 'DEVICETEMPLATE.type' | translate }}</ion-list-header>
                 <ion-item>
-                    <ion-label *ngIf="command.Type === 1">Create</ion-label>
-                    <ion-label *ngIf="command.Type === 2">Execute</ion-label>
-                    <ion-label *ngIf="command.Type === 3">Delete</ion-label>
-                    <ion-label *ngIf="command.Type === 4">Update</ion-label>
-                    <ion-label *ngIf="command.Type === 5">GetById</ion-label>
-                    <ion-label *ngIf="command.Type === 6">GetProperty</ion-label>
-                    <ion-label *ngIf="command.Type === 7">SetProperty</ion-label>
-                    <ion-label *ngIf="command.Type === 8">List</ion-label>
-                    <ion-label *ngIf="command.Type === 9">Reboot</ion-label>
-                    <ion-label *ngIf="command.Type === 10">Login</ion-label>
+                    <ion-label *ngIf="command.Type === 1">{{ 'DEVICETEMPLATE.create' | translate }}</ion-label>
+                    <ion-label *ngIf="command.Type === 2">{{ 'DEVICETEMPLATE.execute' | translate }}</ion-label>
+                    <ion-label *ngIf="command.Type === 3">{{ 'DEVICETEMPLATE.delete' | translate }}</ion-label>
+                    <ion-label *ngIf="command.Type === 4">{{ 'DEVICETEMPLATE.update' | translate }}</ion-label>
+                    <ion-label *ngIf="command.Type === 5">{{ 'DEVICETEMPLATE.getById' | translate }}</ion-label>
+                    <ion-label *ngIf="command.Type === 6">{{ 'DEVICETEMPLATE.getProperty' | translate }}</ion-label>
+                    <ion-label *ngIf="command.Type === 7">{{ 'DEVICETEMPLATE.setPeoperty' | translate }}</ion-label>
+                    <ion-label *ngIf="command.Type === 8">{{ 'DEVICETEMPLATE.list' | translate }}</ion-label>
+                    <ion-label *ngIf="command.Type === 9">{{ 'DEVICETEMPLATE.reboot' | translate }}</ion-label>
+                    <ion-label *ngIf="command.Type === 10">{{ 'DEVICETEMPLATE.login' | translate }}</ion-label>
                 </ion-item>
                 <ion-item>
 
-                    <ion-label text-wrap>Is Synchronous</ion-label>
+                    <ion-label text-wrap>{{ 'DEVICETEMPLATE.isSynchronous' | translate }} </ion-label>
                     <ion-badge text-wrap> {{command.IsSynchronous}}</ion-badge>
                 </ion-item>
 
@@ -123,12 +123,12 @@
             <ion-card>
                 <ion-item>
 
-                    <ion-label text-wrap>Is Writable</ion-label>
+                    <ion-label text-wrap>{{ 'DEVICETEMPLATE.isWritable' | translate }}</ion-label>
                     <ion-badge text-wrap> {{property.IsWritable}}</ion-badge>
                 </ion-item>
                 <ion-item>
 
-                    <ion-label text-wrap>Is Cloudable</ion-label>
+                    <ion-label text-wrap>{{ 'DEVICETEMPLATE.isCloudable' | translate }}</ion-label>
                     <ion-badge text-wrap> {{property.IsCloudable}}</ion-badge>
                 </ion-item>
 
