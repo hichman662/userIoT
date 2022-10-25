@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 /* eslint-disable max-len */
 import { ActivatedRoute, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
@@ -16,13 +17,18 @@ export class BodyTemperaturePage implements OnInit {
   @ViewChild('barCanvas') private barCanvas: ElementRef;
   public bodyTemperature: any;
   barChart: any;
+  textCelsius: string;
   label: any [] =[' 2022/5/22', '2022/5/23', '2022/5/26', '2022/5/27', '2022/6/01','2022/6/2'];
   data: any[]=[37, 37.5, 36, 37.5, 36.5, 37,5 ];
   date= new Date();
   constructor(  public router: Router,
     private route: ActivatedRoute,
-    private storage: Storage
-    ) { Chart.register(...registerables);}
+    private storage: Storage,
+    private translateService: TranslateService
+    ) { Chart.register(...registerables);
+      translateService.get('BODYTEMPERATURE.celsius').subscribe(value => {
+        this.textCelsius = value;
+      });}
 
   ngOnInit() {
 
@@ -58,7 +64,7 @@ randomNumber(min, max) {
       data: {
         labels: this.label,
         datasets: [{
-          label: '# Celsius',
+          label: '#' + `${this.textCelsius}`,
           data: this.data,
           backgroundColor: [
             'rgba(81, 119, 223, 1)',

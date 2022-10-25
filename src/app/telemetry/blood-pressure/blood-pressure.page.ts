@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 /* eslint-disable max-len */
 import { ActivatedRoute, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
@@ -17,6 +18,8 @@ export class BloodPressurePage implements OnInit {
   public systolic: any;
   public diastolic: any;
   lineChart: any;
+  textSystolic: string;
+  textDiastolic: string;
   label: any [] =[ '2022/5/22', '2022/5/23', '2022/5/26', '2022/5/27', '2022/6/1','2022/6/2'];
   public syst: any[]=[115, 118, 121, 119, 125, 111];
   public dias: any[]=[ 65, 78, 68, 75, 78, 69];
@@ -24,7 +27,16 @@ export class BloodPressurePage implements OnInit {
 
   constructor(  public router: Router,
     private route: ActivatedRoute,
-    private storage: Storage) { Chart.register(...registerables);}
+    private storage: Storage,
+    private translateService: TranslateService) {
+      Chart.register(...registerables);
+      translateService.get('BLOODPRESSURE.systolic').subscribe(value => {
+        this.textSystolic = value;
+      });
+      translateService.get('BLOODPRESSURE.diastolic').subscribe(value => {
+        this.textDiastolic = value;
+      });
+    }
 
   ngOnInit() {
 
@@ -66,7 +78,7 @@ ionViewWillEnter() {
         labels: this.label,
         datasets: [
           {
-            label: 'Systolic',
+            label: `${this.textSystolic}`,
             fill: false,
             backgroundColor: 'rgb(255,0,0)',
             borderColor: 'rgb(255,0,0)',
@@ -87,7 +99,7 @@ ionViewWillEnter() {
             spanGaps: false,
           },
           {
-            label: 'Diastolic',
+            label: `${this.textDiastolic}`,
             fill: false,
             backgroundColor: 'rgb(0,128,128)',
             borderColor: 'rgb(0,128,128)',

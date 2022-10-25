@@ -428,8 +428,30 @@
     },
     "HEARTRATE": {
         "heartRate": "Heart Rate",
-        "beats/minute": "beats/minute",
+        "beats/minute": "Beats/minute",
         "heartRateHistoryChart": " Heart Rate History Chart",
+        "refreshing": "Refreshing...",
+        "return": "Telemetries"
+    },
+    "BODYTEMPERATURE": {
+        "bodyTemperature": "Body Temperature",
+        "celsius": "Celsius",
+        "bodyTemperatureHistoryChart": " Body Temperature History Chart",
+        "refreshing": "Refreshing...",
+        "return": "Telemetries"
+    },
+    "BLOODPRESSURE": {
+        "bloodPressure": "Blood Pressure",
+        "systolic": "Systolic",
+        "diastolic": "Diastolic",
+        "bloodPressureHistoryChart": " Blood Pressure History Chart",
+        "refreshing": "Refreshing...",
+        "return": "Telemetries"
+    },
+    "RESPIRATORYRATE": {
+        "respiratoryRate": "Respiratory Rate",
+        "perMinute": "Per minute",
+        "respiratoryRateHistoryChart": " Respiratory Rate History Chart",
         "refreshing": "Refreshing...",
         "return": "Telemetries"
     }

@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Telemetries" defaultHref="/tabs/tab3/telemetry" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'BLOODPRESSURE.return' | translate}}" defaultHref="/tabs/tab3/telemetry" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button>
@@ -32,7 +32,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Blood Pressure</ion-label>
+                <ion-label class="text-top">{{ 'BLOODPRESSURE.bloodPressure' | translate}} </ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -49,8 +49,8 @@
 
             <ion-label text-wrap>
 
-                <h4> Systolic: {{systolic}}</h4>
-                <h4> Diastolic: {{diastolic}}</h4>
+                <h4> {{ 'BLOODPRESSURE.systolic' | translate}}: {{systolic}}</h4>
+                <h4> {{ 'BLOODPRESSURE.diastolic' | translate}}: {{diastolic}}</h4>
             </ion-label>
 
         </ion-col>
@@ -62,12 +62,13 @@
 </ion-header>
 <ion-content>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="{{ 'BLOODPRESSURE.refreshing' | translate}}">
         </ion-refresher-content>
     </ion-refresher>
     <ion-card>
         <ion-card-header>
-            Blood Pressure History Chart
+            {{ 'BLOODPRESSURE.bloodPressureHistoryChart' | translate}}
+
         </ion-card-header>
         <ion-card-content>
             <canvas #lineCanvas style="position: relative; height:20vh; width:40vw"></canvas>

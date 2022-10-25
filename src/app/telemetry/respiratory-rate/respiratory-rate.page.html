@@ -4,7 +4,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Telemetries" defaultHref="/tabs/tab3/telemetry" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{ 'RESPIRATORYRATE.return' | translate}}" defaultHref="/tabs/tab3/telemetry" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button>
@@ -34,7 +34,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Respiratory Rate</ion-label>
+                <ion-label class="text-top">{{ 'RESPIRATORYRATE.respiratoryRate' | translate}}</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -64,12 +64,12 @@
 </ion-header>
 <ion-content>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="{{ 'RESPIRATORYRATE.refreshing' | translate}}">
         </ion-refresher-content>
     </ion-refresher>
     <ion-card>
         <ion-card-header>
-            Respiratory Rate History Chart
+            {{ 'RESPIRATORYRATE.respiratoryRateHistoryChart' | translate}}
         </ion-card-header>
         <ion-card-content>
             <canvas #barCanvas style="position: relative; height:20vh; width:40vw"></canvas>

@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 /* eslint-disable max-len */
 import { ActivatedRoute, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
@@ -20,10 +21,15 @@ export class RespiratoryRatePage implements OnInit {
   label: any [] =['2022/5/22', '2022/5/23', '2022/5/26', '2022/5/27', '2022/6/1','2022/6/2'];
   data: any[]=[15, 24, 18, 22, 17, 27];
   date= new Date();
+  textPerMinute: string;
   constructor(  public router: Router,
     private route: ActivatedRoute,
-    private storage: Storage
-    ) { Chart.register(...registerables);}
+    private storage: Storage,
+    private translateService: TranslateService
+    ) { Chart.register(...registerables);
+      translateService.get('RESPIRATORYRATE.perMinute').subscribe(value => {
+        this.textPerMinute = value;
+      });}
 
   ngOnInit() {
 
@@ -59,7 +65,7 @@ export class RespiratoryRatePage implements OnInit {
       data: {
         labels: this.label,
         datasets: [{
-          label: 'Per minute',
+          label: `${this.textPerMinute}`,
           data: this.data,
           backgroundColor: [
             'rgba(86, 196, 69, 1)',

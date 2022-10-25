@@ -413,7 +413,7 @@
         "login": "Iniciar sesión",
         "isSynchronous": "Es síncrono",
         "isWritable": "Es escribible",
-        "isCloudable": "Es cloudable"
+        "isCloudable": "En la nube"
     },
     "TELEMETRYLIST": {
         "telemetries": "Telemetrias",
@@ -425,8 +425,30 @@
     },
     "HEARTRATE": {
         "heartRate": "El ritmo cardiaco",
-        "beats/minute": "latidos/minuto",
-        "heartRateHistoryChart": " Cuadro de historial de frecuencia cardíaca",
+        "beats/minute": "Latidos/minuto",
+        "heartRateHistoryChart": " Diagrama de historial de la frecuencia cardíaca",
+        "refreshing": "Actualizando...",
+        "return": "Telemetrias"
+    },
+    "BODYTEMPERATURE": {
+        "bodyTemperature": "La temperatura corporal",
+        "celsius": "Celsius",
+        "bodyTemperatureHistoryChart": " Diagrama de historial de la temperatura corporal",
+        "refreshing": "Actualizando...",
+        "return": "Telemetrias"
+    },
+    "BLOODPRESSURE": {
+        "bloodPressure": "La presión arterial",
+        "systolic": "Sistólica",
+        "diastolic": "Diastólica",
+        "bloodPressureHistoryChart": " Diagrama de historial de la presión arterial",
+        "refreshing": "Actualizando...",
+        "return": "Telemetrias"
+    },
+    "RESPIRATORYRATE": {
+        "respiratoryRate": "La frecuencia respiratoria",
+        "perMinute": "Por minuto",
+        "respiratoryRateHistoryChart": " Diagrama de historial de la frecuencia respiratoria",
         "refreshing": "Actualizando...",
         "return": "Telemetrias"
     }

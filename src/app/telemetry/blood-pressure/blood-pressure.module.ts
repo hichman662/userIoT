@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { BloodPressurePage } from './blood-pressure.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    BloodPressurePageRoutingModule
+    BloodPressurePageRoutingModule,
+    TranslateModule
   ],
   declarations: [BloodPressurePage]
 })

@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 /* eslint-disable max-len */
 import { ActivatedRoute, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
@@ -16,13 +17,20 @@ export class HeartRatePage implements OnInit {
   @ViewChild('barCanvas') private barCanvas: ElementRef;
   public heartRate: any;
   barChart: any;
+  textBeats: string;
   label: any [] =[ '2022/5/22', '2022/5/23', '2022/5/26', '2022/5/27', '2022/6/1'];
   data: any[]=[ 78, 90, 89,94,98];
   date= new Date();
   constructor(  public router: Router,
     private route: ActivatedRoute,
-    private storage: Storage
-    ) { Chart.register(...registerables);}
+    private storage: Storage,
+    private translateService: TranslateService
+    )
+     { Chart.register(...registerables);
+    translateService.get('HEARTRATE.beats/minute').subscribe(value => {
+      this.textBeats = value;
+    });
+    }
 
   ngOnInit() {
 
@@ -58,7 +66,7 @@ randomNumber(min, max) {
       data: {
         labels: this.label,
         datasets: [{
-          label: '#  Beats/Minute',
+          label: '#'+  `${this.textBeats}`,
           data: this.data,
           backgroundColor: [
             'rgba(245, 225, 52, 1)',
