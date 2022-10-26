@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Care Activities" defaultHref="tabs/tab2/appointment" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{'APPOINTMENT.return' | translate}}" defaultHref="tabs/tab2/appointment" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button>
@@ -51,7 +51,7 @@
             <ion-list-header>
 
                 <ion-label class="text-top">
-                    <h2>Appointment</h2>
+                    <h2>{{'APPOINTMENT.appointment' | translate}}</h2>
                 </ion-label>
             </ion-list-header>
 
@@ -64,11 +64,11 @@
     <ion-segment value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
         <ion-segment-button value="appointment">
             <ion-icon name="calendar"></ion-icon>
-            <ion-label>Appointment Detail</ion-label>
+            <ion-label>{{'APPOINTMENT.appointmentDetail' | translate}} </ion-label>
         </ion-segment-button>
         <ion-segment-button value="details">
             <ion-icon name="medkit-outline"></ion-icon>
-            <ion-label>Activity Detail</ion-label>
+            <ion-label>{{'APPOINTMENT.activityDetail' | translate}} </ion-label>
         </ion-segment-button>
 
 

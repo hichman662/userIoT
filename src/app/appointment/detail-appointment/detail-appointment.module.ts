@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,8 @@ import { DetailAppointmentPage } from './detail-appointment.page';
     FormsModule,
     IonicModule,
     DetailAppointmentPageRoutingModule,
-    MatExpansionModule
+    MatExpansionModule,
+    TranslateModule
   ],
   declarations: [DetailAppointmentPage]
 })

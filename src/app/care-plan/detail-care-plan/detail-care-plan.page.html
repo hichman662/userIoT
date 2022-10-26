@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Back" defaultHref="tabs/tab2/carePlan" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{'CAREPLAN.return' | translate}}" defaultHref="tabs/tab2/carePlan" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button>
@@ -64,21 +64,21 @@
     <ion-segment [hidden]="carePlanDetailNull" value="all" color="tertiary" class="animate__animated animate__slideInUp animate__fast" scrollable="true" mode="md" [(ngModel)]="segmentModel" lines="none">
         <ion-segment-button value="details">
             <ion-icon name="receipt-outline"></ion-icon>
-            <ion-label>Detail</ion-label>
+            <ion-label>{{'CAREPLAN.detail' | translate}}</ion-label>
         </ion-segment-button>
         <ion-segment-button value="goals">
             <ion-icon name="trophy-outline"></ion-icon>
-            <ion-label>Goals</ion-label>
+            <ion-label>{{'CAREPLAN.goals' | translate}}</ion-label>
         </ion-segment-button>
         <ion-segment-button value="targets">
             <ion-icon name="locate-outline"></ion-icon>
-            <ion-label>Targets</ion-label>
+            <ion-label>{{'CAREPLAN.targets' | translate}}</ion-label>
         </ion-segment-button>
     </ion-segment>
 </ion-header>
 <ion-content>
     <ion-card-header [hidden]="!carePlanDetailNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
-        <ion-icon size="large" name="warning-outline"></ion-icon> No Care Plan Template has been added to this Care Plan. To add Care Plan Template, select one.
+        <ion-icon size="large" name="warning-outline"></ion-icon> {{'CAREPLAN.alertNoCarePlanTemplate' | translate}}
     </ion-card-header>
     <div class="segment" *ngIf="segmentModel === 'details'" [hidden]="carePlanDetailNull">
         <div *ngFor="let attr of attriubute">
@@ -142,41 +142,41 @@
                 <ion-card>
                     <ion-item>
 
-                        <ion-label text-wrap>Description</ion-label>
+                        <ion-label text-wrap>{{'CAREPLAN.descripcion' | translate}}</ion-label>
                         <ion-badge text-wrap> {{goal.value['Description']}}</ion-badge>
                     </ion-item>
                     <ion-item>
 
-                        <ion-label>Priority</ion-label>
+                        <ion-label>{{'CAREPLAN.priority' | translate}}</ion-label>
 
-                        <ion-badge *ngIf="$any(goal).value.Priority === 1"> High</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Priority === 2"> Medium</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Priority === 3"> Low</ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Priority === 1">{{'CAREPLAN.high' | translate}} </ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Priority === 2">{{'CAREPLAN.medium' | translate}} </ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Priority === 3"> {{'CAREPLAN.low' | translate}}</ion-badge>
                     </ion-item>
                     <ion-item>
 
-                        <ion-label>Status</ion-label>
+                        <ion-label>{{'CAREPLAN.status' | translate}}</ion-label>
 
-                        <ion-badge *ngIf="$any(goal).value.Status === 1"> Draft</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Status === 2"> Active</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Status === 3"> On Hold</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Status === 4"> Revoked</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Status === 5"> Completed</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Status === 6"> Canceled</ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Status === 1"> {{'CAREPLAN.draft' | translate}}</ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Status === 2"> {{'CAREPLAN.active' | translate}}</ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Status === 3">{{'CAREPLAN.onHold' | translate}} </ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Status === 4">{{'CAREPLAN.revoked' | translate}} </ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Status === 5"> {{'CAREPLAN.completed' | translate}}</ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Status === 6"> {{'CAREPLAN.canceled' | translate}}</ion-badge>
                     </ion-item>
                     <ion-item>
 
-                        <ion-label>Category</ion-label>
+                        <ion-label>{{'CAREPLAN.category' | translate}}</ion-label>
 
-                        <ion-badge *ngIf="$any(goal).value.Category === 1"> Dietary</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Category === 2"> Safety</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Category === 3"> Behavioral</ion-badge>
-                        <ion-badge *ngIf="$any(goal).value.Category === 4"> Physiotherapy</ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Category === 1">{{'CAREPLAN.dietary' | translate}} </ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Category === 2"> {{'CAREPLAN.safety' | translate}}</ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Category === 3">{{'CAREPLAN.behavioral' | translate}} </ion-badge>
+                        <ion-badge *ngIf="$any(goal).value.Category === 4">{{'CAREPLAN.physiotherapy' | translate}} </ion-badge>
 
                     </ion-item>
                     <ion-item>
 
-                        <ion-label>Outcome Code</ion-label>
+                        <ion-label>{{'CAREPLAN.outcomeCode' | translate}} </ion-label>
 
                         <ion-badge> {{goal.value['OutcomeCode']}}</ion-badge>
 
@@ -216,13 +216,13 @@
                 <ion-card>
                     <ion-item>
 
-                        <ion-label text-wrap>DesiredValue</ion-label>
+                        <ion-label text-wrap>{{'CAREPLAN.desiredValue' | translate}}</ion-label>
                         <ion-badge text-wrap> {{target.value['DesiredValue']}}</ion-badge>
                     </ion-item>
 
                     <ion-item>
 
-                        <ion-label>Due Date</ion-label>
+                        <ion-label>{{'CAREPLAN.dueDate' | translate}} </ion-label>
 
                         <ion-badge> {{target.value['DueDate'] | date}}</ion-badge>
 
@@ -242,12 +242,12 @@
     <form [formGroup]="carePlantemplateForm" (ngSubmit)="onSubmit()" [hidden]="!carePlanDetailNull">
 
         <ion-item lines="full">
-            <ion-label position="stacked">Care plan Template</ion-label>
+            <ion-label position="stacked">{{'CAREPLAN.carePlanTemplate' | translate}} </ion-label>
 
             <ion-select multiple="false" okText="Okay" cancelText="Dismiss" formControlName="idCarePlanTemplate">
 
                 <div class="error" *ngIf="carePlantemplateForm.controls.idCarePlanTemplate.errors && carePlantemplateForm.controls.idCarePlanTemplate.touched">
-                    Please fill out this field
+                    {{'CAREPLAN.pleaseFillOutThisField' | translate}}
                 </div>
 
                 <div>
@@ -261,6 +261,6 @@
         <br>
         <br>
 
-        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!carePlantemplateForm.valid">Done</ion-button>
+        <ion-button expand="block " class="save" size="small" fill="solid" type="submit" color="light" [disabled]="!carePlantemplateForm.valid">{{'CAREPLAN.done' | translate}}</ion-button>
     </form>
 </ion-content>

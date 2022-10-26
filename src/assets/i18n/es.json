@@ -451,6 +451,84 @@
         "respiratoryRateHistoryChart": " Diagrama de historial de la frecuencia respiratoria",
         "refreshing": "Actualizando...",
         "return": "Telemetrias"
+    },
+    "CAREPLANLIST": {
+        "title": "Los planes de cuidado",
+        "addPatient": "Agregar paciente",
+        "alertNoPatient": "No se ha agregado ningún paciente a este escenario. Para agregar Paciente, presione el botón Agregar",
+        "alertNoCarePlan": "No se ha añadido ningún Plan de cuidado a este escenario. Para agregarlo, presione el botón Agregar.",
+        "return": "Sección de plan de cuidado"
+    },
+    "CAREPLAN": {
+        "detail": "Detalle",
+        "goals": "Metas",
+        "targets": "Objetivos",
+        "descripcion": "Descripción",
+        "priority": "Prioridad",
+        "high": "Alta",
+        "medium": "Medio",
+        "low": "Bajo",
+        "status": "Estado",
+        "draft": "Borrador",
+        "active": "Activo",
+        "onHold": "En espera",
+        "revoked": "Revocado",
+        "completed": "Completado",
+        "canceled": "Cancelado",
+        "category": "Categoría",
+        "dietary": "Dietético",
+        "safety": "protección",
+        "behavioral": "Comportamiento",
+        "physiotherapy": "Fisioterapia",
+        "outcomeCode": "Código de resultado",
+        "desiredValue": "Valor deseado",
+        "dueDate": "Fecha de vencimiento",
+        "carePlanTemplate": "Plantilla de plan de cuidados",
+        "pleaseFillOutThisField": "Por favor complete este campo",
+        "alertNoCarePlanTemplate": "No se ha agregado ninguna plantilla de plan de cuidado a este plan de cuidado. Para agregarla, seleccione una.",
+        "return": "Volver",
+        "done": "Guardar"
+    },
+    "VITALSIGNLIST": {
+        "title": "Signos vitales",
+        "return": "Sección de plan de cuidado"
+    },
+    "VITALSIGN": {
+        "return": "Signos vitales"
+    },
+    "MEDICATIONLIST": {
+        "title": "Medicamentos",
+        "alertNoMedication": "No se ha agregado ningún medicamento a este escenario. Para agregar un medicamento, presione el botón Agregar",
+        "return": "Sección de plan de cuidado"
+    },
+    "MEDICATION": {
+        "medication": "Medicamento",
+        "medicationDetail": "Detalle de medicamento",
+        "activityDetail": "Detalle de la actividad",
+        "return": "Medicamentos"
+    },
+    "APPOINTMENTLIST": {
+        "title": "Citas",
+        "alertNoAppointment": "No se ha agregado ninguna cita a este escenario. Para agregar una cita, presione el botón Agregar.",
+        "return": "Sección de plan de cuidado"
+    },
+    "APPOINTMENT": {
+        "appointment": "Cita",
+        "appointmentDetail": "Detalle de la cita",
+        "activityDetail": "Detalle de la actividad",
+        "return": "Citas"
+    },
+    "COMMUNICATIONLIST": {
+        "title": "Comunicaciones",
+        "alertNoCommunication": "No se ha agregado ninguna communicacin a este escenario. Para agregar una cita, presione el botón Agregar.",
+        "return": "Sección de plan de cuidado"
+    },
+    "COMMUNICATION": {
+        "communication": "Comunicación",
+        "communicationDetail": "Detalle de la comunicación",
+        "activityDetail": "Detalle de la actividad",
+        "return": "Comunicaciones"
     }
+
 
 }

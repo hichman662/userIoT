@@ -454,6 +454,84 @@
         "respiratoryRateHistoryChart": " Respiratory Rate History Chart",
         "refreshing": "Refreshing...",
         "return": "Telemetries"
+    },
+    "CAREPLANLIST": {
+        "title": "Care Plans",
+        "addPatient": "Add patient",
+        "alertNoPatient": "No Patient has been added to this scenario. To add Patient, press the Add button.",
+        "alertNoCarePlan": "No Care Plan has been added to this scenario. To add Care Plan, press the Add button.",
+        "return": "Care Plan Dashboard"
+    },
+    "CAREPLAN": {
+        "detail": "Detail",
+        "goals": "Goals",
+        "targets": "Targets",
+        "descripcion": "Description",
+        "priority": "Priority",
+        "high": "High",
+        "medium": "Medium",
+        "low": "low",
+        "status": "Status",
+        "draft": "Draft",
+        "active": "Active",
+        "onHold": "On hold",
+        "revoked": "Revoked",
+        "completed": "Completed",
+        "canceled": "Canceled",
+        "category": "Category",
+        "dietary": "Dietary",
+        "safety": "Safety",
+        "behavioral": "Behavioral",
+        "physiotherapy": "Physiotherapy",
+        "outcomeCode": "Outcome Code",
+        "desiredValue": "Desire value",
+        "dueDate": "Due date",
+        "carePlanTemplate": "Care plan Template",
+        "pleaseFillOutThisField": "Please fill out this field",
+        "alertNoCarePlanTemplate": "No Care Plan Template has been added to this Care Plan. To add Care Plan Template, select one.",
+        "return": "return",
+        "done": "Done"
+    },
+    "VITALSIGNLIST": {
+        "title": "Vital Signs",
+        "return": "Care Plan Dashboard"
+    },
+    "VITALSIGN": {
+        "return": "Vital Signs"
+    },
+    "MEDICATIONLIST": {
+        "title": "Medications",
+        "alertNoMedication": "No medication has been added to this scenario. To add medication, press the Add button.",
+        "return": "Care Plan Dashboard"
+    },
+    "MEDICATION": {
+        "medication": "Medication",
+        "medicationDetail": "Medication Detail",
+        "activityDetail": "Activity Detail",
+        "return": "Medications"
+    },
+    "APPOINTMENTLIST": {
+        "title": "Appointments",
+        "alertNoAppointment": "No appointment has been added to this scenario. To add appointment, press the Add button.",
+        "return": "Care Plan Dashboard"
+    },
+    "APPOINTMENT": {
+        "appointment": "Appointment",
+        "appointmentDetail": "Appointment Detail",
+        "activityDetail": "Activity Detail",
+        "return": "Appointments"
+    },
+    "COMMUNICATIONLIST": {
+        "title": "Communications",
+        "alertNoCommunication": "No communication has been added to this scenario. To add communication, press the Add button.",
+        "return": "Care Plan Dashboard"
+    },
+    "COMMUNICATION": {
+        "communication": "Communication",
+        "communicationDetail": "Communication Detail",
+        "activityDetail": "Activity Detail",
+        "return": "Communications"
     }
+
 
 }

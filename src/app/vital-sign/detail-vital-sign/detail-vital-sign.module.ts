@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { DetailVitalSignPage } from './detail-vital-sign.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    DetailVitalSignPageRoutingModule
+    DetailVitalSignPageRoutingModule,
+    TranslateModule
   ],
   declarations: [DetailVitalSignPage]
 })

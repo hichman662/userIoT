@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Care plan dashboard" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{'CAREPLANLIST.return' | translate}}" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end" [hidden]="patientNull">
             <ion-icon size="large" class="ionadd" name="add-outline" slot="end" [routerLink]="['add-care-plan']"></ion-icon>
@@ -33,7 +33,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Care Plans</ion-label>
+                <ion-label class="text-top">{{'CAREPLANLIST.title' | translate}} </ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -47,17 +47,17 @@
     <ion-card [hidden]="!patientNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
         <ion-item class="warning">
             <ion-icon size="large" name="warning-outline"></ion-icon>
-            <ion-button fill="outline" slot="end" [routerLink]="['add-patient']">Add Patient</ion-button>
+            <ion-button fill="outline" slot="end" [routerLink]="['add-patient']">{{'CAREPLANLIST.addPatient' | translate}}</ion-button>
         </ion-item>
         <ion-card-header>
 
-            <ion-card-subtitle>No Patient has been added to this scenario. To add Patient, press the Add button.</ion-card-subtitle>
+            <ion-card-subtitle>{{'CAREPLANLIST.alertNoPatient' | translate}}</ion-card-subtitle>
             <!-- <ion-card-title>Care Plans</ion-card-title> -->
         </ion-card-header>
     </ion-card>
     <ion-card class="animate__animated animate__slideInUp animate__slower">
 
-        <ion-card-header [hidden]="!carePlanNull || patientNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">No Care Plan has been added to this scenario. To add Care Plan, press the Add button.</ion-card-header>
+        <ion-card-header [hidden]="!carePlanNull || patientNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">{{'CAREPLANLIST.alertNoCarePlan' | translate}}</ion-card-header>
         <ion-list>
             <div class="carePlan" *ngFor="let carePlan of carePlans">
 
