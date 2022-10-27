@@ -528,6 +528,28 @@
         "communicationDetail": "Detalle de la comunicación",
         "activityDetail": "Detalle de la actividad",
         "return": "Comunicaciones"
+    },
+    "NUTRITIONNLIST": {
+        "title": "Nutriciones",
+        "alertNoNutrition": "No se ha agregado nutrición a este escenario. Para agregarla, presiona el botón Agregar.",
+        "return": "Sección de plan de cuidado"
+    },
+    "NUTRITION": {
+        "nutrition": "Nutrition",
+        "nutritionDetail": "Detalle Nutricional",
+        "activityDetail": "Detalle de la actividad",
+        "return": "Nutriciones"
+    },
+    "MESSANGER": {
+        "title": "Mensajeria",
+        "send": "ENVIAR",
+        "typeMessageHere": "Escriba el mensaje aquí",
+        "return": "Sección de plan de cuidado"
+    },
+    "TOASTALERT": {
+        "success": "EXITOSO!",
+        "addSuccessfully": "ha sido agregado exitosamente"
+
     }
 
 

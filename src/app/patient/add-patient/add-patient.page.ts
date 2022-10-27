@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
@@ -33,6 +34,8 @@ export class AddPatientPage implements OnInit {
   patientprofileId: number;
   patientId: number;
   data: any;
+  textSuccess: string;
+  textAlertSuccess: string;
 
   constructor(
     public navCtrl: NavController,
@@ -41,7 +44,8 @@ export class AddPatientPage implements OnInit {
     public alertController: AlertController,
     private router: Router,
     private storage: Storage,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private translateService: TranslateService
   ) {
 
     this.patientForm = new FormGroup({
@@ -60,6 +64,13 @@ export class AddPatientPage implements OnInit {
     p_patientprofile_oid: new FormControl(Number, [
       Validators.required
     ])
+  });
+
+  translateService.get('TOASTALERT.success').subscribe(value => {
+    this.textSuccess = value;
+  });
+  translateService.get('TOASTALERT.addSuccessfully').subscribe(value => {
+    this.textAlertSuccess = value;
   });
 }
 
@@ -103,7 +114,7 @@ export class AddPatientPage implements OnInit {
   async presentToast(color: string, message: string) {
     const toast = await this.toastController.create({
       color: `${color}`,
-      message: `The ${message} has been added successfully`,
+      message: `${message} ${this.textAlertSuccess}`,
       duration: 1500,
       position: 'bottom'
     });

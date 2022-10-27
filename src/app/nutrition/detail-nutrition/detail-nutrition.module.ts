@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { DetailNutritionPage } from './detail-nutrition.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    DetailNutritionPageRoutingModule
+    DetailNutritionPageRoutingModule,
+    TranslateModule
   ],
   declarations: [DetailNutritionPage]
 })

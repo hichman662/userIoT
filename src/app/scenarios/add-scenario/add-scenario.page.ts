@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { ScenarioService } from './../../services/scenario.service';
@@ -22,13 +23,22 @@ export class AddScenarioPage implements OnInit {
   scenarioAddDone = false;
   name = '';
   token: any;
+  textSuccess: string;
+  textAlertSuccess: string;
   constructor(
     private scenarioService: ScenarioService,
     public alertController: AlertController,
     private router: Router,
     public toastController: ToastController,
-    private storage: Storage
+    private storage: Storage,
+    private translateService: TranslateService
   ) {
+    translateService.get('TOASTALERT.success').subscribe(value => {
+      this.textSuccess = value;
+    });
+    translateService.get('TOASTALERT.addSuccessfully').subscribe(value => {
+      this.textAlertSuccess = value;
+    });
 
     this.scanearioForm = new FormGroup({
     Name: new FormControl('', [
@@ -67,7 +77,7 @@ export class AddScenarioPage implements OnInit {
   async presentToast(color: string) {
     const toast = await this.toastController.create({
       color: `${color}`,
-      message: `The ${this.name} has been added successfully`,
+      message: ` ${this.name} ${this.textAlertSuccess} `,
       duration: 1500,
       position: 'bottom'
     });

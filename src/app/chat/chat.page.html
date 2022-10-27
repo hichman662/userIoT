@@ -3,7 +3,7 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-back-button text="Care plan dashboard" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
+            <ion-back-button text="{{'MESSANGER.return' | translate}}" defaultHref="/tabs/tab2" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
 
 
@@ -29,7 +29,7 @@
         <ion-col size="10" class="ion-align-self-center">
 
             <ion-list-header>
-                <ion-label class="text-top">Messanger</ion-label>
+                <ion-label class="text-top">{{'MESSANGER.title' | translate}}</ion-label>
             </ion-list-header>
 
         </ion-col>
@@ -46,9 +46,9 @@
         </ul>
     </div>
     <ion-row class="rowMessenger">
-        <input type="text" placeholder="Type message here" class="msg-input" [(ngModel)]="msgDto.msgText" />
+        <input type="text" placeholder="{{'MESSANGER.typeMessageHere' | translate}}" class="msg-input" [(ngModel)]="msgDto.msgText" />
         <ion-button class="send-btn" (click)="send()">
-            <ion-icon id="sendIcon" slot="start" name="send">SEND</ion-icon>
+            <ion-icon id="sendIcon" slot="start" name="send">{{'MESSANGER.send' | translate}}</ion-icon>
         </ion-button>
     </ion-row>
     <!--     <input type="text" placeholder="Your name" class="name-box" [(ngModel)]="msgDto.name" /> -->

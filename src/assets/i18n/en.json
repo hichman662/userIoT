@@ -531,6 +531,28 @@
         "communicationDetail": "Communication Detail",
         "activityDetail": "Activity Detail",
         "return": "Communications"
+    },
+    "NUTRITIONNLIST": {
+        "title": "Nutritions",
+        "alertNoNutrition": "No nutrition has been added to this scenario. To add nutrition, press the Add button.",
+        "return": "Care Plan Dashboard"
+    },
+    "NUTRITION": {
+        "nutrition": "Nutrition",
+        "nutritionDetail": "Nutrition Detail",
+        "activityDetail": "Activity Detail",
+        "return": "Nutritions"
+    },
+    "MESSANGER": {
+        "title": "Messanger",
+        "send": "SEND",
+        "typeMessageHere": "typeMessageHere",
+        "return": "Care Plan Dashboard"
+    },
+    "TOASTALERT": {
+        "success": "SUCCESS!",
+        "addSuccessfully": "has been added successfully"
+
     }
 
 
