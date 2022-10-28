@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { AlertController } from '@ionic/angular';
@@ -19,14 +20,15 @@ export class AddUserPage implements OnInit {
   userForm: FormGroup;
   surenames = '';
   user: UserData;
-
+  textAlertSuccess: string;
   constructor(
     private userService: UserService,
     public alertController: AlertController,
     private router: Router,
     private location: Location,
     private storage: Storage,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private translateService: TranslateService
   ) {
 
     this.userForm = new FormGroup({
@@ -52,6 +54,10 @@ export class AddUserPage implements OnInit {
       Validators.required
     ])
   });
+
+  translateService.get('TOASTALERT.addSuccessfully').subscribe(value => {
+     this.textAlertSuccess = value;
+   });
 }
 
   ngOnInit() {
@@ -79,7 +85,7 @@ export class AddUserPage implements OnInit {
   async presentToast(color: string) {
     const toast = await this.toastController.create({
       color: `${color}`,
-      message: `The ${this.surenames} has been added successfully`,
+      message: `${this.surenames} ${this.textAlertSuccess}`,
       duration: 2500,
       position: 'bottom'
     });

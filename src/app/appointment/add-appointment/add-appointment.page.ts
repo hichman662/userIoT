@@ -1,10 +1,11 @@
+import { TranslateService } from '@ngx-translate/core';
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import { Appointment } from './../../models/appointment.model';
 import { CarePlanService } from './../../services/careplan.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
@@ -24,12 +25,15 @@ export class AddAppointmentPage implements OnInit {
   idNewAppointment: number;
   idCareactivityForAdd: number;
   idAppointmentForAdd: number;
+  textAlertSuccess: string;
   constructor(
     public navCtrl: NavController,
     private carePlanService: CarePlanService,
     public alertController: AlertController,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    private translateService: TranslateService,
+    public toastController: ToastController
   ) {
 
     this.addAppointmentForm = new FormGroup({
@@ -46,6 +50,10 @@ export class AddAppointmentPage implements OnInit {
       Validators.required
     ])
   });
+
+  translateService.get('TOASTALERT.addSuccessfully').subscribe(value => {
+        this.textAlertSuccess = value;
+      });
 }
 
   ngOnInit() {
@@ -86,7 +94,8 @@ export class AddAppointmentPage implements OnInit {
       console.log(this.carePlanService.getTemporalAddedActivity);
       this.storage.set('careActivityIdForAdd',null);
       this.storage.set('appointmentIdForAdd',null);
-      this.presentAlert();
+      //this.presentAlert();
+      this.presentToast('success',this.name);
     }, ( err ) => {
     });
   }
@@ -96,7 +105,7 @@ export class AddAppointmentPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'SUCCESS!',
-      message: `The ${this.name} has been added successfully`,
+      message: ` ${this.name} ${this.textAlertSuccess}`,
       buttons: [  {
         text: 'Ok',
         handler: () => {
@@ -109,6 +118,15 @@ export class AddAppointmentPage implements OnInit {
     await alert.present();
   }
 
+  async presentToast(color: string, message: string) {
+    const toast = await this.toastController.create({
+      color: `${color}`,
+      message: `The ${message} ${this.textAlertSuccess}`,
+      duration: 2500,
+      position: 'bottom'
+    });
+    await toast.present();
+  }
 
 }
 

@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -29,7 +30,7 @@ export class AddPatientAccessPage implements OnInit {
   accessModeProfileAddDone = false;
   idPatientAcess: number;
   idPassedByURL = '';
-
+  textAlertSuccess: string;
   constructor(
     public navCtrl: NavController,
     private patientService: PatientService,
@@ -38,6 +39,7 @@ export class AddPatientAccessPage implements OnInit {
     private storage: Storage,
     public toastController: ToastController,
     private route: ActivatedRoute,
+    private translateService: TranslateService
 
   ) {
 
@@ -58,7 +60,12 @@ export class AddPatientAccessPage implements OnInit {
       Validators.required
     ])
   });
+
+  translateService.get('TOASTALERT.addSuccessfully').subscribe(value => {
+    this.textAlertSuccess = value;
+  });
 }
+
 
   ngOnInit() {
     this.idPassedByURL = this.route.snapshot.params.Id;
@@ -97,7 +104,7 @@ export class AddPatientAccessPage implements OnInit {
   async presentToast(color: string, message: string) {
     const toast = await this.toastController.create({
       color: `${color}`,
-      message: `The ${message} has been added successfully`,
+      message: `${message} ${this.textAlertSuccess}`,
       duration: 1500,
       position: 'bottom'
     });

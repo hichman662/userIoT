@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/quotes */
 import { DeviceTemplate } from './../../models/deviceTemplate.model';
@@ -38,6 +39,7 @@ export class AddDevicePage implements OnInit {
   idAccessModeChoosen: number;
   idAccessModeFromStorage: number;
   weHaveAccessModeId = false;
+  textAlertSuccess: string;
   constructor(
     public navCtrl: NavController,
     private deviceService: DeviceService,
@@ -45,7 +47,8 @@ export class AddDevicePage implements OnInit {
     private router: Router,
     private storage: Storage,
     private patientService: PatientService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private translateService: TranslateService
 
   ) {
 
@@ -89,6 +92,10 @@ export class AddDevicePage implements OnInit {
     p_devicetemplate_oid: new FormControl(Number, [
       Validators.required
     ])
+  });
+
+  translateService.get('TOASTALERT.addSuccessfully').subscribe(value => {
+    this.textAlertSuccess = value;
   });
 }
 
@@ -135,7 +142,7 @@ ionViewWillEnter(){
   async presentToast(color: string, message: string) {
     const toast = await this.toastController.create({
       color: `${color}`,
-      message: `The ${message} has been added successfully`,
+      message: ` ${message} ${this.textAlertSuccess}`,
       duration: 2500,
       position: 'bottom'
     });

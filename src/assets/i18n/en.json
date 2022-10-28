@@ -138,6 +138,7 @@
         "view": "View",
         "return": "Scenarios",
         "addPatient": "Add Patient",
+        "addCarePlan": "Add Care Plan",
         "errorPatient": "No Patient has been added to this scenario. To add Patient, press the Add button."
     },
     "TABS": {

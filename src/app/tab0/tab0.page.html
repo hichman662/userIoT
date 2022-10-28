@@ -213,11 +213,11 @@
         <ion-card [hidden]="!carePlanNull" color="warning" class="animate__animated animate__fadeInLeft animate__slow">
             <ion-item class="warning">
                 <ion-icon size="large" name="warning-outline"></ion-icon>
-                <ion-button fill="outline" slot="end" [routerLink]="['add-careplan']">Add Careplan</ion-button>
+                <ion-button fill="outline" slot="end" [routerLink]="['add-careplan']">{{ 'HOME.addCarePlan' | translate }}</ion-button>
             </ion-item>
             <ion-card-header>
 
-                <ion-card-subtitle>No CarePlan has been added to this scenario. To add Care Plan, press the Add button.</ion-card-subtitle>
+                <ion-card-subtitle>{{'CAREPLANLIST.alertNoCarePlan' | translate}}</ion-card-subtitle>
                 <!-- <ion-card-title>Care Plans</ion-card-title> -->
             </ion-card-header>
         </ion-card>

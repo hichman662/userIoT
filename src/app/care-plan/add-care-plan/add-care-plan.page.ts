@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 /* eslint-disable @typescript-eslint/quotes */
 import { CarePlanTemplate } from './../../models/carePlanTemplate.model';
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -32,7 +33,7 @@ export class AddCarePlanPage implements OnInit {
   idPatientProfileNull = false;
   idPatient = false;
   assignCarePlanTemplateDone= false;
-
+  textAlertSuccess: string;
   constructor(
     public navCtrl: NavController,
     private carePlanService: CarePlanService,
@@ -40,7 +41,8 @@ export class AddCarePlanPage implements OnInit {
     public alertController: AlertController,
     private router: Router,
     private storage: Storage,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private translateService: TranslateService
   ) {
 
     this.carePlanForm = new FormGroup({
@@ -58,6 +60,10 @@ export class AddCarePlanPage implements OnInit {
     idCarePlanTemplate: new FormControl(Number, [
       Validators.required
     ])
+  });
+
+  translateService.get('TOASTALERT.addSuccessfully').subscribe(value => {
+    this.textAlertSuccess = value;
   });
 }
 
@@ -85,7 +91,8 @@ export class AddCarePlanPage implements OnInit {
       this.name = res.Name;
       this.idCarePlan = res.Id;
       this.carePlanAddDone = true;
-      this.presentAlert();
+      //this.presentAlert();
+      this.presentToast('success',this.name);
     }, ( err ) => {
 
     });
@@ -108,8 +115,8 @@ export class AddCarePlanPage implements OnInit {
   .subscribe( (res: any) => {
     this.assignCarePlanTemplateDone = true;
     this.storage.set('idcarePlanTemplate', this.idcarePlanTemplate);
-    this.presentAlert();
-    //this.presentToast();
+   // this.presentAlert();
+   this.presentToast('success',this.name);
       }, ( err ) => {
   });
 }
@@ -119,7 +126,7 @@ export class AddCarePlanPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'SUCCESS!',
-      message: `The ${this.name} has been added successfully`,
+      message: `${this.name} ${this.textAlertSuccess}`,
       buttons: [  {
         text: 'Ok',
         handler: () => {
@@ -136,7 +143,7 @@ export class AddCarePlanPage implements OnInit {
   async presentToast(color: string, message: string) {
     const toast = await this.toastController.create({
       color: `${color}`,
-      message: `The ${message} has been added successfully`,
+      message: `The ${message} ${this.textAlertSuccess}`,
       duration: 2500,
       position: 'bottom'
     });

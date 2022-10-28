@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Medication } from './../../models/medication.model';
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { CareActivity } from 'src/app/models/careActivity.model';
-
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-medication',
@@ -24,12 +25,15 @@ export class AddMedicationPage implements OnInit {
   idNewMedication: number;
   idCareactivityForAdd: number;
   idMedicationForAdd: number;
+  textAlertSuccess: string;
   constructor(
     public navCtrl: NavController,
     private carePlanService: CarePlanService,
     public alertController: AlertController,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    public toastController: ToastController,
+    private translateService: TranslateService
   ) {
 
     this.addMedicationForm = new FormGroup({
@@ -45,6 +49,10 @@ export class AddMedicationPage implements OnInit {
     TimeAct: new FormControl(Date, [
       Validators.required
     ])
+  });
+
+translateService.get('TOASTALERT.addSuccessfully').subscribe(value => {
+    this.textAlertSuccess = value;
   });
 }
 
@@ -84,7 +92,8 @@ export class AddMedicationPage implements OnInit {
       console.log(this.carePlanService.getTemporalAddedActivity);
       this.storage.set('careActivityIdForAdd',null);
       this.storage.set('medicationIdForAdd',null);
-      this.presentAlert();
+      //this.presentAlert();
+      this.presentToast('success',this.name);
     }, ( err ) => {
     });
   }
@@ -93,7 +102,7 @@ export class AddMedicationPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'SUCCESS!',
-      message: `The ${this.name} has been added successfully`,
+      message: ` ${this.name}  ${this.textAlertSuccess}`,
       buttons: [  {
         text: 'Ok',
         handler: () => {
@@ -104,6 +113,16 @@ export class AddMedicationPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async presentToast(color: string, message: string) {
+    const toast = await this.toastController.create({
+      color: `${color}`,
+      message: `${message} ${this.textAlertSuccess}`,
+      duration: 2500,
+      position: 'bottom'
+    });
+    await toast.present();
   }
 
 

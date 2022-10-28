@@ -138,6 +138,7 @@
         "view": "VER",
         "return": "ESCENARIOS",
         "addPatient": "Añadir paciente",
+        "addCarePlan": "Añadir plan de cuidado",
         "errorPatient": "No se ha agregado ningún paciente a este escenario. Para agregar Paciente, presione el botón Añadir."
     },
     "TABS": {
