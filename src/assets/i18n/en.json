@@ -1,4 +1,12 @@
 {
+    "LOGIN": {
+        "login": "Login",
+        "loading": "Loading",
+        "email": "Email",
+        "password": "Password",
+        "theUserFieldIsRequired": "The user field is required",
+        "thePasswordFieldIsRequired": "The password field is required"
+    },
     "SCENARIO": {
         "title": "Scenario",
         "profile": "Profile",

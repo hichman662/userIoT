@@ -1,4 +1,12 @@
 {
+    "LOGIN": {
+        "login": "Iniciar sesión",
+        "loading": "Cargando",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "theUserFieldIsRequired": "El campo de usuario es obligatorio",
+        "thePasswordFieldIsRequired": "El campo de contraseña es obligatorio"
+    },
     "SCENARIO": {
         "title": "Escenario",
         "profile": "Perfil",
