@@ -1,6 +1,9 @@
 {
     "SCENARIO": {
-        "title": "Scenario"
+        "title": "Scenario",
+        "profile": "Profile",
+        "logout": "Logout"
+
     },
     "ADDSCENARIO": {
         "title": "Add Scenario",

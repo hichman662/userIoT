@@ -9,6 +9,7 @@ import { Keepalive } from '@ng-idle/keepalive';
 import { Router, RouterEvent } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +19,13 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
 
   active = '';
+
+  textProfile: string;
+  textLogout: string;
   isModalOpen = false;
   NAV = [
     {
-      name: 'Profile',
+      name: `Profile`,
       link: '/profile',
       icon: 'person-circle'
     },
@@ -39,10 +43,15 @@ export class AppComponent {
   handlerMessage = '';
   roleMessage = '';
 
+  constructor(
+    public storage: Storage,
+    private router: Router,
+    public idle: Idle,
+    private keepalive: Keepalive,
+    private alertController: AlertController,
 
-  constructor(public storage: Storage,private router: Router,
-    public idle: Idle, private keepalive: Keepalive,private alertController: AlertController) {
 
+    ) {
 
     this.storage.create();
     this.router.events.subscribe((event: RouterEvent) => {

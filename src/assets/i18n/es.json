@@ -1,6 +1,8 @@
 {
     "SCENARIO": {
-        "title": "Escenario"
+        "title": "Escenario",
+        "profile": "Perfil",
+        "logout": "Cerrar sesión"
     },
     "ADDSCENARIO": {
         "title": "Añadir Escenario",

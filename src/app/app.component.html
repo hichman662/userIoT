@@ -1,7 +1,7 @@
 <ion-menu contentId="main-content" side="start">
     <ion-header>
         <ion-toolbar>
-            <ion-title>Twin4Disabilities</ion-title>
+            <ion-title>MoSIoT</ion-title>
         </ion-toolbar>
     </ion-header>
 
@@ -10,7 +10,8 @@
         <ion-list>
             <ion-menu-toggle auto-hide="false" *ngFor="let nav of NAV">
                 <ion-item routerDirection="root" [routerLink]="nav.link" [class.active-menu]="active === nav.link">
-                    {{nav.name}}
+                    <div *ngIf="nav.name ===  'Profile'"> {{'SCENARIO.profile' | translate}}</div>
+                    <div *ngIf="nav.name ===  'Logout'"> {{'SCENARIO.logout' | translate}}</div>
                     <ion-icon slot="start" [ios]="nav.icon + '-outline'" [md]="nav.icon + '-sharp'"></ion-icon>
                 </ion-item>
             </ion-menu-toggle>
