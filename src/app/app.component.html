@@ -11,9 +11,7 @@
             <ion-menu-toggle auto-hide="false" *ngFor="let nav of NAV">
                 <ion-item routerDirection="root" [routerLink]="nav.link" [class.active-menu]="active === nav.link">
                     <div *ngIf="nav.name ===  'Profile'"> {{'SCENARIO.profile' | translate}}</div>
-                    <div *ngIf="nav.name ===  'Settings'"> {{'SCENARIO.settings' | translate}}</div>
                     <div *ngIf="nav.name ===  'Logout'"> {{'SCENARIO.logout' | translate}}</div>
-
                     <ion-icon slot="start" [ios]="nav.icon + '-outline'" [md]="nav.icon + '-sharp'"></ion-icon>
                 </ion-item>
             </ion-menu-toggle>

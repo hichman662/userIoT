@@ -30,16 +30,10 @@ export class AppComponent {
       icon: 'person-circle'
     },
     {
-      name: 'Settings',
-      link: '/setting',
-      icon: 'settings'
-    },
-    {
       name: 'Logout',
       link: '/login',
       icon: 'exit'
-    },
-
+    }
   ];
 
   public idleState = 'NotStarted';

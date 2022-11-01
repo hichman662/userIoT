@@ -2,7 +2,6 @@
     "SCENARIO": {
         "title": "Escenario",
         "profile": "Perfil",
-        "settings": "Ajustes",
         "logout": "Cerrar sesión"
     },
     "ADDSCENARIO": {
